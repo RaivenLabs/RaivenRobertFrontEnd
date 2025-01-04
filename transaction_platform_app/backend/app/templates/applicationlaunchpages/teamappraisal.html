@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+    <div 
+        data-view-type="application" 
+        data-application="teamappraisal" 
+        id="sidebar-app"
+    >
+        {% include 'applicationlaunchpages/teamappraisal_sidebar.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div 
+        data-view-type="application" 
+        data-application="teamappraisal" 
+        id="content-app"
+    >
+        {# Application content goes here #}
+        <p>Testing, Alpha</p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        // Application initialization logging
+        console.log('Team Appraisal Template Loaded');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Initializing Team Appraisal...');
+        });
+    </script>
+{% endblock %}

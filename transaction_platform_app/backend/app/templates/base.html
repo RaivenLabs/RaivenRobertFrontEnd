@@ -1,0 +1,83 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/s3styling.css') }}">
+    <link rel="stylesheet" href="{{ url_for('main.serve_shared_files', filepath='css/application_group_console.css') }}">
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/analytics_console.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/houseapp_console.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/foundational_layout.css') }}">
+</head>
+
+
+<body>
+
+
+    <!-- Global Toast -->
+    <div id="toast" class="toast"></div>
+    
+    <!-- SVG Icons Partial -->
+    {% include 'components/svg/icons.html' %}
+
+    <div class="container">
+        <div class="sidebar">
+            {% block sidebar %}
+            {% include 'components/partials/main_sidebar.html' %}
+            {% endblock%}
+        </div>
+        
+        <div class="engagement-window">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+  
+    <script>
+
+        window.customerConfig = {{ g.config | tojson | safe }};
+    </script>
+
+   
+
+
+
+    {% block core_scripts %}
+    <script src="{{ url_for('static', filename='js/core/eventListener.js') }}"></script>
+{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Move this initialization to after all scripts are loaded
+            console.log('Initializing core platform...');
+        });
+    </script>
+
+
+
+
+
+
+
+    </body>
+    </html>
+
+
+
+
+
+
+

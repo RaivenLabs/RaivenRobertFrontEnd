@@ -1,0 +1,39 @@
+
+:root {
+  /* Existing Colors */
+  --royal-blue: #0A2351;
+  --royal-blue-hover: #153672;
+  --ivory: #FFFFF0;
+  --light-ivory: #FFFFFA;
+  --cyan: rgb(21, 235, 235);
+  --navy-blue: #132440;
+  --teal: #006D77;
+
+  /* Status Colors */
+  --status-active-bg: rgba(0, 200, 83, 0.1);
+  --status-active-text: rgb(0, 150, 62);
+  --status-pending-bg: rgba(255, 171, 0, 0.1);
+  --status-pending-text: rgb(191, 128, 0);
+  
+  /* Add these new variables */
+  /* Interactive States */
+  --hover-transition: 0.2s ease-in-out;
+  --hover-shadow: 0 2px 8px rgba(19, 36, 64, 0.15);
+  --hover-transform: translateY(-2px);
+  
+  /* Table Specific */
+  --table-border: 1px solid rgba(19, 36, 64, 0.1);
+  --table-header-bg: var(--royal-blue);
+  --table-row-hover: var(--light-ivory);
+  
+  /* Card/Container Styles */
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --card-border-radius: 8px;
+  --card-border: 1px solid rgba(19, 36, 64, 0.15);
+  
+ 
+
+  /* Existing Layout Variables */
+  --sidebar-width: 295px;
+  --header-height: 60px;
+}

@@ -1,0 +1,125 @@
+{
+    "justice": [
+        {
+            "identifier": "jackie",
+            "name": "Suits",
+            "welcome_template": "customers/justice_welcome.html",
+            "features": {
+                "advanced": true,
+                "legal_templates": true
+            },
+
+            "menu_config": {
+                "applications_dock_text": "Warren Applications Dock"
+            },
+
+            "auth": {
+            "require_login": true,
+            "sso_enabled": true,
+            "cognito_config": {
+                "UserPoolId": "us-west-2_PK6TMkBjL",
+                "ClientId": "1ndgkdrg86ll17nrsl93bkg545"
+            }
+        }, 
+
+            "branding": {
+                "primary_color": "#000080",
+                "logo_url": "curie_logo.png"
+            }
+        },
+        {
+            "identifier": "lovelace",
+            "name": "Lovelace Legal",
+            "welcome_template": "customers/justice_welcome_lovelace.html",
+            "features": {
+                "advanced": true,
+                "legal_templates": true
+            },
+
+            "menu_config": {
+                "applications_dock_text": "Lovelace Applications Dock"
+            },
+
+            "branding": {
+                "primary_color": "#4B0082",
+                "logo_url": "lovelace_logo.png"
+            }
+        },
+        {
+            "identifier": "hopper",
+            "name": "Hopper Law",
+            "welcome_template": "customers/justice_welcome_hopper.html",
+            "features": {
+                "advanced": true,
+                "legal_templates": true
+            },
+
+            "menu_config": {
+                "applications_dock_text": "Hopper Applications Dock"
+            },
+
+            "branding": {
+                "primary_color": "#006400",
+                "logo_url": "hopper_logo.png"
+            }
+        },
+        {
+            "identifier": "hamilton",
+            "name": "Hamilton Associates",
+            "welcome_template": "customers/justice_welcome_hamilton.html",
+            "features": {
+                "advanced": true,
+                "legal_templates": true
+            },
+
+            "menu_config": {
+                "applications_dock_text": "Hamilton Applications Dock"
+            },
+
+
+            "branding": {
+                "primary_color": "#8B4513",
+                "logo_url": "hamilton_logo.png"
+            }
+        },
+        {
+            "identifier": "meitner",
+            "name": "Meitner Legal Group",
+            "welcome_template": "customers/justice_welcome_meitner.html",
+            "features": {
+                "advanced": true,
+                "legal_templates": true
+            },
+
+
+
+
+            "menu_config": {
+                "applications_dock_text": "Meitner Applications Dock"
+            },
+            "branding": {
+                "primary_color": "#483D8B",
+                "logo_url": "meitner_logo.png"
+            }
+        },
+        {
+            "identifier": "franklin",
+            "name": "Franklin Law",
+            "welcome_template": "customers/justice_welcome_franklin.html",
+            "features": {
+                "advanced": true,
+                "legal_templates": true
+            },
+
+            "menu_config": {
+                "applications_dock_text": "Franklin Applications Dock"
+            },
+
+            "branding": {
+                "primary_color": "#800000",
+                "logo_url": "franklin_logo.png"
+            }
+        }
+    ]
+}
+

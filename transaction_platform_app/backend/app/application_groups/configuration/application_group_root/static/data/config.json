@@ -1,0 +1,10 @@
+[
+    {
+        "customer_id": "customer1",
+        "welcome_page": "customer1_welcome.html"
+    },
+    {
+        "customer_id": "customer2",
+        "welcome_page": "customer2_welcome.html"
+    }
+]

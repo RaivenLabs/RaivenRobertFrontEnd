@@ -1,0 +1,453 @@
+class EventDelegate {
+    constructor() {
+        document.body.addEventListener('click', this.handleClick.bind(this));
+        console.log('Event Delegate initialized');
+    }
+
+    handleClick(e) {
+        // Regular menu items
+        if (e.target.closest('.menu-item')) {
+            const menuItem = e.target.closest('.menu-item');
+            
+            // Check if it's a submenu item first
+            if (menuItem.classList.contains('has-submenu')) {
+                this.handleSubmenuToggle(e, menuItem);
+                return;
+            }
+            
+            // Check if it's a nested submenu (Steady State)
+            if (menuItem.classList.contains('unique-has-submenu')) {
+                this.handleNestedSubmenuToggle(e, menuItem);
+                return;
+            }
+            
+            // Handle regular menu item clicks
+            if (!menuItem.classList.contains('has-submenu') && 
+                !menuItem.classList.contains('unique-has-submenu')) {
+                this.handleMenuNavigation(menuItem);
+            }
+        }
+
+        // Other button handlers
+        if (e.target.closest('.btn-login')) {
+            this.handleLogin();
+        }
+        if (e.target.closest('.btn-refresh')) {
+            this.handleRefresh();
+        }
+
+        if (e.target.closest('.menu-item[data-section="engineering"]')) {
+            this.handleEngineeringClick();
+            return;
+        }
+        if (e.target.closest('.menu-item[data-section="houseapps"]')) {
+            this.handleHouseAppClick();
+            return;
+        }
+
+        
+
+
+
+        // Handle clicks within the Engineering Console
+        if (e.target.closest('.engineering-console')) {
+            const programTile = e.target.closest('.program-tile');
+            const closeButton = e.target.closest('.close-button');
+            const cancelButton = e.target.closest('.btn-secondary');
+            const launchButton = e.target.closest('.btn-primary');
+
+            if (closeButton || cancelButton) {
+                this.closeEngineeringConsole();
+            } else if (launchButton) {
+                this.launchSelectedEngineeringProgram();
+            } else if (programTile) {
+                this.handleEngineeringProgramSelection(programTile);
+            }
+        }
+       
+       
+        if (e.target.closest('.menu-item[data-section="analyticsgroup"]')) {
+            this.handleAnalyticsClick();
+            return;
+        }
+
+        // Handle clicks within the Engineering Console
+        if (e.target.closest('.analytics-console')) {
+            const programTile = e.target.closest('.program-tile');
+            const closeButton = e.target.closest('.close-button');
+            const cancelButton = e.target.closest('.btn-secondary');
+            const launchButton = e.target.closest('.btn-primary');
+
+            if (closeButton || cancelButton) {
+                this.closeEngineeringConsole();
+            } else if (launchButton) {
+                this.launchSelectedAnalyticsProgram();
+            } else if (programTile) {
+                this.handleAnalyticsProgramSelection(programTile);
+            }
+        }
+
+
+
+
+
+    }
+
+    handleSubmenuToggle(e, menuItem) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Toggle active class on the menu item
+        menuItem.classList.toggle('active');
+        
+        // Find and toggle the associated submenu
+        const submenu = menuItem.nextElementSibling;
+        if (submenu && submenu.classList.contains('submenu')) {
+            submenu.classList.toggle('active');
+        }
+    }
+
+    handleNestedSubmenuToggle(e, menuItem) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Toggle the nested submenu
+        const apolloSubmenu = menuItem.querySelector('.apollo-submenu');
+        if (apolloSubmenu) {
+            apolloSubmenu.classList.toggle('active');
+        }
+    }
+
+    handleMenuNavigation(menuItem) {
+        const section = menuItem.dataset.section;
+        console.log('Navigating to:', section);
+        
+        switch(section) {
+            case 'tangibleteams':
+                window.location.href = '/teams';
+                break;
+            case 'operations':
+                window.location.href = '/operations';
+                break;
+            case 'dashboard':
+                window.location.href = '/dashboard';
+                break;
+            // Add more cases as needed
+            default:
+                console.log('No route defined for:', section);
+        }
+    }
+
+    handleEngineeringClick() {
+        console.log('Opening Engineering Console');
+        fetch('/static/data/engineering_programs.json')
+            .then(response => response.json())
+            .then(data => {
+                // We'll create this template function next
+                this.renderEngineeringConsole(data);
+            })
+            .catch(error => console.error('Error loading engineering programs:', error));
+    }
+
+    renderEngineeringConsole(data) {
+        // Create and insert the engineering console HTML
+        const consoleHTML = `
+            <div class="engineering-console active">
+                <div class="modal-content">
+                    <button class="close-button">&times;</button>
+                    <h2>${data.title}</h2>
+                    <div class="program-groups">
+                        ${this.renderEngineeringProgramGroups(data.program_groups)}
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="btn btn-secondary">Cancel</button>
+                        <button class="btn btn-primary">Launch Program</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', consoleHTML);
+    }
+
+    renderEngineeringProgramGroups(groups) {
+        console.log("Rendering is sweet!")
+        return groups.map(group => `
+            <div class="program-group">
+                <div class="group-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <${group.icon}/>
+                    </svg>
+                    <h3>${group.name}</h3>
+                </div>
+                <div class="program-grid">
+                    ${this.renderEngineeringPrograms(group.programs)}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderEngineeringPrograms(programs) {
+        return programs.map(program => `
+            <label class="program-tile">
+                <input type="radio" name="program" value="${program.id}">
+                <div class="tile-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <${program.icon}/>
+                    </svg>
+                    <span>${program.name}</span>
+                </div>
+            </label>
+        `).join('');
+    }
+
+    closeEngineeringConsole() {
+        const console = document.querySelector('.engineering-console');
+        if (console) {
+            console.remove();
+        }
+    }
+
+    handleEngineeringProgramSelection(programTile) {
+        // Handle radio button selection
+        const radio = programTile.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.checked = true;
+        }
+    }
+
+    launchSelectedEngineeringProgram() {
+        const selectedProgram = document.querySelector('.engineering-console input[type="radio"]:checked');
+        if (selectedProgram) {
+            console.log('Launching engineering program:', selectedProgram.value);
+            this.closeEngineeringConsole();
+            // Add program launch logic here
+        } else {
+            alert('Please select an engineering program to launch');
+        }
+    }
+
+
+
+    // In eventListener.js, add these methods
+
+handleAnalyticsClick() {
+    console.log('Opening Analytics Console');
+    fetch('/static/data/analytics_programs.json')  // We can still use this data for now
+        .then(response => response.json())
+        .then(data => {
+            console.log("On our way with loaded data")
+            console.log(data)
+            this.renderAnalyticsConsole(data);
+        })
+        .catch(error => console.error('Error loading analytics programs:', error));
+}
+
+renderAnalyticsConsole(data) {
+    console.log("Arrived at analytics workshop:")
+    const consoleHTML = `
+        <div class="analytics-console active">
+            <div class="modal-content">
+                <button class="close-button">&times;</button>
+                <h2>${data.title}</h2>
+                <div class="program-groups">
+                    
+                ${this.renderAnalyticsProgramGroups(data.program_groups)}
+                    
+
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary">Cancel</button>
+                    <button class="btn btn-primary">View Analytics</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', consoleHTML);
+}
+
+
+renderAnalyticsProgramGroups(groups) {
+    console.log("Arrived at next step to render and render again Analytics Program Groups")
+    return groups.map(group => `
+        <div class="program-group">
+            <div class="group-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <${group.icon}/>
+                </svg>
+                <h3>${group.name}</h3>
+            </div>
+            <div class="program-grid">
+                ${this.renderAnalyticsPrograms(group.programs)}
+            </div>
+        </div>
+    `).join('');
+}
+
+renderAnalyticsPrograms(programs) {
+    return programs.map(program => `
+        <label class="program-tile">
+            <input type="radio" name="program" value="${program.id}">
+            <div class="tile-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <${program.icon}/>
+                </svg>
+                <span>${program.name}</span>
+            </div>
+        </label>
+    `).join('');
+}
+
+closeAnalyticsConsole() {
+    const console = document.querySelector('.analytics-console');
+    if (console) {
+        console.remove();
+    }
+}
+
+
+handleAnalyticsProgramSelection(programTile) {
+    const programId = programTile.querySelector('input[type="radio"]').value;
+    
+    // Check if it's M&A or Sourcing
+    if (programId.includes('m&a') || 
+        programId.includes('merger') || 
+        programId.includes('acquisition')) {
+        this.showComingSoon('M&A Analytics');
+    } else {
+        this.showComingSoon('Sourcing Analytics');
+    }
+}
+
+showComingSoon(type) {
+    const comingSoonHTML = `
+        <div class="coming-soon-overlay">
+            <div class="coming-soon-content">
+                <h2>${type}</h2>
+                <div class="coming-soon-message">
+                    <p>Coming Soon!</p>
+                    <p>Our team is working hard to bring you powerful analytics tools for ${type}.</p>
+                </div>
+                <button class="btn btn-primary close-coming-soon">Got it!</button>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', comingSoonHTML);
+
+    // Add event listener for the close button
+    document.querySelector('.close-coming-soon').addEventListener('click', () => {
+        document.querySelector('.coming-soon-overlay').remove();
+        this.closeAnalyticsConsole();
+    });
+}
+
+
+
+handleHouseAppClick() {
+    console.log('Opening HouseApp Console');
+    fetch('/static/data/houseapp_programs.json')
+        .then(response => response.json())
+        .then(data => {
+            // We'll create this template function next
+            this.renderHouseAppConsole(data);
+        })
+        .catch(error => console.error('Error loading HouseApp programs:', error));
+}
+
+renderHouseAppConsole(data) {
+    // Create and insert the HouseApp console HTML
+    const consoleHTML = `
+        <div class="houseapp-console active">
+            <div class="modal-content">
+                <button class="close-button">&times;</button>
+                <h2>${data.title}</h2>
+                <div class="program-groups">
+                    ${this.renderHouseAppProgramGroups(data.program_groups)}
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary">Cancel</button>
+                    <button class="btn btn-primary">Launch Program</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', consoleHTML);
+}
+
+renderHouseAppProgramGroups(groups) {
+    console.log("Rendering is sweet!")
+    return groups.map(group => `
+        <div class="program-group">
+            <div class="group-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <${group.icon}/>
+                </svg>
+                <h3>${group.name}</h3>
+            </div>
+            <div class="program-grid">
+                ${this.renderHouseAppPrograms(group.programs)}
+            </div>
+        </div>
+    `).join('');
+}
+
+renderHouseAppPrograms(programs) {
+    return programs.map(program => `
+        <label class="program-tile">
+            <input type="radio" name="program" value="${program.id}">
+            <div class="tile-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <${program.icon}/>
+                </svg>
+                <span>${program.name}</span>
+            </div>
+        </label>
+    `).join('');
+}
+
+closeHouseAppConsole() {
+    const console = document.querySelector('.houseapp-console');
+    if (console) {
+        console.remove();
+    }
+}
+
+handleHouseAppProgramSelection(programTile) {
+    // Handle radio button selection
+    const radio = programTile.querySelector('input[type="radio"]');
+    if (radio) {
+        radio.checked = true;
+    }
+}
+
+launchSelectedHouseAppProgram() {
+    const selectedProgram = document.querySelector('.houseapp-console input[type="radio"]:checked');
+    if (selectedProgram) {
+        console.log('Launching HouseApp program:', selectedProgram.value);
+        this.closeHouseAppConsole();
+        // Add program launch logic here
+    } else {
+        alert('Please select a HouseApp program to launch');
+    }
+}
+
+
+
+
+    handleLogin() {
+        console.log('Login clicked');
+        // Login logic here
+    }
+
+    handleRefresh() {
+        console.log('Refresh clicked');
+        const refreshBtn = document.querySelector('.btn-refresh');
+        refreshBtn.textContent = 'Refreshing...';
+        refreshBtn.disabled = true;
+
+        setTimeout(() => {
+            refreshBtn.textContent = 'Refresh';
+            refreshBtn.disabled = false;
+        }, 1000);
+    }
+}
+

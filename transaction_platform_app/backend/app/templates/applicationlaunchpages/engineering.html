@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+    <div 
+        data-view-type="application" 
+        data-application="engineering" 
+        data-origin-section="{{ section }}"  
+        data-handler="engineering"
+        id="sidebar-app"
+    >
+        {% include 'applicationlaunchpages/engineering_sidebar.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div 
+        data-view-type="application" 
+        data-application="engineering" 
+        data-origin-section="{{ section }}" 
+        id="content-app"
+    >
+        {# Application content goes here #}
+        <p>Testing, Alpha, One, Two Three, Four, Five, Six, Seven</p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        console.log('Loading engineering_hub.js...');
+        import { program } from '/application_groups/engineering/application_group_root/static/js/engineering_hub.js';
+        program.init();
+    </script>
+
+
+    <script>
+        // Application initialization logging
+        console.log('engineering Package Template Loaded');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Initializing engineering Package...');
+        });
+    </script>
+{% endblock %}

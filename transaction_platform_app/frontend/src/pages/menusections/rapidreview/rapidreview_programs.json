@@ -1,0 +1,138 @@
+{
+    "title": "Rapid Response Group",
+    "program_groups": [
+        {
+            "name": "Toolbox",
+            "icon": "tool",
+            "programs": [
+                {
+                    "id": "rosalind",
+                    "name": "Franklin",
+                    "icon": "file-text"
+                },
+                {
+                    "id": "purchase-orders",
+                    "name": "Proposals",
+                    "icon": "file-text"
+                },
+                {
+                    "id": "saas",
+                    "name": "Cloud",
+                    "icon": "cloud"
+                },
+                {
+                    "id": "msa",
+                    "name": "MSA",
+                    "icon": "file-contract"
+                },
+                {
+                    "id": "nda",
+                    "name": "NDA",
+                    "icon": "shield"
+                },
+                {
+                    "id": "consulting",
+                    "name": "Consulting",
+                    "icon": "users"
+                },
+                {
+                    "id": "hardware",
+                    "name": "Hardware",
+                    "icon": "box"
+                },
+                {
+                    "id": "network",
+                    "name": "Network",
+                    "icon": "network"
+                },
+                {
+                    "id": "evaluation",
+                    "name": "Evaluation",
+                    "icon": "clipboard-check"
+                },
+                {
+                    "id": "software",
+                    "name": "Software",
+                    "icon": "code"
+                }
+            ]
+        },
+        {
+            "name": "Dealmaking",
+            "icon": "handshake",
+            "programs": [
+                {
+                    "id": "prototype",
+                    "name": "Rapid Review",
+                    "icon": "zap"
+                },
+                {
+                    "id": "purchase-orders",
+                    "name": "Proposals",
+                    "icon": "file-text"
+                },
+                {
+                    "id": "saas",
+                    "name": "SaaS",
+                    "icon": "cloud"
+                },
+                {
+                    "id": "msa",
+                    "name": "MSA",
+                    "icon": "file-contract"
+                },
+                {
+                    "id": "nda",
+                    "name": "NDA",
+                    "icon": "shield"
+                },
+                {
+                    "id": "consulting",
+                    "name": "Consulting",
+                    "icon": "users"
+                },
+                {
+                    "id": "hardware",
+                    "name": "Hardware",
+                    "icon": "box"
+                },
+                {
+                    "id": "network",
+                    "name": "Network",
+                    "icon": "network"
+                },
+                {
+                    "id": "evaluation",
+                    "name": "Evaluation",
+                    "icon": "clipboard-check"
+                },
+                {
+                    "id": "software",
+                    "name": "Software",
+                    "icon": "code"
+                }
+            ]
+        },
+        {
+            "name": "Spot Portfolio Analytics",
+            "icon": "pie-chart",
+            "programs": [
+                {
+                    "id": "retail-lease",
+                    "name": "Retail Lease",
+                    "icon": "layout-grid"
+                },
+                {
+                    "id": "commercial-lease",
+                    "name": "Commercial Lease",
+                    "icon": "building-2"
+                },
+                {
+                    "id": "property-purchase",
+                    "name": "Property Purchase",
+                    "icon": "home"
+                }
+            ]
+        }
+    ]
+}

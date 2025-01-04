@@ -1,0 +1,197 @@
+/* src/components/shared/ApplicationPanel/ApplicationPanel.css */
+
+.application-panel {
+    background-color: ivory;
+    padding: 2rem;
+    width: 100%;
+}
+
+/* Title Styling */
+.application-panel h2 {
+    color: var(--royal-blue);
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--royal-blue);
+}
+
+/* Program Groups & Headers */
+.application-panel .program-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.application-panel .program-group {
+    background-color: rgba(19, 36, 64, 0.03);
+    border: 1px solid rgba(19, 36, 64, 0.1);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.application-panel .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(19, 36, 64, 0.1);
+}
+
+.application-panel .group-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.application-panel .group-header svg {
+    color: var(--royal-blue);
+    width: 24px;
+    height: 24px;
+}
+
+.application-panel .group-header h3 {
+    color: var(--royal-blue);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Program Grid */
+.application-panel .program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1.25rem;
+    padding: 0.5rem;
+}
+
+/* Program Tiles */
+.program-tile {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.application-panel .tile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    height: 130px;
+    width: 130px;
+    background-color: var(--light-ivory);
+    border: 1px solid rgba(19, 36, 64, 0.15);
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Tile Selection States */
+.program-tile.selected .tile-content {
+    background-color: rgba(19, 36, 64, 0.05);
+    border-color: var(--royal-blue);
+    box-shadow: 0 2px 8px rgba(19, 36, 64, 0.15);
+    transform: translateY(-2px);
+}
+
+.program-tile:hover .tile-content {
+    background-color: white;
+    border-color: var(--royal-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(19, 36, 64, 0.1);
+}
+
+/* Icons and Text */
+.application-panel .tile-content svg {
+    color: var(--royal-blue);
+    width: 24px;
+    height: 24px;
+}
+
+.application-panel .tile-content span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--royal-blue);
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+
+/* Update these styles in ApplicationPanel.css */
+
+/* Launch Button States */
+
+
+/* Update these styles in ApplicationPanel.css */
+
+/* Launch Button States */
+.launch-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--royal-blue);
+}
+
+/* Active state - when a program is selected */
+.launch-button.active {
+    background-color: var(--royal-blue);
+    color: white;
+    cursor: pointer;
+}
+
+.launch-button.active:hover {
+    background-color: var(--hover-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(19, 36, 64, 0.2);
+}
+
+/* Inactive state - before program selection */
+.launch-button.inactive {
+    background-color: #f0f0f0;  /* Light grey background */
+    color: var(--royal-blue);   /* Royal blue text */
+    cursor: not-allowed;
+    border: 1px solid #e0e0e0;  /* Slightly darker grey border */
+}
+
+.launch-button.inactive:hover {
+    background-color: #e8e8e8;  /* Slightly darker on hover */
+}
+
+/* Loading Animation */
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+
+/* Error and Empty States */
+.application-panel .bg-red-50 {
+    background-color: #fef2f2;
+}
+
+.application-panel .bg-yellow-50 {
+    background-color: #fefce8;
+}
+
+.application-panel .text-red-700 {
+    color: #b91c1c;
+}
+
+.application-panel .text-yellow-700 {
+    color: #a16207;
+}

@@ -1,0 +1,29 @@
+{
+    "welcome_template": "customers/global_welcome_sourcing.html",
+    "features": {
+        "advanced": false,
+        "basic_reporting": true
+    },
+    "branding": {
+        "primary_color": "#333333",
+        "logo_url": "standard_logo.png"
+    },
+    "menu_config": {
+        "applications_dock_text": "Hawkeye Applications Dock"
+    },
+    "auth": {
+        "require_login": false,
+        "cognito_config": {
+            "UserPoolId": "us-west-2_PK6TMkBjL",
+            "ClientId": "1ndgkdrg86ll17nrsl93bkg545"
+        },
+        "welcome_config": {
+            "team_type": "Enterprise Sourcing Teams"
+        }
+    }
+}
+
+
+
+
+  

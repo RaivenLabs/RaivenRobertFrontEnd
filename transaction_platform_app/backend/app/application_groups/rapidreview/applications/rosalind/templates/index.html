@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Appraisal Service</title>
+    <!-- Platform-wide base styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/analytics_console.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/houseapp_console.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/foundational_layout.css') }}">  
+    <link rel="stylesheet" href="{{ url_for('app_static_files', filename='css/appraisal.css') }}">
+    
+
+</head>
+ <!-- SVG Icons Partial -->
+ {% include 'components/svg/icons.html' %}
+
+
+
+
+
+
+
+
+<body>
+
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar" id="sidebar">
+                <div class="logo-container">
+                    <div class="logo">Team Appraisal Service Application</div>
+                    <div class="logo-separator"></div>
+                </div>
+                <div class="menu-item" data-section="companyreport" data-type="running-board">
+                    <svg><use href="#icon-companyreport"/></svg>
+                    Application Brief
+                </div>
+            
+                <div class="menu-item" data-section="rapidreview" data-type="applications-package">
+                    <svg><use href="#icon-rapidreview"/></svg>
+                    Dashboard
+                </div>
+            
+                <div class="menu-item" data-section="concierge" data-type="running-board">
+                    <svg><use href="#icon-concierge"/></svg>
+                    Appraisal Processing
+                </div>
+
+                <div class="menu-item" data-section="programlog" data-type="running-board">
+                    <svg><use href="#icon-settings"/></svg>
+                    Program Log
+                </div>
+            
+            
+                <div class="menu-item" data-section="login" data-type="running-board">
+                    <svg><use href="#icon-settings"/></svg>
+                    Log-In
+                </div>
+            
+                <div class="footer-text">
+                    <p>Powered by Tangible Intelligence</p>
+                </div>
+            
+            </div>
+            
+        </div>
+        <div class="engagement-window">
+            <!-- Our app container that overlays the engagement window -->
+            <div class="appraisal-container">
+                <!-- Header Section -->
+              <div class="appraisal-header">
+                    <h1 class="appraisal-title" style="text-align: center;">Team Appraisal Service</h1>
+                </div>  
+             <!-- Status Tracker -->
+             <div class="tracker-box"> 
+               
+                <h2>Appraisal Status</h2>
+                <div class="status-metrics">
+                    <div class="metric pending">
+                        <span>Pending</span>
+                        <div id="pendingCount">0</div>
+                    </div>
+                    <div class="metric sent">
+                        <span>Sent</span>
+                        <div id="sentCount">0</div>
+                    </div>
+                    <div class="metric completed">
+                        <span>Completed</span>
+                        <div id="completedCount">0</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+       
+           
+
+          
+
+    <!-- JavaScript files -->
+   <!-- In your HTML -->
+<script type="module" src="{{ url_for('app_static_files', filename='data/appraisal_sample_data.js') }}"></script>
+<script type="module" src="{{ url_for('app_static_files', filename='js/appraisal_manager.js') }}"></script> 
+</body>
+</html>
