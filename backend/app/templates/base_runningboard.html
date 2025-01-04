@@ -1,0 +1,59 @@
+<!-- templates/base_runningboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Platform</title>
+    <!-- Keep core styles -->
+ 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/layout.css') }}">
+  
+    <link rel="stylesheet" href="{{ url_for('main.serve_shared_files', filepath='css/application_group_console.css') }}">
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/analytics_console.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/houseapp_console.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base/foundational_layout.css') }}">
+</head>
+
+
+
+    <link rel="stylesheet" href="{{ url_for('main.serve_shared_files', filepath='css/application_group_console.css') }}">
+</head>
+
+<body>
+    <div id="toast" class="toast"></div>
+    
+    {% include 'components/svg/icons.html' %}
+
+    <div class="container">
+        <div class="sidebar">
+            {% block sidebar %}
+            {% include 'components/partials/main_sidebar.html' %}
+            {% endblock sidebar %}  <!-- Make sure endblock has sidebar -->
+        </div>
+        
+        <div class="engagement-window">
+            {% block content %}{% endblock content %}  <!-- Add content -->
+        </div>
+    </div>
+  
+    <script>
+        window.customerConfig = {{ g.config | tojson | safe }};
+    </script>
+
+    {% block running_board_scripts %}
+    <script type="module">
+        console.log('Loading sandbox_hub.js...');
+        import { program } from '/application_groups/sandbox/application_group_root/static/js/sandbox_hub.js';
+        program.init();
+    </script>
+    {% endblock running_board_scripts %}  <!-- Add running_board_scripts -->
+
+</body>
+</html>

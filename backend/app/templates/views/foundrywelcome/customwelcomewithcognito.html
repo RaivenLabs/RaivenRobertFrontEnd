@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Tangible Intelligence</title>
+
+    <style>
+
+        /* static/css/base/colors.css */
+:root {
+    /* Brand Colors */
+    --royal-blue: #0A2351;
+    --ivory: #FFFFF0;
+    --light-ivory: #FFFFFA;
+    --hover-blue: #153672;
+    --sidebar-dark: #1f2125;
+    --teal: #006D77; 
+    --light-blue: rgba(10, 35, 81, 0.1);
+    --cyan: rgb(21, 235, 235); 
+    /* Add new color */
+    --navy-blue: #132440;
+    
+    /* Grays */
+    --light-gray: #F5F5F5;
+    --dark-gray: #333333;
+    --grey:#B0B0B0;
+    
+    /* Utility Colors */
+    --light-blue: rgba(10, 35, 81, 0.1);
+    
+    /* Functional Variables - mapping colors to their uses */
+     /* Add functional variables for sidebar specifically */
+     --sidebar-bg: var(--navy-blue);
+     --sidebar-text: var(--ivory);
+     --sidebar-shadow: rgba(0, 0, 0, 0.1);
+ 
+    --sidebar-hover: var(--grey);
+    --main-bg: var(--light-ivory);
+    --primary-button: var(--royal-blue);
+    --primary-button-hover: var(--hover-blue);
+    --header-text: var(--royal-blue);
+    --border-color: var(--light-gray);
+}
+
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--main-bg);
+            color: var(--header-text);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .welcome-card {
+            background-color: var(--ivory);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px var(--sidebar-shadow);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary {
+            background-color: var(--primary-button);
+            color: var(--ivory);
+            border: none;
+        }
+
+        .primary:hover {
+            background-color: var(--primary-button-hover);
+        }
+
+        .secondary {
+            background-color: transparent;
+            border: 2px solid var(--header-text);
+            color: var(--header-text);
+        }
+
+        .secondary:hover {
+            background-color: var(--sidebar-hover);
+        }
+
+        @media (max-width: 600px) {
+            .welcome-card {
+                padding: 2rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-card">
+            <h1 class="title">Welcome to Tangible Intelligence</h1>
+            <h2 class="subtitle">@ 3M</h2>
+            <p class="description">Experience our Enterprise Platform</p>
+            <div class="button-container">
+                <button class="button primary" id="standard-demo">View Standard Demo</button>
+                <button class="button secondary" id="custom-env">Access 3M Custom Environment</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('standard-demo').addEventListener('click', () => {
+            alert('Standard Demo Button Clicked!');
+        });
+
+        document.getElementById('custom-env').addEventListener('click', () => {
+            alert('Custom Environment Button Clicked!');
+        });
+    </script>
+</body>
+</html>

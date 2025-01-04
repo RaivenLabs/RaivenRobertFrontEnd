@@ -1,0 +1,118 @@
+
+.prototype-overlay {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);  /* Align with engagement window */
+    right: 0;
+    bottom: 0;
+    background: var(--ivory);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.prototype-content {
+    text-align: center;
+    padding: 3rem;
+    max-width: 600px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(10, 35, 81, 0.1);
+    animation: slideUp 0.5s ease-out;
+}
+
+.prototype-content h1 {
+    color: var(--royal-blue);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.prototype-message {
+    margin: 2rem 0;
+}
+
+.prototype-message p:first-child {
+    font-size: 2rem;
+    color: var(--royal-blue);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.prototype-message p:last-child {
+    color: var(--dark-gray);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeSlideUp 0.5s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.close-prototype {
+    padding: 0.75rem 2rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: 0.7s;
+}
+
+/* Cool animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.prototype-loader {
+    margin: 2rem auto;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--light-blue);
+    border-radius: 50%;
+    border-top-color: var(--royal-blue);
+    animation: spin 1s linear infinite;
+}
+
+.prototype-loader.done {
+    animation: fadeOutLoader 0.5s forwards;
+}
+
+/* Add this back - it's needed for the initial spinning */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOutLoader {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}

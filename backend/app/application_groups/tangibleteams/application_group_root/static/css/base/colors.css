@@ -1,0 +1,38 @@
+/* static/css/base/colors.css */
+:root {
+    /* Brand Colors */
+    --royal-blue: #0A2351;
+    --ivory: #FFFFF0;
+    --light-ivory: #FFFFFA;
+    --hover-blue: #153672;
+    --sidebar-dark: #1f2125;
+    --teal: #006D77; 
+    --light-blue: rgba(10, 35, 81, 0.1);
+    --cyan: rgb(21, 235, 235); 
+    /* Add new color */
+    --navy-blue: #132440;
+    
+    /* Grays */
+    --light-gray: #F5F5F5;
+    --dark-gray: #333333;
+    --grey:#B0B0B0;
+    
+    /* Utility Colors */
+    --light-blue: rgba(10, 35, 81, 0.1);
+    
+    /* Functional Variables - mapping colors to their uses */
+     /* Add functional variables for sidebar specifically */
+     --sidebar-bg: var(--navy-blue);
+     --sidebar-text: var(--ivory);
+     --sidebar-shadow: rgba(0, 0, 0, 0.1);
+ 
+    --sidebar-hover: var(--grey);
+    --main-bg: var(--light-ivory);
+    --primary-button: var(--royal-blue);
+    --primary-button-hover: var(--hover-blue);
+    --header-text: var(--royal-blue);
+    --border-color: var(--light-gray);
+}
+
+
+

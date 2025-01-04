@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+    <div 
+        data-view-type="application" 
+        data-application="settings" 
+        data-origin-section="{{ section }}"  
+        data-handler="settings"
+        id="sidebar-app"
+    >
+        {% include 'applicationlaunchpages/settings_sidebar.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div 
+        data-view-type="application" 
+        data-application="settings" 
+        data-origin-section="{{ section }}" 
+        id="content-app"
+    >
+        {# Application content goes here #}
+        <p>Testing, Alpha, One, Two Three, Four, Five, Six, Seven</p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        console.log('Loading settings_hub.js...');
+        import { program } from '/application_groups/settings/application_group_root/static/js/settings_hub.js';
+        program.init();
+    </script>
+
+
+    <script>
+        // Application initialization logging
+        console.log('Settings Package Template Loaded');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Initializing Settings Package...');
+        });
+    </script>
+{% endblock %}

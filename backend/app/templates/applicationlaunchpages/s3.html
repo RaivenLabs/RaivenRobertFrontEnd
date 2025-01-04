@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+
+{% block sidebar %}
+    <div 
+        data-view-type="application"
+        data-application="tangibless3storagepartner"
+        data-origin-section="{{ section }}"
+        data-handler="s3"
+        data-launch-type="console" 
+        id="sidebar-app"
+    >
+        {% include 'applicationlaunchpages/s3_sidebar.html' %}
+        <p>Testing</p>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="s3-utility-container"
+        data-view-type="application"
+        data-application="tangibless3storagepartner"
+        data-origin-section="{{ section }}"
+        id="content-app"
+    >
+
+
+
+<div class="s3-utility-container"
+     data-view-type="application"
+     data-application="{{ section }}"
+     data-origin-section="{{ section }}"
+     data-launch-type="console" 
+     id="content-app">
+    
+    <!-- Upload Section -->
+    <div class="upload-section">
+        <div class="dropzone" id="uploadDropzone">
+            <div class="dropzone-content">
+                <svg class="upload-icon">
+                    <use href="#icon-upload"/>
+                </svg>
+                <p>Drag files here or click to select</p>
+                <input type="file" id="fileInput" multiple class="file-input" />
+            </div>
+        </div>
+
+        
+       <!-- File List -->
+       <div class="selected-files">
+        <h3>Selected Files</h3>
+        <div class="file-list"></div>
+    </div>
+        
+        <!-- Upload Controls -->
+        <div class="upload-controls">
+            <button class="btn btn-primary" id="uploadButton" disabled>
+                Upload to S3
+            </button>
+            <button class="btn btn-secondary" id="clearButton" disabled>
+                Clear Selection
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="upload-progress" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="progress-text">0%</p>
+        </div>
+    </div>
+
+    <!-- File Browser Section -->
+    <div class="file-browser-section" style="display: none;">
+        <h2>Uploaded Files</h2>
+        <div id="fileBrowser" class="file-browser">
+            <!-- Files will be listed here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        console.log('Loading sandbox_hub.js...');
+        import { handler } from '/application_groups/sandbox/applications/tangiblesS3storagepartner/static/handlers/application_handler.js';
+        handler.init();
+    </script>
+
+
+    <script>
+        // Application initialization logging
+        console.log('S3 Package Template Loaded');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Initializing S3 Package...');
+        });
+    </script>
+{% endblock %}
+
+
+
+
+
+   
+       
+
+    
+
+

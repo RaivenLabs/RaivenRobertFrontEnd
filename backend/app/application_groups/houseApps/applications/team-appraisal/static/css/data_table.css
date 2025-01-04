@@ -1,0 +1,253 @@
+/* data_table.css for Appraisals */
+
+/* Base Table Container */
+.table-reporting {
+    padding: 2rem;
+    background-color: var(--ivory);
+    height: 100%;
+ }
+ 
+ /* Cycle Header */
+ .cycle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--royal-blue);
+ }
+ 
+ .cycle-info h1 {
+    font-size: 1.8rem;
+    color: var(--royal-blue);
+    margin-bottom: 0.5rem;
+ }
+ 
+ .cycle-info p {
+    color: var(--dark-gray);
+    font-size: 1rem;
+ }
+ 
+ .cycle-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+ }
+ 
+ .cycle-status.active {
+    background-color: rgba(0, 200, 83, 0.1);
+    color: rgb(0, 150, 62);
+ }
+ 
+ /* Statistics Grid */
+ .statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+ }
+ 
+ .stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease;
+ }
+ 
+ .stat-card:hover {
+    transform: translateY(-2px);
+ }
+ 
+ .stat-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--royal-blue);
+    margin-bottom: 0.5rem;
+ }
+ 
+ .stat-label {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+ }
+ 
+ .stat-card.alert .stat-number {
+    color: var(--error-red);
+ }
+ 
+ /* Filter Controls */
+ .filter-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+ }
+ 
+ .filter-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    background: white;
+    color: var(--dark-gray);
+    min-width: 200px;
+ }
+ 
+ /* Table Styles */
+ .table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+ }
+ 
+ .data-table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+ }
+ 
+ .data-table th {
+    background-color: var(--royal-blue);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+ }
+ 
+ .data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--light-gray);
+ }
+ 
+ .data-table tbody tr:hover {
+    background-color: var(--light-ivory);
+ }
+ 
+ /* Recipient Info Styling */
+ .recipient-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+ }
+ 
+ .recipient-name {
+    font-weight: 500;
+    color: var(--royal-blue);
+ }
+ 
+ .recipient-dept {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+ }
+ 
+ .recipient-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+ }
+ 
+ .tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    background-color: var(--light-ivory);
+    color: var(--dark-gray);
+ }
+ 
+ /* Status Indicators */
+ .status-indicator {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+ }
+ 
+ .status-not-started {
+    background-color: rgba(156, 163, 175, 0.1);
+    color: rgb(107, 114, 128);
+ }
+ 
+ .status-in-progress {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: rgb(37, 99, 235);
+ }
+ 
+ .status-completed {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: rgb(5, 150, 105);
+ }
+ 
+ .status-overdue {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(220, 38, 38);
+ }
+ 
+ /* Progress Bar */
+ .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+ }
+ 
+ .progress {
+    height: 100%;
+    background-color: var(--royal-blue);
+    transition: width 0.3s ease;
+ }
+ 
+ /* Action Buttons */
+ .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+ }
+ 
+ .action-button {
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--royal-blue);
+    background: transparent;
+    color: var(--royal-blue);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+ }
+ 
+ .action-button:hover {
+    background: var(--royal-blue);
+    color: white;
+ }
+ 
+ .action-button.start {
+    background-color: var(--royal-blue);
+    color: white;
+ }
+ 
+ .action-button.start:hover {
+    background-color: var(--hover-blue);
+ }
+ 
+ /* Responsive Design */
+ @media (max-width: 1024px) {
+    .table-reporting {
+        padding: 1rem;
+    }
+ 
+    .statistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+ 
+    .filter-controls {
+        flex-direction: column;
+    }
+ 
+    .filter-select {
+        width: 100%;
+    }
+ }

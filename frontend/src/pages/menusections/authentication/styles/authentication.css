@@ -1,0 +1,46 @@
+/* src/pages/menusections/authentication/styles/authentication.css */
+
+.microsoft-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  /* Add any custom styles that Tailwind doesn't cover */
+  .auth-divider {
+    position: relative;
+  }
+  
+  .auth-divider::before,
+  .auth-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: var(--light-blue);
+  }
+  
+  .auth-divider::before {
+    left: 0;
+  }
+  
+  .auth-divider::after {
+    right: 0;
+  }
+  
+  /* Error message animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .auth-error {
+    animation: fadeIn 0.3s ease-out;
+  }

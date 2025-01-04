@@ -1,0 +1,164 @@
+/* src/components/shared/TableComponent/TableComponent.css */
+
+/* Base Table Container */
+.table-reporting {
+    padding: 2rem;
+    background-color: var(--ivory);
+    height: 100%;
+}
+
+/* Panel Title */
+.table-reporting .panel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--royal-blue);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--royal-blue);
+}
+
+.table-reporting .panel-content {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+/* Table Container */
+.table-reporting .table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--ivory);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+/* Main Table Styles */
+.table-reporting .data-table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+}
+
+.table-reporting .data-table th {
+    background-color: var(--royal-blue);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table-reporting .data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.table-reporting .data-table tbody tr:hover {
+    background-color: var(--light-ivory);
+}
+
+/* Status Indicators */
+.table-reporting .status-indicator {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: rgba(0, 200, 83, 0.1);
+    color: rgb(0, 150, 62);
+}
+
+.status-pending {
+    background-color: rgba(255, 171, 0, 0.1);
+    color: rgb(191, 128, 0);
+}
+
+.status-completed {
+    background-color: rgba(10, 35, 81, 0.1);
+    color: var(--royal-blue);
+}
+
+/* Dashboard Actions */
+.table-reporting .dashboard-actions {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: auto;
+    border-top: 1px solid #eee;
+}
+
+/* Import Button */
+.import-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--royal-blue);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    width: 300px;
+    white-space: nowrap;
+    /* existing styles */
+    opacity: 1 !important;  /* Force button to stay visible */
+    visibility: visible !important;
+    opacity: 1;
+}
+
+.import-button:hover {
+    background-color: var(--royal-blue-hover);
+
+}
+
+.import-button svg {
+    stroke: currentColor;
+}
+
+/* Action Buttons in Table */
+.action-button {
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--royal-blue);
+    background: transparent;
+    color: var(--royal-blue);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-button:hover {
+    background: var(--royal-blue);
+    color: white;
+}
+
+/* Scrollbar Styling */
+.table-reporting .table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-reporting .table-container::-webkit-scrollbar-track {
+    background: var(--ivory);
+}
+
+.table-reporting .table-container::-webkit-scrollbar-thumb {
+    background-color: var(--royal-blue);
+    border-radius: 4px;
+    border: 2px solid var(--ivory);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .table-reporting {
+        padding: 1rem;
+    }
+}
