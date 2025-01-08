@@ -4,11 +4,11 @@ import './configuration.css';
 
 const Configuration = () => {
   return (
-    <div className="max-h-[80vh] overflow-y-auto bg-ivory text-gray-dark p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <header className="bg-royalBlue text-ivory py-12 px-4 text-center rounded-lg mb-8">
-          <h1 className="text-4xl font-semibold mb-4">Platform Configuration</h1>
+     <div className="guide-wrapper">
+      {/* Header Section */}
+      <header className="guide-header">
+        <div className="guide-container"></div>
+          <h1>Platform Configuration</h1>
           <p className="text-xl max-w-3xl mx-auto mb-2">
             Manage your platform settings, users, and enterprise configurations
           </p>
@@ -16,6 +16,12 @@ const Configuration = () => {
             Your central hub for platform administration
           </p>
         </header>
+
+       
+   
+
+
+
 
         {/* Configuration Categories */}
         <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
@@ -139,7 +145,7 @@ const Configuration = () => {
              Enterprise configuration made simple and secure.</p>
         </footer>
       </div>
-    </div>
+  
   );
 };
 

@@ -4,17 +4,18 @@ import './concierge.css';
 
 const Concierge = () => {
   return (
-    <div className="max-h-[80vh] overflow-y-auto bg-ivory text-gray-dark p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <header className="bg-royalBlue text-ivory py-12 px-4 text-center rounded-lg mb-8">
-          <h1 className="text-4xl font-semibold mb-4">Welcome to Your Tangible Concierge</h1>
-          <p className="text-xl max-w-3xl mx-auto mb-4">
+    <div className="guide-wrapper">
+    {/* Header Section */}
+    <header className="guide-header">
+      <div className="guide-container">
+          <h1 >Welcome to Your Tangible Concierge</h1>
+          <p>
             How can we assist you today?
           </p>
-          <p className="text-lg max-w-3xl mx-auto">
+          <p>
             We're here to make your platform experience seamless and delightful
           </p>
+          </div>
         </header>
 
         {/* Quick Actions Section */}
@@ -137,7 +138,7 @@ const Concierge = () => {
           </p>
         </footer>
       </div>
-    </div>
+
   );
 };
 

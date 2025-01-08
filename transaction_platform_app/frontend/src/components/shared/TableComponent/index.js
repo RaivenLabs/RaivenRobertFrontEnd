@@ -1,5 +1,6 @@
 // src/components/shared/TableComponent/index.jsx
 import React, { useRef } from 'react';
+import { fetchFromAPI } from '../../../utils/api/api';
 import './TableComponent.css';
 import { processImportData } from '../../../utils/sampleDataUtils';
 
@@ -42,13 +43,9 @@ const TableComponent = ({
 
   const handleImportClick = async () => {
     try {
-      const response = await fetch('/api/sampleagreementdata');
-      if (!response.ok) {
-        throw new Error('Failed to load agreement data');
-      }
-      const data = await response.json();
-      // Access the agreements array from the response
-      setData(data.agreements);  // This is the key change
+      const data = await fetchFromAPI('/api/sampleagreementdata');
+      // Access the agreements array from the response data
+      setData(data.agreements);
     } catch (error) {
       console.error('Error importing sample data:', error);
     }

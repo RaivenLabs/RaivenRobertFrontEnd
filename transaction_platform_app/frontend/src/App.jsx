@@ -19,7 +19,7 @@ import Landed from './pages/menusections/landed';
 import ReadyRoom from './pages/menusections/readyroom';
 import Configuration from './pages/menusections/configuration';
 import Sandbox from './pages/menusections/sandbox';
-import FlightDeck from './pages/menusections/flightdeck';
+import FlightDeckContent from './pages/menusections/flightdeck';
 import TangibleTeamsOverview from './pages/menusections/tangibleteams';
 import HouseApps from './pages/menusections/houseapps';
 import Exchange from './pages/menusections/exchange';
@@ -61,8 +61,14 @@ import PlatformConfiguration from './pages/menusections/configuration/features/P
 import CompanyResources from './pages/menusections/companyreport/features/CompanyResources';
 
 //Rapid Response Imports
-import FastLane from './pages/menusections/rapidreview/features/FastLane';
-import QuickRead from './pages/menusections/rapidreview/features/QuickRead';
+import TangibleInside from './pages/menusections/rapidreview/features/TangibleInside';
+import PartnerApplications from './pages/menusections/rapidreview/features/PartnerApplications';
+import IndustryApplications from './pages/menusections/rapidreview/features/IndustryApplications';
+import EnterpriseApplications from './pages/menusections/rapidreview/features/EnterpriseApplications';
+import RapidPrototyping from './pages/menusections/rapidreview/features/Sandbox';
+
+
+
 
 //Authentication Imports
 import AuthenticationConfiguration from './pages/menusections/authentication/features/AuthenticationConfiguration';
@@ -117,7 +123,7 @@ function App() {
             <Route path="readyroom" element={<ReadyRoom />} />
          
             <Route path="sandbox" element={<Sandbox />} />
-            <Route path="flightdeck" element={<FlightDeck />} />
+            <Route path="flightdeck" element={<FlightDeckContent />} />
             <Route path="tangibleteams" element={<TangibleTeamsOverview />} />
             <Route path="houseapps" element={<HouseApps />} />
             <Route path="exchange" element={<Exchange />} />
@@ -149,7 +155,7 @@ function App() {
  <Route path="inflight/dashboard" element={<Dashboard />} />
 
  {/* FlightDeck routes as top-level routes */}
- <Route path="flightdeck/overview" element={<FlightDeck />} />
+ <Route path="flightdeck/overview" element={<FlightDeckContent />} />
   <Route path="flightdeck/dashboard" element={<FlightDeckDashboard />} />
 
  {/* FlightDeck routes as top-level routes */}
@@ -170,8 +176,11 @@ function App() {
 
 <Route path="rapidresponse" element={<RapidResponse />} />
 <Route path="rapidresponse/overview" element={<RapidResponse />} />
-<Route path="rapidresponse/fastlane" element={<FastLane />} />
-<Route path="rapidresponse/quickread" element={<QuickRead />} />
+<Route path="rapidresponse/tangibleinside" element={<TangibleInside />} />
+<Route path="rapidresponse/enterpriseapplications" element={<EnterpriseApplications />} />
+<Route path="rapidresponse/industryapplications" element={<IndustryApplications />} />
+<Route path="rapidresponse/partnerapplications" element={<PartnerApplications />} />
+<Route path="rapidresponse/rapidprototyping" element={<RapidPrototyping />} />
 
 
 

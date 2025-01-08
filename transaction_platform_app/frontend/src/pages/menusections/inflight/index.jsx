@@ -1,58 +1,91 @@
-// src/pages/menusections/inflight/index.jsx
+// src/pages/menusections/flightdeck/index.jsx
 import React from 'react';
-import './styles/inflight.css';  // Reusing the nice styling we already have
+import './styles/inflight.css';
 
-const InflightContent = () => (
+const FlightDeckContent = () => (
   <div className="guide-wrapper">
     <header className="guide-header">
       <div className="guide-container">
-        <h1>Flight Ops</h1>
-        <p>Active Projects and Agreements</p>
-        <p>Monitor and manage your active transactions, from agreements to implementations.</p>
+        <h1>Platform Command</h1>
+        <p>Program Management & Control Center</p>
+        <p>Monitor, direct and manage your entire platform program from inception to completion.</p>
       </div>
     </header>
 
     <section className="guide-principle-section">
-      <h2 className="guide-principle-title">Key Features</h2>
+      <h2 className="guide-principle-title">Program Command</h2>
       <div className="guide-principle-container">
         <div className="guide-principle-box">
-          <h3>Active Agreements</h3>
+          <h3>Program Overview</h3>
           <ul className="guide-outcome-list">
-            <li>Monitor Active MSAs</li>
-            <li>Track License Agreements</li>
-            <li>View SaaS Subscriptions</li>
-            <li>Follow Project Milestones</li>
+            <li>Program Health Metrics</li>
+            <li>Resource Allocation</li>
+            <li>Risk Management</li>
+            <li>Strategic Planning</li>
           </ul>
         </div>
         <div className="guide-principle-box">
-          <h3>Real-time Updates</h3>
+          <h3>Executive Dashboard</h3>
           <ul className="guide-outcome-list">
-            <li>Status Tracking</li>
-            <li>Timeline Management</li>
-            <li>Milestone Alerts</li>
-            <li>Team Notifications</li>
+            <li>KPI Tracking</li>
+            <li>Progress Reports</li>
+            <li>Cost Management</li>
+            <li>Timeline Oversight</li>
           </ul>
         </div>
         <div className="guide-principle-box">
-          <h3>Document Control</h3>
+          <h3>Platform Control</h3>
           <ul className="guide-outcome-list">
-            <li>Version Management</li>
-            <li>Change Tracking</li>
-            <li>Approval Workflows</li>
-            <li>Audit History</li>
+            <li>System Configuration</li>
+            <li>User Management</li>
+            <li>Integration Control</li>
+            <li>Security Oversight</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section className="guide-principle-section">
+      <h2 className="guide-principle-title">Program Intelligence</h2>
+      <div className="guide-principle-container">
+        <div className="guide-principle-box">
+          <h3>Analytics Hub</h3>
+          <ul className="guide-outcome-list">
+            <li>Performance Analytics</li>
+            <li>Trend Analysis</li>
+            <li>Predictive Insights</li>
+            <li>Custom Reporting</li>
+          </ul>
+        </div>
+        <div className="guide-principle-box">
+          <h3>Resource Center</h3>
+          <ul className="guide-outcome-list">
+            <li>Documentation Library</li>
+            <li>Training Materials</li>
+            <li>Best Practices</li>
+            <li>Support Resources</li>
+          </ul>
+        </div>
+        <div className="guide-principle-box">
+          <h3>Governance</h3>
+          <ul className="guide-outcome-list">
+            <li>Compliance Monitoring</li>
+            <li>Audit Trails</li>
+            <li>Policy Management</li>
+            <li>Access Control</li>
           </ul>
         </div>
       </div>
     </section>
 
     <footer className="guide-footer">
-      <p>Managing active transactions and projects across your organization.</p>
+      <p>Comprehensive program management for your enterprise platform implementation.</p>
     </footer>
   </div>
 );
 
-const Inflight = () => {
-  return <InflightContent />;
+const FlightDeck = () => {
+  return <FlightDeckContent />;
 };
 
-export default Inflight;
+export default FlightDeck;

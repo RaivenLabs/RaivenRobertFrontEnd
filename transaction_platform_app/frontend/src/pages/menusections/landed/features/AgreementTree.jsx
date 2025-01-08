@@ -1,5 +1,6 @@
 // src/pages/menusections/landed/features/AgreementTree.jsx
 import React, { useState, useEffect } from 'react';
+import { fetchFromAPI } from '../../../../utils/api/api';  // Add this import
 import { ChevronRight, ChevronDown, Search, Filter } from 'lucide-react';
 
 // Define categoryColors at the top level
@@ -124,18 +125,21 @@ const AgreementTree = () => {
   useEffect(() => {
     const fetchAgreements = async () => {
       try {
-        const response = await fetch('/api/sampleagreementdata');
-        const data = await response.json();
+        const data = await fetchFromAPI('/api/sampleagreementdata');
         setAgreements(data.agreements);
       } catch (error) {
         console.error('Error loading agreements:', error);
+        // You might want to add error state handling here if you have it
+        // setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchAgreements();
   }, []);
+
+  
 
   const buildTree = (agreements) => {
     const agreementMap = new Map();

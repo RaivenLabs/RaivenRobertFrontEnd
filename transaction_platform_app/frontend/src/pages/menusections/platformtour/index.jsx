@@ -3,16 +3,20 @@ import './platformtour.css';
 
 const PlatformTour = () => {
   return (
-    <div className="max-h-[80vh] overflow-y-auto bg-ivory text-gray-dark p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <header className="bg-royalBlue text-ivory py-12 px-4 text-center rounded-lg mb-8">
-          <h1 className="text-4xl font-semibold mb-4">Transaction Services Platform</h1>
-          <p className="text-xl max-w-3xl mx-auto mb-2">Powered by Tangible Intelligence</p>
-          <p className="text-lg max-w-3xl mx-auto">
-            From paper-based, siloed contracting processes to fluid Transactional Streams
-          </p>
-        </header>
+    
+
+    <div className="guide-wrapper">
+      {/* Header Section */}
+      <header className="guide-header">
+        <div className="guide-container">
+        <h1>Tangible Intelligence Platform</h1>
+          <p>Powered by Tangible Intelligence</p>
+          <p> From paper-based, siloed contracting processes to fluid Transactional Streams</p>
+        </div>
+      </header>
+
+
+
 
       
         {/* Platform Architecture Section */}
@@ -130,7 +134,7 @@ const PlatformTour = () => {
              Built for serious business with a smile. Radical generosity is our motto!</p>
         </footer>
       </div>
-    </div>
+  
   );
 };
 

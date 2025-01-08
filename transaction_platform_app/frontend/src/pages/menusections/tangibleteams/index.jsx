@@ -1,241 +1,231 @@
 import React from 'react';
 import { 
-  Users,
-  Target,
-  Rocket,
-  Scale,
-  Clock,
-  Building,
-  Brain,
-  Handshake,
-  Gauge,
-  Workflow,
-  CheckCircle,
-  BarChart
+  Target, Rocket, Scale, Clock,
+  Brain, Handshake, Gauge, Workflow,
+  CheckCircle, BarChart, Zap, Shield
 } from 'lucide-react';
 
 const TangibleTeamsOverview = () => {
   return (
-    <div className="max-h-[80vh] overflow-y-auto bg-ivory text-gray-dark p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <header className="bg-royalBlue text-ivory py-12 px-4 text-center rounded-lg mb-8">
-          <div className="flex items-center justify-center mb-4">
-            <Users className="w-12 h-12 mr-4" />
-            <h1 className="text-4xl font-semibold">Tangible Teams</h1>
-          </div>
-          <p className="text-xl max-w-3xl mx-auto mb-2">
-            Transaction professionals who understand what truly matters
-          </p>
-          <p className="text-lg max-w-3xl mx-auto">
-            Enterprise-minded experts delivering speed, quality, and practical solutions
-          </p>
-        </header>
+    <div className="guide-wrapper">
+      {/* Header Section */}
+      <header className="guide-header">
+        <div className="guide-container">
+          <h1>Tangible Strike Teams</h1>
+          <p>Elite Domain Specialists Deployed with Purpose</p>
+          <p>Specialized rapid-response teams delivering transformational outcomes</p>
+        </div>
+      </header>
 
-        {/* Core Team Values */}
-        <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
-            Our Approach
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {/* Mission Overview */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <div className="max-w-4xl mx-auto bg-gray-50 p-8 rounded-xl border border-gray-200">
+          <p className="text-lg leading-relaxed text-gray-700">
+            We are specialized rapid-response teams of industry veterans who combine deep expertise 
+            with tactical execution. Operating at the intersection of strategic insight and 
+            operational excellence, we deliver rapid results that create lasting enterprise value.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {[
-              {
-                icon: <Target className="w-8 h-8" />,
-                title: "Enterprise Perspective",
-                description: "Business-focused deal execution that aligns with enterprise goals",
-                principles: [
-                  "Focus on business impact",
-                  "Practical risk assessment",
-                  "Strategic prioritization"
-                ]
-              },
-              {
-                icon: <Rocket className="w-8 h-8" />,
-                title: "Speed to Value",
-                description: "Accelerated deal closure without compromising quality",
-                principles: [
-                  "Efficient processing",
-                  "Right-sized review",
-                  "Focus on key terms"
-                ]
-              },
-              {
-                icon: <Scale className="w-8 h-8" />,
-                title: "Balanced Execution",
-                description: "Right-touch approach to transaction management",
-                principles: [
-                  "Risk-appropriate scrutiny",
-                  "Pragmatic solutions",
-                  "Value-driven decisions"
-                ]
-              }
-            ].map((value, index) => (
-              <div key={index} className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div className="text-royalBlue mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-gray-600 mb-4">{value.description}</p>
+              "Deploy instantly-effective experts who understand your mission-critical needs",
+              "Execute with unmatched precision and unwavering focus on results",
+              "Bring proven experience to navigate complex challenges",
+              "Deliver transformational outcomes with remarkable efficiency"
+            ].map((point, index) => (
+              <div key={index} className="flex items-start">
+                <Shield className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
+                <span className="text-gray-700">{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Strategic Approach */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
+          Strategic Approach
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              icon: <Target className="w-8 h-8" />,
+              title: "Strategic Enterprise Focus",
+              description: "Driving deal execution that transforms enterprise value",
+              points: [
+                "Deliver measurable business impact",
+                "Balance risk with commercial opportunity",
+                "Enable digital-first value drivers"
+              ]
+            },
+            {
+              icon: <Zap className="w-8 h-8" />,
+              title: "Accelerated Value Creation",
+              description: "Optimizing speed through smart execution",
+              points: [
+                "Deploy proven, tech-enabled methodologies",
+                "Streamline digital workflows",
+                "Focus on value-driving terms"
+              ]
+            },
+            {
+              icon: <Target className="w-8 h-8" />,
+              title: "Precision Execution",
+              description: "Applying expertise with purpose",
+              points: [
+                "Balance human insight with digital efficiency",
+                "Design scalable, automated solutions",
+                "Drive data-informed outcomes"
+              ]
+            }
+          ].map((approach, index) => (
+            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 p-6">
+                <div className="text-royalBlue mb-4">{approach.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{approach.title}</h3>
+                <p className="text-gray-600 mb-4">{approach.description}</p>
                 <ul className="space-y-2">
-                  {value.principles.map((principle, pIndex) => (
+                  {approach.points.map((point, pIndex) => (
                     <li key={pIndex} className="flex items-center text-sm">
                       <CheckCircle className="w-4 h-4 text-royalBlue mr-2" />
-                      {principle}
+                      {point}
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Team Expertise */}
-        <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
-            Professional Excellence
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[
-              {
-                icon: <Building className="w-8 h-8" />,
-                title: "Enterprise Knowledge",
-                description: "Deep understanding of corporate needs and constraints",
-                expertise: [
-                  "Corporate priorities",
-                  "Business unit alignment",
-                  "Stakeholder management"
-                ]
-              },
-              {
-                icon: <Brain className="w-8 h-8" />,
-                title: "Digital Proficiency",
-                description: "Masters of Tangible's intelligent platform",
-                expertise: [
-                  "Platform optimization",
-                  "Digital workflows",
-                  "Automated solutions"
-                ]
-              },
-              {
-                icon: <Workflow className="w-8 h-8" />,
-                title: "Process Excellence",
-                description: "Efficient, repeatable transaction management",
-                expertise: [
-                  "Workflow optimization",
-                  "Quality control",
-                  "Process automation"
-                ]
-              },
-              {
-                icon: <Handshake className="w-8 h-8" />,
-                title: "Deal Expertise",
-                description: "Focus on what moves transactions forward",
-                expertise: [
-                  "Key term negotiation",
-                  "Risk assessment",
-                  "Practical solutions"
-                ]
-              },
-              {
-                icon: <Gauge className="w-8 h-8" />,
-                title: "Volume Management",
-                description: "High-throughput transaction handling",
-                expertise: [
-                  "Portfolio management",
-                  "Resource optimization",
-                  "Scalable processes"
-                ]
-              },
-              {
-                icon: <Clock className="w-8 h-8" />,
-                title: "Speed Focus",
-                description: "Accelerated deal completion",
-                expertise: [
-                  "Fast execution",
-                  "Efficient review",
-                  "Quick resolution"
-                ]
-              }
-            ].map((expertise, index) => (
-              <div key={index} className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div className="text-royalBlue mb-4">{expertise.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{expertise.title}</h3>
-                <p className="text-gray-600 mb-4">{expertise.description}</p>
+      {/* Core Capabilities */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
+          Core Capabilities
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              icon: <Brain className="w-8 h-8" />,
+              title: "Enterprise Intelligence",
+              description: "Mastering corporate complexities with precision",
+              points: [
+                "Navigate enterprise priorities with insight",
+                "Drive cross-functional alignment",
+                "Orchestrate stakeholder outcomes"
+              ]
+            },
+            {
+              icon: <Workflow className="w-8 h-8" />,
+              title: "Digital Excellence",
+              description: "Maximizing value through intelligent automation",
+              points: [
+                "Optimize AI-powered contract analysis",
+                "Design custom digital workflows",
+                "Deploy predictive analytics solutions"
+              ]
+            },
+            {
+              icon: <Handshake className="w-8 h-8" />,
+              title: "Transaction Expertise",
+              description: "Delivering results at enterprise scale",
+              points: [
+                "Execute complex multi-party negotiations",
+                "Assess and mitigate risk strategically",
+                "Scale through automated processes"
+              ]
+            },
+            {
+              icon: <Rocket className="w-8 h-8" />,
+              title: "Speed to Impact",
+              description: "Accelerating value creation",
+              points: [
+                "Drive rapid deal completion",
+                "Enable efficient decision-making",
+                "Resolve bottlenecks proactively"
+              ]
+            }
+          ].map((capability, index) => (
+            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 p-6">
+                <div className="text-royalBlue mb-4">{capability.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{capability.title}</h3>
+                <p className="text-gray-600 mb-4">{capability.description}</p>
                 <ul className="space-y-2">
-                  {expertise.expertise.map((item, eIndex) => (
-                    <li key={eIndex} className="flex items-center text-sm">
-                      <div className="w-1.5 h-1.5 bg-royalBlue rounded-full mr-2"></div>
-                      {item}
+                  {capability.points.map((point, pIndex) => (
+                    <li key={pIndex} className="flex items-center text-sm">
+                      <CheckCircle className="w-4 h-4 text-royalBlue mr-2" />
+                      {point}
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Measurable Impact */}
-        <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
-            Delivering Results
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {[
-              {
-                icon: <Clock className="w-6 h-6" />,
-                metric: "Speed to Close",
-                description: "Accelerated deal completion timelines"
-              },
-              {
-                icon: <BarChart className="w-6 h-6" />,
-                metric: "Portfolio Scale",
-                description: "High-volume transaction management"
-              },
-              {
-                icon: <CheckCircle className="w-6 h-6" />,
-                metric: "Quality Assurance",
-                description: "Risk-appropriate deal execution"
-              }
-            ].map((impact, index) => (
-              <div key={index} 
-                   className="flex items-start p-4 bg-lightGray rounded-lg">
-                <span className="text-royalBlue mr-3">{impact.icon}</span>
-                <div>
-                  <span className="font-medium block mb-1">{impact.metric}</span>
-                  <span className="text-sm text-gray-600">{impact.description}</span>
-                </div>
+      {/* Impact Metrics */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
+          Delivering Impact
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            {
+              icon: <Clock className="w-8 h-8" />,
+              title: "Velocity",
+              description: "Accelerated completion through intelligent execution"
+            },
+            {
+              icon: <BarChart className="w-8 h-8" />,
+              title: "Scale",
+              description: "Enterprise-level portfolio management powered by technology"
+            },
+            {
+              icon: <Gauge className="w-8 h-8" />,
+              title: "Quality",
+              description: "Precision delivery with risk-calibrated oversight"
+            }
+          ].map((impact, index) => (
+            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 p-6 text-center">
+                <div className="text-royalBlue mb-4 flex justify-center">{impact.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{impact.title}</h3>
+                <p className="text-gray-600">{impact.description}</p>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Team Principles */}
-        <section className="bg-white py-8 px-4 rounded-lg mb-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold text-royalBlue mb-4">Team Principles</h2>
-            <div className="bg-lightGray p-6 rounded-lg">
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-royalBlue mr-2">•</span>
-                  Customer success drives every decision and action
-                </li>
-                <li className="flex items-start">
-                  <span className="text-royalBlue mr-2">•</span>
-                  Focus on what truly matters to business objectives
-                </li>
-                <li className="flex items-start">
-                  <span className="text-royalBlue mr-2">•</span>
-                  Leverage technology to enhance human expertise
-                </li>
+      {/* Commitments */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Our Commitments</h2>
+          <div className="border border-gray-200 rounded-xl overflow-hidden">
+            <div className="bg-gray-50 p-6">
+              <ul className="space-y-4">
+                {[
+                  "Drive customer success through every decision",
+                  "Focus resources on business-critical priorities",
+                  "Enhance human expertise with digital intelligence"
+                ].map((commitment, index) => (
+                  <li key={index} className="flex items-start">
+                    <Shield className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700">{commitment}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Footer */}
-        <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-             Excellence in transaction management.</p>
-        </footer>
-      </div>
+      {/* Footer */}
+      <footer className="guide-footer">
+        <p>© 2024 Tangible Intelligence, ai. Elite teams delivering transformational outcomes.</p>
+      </footer>
     </div>
   );
 };

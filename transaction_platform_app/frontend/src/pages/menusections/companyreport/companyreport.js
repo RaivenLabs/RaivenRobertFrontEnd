@@ -1,5 +1,4 @@
 // Set the current customer - easy to change for testing
-const CURRENT_CUSTOMER_ID = "LAW002";  // Hawkeye Holdings
 
 // Import all helper functions
 import {

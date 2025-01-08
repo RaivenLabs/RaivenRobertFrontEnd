@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext(null);
@@ -11,19 +10,23 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch('/auth/check-session');
+        const response = await fetch('/auth/check-session', {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        
         if (response.ok) {
           const data = await response.json();
           setIsAuthenticated(true);
           setUser(data.user);
         } else {
-          // In development, we'll default to not authenticated
           setIsAuthenticated(false);
           setUser(null);
         }
       } catch (error) {
-        // Handle network errors or missing endpoint gracefully
-        console.log('Auth check failed, defaulting to unauthenticated state');
+        console.error('Auth check failed:', error);
         setIsAuthenticated(false);
         setUser(null);
       } finally {
@@ -34,22 +37,27 @@ export const AuthProvider = ({ children }) => {
     checkSession();
   }, []);
 
-  const login = async () => {
-    // For development, we can set a mock authenticated state
+  const login = async (userData) => {
     setIsAuthenticated(true);
-    setUser({
-      customerId: 'LAW001', // Example customer ID
-      customerType: 'law_firm'
-    });
+    setUser(userData);
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    setUser(null);
+  const logout = async () => {
+    try {
+      await fetch('/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      setIsAuthenticated(false);
+      setUser(null);
+    }
   };
 
   if (isLoading) {
-    return <div>Loading authentication...</div>; // Or your loading component
+    return <div>Loading authentication...</div>;
   }
 
   return (
@@ -59,6 +67,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// Add this export for the useAuth hook
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {

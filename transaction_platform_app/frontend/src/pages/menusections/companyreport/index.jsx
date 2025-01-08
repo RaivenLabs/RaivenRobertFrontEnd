@@ -1,6 +1,6 @@
-// src/pages/menusections/companyreport/index.jsx
 import React, { useState, useEffect } from 'react';
 import { useConfig } from '../../../context/ConfigContext';
+import { fetchFromAPI } from '../../../utils/api/api';  // Add this import
 import './companyreport.css';
 
 const CompanyReport = () => {
@@ -13,29 +13,23 @@ const CompanyReport = () => {
     const fetchCustomerData = async () => {
       try {
         setLoading(true);
-        // Use Hawkeye as default if no customer is selected
         const customerId = config?.id || 'HAWKEYE';
         console.log('Fetching data for customer:', customerId);
         
-        const response = await fetch(`/api/company-report/${customerId}`);
-        if (!response.ok) {
-          throw new Error('Failed to load customer data');
-        }
-        
-        const customerData = await response.json();
+        const customerData = await fetchFromAPI(`/api/company-report/${customerId}`);
         console.log('Received customer data:', customerData);
         
         setCustomerData(customerData);
-        setLoading(false);
       } catch (err) {
         console.error('Error loading customer data:', err);
         setError('Unable to load customer information. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
 
     fetchCustomerData();
-  }, [config?.id]); // Still watch for config.id changes
+  }, [config?.id]);
 
   // Rest of the component remains the same...
   if (loading) {

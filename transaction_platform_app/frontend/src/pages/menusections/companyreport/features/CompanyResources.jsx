@@ -14,17 +14,19 @@ import {
 
 const CompanyResources = () => {
   return (
-    <div className="max-h-[80vh] overflow-y-auto bg-ivory text-gray-dark p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <header className="bg-royalBlue text-ivory py-12 px-4 text-center rounded-lg mb-8">
-          <h1 className="text-4xl font-semibold mb-4">At Your Fingertips</h1>
+    <div className="guide-wrapper">
+    {/* Header Section */}
+    <header className="guide-header">
+      <div className="guide-container">
+         
+          <h1>At Your Fingertips</h1>
           <p className="text-xl max-w-3xl mx-auto mb-2">
             Your central hub for company information, policies, and organizational resources
           </p>
           <p className="text-lg max-w-3xl mx-auto">
             Access everything you need to know about your company structure, policies, and operations
           </p>
+          </div>
         </header>
 
         {/* Resource Categories */}
@@ -159,7 +161,6 @@ const CompanyResources = () => {
              Company resources at your fingertips.</p>
         </footer>
       </div>
-    </div>
   );
 };
 

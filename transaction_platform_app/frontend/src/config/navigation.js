@@ -80,80 +80,49 @@ export const navigationConfig = {
   mainItems: [
     {
       id: 'companyreport',
-      label: 'Our Company',
-      configLabel: 'briefing_room_text', // This tells the system to use the config value
+      label: 'Mission Control',
+     
       icon: 'companyreport',
       type: 'controlpanelmenu',
       level: 'main',
-      route: 'companyreport',
-      useConfigLabel: true // Flag to use dynamic config label
+      route: 'flightdeck',
+    
 
     },
     {
       id: 'rapidreview',
-      label: 'Rapid Response Group',
+      label: 'Applications',
       icon: 'rapidreview',
       type: 'applications-package',
       level: 'main',
        route: 'rapidreview'
     },
-    {
-      id: 'concierge',
-      label: 'Tangible Concierge',
-      icon: 'concierge',
-      type: 'controlpanelmenu',
-      level: 'main',
-      route: 'concierge' 
-    },
-    {
-      id: 'headquarters',
-      label: 'Headquarters',
-      icon: 'home',
-      hasSubmenu: true,
-      submenuItems: [
-        { id: 'flightdeck', label: 'FlightDeck', type: 'controlpanelmenu',level: 'main', route: 'flightdeck'},
-        { id: 'inflight', label: 'In Flight', type: 'table-reporting',level: 'main',  route: 'inflight'},
-        { id: 'landed', label: 'Landed', type: 'controlpanelmenu',level: 'main',  route: 'landed'},
-        { id: 'buildkits', label: 'Build Kits', type: 'controlpanelmenu',level: 'main', route: 'buildkits' },
-        { id: 'r2d2', label: 'Insights', type: 'controlpanelmenu',level: 'main', route: 'r2d2' }, 
-        { id: 'readyroom', label: 'Ready Room', type: 'controlpanelmenu', level: 'main', route: 'readyroom'},
-        { id: 'sandbox', label: 'The Tangible Sandbox', type: 'controlpanelmenu',level: 'main', route: 'sandbox' }
-      ]
-    },
+    
+    
+
+
+
+  
+
     {
       id: 'tangibleteams',
-      label: 'Tangible CoIntelligence Service Teams',
+      label: 'Transaction Strike Teams',
       icon: 'tangibleteams',
       type: 'controlpanelmenu',
       level: 'main',
       route: 'tangibleteams'
     },
+
     {
-      id: 'houseapps',
-      label: 'House Applications Dock',
-      configLabel: 'applications_dock_text',
-      icon: 'houseapps',
+      id: 'concierge',
+      label: 'Concierge',
+      icon: 'concierge',
       type: 'controlpanelmenu',
       level: 'main',
-      route: 'houseapps',
-      useConfigLabel: true
+      route: 'concierge' 
     },
-    {
-      id: 'exchange',
-      label: 'The Application Exchange',
-      icon: 'speakeasy',
-      type: 'controlpanelmenu',
-      level: 'main',
-       route: 'exchange'
-    },
-    {
-      id: 'speakeasy',
-      label: 'The Tangible Speakeasy',
-      icon: 'speakeasy',
-      type: 'controlpanelmenu',
-      level: 'main',
-      route: 'speakeasy'
-    },
+   
+    
     {
       id: 'platformtour',
       label: 'Platform Tour',
@@ -169,15 +138,8 @@ export const navigationConfig = {
       type: 'controlpanelmenu',
       level: 'main',
       route: 'configuration'
-    },
-    {
-      id: 'authentication',
-      label: 'Authentication',
-      icon: 'settings',
-      type: 'controlpanelmenu',
-      level: 'main',
-      route: 'authentication'
     }
+  
   ]
 };
 

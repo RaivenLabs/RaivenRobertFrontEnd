@@ -1,4 +1,5 @@
-﻿import { useState, useEffect } from 'react';
+﻿import { fetchFromAPI } from '../utils/api/api';
+import { useState, useEffect } from 'react';
 
 const useCustomerConfig = () => {
   const [customerConfig, setCustomerConfig] = useState(null);
@@ -11,14 +12,11 @@ const useCustomerConfig = () => {
         const hostname = window.location.hostname;
         const subdomain = hostname.split('.')[0].toLowerCase();
 
-        // Fetch customer configuration
-        const response = await fetch('/api/config/customer-type', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ subdomain }),
-        });
+       // Fetch customer configuration
+const response = await fetchFromAPI('/api/config/customer-type', {
+  method: 'POST',
+  body: JSON.stringify({ subdomain })
+});
 
         const config = await response.json();
         setCustomerConfig(config);

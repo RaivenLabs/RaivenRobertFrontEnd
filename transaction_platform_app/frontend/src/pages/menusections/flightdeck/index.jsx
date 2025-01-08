@@ -6,14 +6,14 @@ const FlightDeckContent = () => (
   <div className="guide-wrapper">
     <header className="guide-header">
       <div className="guide-container">
-        <h1>Flight Deck Command</h1>
+        <h1>Mission Control</h1>
         <p>Program Management & Control Center</p>
         <p>Monitor, direct and manage your entire platform program from inception to completion.</p>
       </div>
     </header>
 
     <section className="guide-principle-section">
-      <h2 className="guide-principle-title">Program Command</h2>
+      <h2 className="guide-principle-title"></h2>
       <div className="guide-principle-container">
         <div className="guide-principle-box">
           <h3>Program Overview</h3>

@@ -1,5 +1,6 @@
 // src/pages/menusections/flightdeck/features/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
+import { fetchFromAPI } from '../../../../utils/api/api';  // Add this import
 import { AlertCircle, BarChart2, Flag, FileText, MessageSquare } from 'lucide-react';
 
 const ProjectCard = ({ project }) => (
@@ -128,11 +129,8 @@ const FlightDeckDashboard = () => {
     const loadDashboardData = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/operations/dashboard');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        // fetchFromAPI already handles response.ok check and json parsing
+        const data = await fetchFromAPI('/api/flightdeck/dashboard');
         if (data.error) {
           throw new Error(data.error);
         }

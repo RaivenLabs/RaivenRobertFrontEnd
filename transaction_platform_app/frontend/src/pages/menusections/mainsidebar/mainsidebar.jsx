@@ -82,7 +82,7 @@ const MainSidebar = ({ onSidebarChange }) => {
       <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
         <div className="mb-6">
           <div className="text-2xl font-bold text-cyan mb-2 p-6">
-            Tangible Intelligence Platform
+            Tangible Intelligence Platform:  Main Menu
           </div>
           <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
         </div>
@@ -151,7 +151,7 @@ const MainSidebar = ({ onSidebarChange }) => {
         </div>
 
         <div className="mt-auto border-t border-gray-700">
-          <p className="text-1xl text-cyan mb-2 p-3">Powered by Tangible Intelligence</p>
+          <p className="text-1xl text-cyan mb-2 p-3">Powered by Tangible CoIntelligence</p>
         </div>
       </div>
 

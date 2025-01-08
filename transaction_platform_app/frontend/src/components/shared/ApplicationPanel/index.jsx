@@ -1,4 +1,5 @@
 // src/components/shared/ApplicationPanel/index.jsx
+import { fetchFromAPI } from '../../../utils/api/api'; 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ApplicationPanel.css';
@@ -14,25 +15,22 @@ const ApplicationPanel = ({ apiEndpoint, onSidebarChange }) => {
 
   useEffect(() => {
     const loadProgramData = async () => {
+      console.log('🎯 Starting API call with endpoint:', apiEndpoint);  // Log the received endpoint
       try {
         setLoading(true);
-        const response = await fetch(apiEndpoint);
-        if (!response.ok) {
-          throw new Error('Failed to load programs');
-        }
-        const data = await response.json();
+        const data = await fetchFromAPI(apiEndpoint);
         console.log('📦 Loaded program data:', data);
         setProgramData(data);
       } catch (error) {
-        console.error('❌ Error loading programs:', error);
+        console.error('❌ Error details:', error);  // Enhanced error logging
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     loadProgramData();
-  }, [apiEndpoint]);
+  }, [apiEndpoint]); 
 
   const handleProgramSelect = (program, groupIndex) => {
     console.log('🎯 Program selected:', program);

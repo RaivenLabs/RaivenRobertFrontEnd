@@ -25,13 +25,14 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
   const handleReturn = () => {
     console.log('⬅️ Returning to main menu');
     onSidebarChange('main');
+    navigate('/');
   };
 
   return (
     <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
       <div className="mb-6">
         <div className="text-2xl font-bold text-cyan mb-2 p-6">
-          Our Company
+          Mission Control
         </div>
         <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
       </div>
@@ -67,7 +68,7 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
       </div>
 
       <div className="mt-auto border-t border-gray-700">
-        <p className="text-2xl text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+        <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
       </div>
     </div>
   );

@@ -67,6 +67,7 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
   const handleReturn = () => {
     console.log('⬅️ Returning to main menu');
     onSidebarChange('main');
+    navigate('/');
   };
 
   // Helper function to check if we have application items for a section
@@ -147,7 +148,7 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
         </div>
 
         <div className="mt-auto border-t border-gray-700">
-          <p className="text-2xl text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+          <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
         </div>
       </div>
 

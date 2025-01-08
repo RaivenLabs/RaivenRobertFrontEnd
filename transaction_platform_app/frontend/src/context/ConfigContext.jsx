@@ -1,14 +1,31 @@
-﻿// In ConfigContext.jsx
-import React, { createContext, useContext, useState } from 'react';
+﻿import React, { createContext, useContext, useState } from 'react';
 import { useAuth } from './AuthContext';
 import { getBaseCustomerConfig } from '../config/customerConfigs';
-import { getCustomerInstance } from '../config/customerInstances';
+import { 
+  getCustomerInstance, 
+  loadCustomerInstances 
+} from '../config/customerInstancesLogic';
 
 const ConfigContext = createContext();
 
 export const ConfigProvider = ({ children }) => {
   const [customerType, setCustomerType] = useState('global');
   const [config, setConfig] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Add initialization effect
+  React.useEffect(() => {
+    const initializeConfig = async () => {
+      try {
+        await loadCustomerInstances();
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading customer configurations:', error);
+        setIsLoading(false);
+      }
+    };
+    initializeConfig();
+  }, []);
 
   const updateCustomerConfig = async (customerId, newType) => {
     console.log('Updating customer config:', { customerId, newType });
@@ -44,9 +61,16 @@ export const ConfigProvider = ({ children }) => {
   const contextValue = {
     customerType,
     config,
-    updateCustomerConfig, // Expose the new function
+    updateCustomerConfig,
     updateCustomerType: (type) => setCustomerType(type), // Keep for backward compatibility
+    isLoading // Add loading state to context
   };
+
+  if (isLoading) {
+    // You might want to render a loading indicator or return children
+    // depending on your application's needs
+    return <div>Loading configurations...</div>;
+  }
 
   return (
     <ConfigContext.Provider value={contextValue}>

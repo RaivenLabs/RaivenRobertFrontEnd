@@ -47,7 +47,14 @@ const readyroomConfig = {
         icon: 'archive',
         type: 'menu',
         route:'readyroom/library'
-      }
+      },
+
+      
+
+
+
+
+
     ]
   };
   export default readyroomConfig;

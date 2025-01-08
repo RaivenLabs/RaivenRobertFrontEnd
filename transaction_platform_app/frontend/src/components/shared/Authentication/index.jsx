@@ -105,7 +105,7 @@ const Authentication = ({ onSuccess }) => {
 
         <button
           type="submit"
-          className="w-full p-3 bg-royal-blue text-ivory rounded-md hover:bg-hover-blue transition-colors"
+          className="w-full p-3 bg-gray-100 text-royal-blue rounded-md hover:bg-hover-blue transition-colors"
         >
           Log In
         </button>
@@ -122,7 +122,7 @@ const Authentication = ({ onSuccess }) => {
 
       <button
         onClick={handleMicrosoftLogin}
-        className="w-full p-3 bg-white text-royal-blue border-2 border-royal-blue rounded-md hover:bg-light-blue transition-colors flex items-center justify-center space-x-2"
+        className="w-full p-3 bg-gray-100 text-royal-blue border-2 border-royal-blue rounded-md hover:bg-light-blue transition-colors flex items-center justify-center space-x-2"
       >
         <svg className="w-5 h-5" viewBox="0 0 23 23">
           <path fill="#f25022" d="M1 1h10v10H1z" />

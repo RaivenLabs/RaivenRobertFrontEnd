@@ -8,27 +8,74 @@ const rapidreviewConfig = {
         type: 'menu',
         route:'rapidresponse/overview'
       },
-      
-      
-      
+          
       {
-        id: 'fastlane',
-        label: 'Fast Lane Builds',
-        icon: 'plus-circle',
-        type: 'action',
-        route: 'rapidresponse/fastlane'
-
-      },
-      {
-        id: 'quickread',
-        label: 'Quick Read',
+        id: 'companyapplications',
+        label: 'Enterprise Applications',
         icon: 'template',
         type: 'menu',
-        route:'rapidresponse/quickread'
+        route:'rapidresponse/enterpriseapplications'
+      },  
 
-       
-      }
+      {
+        id: 'teamapplications',
+        label: 'Industry Applications',
+        icon: 'template',
+        type: 'menu',
+        route:'rapidresponse/industryapplications'
+      },  
+
+      {
+        id: 'partnerapplications',
+        label: 'Partner Applications',
+        icon: 'template',
+        type: 'menu',
+        route:'rapidresponse/partnerapplications'
+      },  
+      
+      {
+        id: 'tangibleinside',
+        label: 'CoreIntel™ Technology',      // Simple version
+        // OR for more control over the sizing
+        label: ['CoreIntel', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Technology'],
+        icon: 'plus-circle',
+        type: 'menu',
+        route: 'rapidresponse/tangibleinside'
+      },
+ 
+      {
+        id: 'sandbox',
+        label: 'Application Design Center',
+        icon: 'plus-circle',
+        type: 'menu',
+        route: 'rapidresponse/rapidprototyping'
+
+      },
+
+     
+
+
+
+
+
      
     ]
   };
+export const getNavigationItem = (id) => {
+  const findItem = (items) => {
+    for (const item of items) {
+      if (item.id === id) return item;
+      if (item.submenuItems) {
+        const found = findItem(item.submenuItems);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  return findItem(rapidreviewConfig.mainItems);
+};
+
+
+
   export default rapidreviewConfig;

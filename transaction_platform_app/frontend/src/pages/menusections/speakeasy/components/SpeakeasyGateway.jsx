@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { fetchFromAPI } from '../../../../utils/api/api';  // Add this import
 import '../styles/speakeasy.css';
 import { 
   getRandomQuestions, 
@@ -26,11 +27,7 @@ const EntranceQuiz = ({ onAccessGranted }) => {
 
   const loadQuestions = async () => {
     try {
-      const response = await fetch('/api/speakeasy/questions');
-      if (!response.ok) {
-        throw new Error('Failed to load questions');
-      }
-      const data = await response.json();
+      const data = await fetchFromAPI('/api/speakeasy/questions');
       if (!data.success) {
         throw new Error(data.error || 'Failed to load questions');
       }
