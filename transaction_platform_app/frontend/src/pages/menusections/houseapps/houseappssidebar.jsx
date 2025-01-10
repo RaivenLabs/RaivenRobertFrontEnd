@@ -72,14 +72,14 @@ const HouseAppsSidebar = ({ onSidebarChange }) => {
           </div>
         ))}
 
-        {/* Return to Main Menu button */}
+        {/* Main Menu button */}
         <div className="mt-4 border-t border-gray-700">
           <button
             onClick={handleReturn}
             className="w-full px-6 py-3 flex items-center gap-3 hover:bg-royalBlue-hover text-left transition-colors text-xl"
           >
             <ArrowLeft className="w-5 h-5 text-ivory" />
-            <span>Return to Main Menu</span>
+            <span>Main Menu</span>
           </button>
         </div>
       </div>

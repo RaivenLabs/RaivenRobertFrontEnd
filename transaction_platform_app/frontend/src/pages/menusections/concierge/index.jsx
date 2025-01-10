@@ -1,145 +1,145 @@
 import React from 'react';
-import { Bell, Clock, Headphones, FileSearch, Settings, ArrowRight, MessageSquare } from 'lucide-react';
-import './concierge.css';
+import { 
+  Compass, 
+  BarChart2, 
+  Eye, 
+  FileText, 
+  HeartHandshake,
+  MessageCircle,
+  Users,
+  Sparkles,
+  Clock,
+  Layout,
+  FolderOpen,
+  Settings
+} from 'lucide-react';
 
-const Concierge = () => {
+const ConciergeOverview = () => {
   return (
     <div className="guide-wrapper">
-    {/* Header Section */}
-    <header className="guide-header">
-      <div className="guide-container">
-          <h1 >Welcome to Your Tangible Concierge</h1>
-          <p>
-            How can we assist you today?
-          </p>
-          <p>
-            We're here to make your platform experience seamless and delightful
-          </p>
-          </div>
-        </header>
+      {/* Header Section */}
+      <header className="guide-header">
+        <div className="guide-container">
+          <h1>The Tangible Concierge</h1>
+          <p>Your intelligent guide for seamless business execution</p>
+          <p>Personalized support and insights at every step</p>
+        </div>
+      </header>
 
-        {/* Quick Actions Section */}
-        <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
-            Quick Actions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="flex flex-col items-center p-6 bg-lightGray rounded-lg hover:shadow-md transition-shadow">
-              <Clock className="w-12 h-12 text-royalBlue mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Track Active Transactions</h3>
-              <p className="text-center text-gray-600">Monitor status, deadlines, and next steps for all your active deals</p>
-            </div>
-            
-            <div className="flex flex-col items-center p-6 bg-lightGray rounded-lg hover:shadow-md transition-shadow">
-              <Bell className="w-12 h-12 text-royalBlue mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Service Requests</h3>
-              <p className="text-center text-gray-600">Submit new requests or check status of existing support tickets</p>
-            </div>
-            
-            <div className="flex flex-col items-center p-6 bg-lightGray rounded-lg hover:shadow-md transition-shadow">
-              <FileSearch className="w-12 h-12 text-royalBlue mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Document Assistance</h3>
-              <p className="text-center text-gray-600">Get help with document creation, review, or management</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Service Channels Section */}
-        <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
-            Ways We Can Help
-          </h2>
-          <div className="space-y-4 max-w-4xl mx-auto">
-            {[
-              {
-                title: "24/7 Platform Support",
-                description: "Technical assistance and platform guidance whenever you need it",
-                icon: <Headphones className="w-6 h-6 text-royalBlue" />
-              },
-              {
-                title: "Transaction Advisory",
-                description: "Expert guidance on deal structure, process optimization, and best practices",
-                icon: <MessageSquare className="w-6 h-6 text-royalBlue" />
-              },
-              {
-                title: "System Configuration",
-                description: "Help with customizing the platform to match your workflow",
-                icon: <Settings className="w-6 h-6 text-royalBlue" />
-              }
-            ].map((service, index) => (
-              <div key={index} 
-                   className="flex items-center p-6 bg-lightGray rounded-lg hover:bg-lightBlue transition-colors">
-                {service.icon}
-                <div className="ml-6 flex-grow">
-                  <h3 className="text-xl font-semibold mb-1">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </div>
-                <ArrowRight className="w-6 h-6 text-royalBlue" />
+      
+      {/* Digital Compass */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
+          Digital Compass
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              icon: <Eye className="w-8 h-8" />,
+              title: "Real-Time Deal Visibility",
+              description: "Monitor transaction progress and status updates instantly"
+            },
+            {
+              icon: <BarChart2 className="w-8 h-8" />,
+              title: "Dynamic Performance Analytics",
+              description: "Track key metrics and insights across your portfolio"
+            },
+            {
+              icon: <Sparkles className="w-8 h-8" />,
+              title: "Action-Based Insights",
+              description: "Receive intelligent recommendations for next steps"
+            }
+          ].map((feature, index) => (
+            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 p-6">
+                <div className="text-royalBlue mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Our Commitment Section */}
-        <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
-            Our Commitment to You
-          </h2>
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-lg leading-relaxed mb-6">
-              We believe that exceptional service begins with attentiveness and a spirit of radical generosity.
-              Our commitment is to provide responsive, proactive support that delights and empowers you.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              {[
-                {
-                  metric: "15min",
-                  label: "Average Response Time"
-                },
-                {
-                  metric: "24/7",
-                  label: "Support Availability"
-                },
-                {
-                  metric: "98%",
-                  label: "Customer Satisfaction"
-                }
-              ].map((stat, index) => (
-                <div key={index} className="p-4">
-                  <div className="text-3xl font-bold text-royalBlue mb-2">{stat.metric}</div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </div>
-              ))}
+      {/* Service Excellence */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
+          Service Excellence
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              icon: <MessageCircle className="w-8 h-8" />,
+              title: "Responsive Support",
+              description: "Expert assistance available when you need it"
+            },
+            {
+              icon: <Users className="w-8 h-8" />,
+              title: "Expert Guidance",
+              description: "Professional insights to optimize your workflow"
+            },
+            {
+              icon: <HeartHandshake className="w-8 h-8" />,
+              title: "Customer Delight",
+              description: "Going above and beyond to ensure your success"
+            }
+          ].map((service, index) => (
+            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 p-6">
+                <div className="text-royalBlue mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Our Commitment */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Our Commitment</h2>
+          <div className="border border-gray-200 rounded-xl overflow-hidden">
+            <div className="bg-gray-50 p-6">
+              <ul className="space-y-4">
+                {[
+                  "Drive customer success through every decision",
+                  "Focus resources on business-critical priorities",
+                  "Enhance human expertise with digital intelligence"
+                ].map((commitment, index) => (
+                  <li key={index} className="flex items-start">
+                    <Compass className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700">{commitment}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Need Immediate Assistance Section */}
-        <section className="bg-royalBlue text-ivory py-8 px-4 rounded-lg mb-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-semibold mb-4">Need Immediate Assistance?</h2>
-            <p className="text-lg mb-6">Our team is standing by to help you with any questions or concerns</p>
-            <div className="flex justify-center space-x-4">
-              <button className="bg-white text-royalBlue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Contact Support
-              </button>
-              <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-royalBlue-hover transition-colors">
-                Schedule a Consultation
-              </button>
-            </div>
+      {/* Contact Support */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6">Need Assistance?</h2>
+          <p className="text-gray-600 mb-8">Our experts are ready to help</p>
+          <div className="flex justify-center gap-4">
+            <button className="bg-royalBlue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              Contact Support
+            </button>
+            <button className="border border-royalBlue text-royalBlue px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors">
+              Schedule Consultation
+            </button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Footer */}
-        <footer className="bg-white text-center py-8 px-4 mt-12 rounded-lg">
-          <p className="text-gray-600">
-            © 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-            Built for serious business with a smile. Radical generosity is our motto!
-          </p>
-        </footer>
-      </div>
-
+      {/* Footer */}
+      <footer className="guide-footer">
+        <p>© 2024 Tangible Intelligence, ai. Your partner in business excellence.</p>
+      </footer>
+    </div>
   );
 };
 
-export default Concierge;
+export default ConciergeOverview;

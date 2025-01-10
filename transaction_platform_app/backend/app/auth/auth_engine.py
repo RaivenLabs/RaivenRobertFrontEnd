@@ -4,11 +4,10 @@ import botocore
 import os
 from functools import wraps
 import json
-from warrant import Cognito
-from ..config.config import config_manager
 from botocore.exceptions import ClientError
+from ..config.config import config_manager
 
-# Debug prints
+# Debug prints remain the same
 print("\n--- DEBUG OUTPUT ---")
 print(f"Current directory: {os.getcwd()}")
 print(f"Auth engine location: {os.path.dirname(__file__)}")
@@ -22,12 +21,14 @@ auth_blueprint = Blueprint('auth', __name__,
                          static_folder='authentication_blueprint/static',
                          url_prefix='/auth')
 
-# Updated Cognito configuration for new user pool
 COGNITO_CONFIG = {
     'user_pool_id': 'us-west-2_JnwmUHLzc',
     'client_id': '47l1p0md5fpj3adg86no3h0sk6',
     'region': 'us-west-2'
 }
+
+def get_cognito_client():
+    return boto3.client('cognito-idp', region_name=COGNITO_CONFIG['region'])
 
 def login_required(f):
     @wraps(f)
@@ -50,16 +51,15 @@ def login_required(f):
 def cognito_auth():
     try:
         data = request.get_json()
-        identifier = data.get('identifier')  # Can be email or username
+        identifier = data.get('identifier')
         password = data.get('password')
 
         if not identifier or not password:
             return jsonify({'message': 'Username/email and password are required'}), 400
 
-        cognito_client = boto3.client('cognito-idp', region_name=COGNITO_CONFIG['region'])
+        cognito_client = get_cognito_client()
 
         try:
-            # First try direct authentication
             auth_response = cognito_client.initiate_auth(
                 ClientId=COGNITO_CONFIG['client_id'],
                 AuthFlow='USER_PASSWORD_AUTH',
@@ -69,7 +69,6 @@ def cognito_auth():
                 }
             )
             
-            # Store tokens in session
             session['access_token'] = auth_response['AuthenticationResult']['AccessToken']
             session['id_token'] = auth_response['AuthenticationResult']['IdToken']
             
@@ -81,7 +80,6 @@ def cognito_auth():
             })
 
         except cognito_client.exceptions.UserNotFoundException:
-            # If not found, try to find by email
             try:
                 user_response = cognito_client.list_users(
                     UserPoolId=COGNITO_CONFIG['user_pool_id'],
@@ -91,10 +89,8 @@ def cognito_auth():
                 if not user_response['Users']:
                     return jsonify({'message': 'User not found'}), 404
                 
-                # Get the username associated with the email
                 username = user_response['Users'][0]['Username']
                 
-                # Try authentication with the found username
                 auth_response = cognito_client.initiate_auth(
                     ClientId=COGNITO_CONFIG['client_id'],
                     AuthFlow='USER_PASSWORD_AUTH',
@@ -104,7 +100,6 @@ def cognito_auth():
                     }
                 )
                 
-                # Store tokens in session
                 session['access_token'] = auth_response['AuthenticationResult']['AccessToken']
                 session['id_token'] = auth_response['AuthenticationResult']['IdToken']
                 
@@ -130,7 +125,7 @@ def refresh_token():
         if not refresh_token:
             return jsonify({'message': 'Refresh token is required'}), 400
 
-        cognito_client = boto3.client('cognito-idp', region_name=COGNITO_CONFIG['region'])
+        cognito_client = get_cognito_client()
         
         auth_response = cognito_client.initiate_auth(
             ClientId=COGNITO_CONFIG['client_id'],
@@ -140,7 +135,6 @@ def refresh_token():
             }
         )
         
-        # Update session tokens
         session['access_token'] = auth_response['AuthenticationResult']['AccessToken']
         session['id_token'] = auth_response['AuthenticationResult']['IdToken']
         
@@ -213,10 +207,11 @@ def forgot_password():
     if request.method == 'POST':
         username = request.form.get('username')
         try:
-            u = Cognito(COGNITO_CONFIG['user_pool_id'],
-                       COGNITO_CONFIG['client_id'],
-                       username=username)
-            u.initiate_forgot_password()
+            cognito_client = get_cognito_client()
+            cognito_client.forgot_password(
+                ClientId=COGNITO_CONFIG['client_id'],
+                Username=username
+            )
             return redirect(url_for('auth.reset_password', username=username))
         except Exception as e:
             return render_template('account/forgotpassword.html', error=str(e))
@@ -229,10 +224,13 @@ def reset_password():
         code = request.form.get('code')
         new_password = request.form.get('new_password')
         try:
-            u = Cognito(COGNITO_CONFIG['user_pool_id'],
-                       COGNITO_CONFIG['client_id'],
-                       username=username)
-            u.confirm_forgot_password(code, new_password)
+            cognito_client = get_cognito_client()
+            cognito_client.confirm_forgot_password(
+                ClientId=COGNITO_CONFIG['client_id'],
+                Username=username,
+                ConfirmationCode=code,
+                Password=new_password
+            )
             return redirect(url_for('auth.login', message='Password reset successful!'))
         except Exception as e:
             return render_template('account/passwords.html', error=str(e))
@@ -242,10 +240,10 @@ def reset_password():
 @login_required
 def profile():
     try:
-        u = Cognito(COGNITO_CONFIG['user_pool_id'],
-                   COGNITO_CONFIG['client_id'],
-                   access_token=session['access_token'])
-        user_data = u.get_user()
-        return render_template('account/profile.html', user=user_data._data)
+        cognito_client = get_cognito_client()
+        user_data = cognito_client.get_user(
+            AccessToken=session['access_token']
+        )
+        return render_template('account/profile.html', user=user_data)
     except Exception as e:
         return redirect(url_for('auth.login', error=str(e)))

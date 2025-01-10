@@ -12,7 +12,7 @@
 
       {
         id: 'conciergelaunch',
-        label: 'New Matter Portal',
+        label: 'Start New Matter',
         icon: 'check-square',
         type: 'view',
         route: 'concierge/launch'
@@ -21,7 +21,7 @@
 
       {
         id: 'conciergedashboard',
-        label: 'Concierge Dashboard',
+        label: 'My Dashboard',
         icon: 'dashboard',
         type: 'view',
         route: 'concierge/dashboard'
@@ -29,7 +29,7 @@
 
       {
         id: 'conciergeportfolio',
-        label: 'Concierge Portfolio',
+        label: 'Active Portfolio',
         icon: 'briefcase',
         type: 'menu',
        route: 'concierge/portfolio'
@@ -37,7 +37,7 @@
      
       {
         id: 'conciergeoperations',
-        label: 'Concierge Operations',
+        label: 'Operations Center',
         icon: 'users',
         type: 'menu',
         route: 'concierge/operations'
