@@ -1,6 +1,6 @@
 // src/pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/index.jsx
 import React from 'react';
-import '../../../../styles/speakeasy.css';
+
 
 const FlorenceGelatoContent = () => (
   <div className="guide-wrapper">

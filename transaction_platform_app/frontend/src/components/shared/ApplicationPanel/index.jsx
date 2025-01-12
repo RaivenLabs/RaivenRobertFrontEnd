@@ -1,5 +1,6 @@
 // src/components/shared/ApplicationPanel/index.jsx
 import { fetchFromAPI } from '../../../utils/api/api'; 
+import { useConfig } from '../../../context/ConfigContext';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ApplicationPanel.css';
@@ -7,6 +8,7 @@ import IconComponent from './IconComponent';
 
 const ApplicationPanel = ({ apiEndpoint, onSidebarChange }) => {
   const navigate = useNavigate();
+  const { coreconfig } = useConfig();
   const [programData, setProgramData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,14 +17,14 @@ const ApplicationPanel = ({ apiEndpoint, onSidebarChange }) => {
 
   useEffect(() => {
     const loadProgramData = async () => {
-      console.log('🎯 Starting API call with endpoint:', apiEndpoint);  // Log the received endpoint
+      console.log('🎯 Starting API call with endpoint:', apiEndpoint);
       try {
         setLoading(true);
-        const data = await fetchFromAPI(apiEndpoint);
+        const data = await fetchFromAPI(apiEndpoint, coreconfig.apiUrl);
         console.log('📦 Loaded program data:', data);
         setProgramData(data);
       } catch (error) {
-        console.error('❌ Error details:', error);  // Enhanced error logging
+        console.error('❌ Error details:', error);
         setError(error.message);
       } finally {
         setLoading(false);
@@ -30,7 +32,7 @@ const ApplicationPanel = ({ apiEndpoint, onSidebarChange }) => {
     };
   
     loadProgramData();
-  }, [apiEndpoint]); 
+  }, [apiEndpoint, coreconfig.apiUrl]);
 
   const handleProgramSelect = (program, groupIndex) => {
     console.log('🎯 Program selected:', program);

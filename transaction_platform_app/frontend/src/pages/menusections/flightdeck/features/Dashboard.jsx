@@ -1,5 +1,6 @@
 // src/pages/menusections/flightdeck/features/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
+import { useConfig } from '../../../../context/ConfigContext';
 import { fetchFromAPI } from '../../../../utils/api/api';  // Add this import
 import { AlertCircle, BarChart2, Flag, FileText, MessageSquare } from 'lucide-react';
 
@@ -122,6 +123,8 @@ const FlightDeckDashboard = () => {
     alerts: [],
     system_health: {}
   });
+  
+  const { coreconfig } = useConfig();  // Get both coreconfig and config
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -130,7 +133,15 @@ const FlightDeckDashboard = () => {
       try {
         setLoading(true);
         // fetchFromAPI already handles response.ok check and json parsing
-        const data = await fetchFromAPI('/api/flightdeck/dashboard');
+       
+       const data = await fetchFromAPI(
+                 `/flightdeck/dashboard`, 
+                 coreconfig.apiUrl
+               );
+       
+       
+       
+   
         if (data.error) {
           throw new Error(data.error);
         }
@@ -145,7 +156,7 @@ const FlightDeckDashboard = () => {
     };
 
     loadDashboardData();
-  }, []);
+  }, [coreconfig.apiUrl]);  // Add this dependency
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorDisplay error={error} />;

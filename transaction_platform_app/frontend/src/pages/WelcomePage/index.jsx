@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+
 import { 
   ClipboardCheck, 
   Workflow, 
@@ -14,8 +15,14 @@ import {
   FileText
 } from 'lucide-react';
 
+
+
 const WelcomePage = () => {
-  return (
+   // Add this new useEffect to check config on component mount
+
+  
+
+return (
     <div className="guide-wrapper">
       {/* Header Section */}
       <header className="guide-header">
@@ -140,5 +147,10 @@ const WelcomePage = () => {
     </div>
   );
 };
+
+
+
+
+
 
 export default WelcomePage;

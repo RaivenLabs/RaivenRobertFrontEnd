@@ -4,7 +4,7 @@ import ApplicationPanel from '../../../../../../components/shared/ApplicationPan
 
 const Dashboard = () => {
   return (
-    <ApplicationPanel apiEndpoint="/api/programs/speakeasy" />
+    <ApplicationPanel apiEndpoint="//programs/speakeasy" />
   );
 };
 

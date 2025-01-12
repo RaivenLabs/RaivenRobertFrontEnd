@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/sandbox.css';
+
 
 const SandboxContent= () => (
   <div className="guide-wrapper">

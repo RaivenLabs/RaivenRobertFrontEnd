@@ -3,7 +3,7 @@ import ApplicationPanel from '../../../../components/shared/ApplicationPanel';
 
 const BuildKitApplications = () => {
   return (
-    <ApplicationPanel apiEndpoint="/api/programs/buildkits" />
+    <ApplicationPanel apiEndpoint="/programs/buildkits" />
   );
 };
 

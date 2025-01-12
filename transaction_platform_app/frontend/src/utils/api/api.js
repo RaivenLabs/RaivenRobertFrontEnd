@@ -1,7 +1,7 @@
-import { API_URL } from './config';  
+export const fetchFromAPI = async (endpoint, apiUrl, options = {}) => {
+  console.log('Fetching from API:', `${apiUrl}${endpoint}`);
 
-export const fetchFromAPI = async (endpoint, options = {}) => {
-  const response = await fetch(`${API_URL}${endpoint}`, {
+  const response = await fetch(`${apiUrl}${endpoint}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',

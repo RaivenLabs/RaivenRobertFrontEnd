@@ -1,7 +1,7 @@
 // src/pages/menusections/speakeasy/index.jsx
-import React, { useState, useEffect } from 'react';
-import SpeakeasyGateway from './components/SpeakeasyGateway';
-//import '../../../styles/shared/guidepages.css';
+import React from 'react';
+
+
 
 const SpeakeasyContent = () => (
   <div className="guide-wrapper">
@@ -94,27 +94,12 @@ const SpeakeasyContent = () => (
         }}
         className="text-sm underline hover:text-blue-200 transition-colors mt-2"
       >
-        Return to Gateway
+        Return to Main Menu
       </button>
     </footer>
   </div>
 );
 
-const Speakeasy = () => {
-  const [hasAccess, setHasAccess] = useState(false);
 
-  useEffect(() => {
-    const access = sessionStorage.getItem('speakeasyAccess');
-    if (access === 'granted') {
-      setHasAccess(true);
-    }
-  }, []);
 
-  const handleAccessGranted = () => {
-    setHasAccess(true);
-  };
-
-  return hasAccess ? <SpeakeasyContent /> : <SpeakeasyGateway onAccessGranted={handleAccessGranted} />;
-};
-
-export default Speakeasy;
+export default SpeakeasyContent;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useConfig } from '../../../context/ConfigContext';
 import { fetchFromAPI } from '../../../utils/api/api';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -9,6 +10,10 @@ import {
 const ApplicationGroup = ({ apiEndpoint, onSidebarChange }) => {
   const navigate = useNavigate();
   const [apps, setApps] = useState([]);
+
+
+
+  const { coreconfig } = useConfig();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pressTimer, setPressTimer] = useState(null);
@@ -18,7 +23,7 @@ const ApplicationGroup = ({ apiEndpoint, onSidebarChange }) => {
     const loadApps = async () => {
       try {
         setLoading(true);
-        const data = await fetchFromAPI(apiEndpoint);
+       const data = await fetchFromAPI(apiEndpoint, coreconfig.apiUrl);
         
         // Flatten all programs from all groups into a single array
         const allPrograms = data.program_groups.flatMap(group => group.programs);

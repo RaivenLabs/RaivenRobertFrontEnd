@@ -1,26 +1,22 @@
+import { useState } from 'react';
+import { useConfig } from '../context/ConfigContext';
 import { fetchFromAPI } from '../utils/api/api';
-import { CUSTOMER_TYPES } from '../constants/customerTypes';
-import { getBaseCustomerConfig } from './customerConfigs';
 
-let CUSTOMER_INSTANCES = {};
-
-export const loadCustomerInstances = async () => {
+// Pure utilities for ConfigProvider
+export const loadCustomerInstancesUtil = async (apiUrl) => {
   try {
     console.log('🔍 Starting to fetch customer instances...');
-    const response = await fetchFromAPI('/api/config/customer-instances');
+    const response = await fetchFromAPI('/config/customer-instances', apiUrl);
     console.log('📦 Received data:', response);
-    
-    // Extract the CUSTOMER_INSTANCES object from the response
-    CUSTOMER_INSTANCES = response.CUSTOMER_INSTANCES;
-    console.log('✅ Loaded customer instances:', CUSTOMER_INSTANCES);
+    return response.CUSTOMER_INSTANCES;
   } catch (error) {
     console.error('❌ Error loading customer instances:', error);
     throw error;
   }
 };
 
-export const getCustomerInstance = (customerId) => {
-  const customerInstance = CUSTOMER_INSTANCES[customerId];
+export const getCustomerInstanceUtil = (instances, customerId) => {
+  const customerInstance = instances[customerId];
   if (!customerInstance) {
     console.warn(`No configuration found for customer ID: ${customerId}`);
     return null;
@@ -28,47 +24,23 @@ export const getCustomerInstance = (customerId) => {
   return customerInstance;
 };
 
-export const getFullCustomerConfig = (customerId) => {
-  const instance = getCustomerInstance(customerId);
-  if (!instance) return null;
-  
-  const baseConfig = getBaseCustomerConfig(instance.customer_type);
-  
+// Hook version for components
+export const useCustomerInstances = () => {
+  const { coreconfig } = useConfig();
+  const [customerInstances, setCustomerInstances] = useState({});
+
+  const loadInstances = async () => {
+    const data = await loadCustomerInstancesUtil(coreconfig.apiUrl);
+    setCustomerInstances(data);
+  };
+
+  const getInstance = (customerId) => {
+    return getCustomerInstanceUtil(customerInstances, customerId);
+  };
+
   return {
-    ...baseConfig,
-    ...instance,
-    menu_config: {
-      ...baseConfig.menu_config,
-      briefing_room_text: `${instance.company_name} Briefing Room`,
-      applications_dock_text: `${instance.company_name} Applications Dock`
-    },
-    features: {
-      ...baseConfig.features,
-      ...instance.specific_settings.feature_overrides
-    }
+    customerInstances,
+    loadCustomerInstances: loadInstances,
+    getCustomerInstance: getInstance
   };
 };
-
-export const createCustomerInstance = (
-  customerId,
-  customerType,
-  companyName,
-  specificSettings
-) => {
-  const newInstance = {
-    id: customerId,
-    customer_type: customerType,
-    company_name: companyName,
-    specific_settings: {
-      ...specificSettings,
-      custom_templates: specificSettings.custom_templates || {},
-      feature_overrides: specificSettings.feature_overrides || {}
-    }
-  };
-
-  CUSTOMER_INSTANCES[customerId] = newInstance;
-  return newInstance;
-};
-
-// Export CUSTOMER_INSTANCES for use in components
-export { CUSTOMER_INSTANCES };

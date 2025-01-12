@@ -4,19 +4,22 @@ import { fetchFromAPI } from '../../../../utils/api/api';  // Add this import
 import './companyreport.css';
 
 const CompanyReport = () => {
-  const { config } = useConfig();
+  const { coreconfig, config } = useConfig();  // Get both coreconfig and config
   const [customerData, setCustomerData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
         setLoading(true);
-        const customerId = config?.id || 'HAWKEYE';
+        const customerId = config?.id || 'LAW001';  // Keep the customerId logic
         console.log('Fetching data for customer:', customerId);
         
-        const customerData = await fetchFromAPI(`/api/company-report/${customerId}`);
+        const customerData = await fetchFromAPI(
+          `/company-report/${customerId}`, 
+          coreconfig.apiUrl
+        );
         console.log('Received customer data:', customerData);
         
         setCustomerData(customerData);
@@ -27,7 +30,6 @@ const CompanyReport = () => {
         setLoading(false);
       }
     };
-
     fetchCustomerData();
   }, [config?.id]);
 

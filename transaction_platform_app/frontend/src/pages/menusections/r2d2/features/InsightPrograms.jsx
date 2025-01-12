@@ -3,7 +3,7 @@ import ApplicationPanel from '../../../../components/shared/ApplicationPanel';
 
 const InsightProgramApplications = () => {
   return (
-    <ApplicationPanel apiEndpoint="/api/programs/r2d2" />
+    <ApplicationPanel apiEndpoint="//programs/r2d2" />
   );
 };
 

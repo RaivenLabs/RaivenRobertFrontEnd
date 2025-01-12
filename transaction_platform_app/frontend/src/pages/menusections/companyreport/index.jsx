@@ -4,7 +4,7 @@ import { fetchFromAPI } from '../../../utils/api/api';  // Add this import
 import './companyreport.css';
 
 const CompanyReport = () => {
-  const { config } = useConfig();
+  const { coreconfig, config } = useConfig();  // Get both coreconfig and config
   const [customerData, setCustomerData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +16,11 @@ const CompanyReport = () => {
         const customerId = config?.id || 'HAWKEYE';
         console.log('Fetching data for customer:', customerId);
         
-        const customerData = await fetchFromAPI(`/api/company-report/${customerId}`);
+        const customerData = await fetchFromAPI(
+          `/company-report/${customerId}`, 
+          coreconfig.apiUrl
+        );
+        console.log('Received customer data:', customerData);
         console.log('Received customer data:', customerData);
         
         setCustomerData(customerData);

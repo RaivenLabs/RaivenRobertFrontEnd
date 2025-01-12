@@ -4,7 +4,7 @@ import ApplicationPanel from '../../../components/shared/ApplicationPanel';
 
 const Exchange = () => {
   return (
-    <ApplicationPanel apiEndpoint="/api/programs/exchange" />
+    <ApplicationPanel apiEndpoint="//programs/exchange" />
   );
 };
 

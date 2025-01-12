@@ -161,8 +161,7 @@ const TangibleInside = () => {
           Available Applications
         </h2>
         <div className="max-w-4xl mx-auto">
-          <ApplicationGroup 
-            apiEndpoint="/api/programs/buildkits"
+          <ApplicationGroup apiEndpoint="/programs/rapidreview"
             onSidebarChange={handleSidebarChange}
           />
         </div>

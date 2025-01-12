@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, send_from_directory, g, request, session, send_file, abort, json, jsonify, current_app
 
 import json
-import shutil
+
 import boto3
 
 import os
@@ -203,12 +203,6 @@ def delete_file(filename):
             'error': str(e)
         }), 500
         
-        
-        
-import boto3
-from flask import jsonify, current_app
-import os
-import json
 
 @main_blueprint.route('/api/programs/exchange', methods=['GET'])
 def get_exchange_programshold():
@@ -662,3 +656,7 @@ def get_customer_instances():
     except Exception as e:
         current_app.logger.error(f"Error loading customer instances: {str(e)}")
         return jsonify({'error': str(e)}), 500
+    
+@main_blueprint.route('/api/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "healthy"}), 200

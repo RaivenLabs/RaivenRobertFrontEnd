@@ -1,10 +1,8 @@
-﻿import React, { createContext, useContext, useState } from 'react';
+﻿import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+import coreconfig from '../coreconfig';
+import { loadCustomerInstancesUtil, getCustomerInstanceUtil } from '../config/customerInstancesLogic';
 import { getBaseCustomerConfig } from '../config/customerConfigs';
-import { 
-  getCustomerInstance, 
-  loadCustomerInstances 
-} from '../config/customerInstancesLogic';
 
 const ConfigContext = createContext();
 
@@ -12,12 +10,14 @@ export const ConfigProvider = ({ children }) => {
   const [customerType, setCustomerType] = useState('global');
   const [config, setConfig] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [instances, setInstances] = useState({});
 
-  // Add initialization effect
-  React.useEffect(() => {
+  useEffect(() => {
     const initializeConfig = async () => {
       try {
-        await loadCustomerInstances();
+        const customerInstances = await loadCustomerInstancesUtil(coreconfig.apiUrl);
+        setInstances(customerInstances);
+        console.log('CoreConfig in ConfigProvider:', coreconfig);
         setIsLoading(false);
       } catch (error) {
         console.error('Error loading customer configurations:', error);
@@ -38,7 +38,7 @@ export const ConfigProvider = ({ children }) => {
     
     // If we have a specific customer, merge with their specific settings
     if (customerId) {
-      const customerInstance = getCustomerInstance(customerId);
+      const customerInstance = getCustomerInstanceUtil(instances, customerId);
       if (customerInstance) {
         const mergedConfig = {
           ...baseConfig,
@@ -62,13 +62,13 @@ export const ConfigProvider = ({ children }) => {
     customerType,
     config,
     updateCustomerConfig,
-    updateCustomerType: (type) => setCustomerType(type), // Keep for backward compatibility
-    isLoading // Add loading state to context
+    updateCustomerType: (type) => setCustomerType(type),
+    isLoading,
+    coreconfig,
+    instances  // Make instances available to consumers if needed
   };
 
   if (isLoading) {
-    // You might want to render a loading indicator or return children
-    // depending on your application's needs
     return <div>Loading configurations...</div>;
   }
 

@@ -50,7 +50,7 @@ const FastLaneApps = () => {
             Enterprise Applications
           </h2>
           <ApplicationGroup 
-            apiEndpoint="/api/programs/buildkits"
+            apiEndpoint="//programs/buildkits"
             onSidebarChange={handleSidebarChange}
           />
         </section>

@@ -4,7 +4,7 @@ import ApplicationPanel from '../../../../components/shared/ApplicationPanel';
 
 const HouseApplicationsDock = () => {
   return (
-    <ApplicationPanel apiEndpoint="/api/programs/houseapps" />
+    <ApplicationPanel apiEndpoint="//programs/houseapps" />
   );
 };
 

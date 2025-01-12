@@ -3,7 +3,7 @@ import ApplicationPanel from '../../../../components/shared/ApplicationPanel';
 
 const TeamMembers = () => {
   return (
-    <ApplicationPanel apiEndpoint="/api/programs/tangibleteams" />
+    <ApplicationPanel apiEndpoint="/programs/tangibleteams" />
   );
 };
 

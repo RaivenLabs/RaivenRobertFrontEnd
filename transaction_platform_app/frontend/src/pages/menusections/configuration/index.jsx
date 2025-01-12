@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { Users, Shield, FileText, Database, Settings, Key, Layout, Server } from 'lucide-react';
-import './configuration.css';
+
 
 const Configuration = () => {
   return (

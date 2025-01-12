@@ -1,6 +1,6 @@
 // src/pages/menusections/flightdeck/index.jsx
 import React from 'react';
-import './styles/flightdeck.css';
+
 
 const FlightDeckContent = () => (
   <div className="guide-wrapper">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useConfig } from '../../../../context/ConfigContext';  // Adjust the path as needed
+
 import { fetchFromAPI } from '../../../../utils/api/api';  // Add this import
-import '../styles/speakeasy.css';
+
 import { 
   getRandomQuestions, 
   shuffleAnswers, 
@@ -9,7 +11,12 @@ import {
 
 const EntranceQuiz = ({ onAccessGranted }) => {
   const [allQuestions, setAllQuestions] = useState([]);
+
+
+
+
   const [displayQuestions, setDisplayQuestions] = useState([]);
+  const { coreconfig } = useConfig();
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [error, setError] = useState(null);
@@ -27,10 +34,10 @@ const EntranceQuiz = ({ onAccessGranted }) => {
 
   const loadQuestions = async () => {
     try {
-      const data = await fetchFromAPI('/api/speakeasy/questions');
-      if (!data.success) {
-        throw new Error(data.error || 'Failed to load questions');
-      }
+      const data = await fetchFromAPI('/speakeasy/questions', coreconfig.apiUrl);
+if (!data.success) {
+  throw new Error(data.error || 'Failed to load questions');
+}
       setAllQuestions(data.questions);
       setError(null);
     } catch (error) {

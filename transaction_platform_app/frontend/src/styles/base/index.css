@@ -1,16 +1,18 @@
-@import '../root.css';  /* Import root variables first */
+
+@import '../root.css';          /* 1. Variables first */
+
+@import '../shared/guidepages.css';  /* 2. Custom styles */
+
+@tailwind base;                 /* 3. Tailwind base */
+@tailwind components;           /* 4. Tailwind components */
+@tailwind utilities;           /* 5. Tailwind utilities */
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Test Tailwind layer */
-@layer components {
-  .test-btn {
-    @apply bg-royalBlue text-white px-4 py-2 rounded;
-  }
-}
+
+
+
+
 
 /* Your existing custom style */
 code {

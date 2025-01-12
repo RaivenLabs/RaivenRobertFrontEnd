@@ -1,6 +1,7 @@
 // src/components/shared/TableComponent/index.jsx
 import React, { useRef } from 'react';
 import { fetchFromAPI } from '../../../utils/api/api';
+import { useConfig } from '../../../context/ConfigContext';
 import './TableComponent.css';
 import { processImportData } from '../../../utils/sampleDataUtils';
 
@@ -14,9 +15,11 @@ const TableComponent = ({
   importButtonText = "Import Data",
   projectImportEnabled = false,
   onProjectImport,
-  setData  // Add this prop to update parent component's state
+  setData,
+  apiEndpoint  // Add this prop
 }) => {
   const fileInputRef = useRef(null);
+  const { coreconfig } = useConfig();  // Add this
 
   const handleFileSelect = async (event) => {
     const file = event.target.files[0];
@@ -31,25 +34,24 @@ const TableComponent = ({
           setData(processedData);
         } catch (error) {
           console.error('Error parsing file:', error);
-          // Add toast notification here if you want
         }
       };
       reader.readAsText(file);
     } catch (error) {
       console.error('Error reading file:', error);
-      // Add toast notification here if you want
     }
   };
 
   const handleImportClick = async () => {
     try {
-      const data = await fetchFromAPI('/api/sampleagreementdata');
-      // Access the agreements array from the response data
+      const data = await fetchFromAPI(apiEndpoint, coreconfig.apiUrl);
       setData(data.agreements);
     } catch (error) {
       console.error('Error importing sample data:', error);
     }
   };
+
+
 
   return (
     <div className="table-reporting">

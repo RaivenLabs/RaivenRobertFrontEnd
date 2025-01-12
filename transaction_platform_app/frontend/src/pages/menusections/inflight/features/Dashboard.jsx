@@ -34,6 +34,7 @@ const Dashboard = () => {  // Changed name to match the file
       onActionClick={handleActionClick}
       importButtonText="Import Sample Agreement Data"
       setData={setData}
+      apiEndpoint="/sampleagreementdata"  // Add this (removed /api/ prefix)
     />
   );
 };
