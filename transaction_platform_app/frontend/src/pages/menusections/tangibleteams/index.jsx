@@ -11,7 +11,7 @@ const TangibleTeamsOverview = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-          <h1>Tangible Strike Teams</h1>
+          <h1>Strike Teams</h1>
           <p>Elite Domain Specialists Deployed with Purpose</p>
           <p>Specialized rapid-response teams delivering transformational outcomes</p>
         </div>

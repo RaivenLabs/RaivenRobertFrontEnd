@@ -7,10 +7,21 @@ import { useSpeakeasy } from '../../../context/SpeakeasyContext';
 
 const RapidReviewSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
-  const { speakeasyAccess } = useSpeakeasy();
+  const { speakeasyAccess, setSpeakeasyAccess } = useSpeakeasy();
   const [expandedSection, setExpandedSection] = useState(null);
+  const [activeItem, setActiveItem] = useState(null); 
+  // Add back the effect to handle navigation to Speakeasy
+  React.useEffect(() => {
+    if (speakeasyAccess) {
+      navigate('/speakeasy');
+    }
+  }, [speakeasyAccess, navigate]);
 
   const handleSectionNavigation = (item) => {
+    // Reset Speakeasy access when navigating
+    setSpeakeasyAccess(false);
+    sessionStorage.removeItem('speakeasyAccess');
+    setActiveItem(item.id);  // Add this if you want active state
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
@@ -32,17 +43,14 @@ const RapidReviewSidebar = ({ onSidebarChange }) => {
   };
 
   const handleReturn = () => {
+    // Reset Speakeasy access when returning to main menu
+    setSpeakeasyAccess(false);
+    sessionStorage.removeItem('speakeasyAccess');
+    
     console.log('⬅️ Returning to main menu');
     onSidebarChange('main');
     navigate('/');
   };
-
-  // Add effect to handle speakeasy access
-  React.useEffect(() => {
-    if (speakeasyAccess) {
-      navigate('/speakeasy');
-    }
-  }, [speakeasyAccess, navigate]);
 
   return (
     <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
@@ -59,7 +67,9 @@ const RapidReviewSidebar = ({ onSidebarChange }) => {
           <div key={item.id}>
             <button
               onClick={() => handleSectionNavigation(item)}
-              className="w-full px-6 py-3 flex items-center justify-between hover:bg-royalBlue-hover text-left transition-colors text-xl"
+              className={`w-full px-6 py-3 flex items-center gap-3 
+                hover:bg-royalBlue-hover text-left transition-colors text-xl
+                ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               <div className="flex items-center gap-3">
                 {item.icon && (

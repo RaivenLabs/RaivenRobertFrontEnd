@@ -3,7 +3,7 @@ const r2d2Config = {
     sectionItems: [
       {
         id: 'insightsoverview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'dashboard',
         type: 'menu',
         route:'r2d2/overview'

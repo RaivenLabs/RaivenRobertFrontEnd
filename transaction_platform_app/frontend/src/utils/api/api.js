@@ -5,6 +5,7 @@ export const fetchFromAPI = async (endpoint, apiUrl, options = {}) => {
     ...options,
     headers: {
       'Content-Type': 'application/json',
+      'X-Environment': process.env.NODE_ENV,  // Add environment header
       ...options.headers,
     },
   });

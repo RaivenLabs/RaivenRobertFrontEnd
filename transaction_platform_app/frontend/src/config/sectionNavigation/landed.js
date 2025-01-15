@@ -3,7 +3,7 @@ const landedConfig = {
     sectionItems: [
       {
         id: 'overview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'dashboard',
         type: 'menu',
         route: 'landed/overview'

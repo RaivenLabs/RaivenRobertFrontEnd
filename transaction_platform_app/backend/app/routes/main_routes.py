@@ -8,7 +8,7 @@ import os
 
 
 from pathlib import Path
-from ..auth.auth_engine import login_required  # Add this import
+#from ..auth.auth_engine import login_required  # Add this import
 
 from botocore.exceptions import ClientError
 
@@ -64,145 +64,12 @@ SHARED_COMPONENTS = {
 
 
 
-@main_blueprint.route('/api/check_app_id', methods=['POST'])
-def check_app_id():
-    data = request.json
-    app_id = data['appId']
-    
-    try:
-        json_path = os.path.join(
-            current_app.root_path,
-             '..',                   # Up to backend
-                '..',                   # Up to transaction_platform_app
-                'static',
-                'data',
-            'sandbox_programs.json'
-        )
-        
-        with open(json_path, 'r') as f:
-            sandbox_data = json.load(f)
-        
-        exists = False
-        for group in sandbox_data['program_groups']:
-            if any(p['id'] == app_id for p in group['programs']):
-                exists = True
-                break
-        
-        return jsonify({'exists': exists})
-        
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
 
-@main_blueprint.route('/api/create_application', methods=['POST'])
-def create_application():
-    data = request.json
-    app_name = data['appName']
-    app_id = data['appId']
-    app_group = data['appGroup']
-    program_data = data['programData']
-    
-    try:
-        # Your existing create_application logic here, but return JSON instead of rendering templates
-        return jsonify({
-            'success': True,
-            'message': f'Application "{app_name}" created successfully with ID: {app_id}'
-        })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
 
-# S3 Routes
-@main_blueprint.route('/api/s3/upload', methods=['POST'])
-def upload_file():
-    try:
-        files = request.files.getlist('files')
-        uploaded_files = []
 
-        for file in files:
-            if file:
-                try:
-                    s3_client.upload_fileobj(
-                        file,
-                        S3_BUCKET,
-                        file.filename
-                    )
-                    uploaded_files.append({
-                        'name': file.filename,
-                        'status': 'success'
-                    })
-                except ClientError as e:
-                    uploaded_files.append({
-                        'name': file.filename,
-                        'status': 'error',
-                        'error': str(e)
-                    })
 
-        return jsonify({
-            'success': True,
-            'files': uploaded_files
-        })
 
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
 
-@main_blueprint.route('/api/s3/list', methods=['GET'])
-def list_files():
-    try:
-        response = s3_client.list_objects_v2(Bucket=S3_BUCKET)
-        
-        files = []
-        if 'Contents' in response:
-            for obj in response['Contents']:
-                file_metadata = s3_client.head_object(
-                    Bucket=S3_BUCKET,
-                    Key=obj['Key']
-                )
-                
-                files.append({
-                    'name': obj['Key'],
-                    'size': obj['Size'],
-                    'last_modified': obj['LastModified'].isoformat(),
-                    'content_type': file_metadata.get('ContentType', 'application/octet-stream')
-                })
-
-        return jsonify({
-            'success': True,
-            'files': files
-        })
-
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
-
-@main_blueprint.route('/api/s3/delete/<path:filename>', methods=['DELETE'])
-def delete_file(filename):
-    try:
-        s3_client.delete_object(
-            Bucket=S3_BUCKET,
-            Key=filename
-        )
-        
-        return jsonify({
-            'success': True,
-            'message': f'File {filename} deleted successfully'
-        })
-
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
-        
 
 @main_blueprint.route('/api/programs/exchange', methods=['GET'])
 def get_exchange_programshold():
@@ -374,41 +241,66 @@ def get_buildkits_programshold():
         return jsonify(programs_data)
         
     except Exception as e:
-        current_app.logger.error(f"Error loading Rapid Review program data: {str(e)}")
+        current_app.logger.error(f"Error loading Build Kit program data: {str(e)}")
         return jsonify({'error': str(e)}), 500
     
-@main_blueprint.route('/api/programs/rapidreview', methods=['GET'])
-def get_rapidreview_programshold():
+
+
+
+
+@main_blueprint.route('/api/programs/<program_type>', methods=['GET'])
+def get_programs(program_type):
     try:
-        is_development = current_app.config.get('FLASK_ENV') == 'development'
+        # Get environment and customer path from headers
+        react_env = request.headers.get('X-Environment', 'development')
+        customer_path = request.headers.get('X-Customer-Path', 'hawkeyetest')
         
-        if is_development and os.environ.get('USE_LOCAL_FILES', 'False').lower() == 'true':
-            # Navigate up from backend/app to transaction_platform_app, then to static/data
+        print("\n=== Debug Information ===")
+        print(f"Program Type: {program_type}")
+        print(f"React Environment: {react_env}")
+        print(f"Customer Path: {customer_path}")
+
+        if react_env == 'development':
+            # Local file path construction
             json_path = os.path.abspath(os.path.join(
-                current_app.root_path,  # This is backend/app
-                '..',                   # Up to backend
-                '..',                   # Up to transaction_platform_app
+                current_app.root_path,
+                '..',
+                '..',
                 'static',
                 'data',
-                'rapidreview_programs.json'
+                customer_path,  # Customer-specific folder
+                f'{program_type}_programs.json'
             ))
-            print(f"Attempting to read from path: {json_path}")  # Debug print
+            print(f"\n🔍 Using local path: {json_path}")
+            print(f"Does path exist? {os.path.exists(json_path)}")
+            
             with open(json_path, 'r') as f:
                 programs_data = json.load(f)
         else:
-            # S3 path for production
+            # S3 path construction
+            s3_key = f'data/programs/{customer_path}/{program_type}_programs.json'
+            print(f"\n🔍 Using S3 path: {s3_key}")
+            
             s3_client = boto3.client('s3')
             response = s3_client.get_object(
                 Bucket='juniperproductiondata',
-                Key='data/programs/rapidreview_programs.json'
+                Key=s3_key
             )
             programs_data = json.loads(response['Body'].read().decode('utf-8'))
             
         return jsonify(programs_data)
-        
+
     except Exception as e:
-        current_app.logger.error(f"Error loading Rapid Review program data: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        print(f"❌ Error: {str(e)}")
+        return jsonify({'error': 'Failed to load program data'}), 500
+
+
+
+
+
+
+
+
     
 @main_blueprint.route('/api/programs/r2d2', methods=['GET'])
 def get_r2d2_programshold():
@@ -484,23 +376,7 @@ def get_tangibleteams_programs():
 
 
 
-@main_blueprint.route('/api/programs/launch/<program_id>', methods=['POST'])
-def launch_program(program_id):
-    try:
-        # Here you would handle the program launch logic
-        # For now, just return success
-        return jsonify({
-            'success': True,
-            'message': f'Program {program_id} launched successfully',
-            'program_id': program_id
-        })
-    except Exception as e:
-        current_app.logger.error(f"Error launching program {program_id}: {str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
-        
+
 
 
 
@@ -647,7 +523,7 @@ def get_customer_instances():
             s3_client = boto3.client('s3')
             response = s3_client.get_object(
                 Bucket='juniperproductiondata',
-                Key='configs/customerInstances.json'
+                Key='data/configs/customerInstances.json'
             )
             config_data = json.loads(response['Body'].read().decode('utf-8'))
         

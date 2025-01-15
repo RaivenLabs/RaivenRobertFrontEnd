@@ -12,7 +12,7 @@ const TangibleInside = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-        <h1>Tangible's CoreIntel<sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup> Technology</h1>
+        <h1>CoreIntel<sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup> Applications</h1>
           <p>Transform unstructured data into actionable intelligence</p>
           <p>Advanced data extraction and analytics powered by proprietary vector technology</p>
         </div>

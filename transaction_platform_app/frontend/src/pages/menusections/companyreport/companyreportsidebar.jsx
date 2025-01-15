@@ -1,5 +1,5 @@
 ﻿// src/pages/menusections/companyreport/companyreportsidebar.jsx
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,8 +8,11 @@ import { ArrowLeft } from 'lucide-react';
 
 const CompanyReportSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
-
+  const [activeItem, setActiveItem] = useState(null);  // If you want active state
   const handleSectionNavigation = (item) => {
+    
+
+    setActiveItem(item.id);  // Add this if you want active state
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
@@ -45,7 +48,9 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
           <div key={item.id}>
             <button
               onClick={() => handleSectionNavigation(item)}
-              className="w-full px-6 py-3 flex items-center gap-3 hover:bg-royalBlue-hover text-left transition-colors text-xl"
+              className={`w-full px-6 py-3 flex items-center gap-3 
+                hover:bg-royalBlue-hover text-left transition-colors text-xl
+                ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               {item.icon && (
                 <svg className="w-5 h-5 text-ivory fill-current">

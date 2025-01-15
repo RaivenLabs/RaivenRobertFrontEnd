@@ -10,20 +10,27 @@ import {
 const ApplicationGroup = ({ apiEndpoint, onSidebarChange }) => {
   const navigate = useNavigate();
   const [apps, setApps] = useState([]);
-
-
-
-  const { coreconfig } = useConfig();
+  const { config, coreconfig } = useConfig();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pressTimer, setPressTimer] = useState(null);
   const [activeApp, setActiveApp] = useState(null);
 
+  console.log('🔍 Loading apps with:', {
+    endpoint: apiEndpoint,
+    datapath: config?.datapath,
+    environment: process.env.NODE_ENV
+  });
+
   useEffect(() => {
     const loadApps = async () => {
       try {
         setLoading(true);
-       const data = await fetchFromAPI(apiEndpoint, coreconfig.apiUrl);
+        const data = await fetchFromAPI(apiEndpoint, coreconfig.apiUrl, {
+          headers: {
+            'X-Customer-Path': config?.datapath || 'hawkeye'
+          }
+        });
         
         // Flatten all programs from all groups into a single array
         const allPrograms = data.program_groups.flatMap(group => group.programs);
@@ -55,7 +62,7 @@ const ApplicationGroup = ({ apiEndpoint, onSidebarChange }) => {
     };
 
     loadApps();
-  }, [apiEndpoint]);
+  }, [apiEndpoint, config?.datapath, coreconfig.apiUrl]);
 
   const handlePressStart = (app) => {
     if (!app.isLive) return; // Only allow press on live apps

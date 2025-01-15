@@ -57,7 +57,7 @@ return (
                 <Bot className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold mb-2">CoIntelligent Automation</h3>
-              <p className="text-gray-600 mb-4">Drive smart operational workflows with advanced AI</p>
+              <p className="text-gray-600 mb-4">Drive smart operational workflows with advanced technology and AI</p>
             </div>
           </div>
 
@@ -66,8 +66,8 @@ return (
               <div className="text-royalBlue mb-4">
                 <FileText className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Document Assembly</h3>
-              <p className="text-gray-600 mb-4">Advanced document processing and application delivery</p>
+              <h3 className="text-xl font-semibold mb-2">Transaction Architecture</h3>
+              <p className="text-gray-600 mb-4">Advanced transaction control, programming and delivery</p>
             </div>
           </div>
         </div>

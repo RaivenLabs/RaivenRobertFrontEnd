@@ -3,7 +3,7 @@ const exchangeConfig = {
     sectionItems: [
       {
         id: 'exchangeoverview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'plus-circle',
         type: 'menu',
         route: 'exchange/overview'

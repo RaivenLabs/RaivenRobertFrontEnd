@@ -18,8 +18,10 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
   const [expandedSection, setExpandedSection] = useState(null);
   const [isConsoleOpen, setIsConsoleOpen] = useState(false);
   const [currentProgramData, setCurrentProgramData] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);  // If you want active state
 
   const handleNavigation = async (item) => {
+    setActiveItem(item.id);  // Add this if you want active state
     console.log('🎯 Concierge Navigation:', {
       id: item.id,
       level: item.level,
@@ -81,7 +83,7 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
       <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
         <div className="mb-6">
           <div className="text-2xl font-bold text-cyan mb-2 p-6">
-            The Tangible Concierge
+            Tangible Concierge
           </div>
           <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
         </div>
@@ -95,7 +97,9 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
                   console.log('👆 Section item clicked:', item.id);
                   handleNavigation(item);
                 }}
-                className="w-full px-6 py-3 flex items-center gap-3 hover:bg-royalBlue-hover text-left transition-colors text-xl"
+                className={`w-full px-6 py-3 flex items-center gap-3 
+                  hover:bg-royalBlue-hover text-left transition-colors text-xl
+                  ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
               >
                 {item.icon && (
                   <svg className="w-5 h-5 text-ivory fill-current">

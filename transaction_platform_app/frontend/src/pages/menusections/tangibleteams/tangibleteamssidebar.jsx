@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 const TangibleTeamsSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
   const [sectionItems, setSectionItems] = useState([]);
+  const [activeItem, setActiveItem] = useState(null);  // If you want active state
 
   useEffect(() => {
     console.log('Initial tangibleteamsConfig:', tangibleteamsConfig);
@@ -20,6 +21,7 @@ const TangibleTeamsSidebar = ({ onSidebarChange }) => {
   }, []);
 
   const handleSectionNavigation = (item) => {
+    setActiveItem(item.id);  // Add this if you want active state
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
@@ -44,7 +46,7 @@ const TangibleTeamsSidebar = ({ onSidebarChange }) => {
     <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
       <div className="mb-6">
         <div className="text-2xl font-bold text-cyan mb-2 p-6">
-          Tangible Strike Teams
+          Strike Teams
         </div>
         <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
       </div>
@@ -55,7 +57,9 @@ const TangibleTeamsSidebar = ({ onSidebarChange }) => {
           <div key={item.id}>
             <button
               onClick={() => handleSectionNavigation(item)}
-              className="w-full px-6 py-3 flex items-center gap-3 hover:bg-royalBlue-hover text-left transition-colors text-xl"
+              className={`w-full px-6 py-3 flex items-center gap-3 
+                hover:bg-royalBlue-hover text-left transition-colors text-xl
+                ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`} 
             >
               {item.icon && (
                 <svg className="w-5 h-5 text-ivory fill-current">

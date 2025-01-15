@@ -5,15 +5,27 @@ import { navigationConfig } from '../../../config/navigation';
 import { useConfig } from '../../../context/ConfigContext';
 import { useAuth } from '../../../context/AuthContext';
 import { ChevronRight, LogIn, LogOut, X } from 'lucide-react';
+import { authService } from '../../../services/authService';
+
 import Authentication from '../../../components/shared/Authentication';
 
 const MainSidebar = ({ onSidebarChange }) => {
   const [expandedSection, setExpandedSection] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const navigate = useNavigate();
+  const [activeItem, setActiveItem] = useState(null); // at top of component
   const { isAuthenticated, logout } = useAuth();
-  const { customerType, config } = useConfig();
+  const { customerType, config, isLoading } = useConfig();  // Added isLoading
 
+  // Add safe sidebar text getter
+  const getSidebarText = () => {
+    if (isLoading || !config || !config.menu_config) {
+      return 'Tangible Intelligence Platform';
+    }
+    return `${config.menu_config.side_bar_text}`;
+  };
+
+  // Keep your existing getItemLabel
   const getItemLabel = (item) => {
     console.log('Getting label for item:', item);
     console.log('Customer type:', customerType);
@@ -41,6 +53,8 @@ const MainSidebar = ({ onSidebarChange }) => {
   };
 
   const handleMainNavigation = (item) => {
+    setActiveItem(item.id);
+
     console.log('🎯 Main Navigation:', {
       id: item.id,
       level: 'main',
@@ -64,13 +78,23 @@ const MainSidebar = ({ onSidebarChange }) => {
     onSidebarChange(item.id);
   };
 
-  const handleAuthClick = () => {
-    if (isAuthenticated) {
-      logout();
-    } else {
-      setShowLoginModal(true);
+// MainSidebar.jsx
+// In MainSidebar.jsx
+const handleAuthClick = async () => {
+  if (isAuthenticated) {
+    try {
+      console.log('👤 Current auth state before logout:', authService.checkAuthState());
+      await authService.initiateLogout();
+      await logout();
+      console.log('👤 Auth state after logout:', authService.checkAuthState());
+    } catch (error) {
+      console.error('Logout process failed:', error);
     }
-  };
+  } else {
+    console.log('👤 Opening login modal, current auth state:', authService.checkAuthState());
+    setShowLoginModal(true);
+  }
+};
 
   if (!navigationConfig.mainItems) {
     console.warn('⚠️ No navigation config found');
@@ -82,7 +106,7 @@ const MainSidebar = ({ onSidebarChange }) => {
       <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
         <div className="mb-6">
           <div className="text-2xl font-bold text-cyan mb-2 p-6">
-            Tangible Intelligence Platform:  Main Menu
+          {getSidebarText()}
           </div>
           <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
         </div>
@@ -92,7 +116,9 @@ const MainSidebar = ({ onSidebarChange }) => {
             <div key={item.id}>
               <button
                 onClick={() => handleMainNavigation(item)}
-                className="w-full px-6 py-3 flex items-center justify-between hover:bg-royalBlue-hover text-left transition-colors text-xl group"
+                className={`w-full px-6 py-3 flex items-center justify-between 
+                  hover:bg-royalBlue-hover transition-colors text-xl group
+                  ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
               >
                 <div className="flex items-center gap-3">
                   {item.icon && (
@@ -144,7 +170,7 @@ const MainSidebar = ({ onSidebarChange }) => {
             ) : (
               <>
                 <LogIn className="w-5 h-5" />
-                <span className="font-medium">Login for More Features</span>
+                <span className="font-medium">Login</span>
               </>
             )}
           </button>

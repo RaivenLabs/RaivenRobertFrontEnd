@@ -51,7 +51,7 @@ const ApplicationsOverview = () => {
               <div className="text-royalBlue mb-4">
                 <Globe className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Industry Solutions</h3>
+              <h3 className="text-xl font-semibold mb-2">Team Applications</h3>
               <p className="text-gray-600 mb-4">Domain or practice group specialized applications</p>
               <ul className="space-y-2">
                 {[
@@ -77,7 +77,7 @@ const ApplicationsOverview = () => {
               <div className="text-royalBlue mb-4">
                 <Handshake className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Partner Solutions</h3>
+              <h3 className="text-xl font-semibold mb-2">Engagement Applications</h3>
               <p className="text-gray-600 mb-4">Configurable applications supporting external workflow collaboration</p>
               <ul className="space-y-2">
                 <li className="text-sm font-semibold text-royalBlue mt-4">Transaction Portal</li>

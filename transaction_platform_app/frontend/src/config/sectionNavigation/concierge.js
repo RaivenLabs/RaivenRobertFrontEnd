@@ -4,7 +4,7 @@
     sectionItems: [
       {
         id: 'overview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'dashboard',
         type: 'view',
         route: 'concierge/overview'

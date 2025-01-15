@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "aws-amplify": "^6.12.0",
     "axios": "^1.7.9",
     "lucide-react": "^0.469.0",
     "react": "^18.2.0",
@@ -20,7 +21,6 @@
     "zustand": "^5.0.2"
   },
   "scripts": {
-   
     "start": "react-scripts start  --disable-host-check",
     "start-with-ngrok": "concurrently \"npm start\" \"ngrok http 3000 --host-header=localhost:3000\"",
     "build": "react-scripts build",

@@ -3,7 +3,7 @@ const inflightConfig = {
     sectionItems: [
       {
         id: 'inflightoverview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'plus-circle',
         type: 'action',
         route: 'inflight/overview'

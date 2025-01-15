@@ -23,7 +23,11 @@ export function SpeakeasyProvider({ children }) {
   };
 
   return (
-    <SpeakeasyContext.Provider value={{ handleMainMenuClick, speakeasyAccess }}>
+    <SpeakeasyContext.Provider value={{ 
+      handleMainMenuClick, 
+      speakeasyAccess,
+      setSpeakeasyAccess  // Add this to the context value
+    }}>
       {children}
     </SpeakeasyContext.Provider>
   );

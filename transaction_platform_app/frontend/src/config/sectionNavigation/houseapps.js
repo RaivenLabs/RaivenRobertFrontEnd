@@ -3,7 +3,7 @@ const houseappsConfig = {
     sectionItems: [
       {
         id: 'overview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'dashboard',
         type: 'menu',
         route: 'houseapps/overview'

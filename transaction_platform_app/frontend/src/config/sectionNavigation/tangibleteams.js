@@ -3,7 +3,7 @@ const tangibleteamsConfig = {
     sectionItems: [
       {
         id: 'overview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'dashboard',
         type: 'menu',
         route: 'tangibleteams/overview'
@@ -12,7 +12,7 @@ const tangibleteamsConfig = {
 
       {
         id: 'teammembers',
-        label: 'Tangible Team Members',
+        label: 'Tangible Team',
         icon: 'check-square',
         type: 'menu',
         route: 'tangibleteams/teammembers'
@@ -22,7 +22,7 @@ const tangibleteamsConfig = {
 
       {
         id: 'engaging',
-        label: 'Engagements with Tangible Teams',
+        label: 'Engage',
         icon: 'check-square',
         type: 'menu',
         route: 'tangibleteams/engagements'

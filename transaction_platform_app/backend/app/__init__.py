@@ -41,7 +41,9 @@ def create_app():
                "X-CSRF-Token",
                "x-amz-security-token",  # For AWS/Cognito
                "x-amz-date",            # For AWS/Cognito
-               "x-amz-user-agent"       # For AWS/Cognito
+               "x-amz-user-agent",       # For AWS/Cognito
+               "X-Environment",
+               'X-Customer-Path'
            ],
            "expose_headers": [
                "Access-Control-Allow-Origin", 

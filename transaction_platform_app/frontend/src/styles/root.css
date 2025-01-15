@@ -36,4 +36,9 @@
   /* Existing Layout Variables */
   --sidebar-width: 295px;
   --header-height: 60px;
+  --sidebar-active: #153672;
+  --sidebar-selected: #153672;
+  --sidebar-hover: var(--royal-blue-hover);
+  --sidebar-transition: var(--hover-transition);
+
 }

@@ -3,7 +3,7 @@ const rapidreviewConfig = {
     sectionItems: [
       {
         id: 'overview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'folder',
         type: 'menu',
         route:'rapidresponse/overview'
@@ -19,7 +19,7 @@ const rapidreviewConfig = {
 
       {
         id: 'teamapplications',
-        label: 'Industry Applications',
+        label: 'Team Applications',
         icon: 'template',
         type: 'menu',
         route:'rapidresponse/industryapplications'
@@ -27,7 +27,7 @@ const rapidreviewConfig = {
 
       {
         id: 'partnerapplications',
-        label: 'Partner Applications',
+        label: 'Engagement Applications',
         icon: 'template',
         type: 'menu',
         route:'rapidresponse/partnerapplications'
@@ -35,9 +35,9 @@ const rapidreviewConfig = {
       
       {
         id: 'tangibleinside',
-        label: 'CoreIntel™ Technology',      // Simple version
+        label: 'CoreIntel™ Applications',      // Simple version
         // OR for more control over the sizing
-        label: ['CoreIntel', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Technology'],
+        label: ['CoreIntel', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Applications'],
         icon: 'plus-circle',
         type: 'menu',
         route: 'rapidresponse/tangibleinside'
@@ -45,7 +45,7 @@ const rapidreviewConfig = {
  
       {
         id: 'sandbox',
-        label: 'Application Design Center',
+        label: 'Application Design',
         icon: 'plus-circle',
         type: 'menu',
         route: 'rapidresponse/rapidprototyping'

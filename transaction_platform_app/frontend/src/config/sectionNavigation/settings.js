@@ -3,7 +3,7 @@ const settingsConfig = {
     sectionItems: [
       {
         id: 'settingsoverview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'plus-circle',
         type: 'menu',
         route: 'settings/overview'

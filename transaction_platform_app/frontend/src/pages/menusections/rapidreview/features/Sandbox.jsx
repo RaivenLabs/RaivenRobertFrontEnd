@@ -4,7 +4,7 @@ const DesignCenterContent = () => (
   <div className="guide-wrapper">
     <header className="guide-header">
       <div className="guide-container">
-        <h1>Application Design Center</h1>
+        <h1>Application Design</h1>
         <p>Transform Business Needs into Custom Solutions</p>
         <p>Combine domain expertise with our CoIntelligence technology platform</p>
       </div>

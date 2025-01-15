@@ -20,7 +20,7 @@ const ConciergeOverview = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-          <h1>The Tangible Concierge</h1>
+          <h1>Tangible Concierge</h1>
           <p>Your intelligent guide for seamless business execution</p>
           <p>Personalized support and insights at every step</p>
         </div>

@@ -4,7 +4,7 @@ const buildkitsConfig = {
      
         {
           id: 'overview',
-          label: 'An Overview',
+          label: 'Overview',
           icon: 'dashboard',
           type: 'view',
           route: 'buildkits/overview'

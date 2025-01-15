@@ -1,12 +1,12 @@
-// src/constants/customerTypes.js
+
 export const CUSTOMER_TYPES = {
-    TANGIBLE: 'tangible',
-    GLOBAL: 'global',
-    LAW_FIRM: 'law_firm',
-    ENTERPRISE: 'enterprise'
+    TANGIBLE: 'TANGIBLE',
+    GLOBAL: 'GLOBAL',
+    LAW_FIRM: 'LAW_FIRM',
+    ENTERPRISE: 'ENTERPRISE'
   };
   
-  // src/config/customerConfigs.js
+
   export const CUSTOMER_CONFIGS = {
     [CUSTOMER_TYPES.GLOBAL]: {
       id: CUSTOMER_TYPES.GLOBAL,
@@ -16,6 +16,16 @@ export const CUSTOMER_TYPES = {
         applications_dock_text: 'Hawkeye Applications Dock'
       }
     },
+
+    [CUSTOMER_TYPES.TANGIBLE]: {  // Add this configuration
+      id: CUSTOMER_TYPES.TANGIBLE,
+      company_name: 'Tangible Intelligence',
+      menu_config: {
+        briefing_room_text: 'Tangible Briefing Room',
+        applications_dock_text: 'Tangible Applications Dock'
+      }
+    },
+    
     [CUSTOMER_TYPES.ENTERPRISE]: {
       id: CUSTOMER_TYPES.ENTERPRISE,
       company_name: 'Enterprise Customer',
@@ -43,8 +53,16 @@ export const CUSTOMER_TYPES = {
   };
   
   export const getBaseCustomerConfig = (type) => {
-    console.log('Getting base config for type:', type);
+    console.log('🔍 Getting base config for type:', type);
+    
+    // Direct lookup - if LAW_FIRM matches LAW_FIRM
     const config = CUSTOMER_CONFIGS[type];
-    console.log('Returning config:', config);
-    return config;
+    
+    if (config) {
+      console.log(`✅ Found exact match for ${type}`);
+      return config;
+    }
+  
+    console.warn(`⚠️ No direct match for ${type}, using GLOBAL`);
+    return CUSTOMER_CONFIGS[CUSTOMER_TYPES.GLOBAL];
   };

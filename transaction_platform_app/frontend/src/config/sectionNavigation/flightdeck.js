@@ -3,7 +3,7 @@ const flightdeckConfig = {
   sectionItems: [
     {
       id: 'flightdeckoverview',
-      label: 'An Overview',
+      label: 'Overview',
       icon: 'compass',  // Changed to compass to indicate program overview
       type: 'menu',
       route: 'flightdeck/overview'

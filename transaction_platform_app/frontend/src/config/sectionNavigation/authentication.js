@@ -3,7 +3,7 @@ const authenticationConfig = {
     sectionItems: [
       {
         id: 'authenticationoverview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'plus-circle',
         type: 'menu',
        route: 'authentication/overview'

@@ -3,7 +3,7 @@ const readyroomConfig = {
     sectionItems: [
       {
         id: 'readyroomoverview',
-        label: 'An Overview',
+        label: 'Overview',
         icon: 'plus-circle',
         type: 'menu',
         route:'readyroom/overview'

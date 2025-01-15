@@ -1,8 +1,13 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useConfig } from '../../../../context/ConfigContext';  
 import ApplicationGroup from '../../../../components/shared/ApplicationGroup';
 
 const PartnerApplications = () => {
+  const { config } = useConfig();  // Get config for datapath
+  const programType = 'rapidreview';  // This component knows what type it is
+  
+  
   const handleSidebarChange = (id) => {
     console.log('Sidebar changed to:', id);
   };
@@ -12,7 +17,7 @@ const PartnerApplications = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-          <h1>Partner Applications</h1>
+          <h1>Engagement Applications</h1>
           <p>Transform your service delivery with client-facing applications</p>
           <p>Create new revenue streams while enhancing client engagement</p>
         </div>
@@ -138,7 +143,8 @@ const PartnerApplications = () => {
           Available Applications
         </h2>
         <div className="max-w-4xl mx-auto">
-          <ApplicationGroup apiEndpoint="/programs/rapidreview"
+          <ApplicationGroup 
+            apiEndpoint={`/programs/${programType}`}
             onSidebarChange={handleSidebarChange}
           />
         </div>

@@ -12,7 +12,7 @@ const IndustryApplications = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-          <h1>Industry Applications</h1>
+          <h1>Team Applications</h1>
           <p>Domain-specific solutions for legal, sourcing, and claims management</p>
           <p>Purpose-built tools that understand your industry's unique challenges</p>
         </div>

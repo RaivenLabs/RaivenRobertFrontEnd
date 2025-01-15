@@ -1,65 +1,71 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, current_app, jsonify
+from flask import Blueprint, request, jsonify
 import boto3
-import botocore
-import os
-from functools import wraps
-import json
-from botocore.exceptions import ClientError
-from ..config.config import config_manager
 
-# Debug prints remain the same
-print("\n--- DEBUG OUTPUT ---")
-print(f"Current directory: {os.getcwd()}")
-print(f"Auth engine location: {os.path.dirname(__file__)}")
-template_path = os.path.join(os.path.dirname(__file__), 'authentication_blueprint', 'templates')
-print(f"Looking for templates in: {template_path}")
-print(f"Template exists: {os.path.exists(template_path)}")
-print("--- END DEBUG ---\n")
-
-auth_blueprint = Blueprint('auth', __name__,
-                         template_folder='authentication_blueprint/templates',
-                         static_folder='authentication_blueprint/static',
-                         url_prefix='/auth')
+auth_blueprint = Blueprint('auth', __name__)  # No prefix
 
 COGNITO_CONFIG = {
-    'user_pool_id': 'us-west-2_JnwmUHLzc',
-    'client_id': '47l1p0md5fpj3adg86no3h0sk6',
-    'region': 'us-west-2'
+   'user_pool_id': 'us-west-2_JnwmUHLzc',
+   'client_id': '47l1p0md5fpj3adg86no3h0sk6',
+   'region': 'us-west-2'
 }
 
 def get_cognito_client():
-    return boto3.client('cognito-idp', region_name=COGNITO_CONFIG['region'])
+   return boto3.client('cognito-idp', region_name=COGNITO_CONFIG['region'])
 
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        try:
-            customer_type, identifier = config_manager.get_customer_type(request.host)
-            customer_config = config_manager.load_config(customer_type, identifier)
-            
-            if customer_config.get('auth', {}).get('require_login', True):
-                if 'access_token' not in session:
-                    session['next_url'] = request.url
-                    return redirect(url_for('auth.login'))
-            return f(*args, **kwargs)
-        except Exception as e:
-            print(f"Auth check error: {str(e)}")
-            return redirect(url_for('auth.login'))
-    return decorated_function
-
+def get_user_groups(access_token):
+    print("\n📋 Starting get_user_groups function...")
+    try:
+        print("🔄 Getting Cognito client for group fetch...")
+        cognito_client = get_cognito_client()
+        
+        print("🔍 Getting user info using access token...")
+        user_info = cognito_client.get_user(AccessToken=access_token)
+        print(f"👤 Found user: {user_info.get('Username', 'Unknown')}")
+        
+        print(f"🔍 Fetching groups...")
+        groups_response = cognito_client.admin_list_groups_for_user(
+            Username=user_info['Username'],
+            UserPoolId=COGNITO_CONFIG['user_pool_id']
+        )
+        print("📝 Raw groups response:", groups_response)
+        
+        groups = [group['GroupName'] for group in groups_response['Groups']]
+        print(f"✨ Processed groups: {groups}")
+        return groups
+        
+    except Exception as e:
+        print(f"❌ Error in get_user_groups: {str(e)}")
+        print(f"❌ Error type: {type(e).__name__}")
+        import traceback
+        print("❌ Traceback:", traceback.format_exc())
+        return []
+    
 @auth_blueprint.route('/api/auth/cognito-auth', methods=['POST'])
 def cognito_auth():
+    print("\n" + "="*50)
+    print(f"🚀 FOUND ROUTE: {request.url}")
+    print(f"🛣️  ENDPOINT: {request.endpoint}")
+    print("="*50 + "\n")
+    
     try:
         data = request.get_json()
+        print("📝 DEBUG: Received data:", data)
+        print("🔑 Attempting authentication...")
+        
         identifier = data.get('identifier')
         password = data.get('password')
-
+        
         if not identifier or not password:
-            return jsonify({'message': 'Username/email and password are required'}), 400
-
+            print("❌ Missing credentials")
+            return jsonify({
+                'error': 'Username/email and password are required'
+            }), 400
+            
         cognito_client = get_cognito_client()
-
+        print("📞 Got Cognito client, initiating auth...")
+        
         try:
+            print(f"🔄 Starting auth flow for user: {identifier}")
             auth_response = cognito_client.initiate_auth(
                 ClientId=COGNITO_CONFIG['client_id'],
                 AuthFlow='USER_PASSWORD_AUTH',
@@ -68,182 +74,58 @@ def cognito_auth():
                     'PASSWORD': password
                 }
             )
+            print("✅ Initial Cognito auth successful!")
+            print("🔍 Auth response received:", auth_response.get('AuthenticationResult', {}))
             
-            session['access_token'] = auth_response['AuthenticationResult']['AccessToken']
-            session['id_token'] = auth_response['AuthenticationResult']['IdToken']
-            
-            return jsonify({
-                'accessToken': auth_response['AuthenticationResult']['AccessToken'],
-                'idToken': auth_response['AuthenticationResult']['IdToken'],
-                'refreshToken': auth_response['AuthenticationResult']['RefreshToken'],
-                'expiresIn': auth_response['AuthenticationResult']['ExpiresIn']
-            })
-
-        except cognito_client.exceptions.UserNotFoundException:
             try:
-                user_response = cognito_client.list_users(
-                    UserPoolId=COGNITO_CONFIG['user_pool_id'],
-                    Filter=f'email = "{identifier}"'
-                )
+                access_token = auth_response['AuthenticationResult']['AccessToken']
+                print(f"🎟️ Access token obtained: {access_token[:10]}...")
                 
-                if not user_response['Users']:
-                    return jsonify({'message': 'User not found'}), 404
+                print("👥 Starting group fetch process...")
+                user_groups = get_user_groups(access_token)
+                print(f"👥 Groups fetch completed. Groups: {user_groups}")
                 
-                username = user_response['Users'][0]['Username']
-                
-                auth_response = cognito_client.initiate_auth(
-                    ClientId=COGNITO_CONFIG['client_id'],
-                    AuthFlow='USER_PASSWORD_AUTH',
-                    AuthParameters={
-                        'USERNAME': username,
-                        'PASSWORD': password
-                    }
-                )
-                
-                session['access_token'] = auth_response['AuthenticationResult']['AccessToken']
-                session['id_token'] = auth_response['AuthenticationResult']['IdToken']
-                
-                return jsonify({
-                    'accessToken': auth_response['AuthenticationResult']['AccessToken'],
+                response_data = {
+                    'success': True,
+                    'accessToken': access_token,
                     'idToken': auth_response['AuthenticationResult']['IdToken'],
                     'refreshToken': auth_response['AuthenticationResult']['RefreshToken'],
-                    'expiresIn': auth_response['AuthenticationResult']['ExpiresIn']
-                })
+                    'expiresIn': auth_response['AuthenticationResult']['ExpiresIn'],
+                    'userGroups': user_groups
+                }
+                print("📤 Sending response with groups:", response_data.get('userGroups'))
+                return jsonify(response_data), 200
+                
+            except Exception as token_error:
+                print(f"❌ Error processing tokens or groups: {str(token_error)}")
+                print(f"❌ Error type: {type(token_error).__name__}")
+                raise
             
-            except ClientError as e:
-                return jsonify({'message': str(e)}), 400
-
+        except Exception as auth_error:
+            print(f"❌ Cognito authentication error: {str(auth_error)}")
+            print(f"❌ Error type: {type(auth_error).__name__}")
+            return jsonify({
+                'error': f'Authentication failed: {str(auth_error)}'
+            }), 500
+            
     except Exception as e:
-        return jsonify({'message': str(e)}), 500
-
-@auth_blueprint.route('/api/auth/refresh-token', methods=['POST'])
-def refresh_token():
-    try:
-        data = request.get_json()
-        refresh_token = data.get('refreshToken')
-
-        if not refresh_token:
-            return jsonify({'message': 'Refresh token is required'}), 400
-
-        cognito_client = get_cognito_client()
-        
-        auth_response = cognito_client.initiate_auth(
-            ClientId=COGNITO_CONFIG['client_id'],
-            AuthFlow='REFRESH_TOKEN_AUTH',
-            AuthParameters={
-                'REFRESH_TOKEN': refresh_token
-            }
-        )
-        
-        session['access_token'] = auth_response['AuthenticationResult']['AccessToken']
-        session['id_token'] = auth_response['AuthenticationResult']['IdToken']
-        
+        print(f"❌ General server error: {str(e)}")
+        print(f"❌ Error type: {type(e).__name__}")
         return jsonify({
-            'accessToken': auth_response['AuthenticationResult']['AccessToken'],
-            'idToken': auth_response['AuthenticationResult']['IdToken'],
-            'expiresIn': auth_response['AuthenticationResult']['ExpiresIn']
-        })
+            'error': f'Server error: {str(e)}'
+        }), 500
 
-    except Exception as e:
-        return jsonify({'message': str(e)}), 500
-
-@auth_blueprint.route('/login', methods=['GET', 'POST'])
-def login():
-    try:
-        customer_type, identifier = config_manager.get_customer_type(request.host)
-        customer_config = config_manager.load_config(customer_type, identifier)
-        
-        print(f"Debug - Auth for customer type: {customer_type}, identifier: {identifier}")
-        print(f"Debug - Customer config: {customer_config}")
-
-        if request.method == 'POST':
-            try:
-                data = request.get_json()
-                session['access_token'] = data.get('access_token')
-                session['id_token'] = data.get('id_token')
-                
-                next_url = session.get('next_url', url_for('main.index'))
-                session.pop('next_url', None)
-                
-                return jsonify({
-                    'success': True,
-                    'redirect_url': next_url
-                })
-                
-            except Exception as e:
-                print(f"Login POST error: {str(e)}")
-                return jsonify({
-                    'success': False,
-                    'error': str(e)
-                }), 400
-
-        if not customer_config:
-            return redirect(url_for('main.index'))
-            
-        if not customer_config.get('auth', {}).get('require_login', True):
-            return redirect(url_for('main.index'))
-            
-        cognito_config = customer_config.get('auth', {}).get('cognito_config', {})
-        
-        return render_template(
-            'auth/login.html', 
-            cognito_config=cognito_config,
-            customer_config=customer_config,
-            customer_type=customer_type,
-            customer_identifier=identifier
-        )
-                             
-    except Exception as e:
-        print(f"Login route error: {str(e)}")
-        raise
-
-@auth_blueprint.route('/logout')
+@auth_blueprint.route('/api/auth/logout', methods=['POST'])  # Standardized route pattern
 def logout():
-    session.clear()
-    return redirect(url_for('auth.login', message='Successfully logged out'))
-
-@auth_blueprint.route('/forgot-password', methods=['GET', 'POST'])
-def forgot_password():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        try:
-            cognito_client = get_cognito_client()
-            cognito_client.forgot_password(
-                ClientId=COGNITO_CONFIG['client_id'],
-                Username=username
-            )
-            return redirect(url_for('auth.reset_password', username=username))
-        except Exception as e:
-            return render_template('account/forgotpassword.html', error=str(e))
-    return render_template('account/forgotpassword.html')
-
-@auth_blueprint.route('/reset-password', methods=['GET', 'POST'])
-def reset_password():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        code = request.form.get('code')
-        new_password = request.form.get('new_password')
-        try:
-            cognito_client = get_cognito_client()
-            cognito_client.confirm_forgot_password(
-                ClientId=COGNITO_CONFIG['client_id'],
-                Username=username,
-                ConfirmationCode=code,
-                Password=new_password
-            )
-            return redirect(url_for('auth.login', message='Password reset successful!'))
-        except Exception as e:
-            return render_template('account/passwords.html', error=str(e))
-    return render_template('account/passwords.html', username=request.args.get('username'))
-
-@auth_blueprint.route('/profile')
-@login_required
-def profile():
-    try:
-        cognito_client = get_cognito_client()
-        user_data = cognito_client.get_user(
-            AccessToken=session['access_token']
-        )
-        return render_template('account/profile.html', user=user_data)
-    except Exception as e:
-        return redirect(url_for('auth.login', error=str(e)))
+   print("\n" + "="*50)  # Create a visual separator line
+   print(f"🚀 FOUND ROUTE: {request.url}")  # Shows full URL including host
+   print(f"🛣️  ENDPOINT: {request.endpoint}")  # Shows route name
+   print("="*50 + "\n")  # Close the visual separator
+   
+   try:
+       return jsonify({'message': 'Successfully logged out'}), 200
+   except Exception as e:
+       print(f"DEBUG: Logout error: {str(e)}")
+       return jsonify({
+           'error': f'Logout failed: {str(e)}'
+       }), 500

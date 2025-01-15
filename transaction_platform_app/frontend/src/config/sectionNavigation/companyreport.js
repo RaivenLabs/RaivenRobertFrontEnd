@@ -3,7 +3,7 @@ const companyreportConfig = {
   sectionItems: [
    {
       id: 'inflightoverview',
-      label: 'An Overview',
+      label: 'Overview',
       icon: 'plus-circle',
       type: 'action',
       route: 'flightdeck/overview'
@@ -27,7 +27,7 @@ const companyreportConfig = {
     
     {
       id: 'inflightdashboard',
-      label: 'In Flight Projects',
+      label: 'Active Projects',
       icon: 'template',
       type: 'menu',
       route: 'inflight/dashboard',
@@ -36,7 +36,7 @@ const companyreportConfig = {
 
  {
       id: 'companyoverview',
-      label: 'Our Company: At a Glance',
+      label: 'Organization',
       icon: 'plus-circle',
       type: 'menu',
       level: 'section',
@@ -44,7 +44,7 @@ const companyreportConfig = {
     },
     {
       id: 'companypolicies',
-      label: 'Resources: At your Fingertips',
+      label: 'Resources',
       icon: 'template',
       type: 'menu',
       level: 'section',
