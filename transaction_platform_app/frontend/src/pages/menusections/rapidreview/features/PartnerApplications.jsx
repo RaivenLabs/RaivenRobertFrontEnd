@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { useConfig } from '../../../../context/ConfigContext';  
 import ApplicationGroup from '../../../../components/shared/ApplicationGroup';
 
-const PartnerApplications = () => {
-  const { config } = useConfig();  // Get config for datapath
-  const programType = 'rapidreview';  // This component knows what type it is
+const PartnerApplications = ({ setActiveSidebar }) => {
+  const programType = 'rapidreview';
+  const [hasSelectedApp, setHasSelectedApp] = useState(false);
   
-  
-  const handleSidebarChange = (id) => {
-    console.log('Sidebar changed to:', id);
+  // Handler for when an app is selected
+  const handleAppSelection = () => {
+    console.log('🎯 Partner: Transferring control to ApplicationGroup');
+    setHasSelectedApp(true);
   };
 
   return (
@@ -137,7 +137,7 @@ const PartnerApplications = () => {
         </div>
       </section>
 
-      {/* Applications Grid */}
+      {/* Applications Grid Section */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
           Available Applications
@@ -145,12 +145,16 @@ const PartnerApplications = () => {
         <div className="max-w-4xl mx-auto">
           <ApplicationGroup 
             apiEndpoint={`/programs/${programType}`}
-            onSidebarChange={handleSidebarChange}
+            setActiveSidebar={setActiveSidebar}
+            onAppSelected={handleAppSelection}
+            isInControl={hasSelectedApp}
           />
         </div>
         <div className="text-center mt-8 text-gray-600">
           <p>Press and hold any highlighted application to launch</p>
-          <p className="text-sm mt-2">Blue icons indicate available applications • Gray icons show upcoming features</p>
+          <p className="text-sm mt-2">
+            Blue icons indicate available applications • Gray icons show upcoming features
+          </p>
         </div>
       </section>
 

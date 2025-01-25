@@ -6,6 +6,8 @@ import boto3
 
 import os
 
+import time
+
 
 from pathlib import Path
 #from ..auth.auth_engine import login_required  # Add this import
@@ -57,9 +59,88 @@ SHARED_COMPONENTS = {
 
 
 
+def load_runs_data():
+    try:
+        is_development = current_app.config.get('FLASK_ENV') == 'development'
+        
+        if is_development and os.environ.get('USE_LOCAL_FILES', 'False').lower() == 'true':
+            json_path = os.path.abspath(os.path.join(
+                current_app.root_path,
+                '..',
+                '..',
+                'static',
+                'data',
+                'applicationRuns',
+                'run_state.json'
+            ))
+            try:
+                with open(json_path, 'r') as f:
+                    return json.load(f)
+            except FileNotFoundError:
+                return {"runs": {"MERGER_CONTROL": {}}}
+        else:
+            # S3 path for production
+            s3_client = boto3.client('s3')
+            try:
+                response = s3_client.get_object(
+                    Bucket='juniperproductiondata',
+                    Key='data/applicationRuns/run_state.json'
+                )
+                return json.loads(response['Body'].read().decode('utf-8'))
+            except ClientError:
+                return {"runs": {"MERGER_CONTROL": {}}}
+                
+    except Exception as e:
+        current_app.logger.error(f"Error loading runs data: {str(e)}")
+        raise
 
-
-
+def save_run_data(run_id, run_data):
+    try:
+        is_development = current_app.config.get('FLASK_ENV') == 'development'
+        
+        if is_development and os.environ.get('USE_LOCAL_FILES', 'False').lower() == 'true':
+            json_path = os.path.abspath(os.path.join(
+                current_app.root_path, '..', '..', 'static', 'data',
+                'applicationRuns', 'run_state.json'
+            ))
+            # Read existing data
+            try:
+                with open(json_path, 'r') as f:
+                    existing_data = json.load(f)
+            except FileNotFoundError:
+                existing_data = {"runs": {"MERGER_CONTROL": {}}}
+            
+            # Update with new data
+            existing_data["runs"]["MERGER_CONTROL"][run_id] = run_data
+            
+            # Write back to file
+            with open(json_path, 'w') as f:
+                json.dump(existing_data, f, indent=2)
+        else:
+            # S3 handling for production
+            s3_client = boto3.client('s3')
+            try:
+                response = s3_client.get_object(
+                    Bucket='juniperproductiondata',
+                    Key='data/applicationRuns/run_state.json'
+                )
+                existing_data = json.loads(response['Body'].read().decode('utf-8'))
+            except ClientError:
+                existing_data = {"runs": {"MERGER_CONTROL": {}}}
+            
+            existing_data["runs"]["MERGER_CONTROL"][run_id] = run_data
+            
+            s3_client.put_object(
+                Bucket='juniperproductiondata',
+                Key='data/applicationRuns/run_state.json',
+                Body=json.dumps(existing_data, indent=2)
+            )
+        return True
+    except Exception as e:
+        current_app.logger.error(f"Error saving run data: {str(e)}")
+        raise
+    
+    
 
 
 
@@ -536,3 +617,627 @@ def get_customer_instances():
 @main_blueprint.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({"status": "healthy"}), 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@main_blueprint.route('/api/projects/search', methods=['GET'])
+def find_project():
+    try:
+        buying_company = request.args.get('buyingCompany')
+        target_company = request.args.get('targetCompany')
+        
+        if not buying_company or not target_company:
+            return jsonify({"error": "Missing required query parameters"}), 400
+
+        # Construct path to mergerControlProjects.json
+        json_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages',
+            'mergerControlProjects.json'
+        ))
+
+        try:
+            with open(json_path, 'r') as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            data = {"projects": {}}
+
+        # Find matching projects
+        matching_projects = [
+            project for project in data["projects"].values()
+            if project["buyingCompany"] == buying_company 
+            and project["targetCompany"] == target_company
+        ]
+
+        return jsonify(matching_projects)
+
+    except Exception as e:
+        print(f"Error finding project: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+@main_blueprint.route('/api/projects/<project_id>', methods=['GET'])
+def get_project(project_id):
+    try:
+        json_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages',
+            'mergerControlProjects.json'
+        ))
+
+        try:
+            with open(json_path, 'r') as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            return jsonify({"error": "Project not found"}), 404
+
+        project = data["projects"].get(project_id)
+        if not project:
+            return jsonify({"error": "Project not found"}), 404
+
+        return jsonify(project)
+
+    except Exception as e:
+        print(f"Error getting project: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+
+
+
+
+
+@main_blueprint.route('/api/projects', methods=['POST'])
+def create_project():
+    try:
+        project_data = request.json
+        print(f"Received project data: {project_data}")
+        
+        if not all(k in project_data for k in ['projectName', 'buyingCompany', 'targetCompany']):
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # Base directory for all merger control data
+        base_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages'
+        ))
+
+        # Create clean directory names
+        buyer_dir_name = project_data['buyingCompany'].lower().replace(' ', '_')
+        project_dir_name = project_data['projectName'].lower().replace(' ', '_')
+
+        # Construct paths
+        buyer_path = os.path.join(base_path, buyer_dir_name)
+        project_path = os.path.join(buyer_path, project_dir_name)
+        runs_path = os.path.join(project_path, 'application_runs')
+
+        # Create directory structure if it doesn't exist
+        os.makedirs(buyer_path, exist_ok=True)
+        os.makedirs(project_path, exist_ok=True)
+        os.makedirs(runs_path, exist_ok=True)
+
+        print(f"Created directory structure:")
+        print(f"Buyer path: {buyer_path}")
+        print(f"Project path: {project_path}")
+        print(f"Runs path: {runs_path}")
+
+        # Create or update the main projects index
+        index_path = os.path.join(base_path, 'mergerControlProjects.json')
+        try:
+            with open(index_path, 'r') as f:
+                index_data = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            index_data = {
+                "projects": {},
+                "indices": {
+                    "byCompanyPair": {}
+                }
+            }
+
+        # Create project data structure
+        timestamp = int(time.time() * 1000)
+        project_id = project_dir_name
+        new_project = {
+            "projectId": project_id,
+            "projectName": project_data['projectName'],
+            "buyingCompany": project_data['buyingCompany'],
+            "targetCompany": project_data['targetCompany'],
+            "status": "active",
+            "dateCreated": timestamp,
+            "lastModified": timestamp,
+            "metadata": {
+                "createdBy": "system",
+                "description": project_data.get('description', ''),
+                "priority": "medium",
+                "phase": "initial_filing"
+            },
+            "directoryPaths": {
+                "base": project_path,
+                "runs": runs_path
+            },
+            "applicationRuns": {}
+        }
+
+        # Update the main index
+        index_data["projects"][project_id] = new_project
+        company_pair_key = f"{project_data['buyingCompany']}_{project_data['targetCompany']}"
+        if company_pair_key not in index_data["indices"]["byCompanyPair"]:
+            index_data["indices"]["byCompanyPair"][company_pair_key] = []
+        if project_id not in index_data["indices"]["byCompanyPair"][company_pair_key]:
+            index_data["indices"]["byCompanyPair"][company_pair_key].append(project_id)
+
+        # Write main index
+        with open(index_path, 'w') as f:
+            json.dump(index_data, f, indent=2)
+
+        # Create project-specific data file
+        project_data_path = os.path.join(project_path, 'project_data.json')
+        with open(project_data_path, 'w') as f:
+            json.dump(new_project, f, indent=2)
+
+        return jsonify(new_project)
+
+    except Exception as e:
+        print(f"Error creating project: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+    
+    
+@main_blueprint.route('/api/setup/merger-control-directories', methods=['POST'])
+def setup_merger_control_directories():
+    try:
+        # Base directory for all merger control data
+        base_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages'
+        ))
+        
+        print(f"Setting up directories in: {base_path}")
+
+        # Create base directory if it doesn't exist
+        os.makedirs(base_path, exist_ok=True)
+
+        # Read existing project data
+        json_path = os.path.join(base_path, 'mergerControlProjects.json')
+        
+        try:
+            with open(json_path, 'r') as f:
+                data = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            return jsonify({
+                "error": f"Could not read project data: {str(e)}",
+                "basePath": base_path
+            }), 500
+
+        # Track what we create
+        created_dirs = []
+        existing_dirs = []
+
+        # Process each project
+        for project_id, project in data['projects'].items():
+            buyer_dir_name = project['buyingCompany'].lower().replace(' ', '_')
+            project_dir_name = project_id.lower().replace(' ', '_')
+
+            # Create paths
+            buyer_path = os.path.join(base_path, buyer_dir_name)
+            project_path = os.path.join(buyer_path, project_dir_name)
+            runs_path = os.path.join(project_path, 'application_runs')
+
+            # Create directories if they don't exist
+            for path in [buyer_path, project_path, runs_path]:
+                if not os.path.exists(path):
+                    os.makedirs(path)
+                    created_dirs.append(path)
+                else:
+                    existing_dirs.append(path)
+
+            # Create or update project-specific data file
+            project_data_path = os.path.join(project_path, 'project_data.json')
+            with open(project_data_path, 'w') as f:
+                json.dump(project, f, indent=2)
+
+        return jsonify({
+            "success": True,
+            "basePath": base_path,
+            "created": created_dirs,
+            "existing": existing_dirs
+        })
+
+    except Exception as e:
+        print(f"Error setting up directories: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "basePath": base_path
+        }), 500 
+
+
+@main_blueprint.route('/api/projects/<project_id>/runs', methods=['POST'])
+def create_run(project_id):
+   try:
+       # First load the main projects file to get the companies
+       base_path = os.path.abspath(os.path.join(
+           current_app.root_path,
+           '..',
+           '..',
+           'static',
+           'data',
+           'MergerControlDataPackages',
+           'mergerControlProjects.json'
+       ))
+
+       # Load projects data
+       with open(base_path, 'r') as f:
+           all_projects = json.load(f)
+           project_data = all_projects['projects'].get(project_id)
+           if not project_data:
+               raise ValueError(f"Project {project_id} not found")
+           
+           buying_company = project_data['buyingCompany']
+           target_company = project_data['targetCompany']
+           print(f"Creating new run for project: {project_id} under company: {buying_company}")
+
+       # Load target company data
+       target_data_path = os.path.abspath(os.path.join(
+           current_app.root_path,
+           '..',
+           '..',
+           'static',
+           'data',
+           'targetCompanyData.json'
+       ))
+
+       with open(target_data_path, 'r') as f:
+           target_companies = json.load(f)
+           target_company_data = target_companies[target_company]
+           if not target_company_data:
+               raise ValueError(f"Target company {target_company} data not found")
+
+       # Create timestamps - one for system use, one for display
+       timestamp_compact = time.strftime("%Y%m%d_%H%M")
+       timestamp_display = time.strftime("%B %d, %Y %I:%M %p")
+       
+       # Create run identifiers
+       run_id = f"{project_id}_run_{timestamp_compact}"  # System use
+       run_display_name = f"{project_data['projectName']} Analysis - {timestamp_display}"  # UI display
+
+       # Set up paths using compact naming
+       project_dir = os.path.join(os.path.dirname(base_path), buying_company.lower(), project_id)
+       run_path = os.path.join(project_dir, 'application_runs', run_id)
+       os.makedirs(run_path, exist_ok=True)
+
+       # Create run data structure with target company data
+       run_data = {
+           "runId": run_id,
+           "displayName": run_display_name,
+           "status": "setup_initiated",
+           "dateCreated": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "lastModified": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "analysis": {
+               "currentStep": "initial_assessment",
+               "jurisdictionalFindings": {},
+               "selectedJurisdictions": [],
+               "calculatedResults": {}
+           },
+           "targetCompanyData": {
+               "original": target_company_data,
+               "modified": target_company_data.copy(),
+               "changeLog": []
+           },
+           "workflowStatus": {
+               "stage": "setup",
+               "lastSaved": time.strftime("%Y-%m-%dT%H:%M:%S"),
+               "modifications": False,
+               "pendingChanges": False
+           }
+       }
+
+       # Save run data
+       run_data_path = os.path.join(run_path, 'run_data.json')
+       with open(run_data_path, 'w') as f:
+           json.dump(run_data, f, indent=2)
+
+       # Update project's application runs index with consistent naming
+       project_data.setdefault('applicationRuns', {})
+       project_data['applicationRuns'][run_id] = {
+           "runId": run_id,
+           "displayName": run_display_name,
+           "status": "setup_initiated",
+           "dateCreated": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "lastModified": time.strftime("%Y-%m-%dT%H:%M:%S")
+       }
+
+       # Save updated project data
+       with open(base_path, 'w') as f:
+           json.dump(all_projects, f, indent=2)
+
+       print(f"Successfully created run: {run_id}")
+       print(f"Run data saved at: {run_data_path}")
+       return jsonify(run_data)
+
+   except Exception as e:
+       print(f"Error creating new run: {str(e)}")
+       return jsonify({'error': str(e)}), 500
+
+
+
+
+@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>', methods=['GET'])
+def get_run(project_id, run_id):
+    try:
+        base_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages',
+            'mergerControlProjects.json'  # Now matches create_run base_path
+        ))
+
+        # Load project data to get buying company
+        with open(base_path, 'r') as f:
+            all_projects = json.load(f)
+            project_data = all_projects['projects'].get(project_id)
+            if not project_data:
+                raise ValueError(f"Project {project_id} not found")
+            
+            buying_company = project_data['buyingCompany']
+            print(f"Loading run {run_id} for project {project_id} under company {buying_company}")
+
+        # Construct path using consistent naming - now matches create_run pattern
+        run_data_path = os.path.join(
+            os.path.dirname(base_path),  # Remove mergerControlProjects.json from path
+            buying_company.lower(),
+            project_id,
+            'application_runs',
+            run_id,
+            'run_data.json'
+        )
+
+        print(f"Looking for run data at: {run_data_path}")
+
+        # Load and return the run data
+        with open(run_data_path, 'r') as f:
+            run_data = json.load(f)
+            
+        print(f"Successfully loaded run data for {run_id}")
+        return jsonify(run_data)
+
+    except Exception as e:
+        print(f"Error loading run data: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>/toggle_jurisdiction', methods=['POST'])
+def toggle_jurisdiction(project_id, run_id):
+    try:
+        request_data = request.get_json()
+        changes = request_data.get('changes', [])
+        
+        if not changes:
+            return jsonify(error="No changes provided"), 400
+
+        base_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages',
+            'mergerControlProjects.json'
+        ))
+
+        print(f"Processing request for project: {project_id}, run: {run_id}")
+
+        # Load project data to get buying company
+        with open(base_path, 'r') as f:
+            all_projects = json.load(f)
+            project_data = all_projects['projects'].get(project_id)
+            if not project_data:
+                raise ValueError(f"Project {project_id} not found")
+            
+            buying_company = project_data['buyingCompany']
+            print(f"Found buying company: {buying_company}")
+
+        run_data_path = os.path.join(
+            os.path.dirname(base_path),
+            buying_company.lower(),
+            project_id,
+            'application_runs',
+            run_id,
+            'run_data.json'
+        )
+
+        print(f"Attempting to update run data at: {run_data_path}")
+
+        # Load existing run data
+        with open(run_data_path, 'r') as f:
+            run_data = json.load(f)
+
+        # Get jurisdictions from run data
+        jurisdictions = run_data['targetCompanyData']['original']['jurisdictional_presence']['countries']
+        template = jurisdictions.get('template', {
+            'presence': True,
+            'filing_required': False,
+            'filing_threshold_met': False
+        })
+        
+        print(f"Processing {len(changes)} jurisdiction changes")
+
+        # Process each change
+        for change in changes:
+            country = change['country']
+            active = change['active']
+            parent_region = change.get('parent_region')  # Get parent region if it exists
+            
+            print(f"Processing change for {country}: active={active}, parent_region={parent_region}")
+
+            if active:
+                if country not in jurisdictions:
+                    # Create new jurisdiction entry
+                    new_jurisdiction = template.copy()
+                    new_jurisdiction['presence'] = True
+                    
+                    # Add parent region information if available
+                    if parent_region:
+                        new_jurisdiction['parent_region'] = parent_region
+                        # Copy relevant data from parent if available
+                        if parent_region in jurisdictions:
+                            parent_data = jurisdictions[parent_region]
+                            new_jurisdiction['blocks'] = parent_data.get('blocks', [])
+                            # You might want to copy other relevant fields from parent
+                    
+                    jurisdictions[country] = new_jurisdiction
+                else:
+                    # Update existing jurisdiction
+                    jurisdictions[country]['presence'] = True
+            else:
+                if country in jurisdictions:
+                    jurisdictions[country]['presence'] = False
+
+        # Save updated run data
+        with open(run_data_path, 'w') as f:
+            json.dump(run_data, f, indent=2)
+
+        print(f"Successfully updated jurisdictions for run {run_id}")
+        return jsonify({
+            'success': True,
+            'message': f"Successfully updated jurisdictions for run {run_id}",
+            'updated_countries': [change['country'] for change in changes]
+        })
+
+    except FileNotFoundError as e:
+        print(f"File not found error: {str(e)}")
+        return jsonify(error=f"Could not find required file: {str(e)}"), 404
+    except json.JSONDecodeError as e:
+        print(f"JSON decode error: {str(e)}")
+        return jsonify(error="Invalid JSON data encountered"), 400
+    except Exception as e:
+        print(f"Error processing jurisdiction changes: {str(e)}")
+        return jsonify(error=str(e)), 500
+
+@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>/update_jurisdiction_data', methods=['POST'])
+def update_jurisdiction_data(project_id, run_id):
+    try:
+        request_data = request.get_json()
+        jurisdiction = request_data.get('jurisdiction')
+        region = request_data.get('region')
+        updates = request_data.get('updates')
+        
+        if not all([jurisdiction, region, updates]):
+            return jsonify(error="Missing required data"), 400
+
+        # Get path to run_data.json (reusing our existing pattern)
+        base_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'MergerControlDataPackages',
+            'mergerControlProjects.json'
+        ))
+
+        # Load project data to get buying company
+        with open(base_path, 'r') as f:
+            all_projects = json.load(f)
+            project_data = all_projects['projects'].get(project_id)
+            if not project_data:
+                raise ValueError(f"Project {project_id} not found")
+            
+            buying_company = project_data['buyingCompany']
+
+        # Construct path to run_data.json
+        run_data_path = os.path.join(
+            os.path.dirname(base_path),
+            buying_company.lower(),
+            project_id,
+            'application_runs',
+            run_id,
+            'run_data.json'
+        )
+
+        # Load existing run data
+        with open(run_data_path, 'r') as f:
+            run_data = json.load(f)
+
+        # Get jurisdiction data
+        jurisdictions = run_data['targetCompanyData']['original']['jurisdictional_presence']['countries']
+        
+        # Update jurisdiction data
+        if jurisdiction not in jurisdictions:
+            # If jurisdiction doesn't exist, create it using template
+            template = jurisdictions.get('template', {
+                'presence': True,
+                'revenue': None,
+                'employees': None,
+                'assets': None,
+                'local_entities': [],
+                'market_position': None,
+                'vertical_relationships': [],
+                'merger_control_info': {
+                    'filing_required': None,
+                    'has_asset_test': False,
+                    'has_market_share_test': False,
+                    'review_period_days': None
+                }
+            })
+            jurisdictions[jurisdiction] = template.copy()
+
+        # Update fields
+        for key, value in updates.items():
+            if key == 'merger_control_info':
+                jurisdictions[jurisdiction]['merger_control_info'].update(value)
+            else:
+                jurisdictions[jurisdiction][key] = value
+
+        # Save updated run data
+        with open(run_data_path, 'w') as f:
+            json.dump(run_data, f, indent=2)
+
+        return jsonify({
+            'success': True,
+            'message': f"Successfully updated {jurisdiction} data",
+            'updated_fields': list(updates.keys())
+        })
+
+    except FileNotFoundError as e:
+        print(f"File not found error: {str(e)}")
+        return jsonify(error=f"Could not find required file: {str(e)}"), 404
+    except json.JSONDecodeError as e:
+        print(f"JSON decode error: {str(e)}")
+        return jsonify(error="Invalid JSON data encountered"), 400
+    except Exception as e:
+        print(f"Error updating jurisdiction data: {str(e)}")
+        return jsonify(error=str(e)), 500

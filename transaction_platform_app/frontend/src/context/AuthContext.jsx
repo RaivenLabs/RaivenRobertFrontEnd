@@ -5,10 +5,10 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
-  const [userGroups, setUserGroups] = useState([]);
+  const [user, setUser] = useState(null);  // Changed back to null since it's a single user object
+  const [userGroups, setUserGroups] = useState([]);  // Array for groups is correct
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Add configuration access levels
   const GROUP_PRECEDENCE = {
     'Tangible-Control': 0,  // Highest precedence (full access)

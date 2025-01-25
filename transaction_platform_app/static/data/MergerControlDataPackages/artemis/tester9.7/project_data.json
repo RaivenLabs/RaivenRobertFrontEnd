@@ -1,0 +1,20 @@
+{
+  "projectId": "tester9.7",
+  "projectName": "Tester9.7",
+  "buyingCompany": "artemis",
+  "targetCompany": "alexandria",
+  "status": "active",
+  "dateCreated": 1737576560346,
+  "lastModified": 1737576560346,
+  "metadata": {
+    "createdBy": "system",
+    "description": "",
+    "priority": "medium",
+    "phase": "initial_filing"
+  },
+  "directoryPaths": {
+    "base": "C:\\Users\\RobertReynolds\\Python Projects\\Python Development Projects\\TransactionPlatformDevelopmentAlphaLocal\\transaction_platform_app\\static\\data\\MergerControlDataPackages\\artemis\\tester9.7",
+    "runs": "C:\\Users\\RobertReynolds\\Python Projects\\Python Development Projects\\TransactionPlatformDevelopmentAlphaLocal\\transaction_platform_app\\static\\data\\MergerControlDataPackages\\artemis\\tester9.7\\application_runs"
+  },
+  "applicationRuns": {}
+}

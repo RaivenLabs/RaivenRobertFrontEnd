@@ -4,12 +4,15 @@ import { rapidreviewConfig } from '../../../config/sectionNavigation';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { MainMenuEasterEgg } from './SpeakeasyMenuAccess';
 import { useSpeakeasy } from '../../../context/SpeakeasyContext';
+import { useSidebar } from '../../../context/SidebarContext';  // Add this import
 
-const RapidReviewSidebar = ({ onSidebarChange }) => {
+const RapidReviewSidebar = () => {  // Remove onSidebarChange prop
   const navigate = useNavigate();
   const { speakeasyAccess, setSpeakeasyAccess } = useSpeakeasy();
+  const { setActiveSidebar } = useSidebar();  // Add this hook
   const [expandedSection, setExpandedSection] = useState(null);
   const [activeItem, setActiveItem] = useState(null); 
+
   // Add back the effect to handle navigation to Speakeasy
   React.useEffect(() => {
     if (speakeasyAccess) {
@@ -21,12 +24,14 @@ const RapidReviewSidebar = ({ onSidebarChange }) => {
     // Reset Speakeasy access when navigating
     setSpeakeasyAccess(false);
     sessionStorage.removeItem('speakeasyAccess');
-    setActiveItem(item.id);  // Add this if you want active state
+    setActiveItem(item.id);
+
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
       type: item.type,
-      route: item.route
+      route: item.route,
+      hasSubmenu: item.hasSubmenu
     });
 
     if (item.hasSubmenu) {
@@ -38,6 +43,8 @@ const RapidReviewSidebar = ({ onSidebarChange }) => {
     // Navigate to application
     if (item.route) {
       console.log('🚀 Navigating to application:', item.route);
+      // Note: We don't need to change sidebar here because Partner component
+      // will handle its own sidebar state when user selects an application
       navigate(`/${item.route}`);
     }
   };
@@ -47,8 +54,8 @@ const RapidReviewSidebar = ({ onSidebarChange }) => {
     setSpeakeasyAccess(false);
     sessionStorage.removeItem('speakeasyAccess');
     
-    console.log('⬅️ Returning to main menu');
-    onSidebarChange('main');
+    console.log('⬅️ RapidReview: Returning to main menu');
+    setActiveSidebar('main');  // Use context instead of prop
     navigate('/');
   };
 

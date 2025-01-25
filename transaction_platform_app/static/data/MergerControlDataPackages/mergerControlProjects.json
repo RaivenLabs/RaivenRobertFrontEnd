@@ -1,0 +1,340 @@
+{
+  "projects": {
+    "hamilton": {
+      "projectId": "hamilton",
+      "projectName": "Hamilton",
+      "buyingCompany": "artemis",
+      "targetCompany": "hippocrates",
+      "status": "active",
+      "dateCreated": 1705860000000,
+      "lastModified": 1705860000000,
+      "metadata": {
+        "createdBy": "system",
+        "description": "Acquisition of Hippocrates Medical by Artemis Pharmaceuticals",
+        "priority": "high",
+        "phase": "initial_filing"
+      },
+      "keyDates": {
+        "expectedClosing": null,
+        "filingDeadlines": {},
+        "clearanceDeadlines": {}
+      },
+      "jurisdictions": {
+        "inScope": [],
+        "outOfScope": [],
+        "pending": [
+          "eu",
+          "us",
+          "uk"
+        ]
+      },
+      "filingStatus": {
+        "sizeOfPerson": null,
+        "sizeOfTransaction": null,
+        "mandatoryFiling": null
+      },
+      "applicationRuns": {
+        "hamilton_run_20240122_1400": {
+          "runId": "hamilton_run_20240122_1400",
+          "displayName": "January 22, 2024, 2:00 PM",
+          "status": "in_progress",
+          "dateCreated": "2024-01-22T14:00:00",
+          "lastModified": "2024-01-22T14:00:00",
+          "savedData": {
+            "currentStep": "initial_assessment",
+            "jurisdictionalFindings": {},
+            "userInputs": {},
+            "calculatedResults": {}
+          }
+        },
+        "hamilton_run_20250124_0717": {
+          "runId": "hamilton_run_20250124_0717",
+          "displayName": "Hamilton Analysis - January 24, 2025 07:17 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T07:17:58",
+          "lastModified": "2025-01-24T07:17:58"
+        },
+        "hamilton_run_20250124_0718": {
+          "runId": "hamilton_run_20250124_0718",
+          "displayName": "Hamilton Analysis - January 24, 2025 07:18 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T07:18:55",
+          "lastModified": "2025-01-24T07:18:55"
+        },
+        "hamilton_run_20250124_0719": {
+          "runId": "hamilton_run_20250124_0719",
+          "displayName": "Hamilton Analysis - January 24, 2025 07:19 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T07:19:20",
+          "lastModified": "2025-01-24T07:19:20"
+        },
+        "hamilton_run_20250124_0909": {
+          "runId": "hamilton_run_20250124_0909",
+          "displayName": "Hamilton Analysis - January 24, 2025 09:09 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T09:09:26",
+          "lastModified": "2025-01-24T09:09:26"
+        },
+        "hamilton_run_20250124_0917": {
+          "runId": "hamilton_run_20250124_0917",
+          "displayName": "Hamilton Analysis - January 24, 2025 09:17 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T09:17:43",
+          "lastModified": "2025-01-24T09:17:43"
+        },
+        "hamilton_run_20250124_1029": {
+          "runId": "hamilton_run_20250124_1029",
+          "displayName": "Hamilton Analysis - January 24, 2025 10:29 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T10:29:56",
+          "lastModified": "2025-01-24T10:29:56"
+        },
+        "hamilton_run_20250124_1813": {
+          "runId": "hamilton_run_20250124_1813",
+          "displayName": "Hamilton Analysis - January 24, 2025 06:13 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-24T18:13:02",
+          "lastModified": "2025-01-24T18:13:02"
+        }
+      }
+    },
+    "jefferson": {
+      "projectId": "jefferson",
+      "projectName": "Jefferson",
+      "buyingCompany": "hermes",
+      "targetCompany": "olympus",
+      "status": "active",
+      "dateCreated": 1705860000000,
+      "lastModified": 1705860000000,
+      "metadata": {
+        "createdBy": "system",
+        "description": "Acquisition of Olympus Performance Gear by Hermes Recreation",
+        "priority": "high",
+        "phase": "initial_filing"
+      },
+      "keyDates": {
+        "expectedClosing": null,
+        "filingDeadlines": {},
+        "clearanceDeadlines": {}
+      },
+      "jurisdictions": {
+        "inScope": [],
+        "outOfScope": [],
+        "pending": [
+          "eu",
+          "us",
+          "uk"
+        ]
+      },
+      "filingStatus": {
+        "sizeOfPerson": null,
+        "sizeOfTransaction": null,
+        "mandatoryFiling": null
+      },
+      "applicationRuns": {
+        "jefferson_run_20240122_1400": {
+          "runId": "jefferson_run_20240122_1400",
+          "displayName": "January 22, 2024, 2:00 PM",
+          "status": "in_progress",
+          "dateCreated": "2024-01-22T14:00:00",
+          "lastModified": "2024-01-22T14:00:00",
+          "savedData": {
+            "currentStep": "initial_assessment",
+            "jurisdictionalFindings": {},
+            "userInputs": {},
+            "calculatedResults": {}
+          }
+        }
+      }
+    },
+    "franklin": {
+      "projectId": "franklin",
+      "projectName": "Franklin",
+      "buyingCompany": "minerva",
+      "targetCompany": "alexandria",
+      "status": "active",
+      "dateCreated": 1705860000000,
+      "lastModified": 1705860000000,
+      "metadata": {
+        "createdBy": "system",
+        "description": "Acquisition of Alexandria Library Systems by Minerva EdTech",
+        "priority": "high",
+        "phase": "initial_filing"
+      },
+      "keyDates": {
+        "expectedClosing": null,
+        "filingDeadlines": {},
+        "clearanceDeadlines": {}
+      },
+      "jurisdictions": {
+        "inScope": [],
+        "outOfScope": [],
+        "pending": [
+          "eu",
+          "us",
+          "uk"
+        ]
+      },
+      "filingStatus": {
+        "sizeOfPerson": null,
+        "sizeOfTransaction": null,
+        "mandatoryFiling": null
+      },
+      "applicationRuns": {
+        "franklin_run_20240122_1400": {
+          "runId": "franklin_run_20240122_1400",
+          "displayName": "January 22, 2024, 2:00 PM",
+          "status": "in_progress",
+          "dateCreated": "2024-01-22T14:00:00",
+          "lastModified": "2024-01-22T14:00:00",
+          "savedData": {
+            "currentStep": "initial_assessment",
+            "jurisdictionalFindings": {},
+            "userInputs": {},
+            "calculatedResults": {}
+          }
+        }
+      }
+    },
+    "test_tealwing_9.7": {
+      "projectId": "test_tealwing_9.7",
+      "projectName": "Test Tealwing 9.7",
+      "buyingCompany": "hermes",
+      "targetCompany": "hippocrates",
+      "status": "active",
+      "dateCreated": 1737571202882,
+      "lastModified": 1737571202882,
+      "metadata": {
+        "createdBy": "system",
+        "description": "",
+        "priority": "medium",
+        "phase": "initial_filing"
+      },
+      "keyDates": {
+        "expectedClosing": null,
+        "filingDeadlines": {},
+        "clearanceDeadlines": {}
+      },
+      "jurisdictions": {
+        "inScope": [],
+        "outOfScope": [],
+        "pending": [
+          "eu",
+          "us",
+          "uk"
+        ]
+      },
+      "filingStatus": {
+        "sizeOfPerson": null,
+        "sizeOfTransaction": null,
+        "mandatoryFiling": null
+      },
+      "applicationRuns": {},
+      "transaction_rationale": {
+        "strategic_fit": [],
+        "efficiency_gains": []
+      }
+    },
+    "testing_970": {
+      "projectId": "testing_970",
+      "projectName": "Testing 970",
+      "buyingCompany": "hermes",
+      "targetCompany": "alexandria",
+      "status": "active",
+      "dateCreated": 1737571975633,
+      "lastModified": 1737571975633,
+      "metadata": {
+        "createdBy": "system",
+        "description": "",
+        "priority": "medium",
+        "phase": "initial_filing"
+      },
+      "keyDates": {
+        "expectedClosing": null,
+        "filingDeadlines": {},
+        "clearanceDeadlines": {}
+      },
+      "jurisdictions": {
+        "inScope": [],
+        "outOfScope": [],
+        "pending": [
+          "eu",
+          "us",
+          "uk"
+        ]
+      },
+      "filingStatus": {
+        "sizeOfPerson": null,
+        "sizeOfTransaction": null,
+        "mandatoryFiling": null
+      },
+      "applicationRuns": {},
+      "transaction_rationale": {
+        "strategic_fit": [],
+        "efficiency_gains": []
+      }
+    },
+    "tester9.7": {
+      "projectId": "tester9.7",
+      "projectName": "Tester9.7",
+      "buyingCompany": "artemis",
+      "targetCompany": "alexandria",
+      "status": "active",
+      "dateCreated": 1737576560346,
+      "lastModified": 1737576560346,
+      "metadata": {
+        "createdBy": "system",
+        "description": "",
+        "priority": "medium",
+        "phase": "initial_filing"
+      },
+      "directoryPaths": {
+        "base": "C:\\Users\\RobertReynolds\\Python Projects\\Python Development Projects\\TransactionPlatformDevelopmentAlphaLocal\\transaction_platform_app\\static\\data\\MergerControlDataPackages\\artemis\\tester9.7",
+        "runs": "C:\\Users\\RobertReynolds\\Python Projects\\Python Development Projects\\TransactionPlatformDevelopmentAlphaLocal\\transaction_platform_app\\static\\data\\MergerControlDataPackages\\artemis\\tester9.7\\application_runs"
+      },
+      "applicationRuns": {}
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-22",
+    "supportedStatuses": [
+      "active",
+      "completed",
+      "abandoned",
+      "archived"
+    ],
+    "supportedPhases": [
+      "initial_filing",
+      "analysis",
+      "preparation",
+      "submitted",
+      "review",
+      "cleared",
+      "closed"
+    ],
+    "supportedPriorities": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "supportedRunStatuses": [
+      "in_progress",
+      "completed",
+      "archived"
+    ]
+  },
+  "indices": {
+    "byCompanyPair": {
+      "hermes_hippocrates": [
+        "test_tealwing_9.7"
+      ],
+      "hermes_alexandria": [
+        "testing_970"
+      ],
+      "artemis_alexandria": [
+        "tester9.7"
+      ]
+    }
+  }
+}

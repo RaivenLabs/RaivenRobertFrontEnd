@@ -1,0 +1,802 @@
+{
+  "runId": "hamilton_run_20250124_0917",
+  "displayName": "Hamilton Analysis - January 24, 2025 09:17 AM",
+  "status": "setup_initiated",
+  "dateCreated": "2025-01-24T09:17:43",
+  "lastModified": "2025-01-24T09:17:43",
+  "analysis": {
+    "currentStep": "initial_assessment",
+    "jurisdictionalFindings": {},
+    "selectedJurisdictions": [],
+    "calculatedResults": {}
+  },
+  "targetCompanyData": {
+    "original": {
+      "name": "Hippocrates Medical Solutions",
+      "sector": "Healthcare/Pharmaceuticals",
+      "is_manufacturer": true,
+      "size_of_person": {
+        "annual_net_sales": {
+          "formatted": "$850M",
+          "numeric": 850000000
+        },
+        "total_assets": {
+          "formatted": "$600M",
+          "numeric": 600000000
+        }
+      },
+      "size_of_transaction": {
+        "formatted": {
+          "global": "$520M",
+          "us": "$520M"
+        },
+        "numeric": {
+          "global": 520000000,
+          "us": 520000000
+        }
+      },
+      "revenue": {
+        "global": "$850M",
+        "us": "$400M",
+        "eu": "\u00e2\u201a\u00ac300M",
+        "numeric": {
+          "global": 850000000,
+          "us": 400000000,
+          "eu": 300000000
+        }
+      },
+      "employees": {
+        "global": 2800,
+        "us": 1200,
+        "eu": 1000,
+        "countries": {
+          "germany": 400,
+          "france": 350,
+          "spain": 250,
+          "uk": 200,
+          "italy": 150
+        }
+      },
+      "locations": {
+        "headquarters": "Cambridge, USA",
+        "major_presence": [
+          "USA",
+          "Germany",
+          "France",
+          "UK"
+        ],
+        "registered_offices": {
+          "eu": "Munich, Germany",
+          "uk": "Cambridge, UK",
+          "us": "Delaware, USA"
+        }
+      },
+      "subsidiaries": [
+        {
+          "name": "Clinical Data Systems",
+          "location": "Germany",
+          "revenue": 120000000,
+          "employees": 300,
+          "key_contracts": [
+            "European Hospital Network"
+          ]
+        },
+        {
+          "name": "MedTech Research Labs",
+          "location": "USA",
+          "revenue": 180000000,
+          "employees": 400,
+          "key_contracts": [
+            "US Healthcare Systems"
+          ]
+        },
+        {
+          "name": "Healthcare Analytics Co",
+          "location": "UK",
+          "revenue": 90000000,
+          "employees": 150,
+          "key_contracts": [
+            "NHS Framework Agreement"
+          ]
+        }
+      ],
+      "key_markets": [
+        "Clinical Software",
+        "Medical Devices",
+        "Healthcare Analytics"
+      ],
+      "market_share": {
+        "us": {
+          "clinical_software": 0.12,
+          "medical_devices": 0.08,
+          "healthcare_analytics": 0.09
+        },
+        "eu": {
+          "clinical_software": 0.1,
+          "medical_devices": 0.07,
+          "healthcare_analytics": 0.08
+        },
+        "uk": {
+          "clinical_software": 0.11,
+          "medical_devices": 0.06,
+          "healthcare_analytics": 0.09
+        }
+      },
+      "jurisdictional_presence": {
+        "countries": {
+          "template": {
+            "presence": false,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            }
+          },
+          "usa": {
+            "presence": true,
+            "revenue": 400000000,
+            "employees": 1200,
+            "assets": 280000000,
+            "blocks": [
+              "usa"
+            ],
+            "local_entities": [
+              "Hippocrates US Inc."
+            ],
+            "market_position": "Major player",
+            "vertical_relationships": [
+              "Hospitals",
+              "Research institutions"
+            ]
+          },
+          "germany": {
+            "presence": true,
+            "revenue": 120000000,
+            "employees": 400,
+            "assets": 80000000,
+            "blocks": [
+              "eu",
+              "eea"
+            ],
+            "local_entities": [
+              "Hippocrates GmbH"
+            ],
+            "market_position": "Leading provider",
+            "vertical_relationships": [
+              "Medical research centers"
+            ]
+          },
+          "france": {
+            "presence": true,
+            "revenue": 100000000,
+            "employees": 350,
+            "assets": 70000000,
+            "blocks": [
+              "eu",
+              "eea"
+            ],
+            "local_entities": [
+              "Hippocrates France SAS"
+            ],
+            "market_position": "Established player",
+            "vertical_relationships": [
+              "French hospitals"
+            ]
+          },
+          "uk": {
+            "presence": true,
+            "revenue": 80000000,
+            "employees": 200,
+            "assets": 50000000,
+            "blocks": [
+              "uk"
+            ],
+            "local_entities": [
+              "Hippocrates UK Ltd"
+            ],
+            "market_position": "Growing presence",
+            "vertical_relationships": [
+              "NHS trusts"
+            ]
+          },
+          "eu": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            }
+          },
+          "us": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            }
+          },
+          "comesa": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            }
+          },
+          "southAmerica": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            }
+          },
+          "France": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "eu",
+            "blocks": []
+          },
+          "Germany": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "eu",
+            "blocks": []
+          },
+          "Austria": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "eu",
+            "blocks": []
+          },
+          "Italy": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "eu",
+            "blocks": []
+          },
+          "United Kingdom": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "uk",
+            "blocks": [
+              "uk"
+            ]
+          },
+          "Connecticut": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "us",
+            "blocks": []
+          },
+          "Kenya": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "comesa",
+            "blocks": []
+          },
+          "Egypt": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "comesa",
+            "blocks": []
+          },
+          "Ethiopia": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "comesa",
+            "blocks": []
+          },
+          "Brazil": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "southAmerica",
+            "blocks": []
+          },
+          "Argentina": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "southAmerica",
+            "blocks": []
+          },
+          "Chile": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "southAmerica",
+            "blocks": []
+          },
+          "California": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "us",
+            "blocks": []
+          },
+          "Spain": {
+            "presence": true,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            },
+            "parent_region": "eu",
+            "blocks": []
+          }
+        }
+      },
+      "assets": {
+        "global": "$600M",
+        "us": "$280M",
+        "eu": "\u00e2\u201a\u00ac200M",
+        "numeric": {
+          "global": 600000000,
+          "us": 280000000,
+          "eu": 200000000
+        },
+        "types": {
+          "tangible": {
+            "research_facilities": 200000000,
+            "medical_equipment": 150000000,
+            "office_facilities": 50000000
+          },
+          "intangible": {
+            "patents": 100000000,
+            "software_ip": 70000000,
+            "customer_contracts": 30000000
+          }
+        }
+      },
+      "projects": {
+        "Redwood": {
+          "projectName": "Redwood",
+          "buyingCompany": "hermes",
+          "dateCreated": 1705860000000,
+          "status": "active"
+        }
+      },
+      "transaction_rationale": {
+        "strategic_fit": [
+          "Healthcare technology integration",
+          "R&D capabilities enhancement",
+          "Market consolidation"
+        ],
+        "efficiency_gains": [
+          "Research facility optimization",
+          "Clinical trial efficiencies",
+          "Technology platform integration"
+        ]
+      }
+    },
+    "modified": {
+      "name": "Hippocrates Medical Solutions",
+      "sector": "Healthcare/Pharmaceuticals",
+      "is_manufacturer": true,
+      "size_of_person": {
+        "annual_net_sales": {
+          "formatted": "$850M",
+          "numeric": 850000000
+        },
+        "total_assets": {
+          "formatted": "$600M",
+          "numeric": 600000000
+        }
+      },
+      "size_of_transaction": {
+        "formatted": {
+          "global": "$520M",
+          "us": "$520M"
+        },
+        "numeric": {
+          "global": 520000000,
+          "us": 520000000
+        }
+      },
+      "revenue": {
+        "global": "$850M",
+        "us": "$400M",
+        "eu": "\u00e2\u201a\u00ac300M",
+        "numeric": {
+          "global": 850000000,
+          "us": 400000000,
+          "eu": 300000000
+        }
+      },
+      "employees": {
+        "global": 2800,
+        "us": 1200,
+        "eu": 1000,
+        "countries": {
+          "germany": 400,
+          "france": 350,
+          "spain": 250,
+          "uk": 200,
+          "italy": 150
+        }
+      },
+      "locations": {
+        "headquarters": "Cambridge, USA",
+        "major_presence": [
+          "USA",
+          "Germany",
+          "France",
+          "UK"
+        ],
+        "registered_offices": {
+          "eu": "Munich, Germany",
+          "uk": "Cambridge, UK",
+          "us": "Delaware, USA"
+        }
+      },
+      "subsidiaries": [
+        {
+          "name": "Clinical Data Systems",
+          "location": "Germany",
+          "revenue": 120000000,
+          "employees": 300,
+          "key_contracts": [
+            "European Hospital Network"
+          ]
+        },
+        {
+          "name": "MedTech Research Labs",
+          "location": "USA",
+          "revenue": 180000000,
+          "employees": 400,
+          "key_contracts": [
+            "US Healthcare Systems"
+          ]
+        },
+        {
+          "name": "Healthcare Analytics Co",
+          "location": "UK",
+          "revenue": 90000000,
+          "employees": 150,
+          "key_contracts": [
+            "NHS Framework Agreement"
+          ]
+        }
+      ],
+      "key_markets": [
+        "Clinical Software",
+        "Medical Devices",
+        "Healthcare Analytics"
+      ],
+      "market_share": {
+        "us": {
+          "clinical_software": 0.12,
+          "medical_devices": 0.08,
+          "healthcare_analytics": 0.09
+        },
+        "eu": {
+          "clinical_software": 0.1,
+          "medical_devices": 0.07,
+          "healthcare_analytics": 0.08
+        },
+        "uk": {
+          "clinical_software": 0.11,
+          "medical_devices": 0.06,
+          "healthcare_analytics": 0.09
+        }
+      },
+      "jurisdictional_presence": {
+        "countries": {
+          "template": {
+            "presence": false,
+            "revenue": null,
+            "employees": null,
+            "assets": null,
+            "local_entities": [],
+            "market_position": null,
+            "vertical_relationships": [],
+            "merger_control_info": {
+              "filing_required": null,
+              "has_asset_test": false,
+              "has_market_share_test": false,
+              "review_period_days": null
+            }
+          },
+          "usa": {
+            "presence": true,
+            "revenue": 400000000,
+            "employees": 1200,
+            "assets": 280000000,
+            "blocks": [
+              "usa"
+            ],
+            "local_entities": [
+              "Hippocrates US Inc."
+            ],
+            "market_position": "Major player",
+            "vertical_relationships": [
+              "Hospitals",
+              "Research institutions"
+            ]
+          },
+          "germany": {
+            "presence": true,
+            "revenue": 120000000,
+            "employees": 400,
+            "assets": 80000000,
+            "blocks": [
+              "eu",
+              "eea"
+            ],
+            "local_entities": [
+              "Hippocrates GmbH"
+            ],
+            "market_position": "Leading provider",
+            "vertical_relationships": [
+              "Medical research centers"
+            ]
+          },
+          "france": {
+            "presence": true,
+            "revenue": 100000000,
+            "employees": 350,
+            "assets": 70000000,
+            "blocks": [
+              "eu",
+              "eea"
+            ],
+            "local_entities": [
+              "Hippocrates France SAS"
+            ],
+            "market_position": "Established player",
+            "vertical_relationships": [
+              "French hospitals"
+            ]
+          },
+          "uk": {
+            "presence": true,
+            "revenue": 80000000,
+            "employees": 200,
+            "assets": 50000000,
+            "blocks": [
+              "uk"
+            ],
+            "local_entities": [
+              "Hippocrates UK Ltd"
+            ],
+            "market_position": "Growing presence",
+            "vertical_relationships": [
+              "NHS trusts"
+            ]
+          }
+        }
+      },
+      "assets": {
+        "global": "$600M",
+        "us": "$280M",
+        "eu": "\u00e2\u201a\u00ac200M",
+        "numeric": {
+          "global": 600000000,
+          "us": 280000000,
+          "eu": 200000000
+        },
+        "types": {
+          "tangible": {
+            "research_facilities": 200000000,
+            "medical_equipment": 150000000,
+            "office_facilities": 50000000
+          },
+          "intangible": {
+            "patents": 100000000,
+            "software_ip": 70000000,
+            "customer_contracts": 30000000
+          }
+        }
+      },
+      "projects": {
+        "Redwood": {
+          "projectName": "Redwood",
+          "buyingCompany": "hermes",
+          "dateCreated": 1705860000000,
+          "status": "active"
+        }
+      },
+      "transaction_rationale": {
+        "strategic_fit": [
+          "Healthcare technology integration",
+          "R&D capabilities enhancement",
+          "Market consolidation"
+        ],
+        "efficiency_gains": [
+          "Research facility optimization",
+          "Clinical trial efficiencies",
+          "Technology platform integration"
+        ]
+      }
+    },
+    "changeLog": []
+  },
+  "workflowStatus": {
+    "stage": "setup",
+    "lastSaved": "2025-01-24T09:17:43",
+    "modifications": false,
+    "pendingChanges": false
+  }
+}

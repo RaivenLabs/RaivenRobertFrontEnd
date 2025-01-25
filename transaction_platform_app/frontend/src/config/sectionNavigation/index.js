@@ -4,12 +4,23 @@
 import buildkitsConfig from './buildkits';
 import conciergeConfig from './concierge';
 import inflightConfig from './inflight';
+
+import mergerControlConfig from './mergercontrol';
+import financialServicesConfig from './financialservices';
+import EUCSDDConfig from './eucsdd';
+import recruitingConfig from './recruitingrights';
+import diversityConfig from './diversity';
+
+
+
+
 import companyreportConfig from './companyreport';
 import flightdeckConfig from './flightdeck';
 import r2d2Config from './r2d2';
 import landedConfig from './landed';
 import readyroomConfig from './readyroom';
 import configurationConfig from './configuration';
+import fetchConfig from './fetch';
 import sandboxConfig from './sandbox';
 import tangibleteamsConfig from './tangibleteams';
 import platformtourConfig from './platformtour';
@@ -25,6 +36,16 @@ const configs = {
   buildkits: buildkitsConfig,
   companyreport: companyreportConfig,
   concierge: conciergeConfig,
+  fetch: fetchConfig,
+
+
+  mergercontrol: mergerControlConfig,
+  financialservices: financialServicesConfig,
+  eucsdd: EUCSDDConfig,
+  recruiting: recruitingConfig,
+  diversity: diversityConfig,
+
+
   inflight: inflightConfig,
   flightdeck: flightdeckConfig,
   r2d2: r2d2Config,
@@ -47,6 +68,14 @@ export {
   buildkitsConfig,
   companyreportConfig,
   conciergeConfig,
+  fetchConfig,
+
+  financialServicesConfig,
+  mergerControlConfig,
+  diversityConfig,
+  recruitingConfig,
+  EUCSDDConfig,
+
   inflightConfig,
   flightdeckConfig,
   r2d2Config,

@@ -1,0 +1,39 @@
+{
+  "projectId": "test_tealwing_9.7",
+  "projectName": "Test Tealwing 9.7",
+  "buyingCompany": "hermes",
+  "targetCompany": "hippocrates",
+  "status": "active",
+  "dateCreated": 1737571202882,
+  "lastModified": 1737571202882,
+  "metadata": {
+    "createdBy": "system",
+    "description": "",
+    "priority": "medium",
+    "phase": "initial_filing"
+  },
+  "keyDates": {
+    "expectedClosing": null,
+    "filingDeadlines": {},
+    "clearanceDeadlines": {}
+  },
+  "jurisdictions": {
+    "inScope": [],
+    "outOfScope": [],
+    "pending": [
+      "eu",
+      "us",
+      "uk"
+    ]
+  },
+  "filingStatus": {
+    "sizeOfPerson": null,
+    "sizeOfTransaction": null,
+    "mandatoryFiling": null
+  },
+  "applicationRuns": {},
+  "transaction_rationale": {
+    "strategic_fit": [],
+    "efficiency_gains": []
+  }
+}

@@ -1,5 +1,5 @@
 ﻿// src/layouts/BaseLayout/index.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 // Import sidebars from their respective menusection directories
@@ -22,10 +22,23 @@ import SettingsSidebar from '../../pages/menusections/settings/settingssidebar';
 import AuthenticationSidebar from '../../pages/menusections/authentication/authenticationsidebar';
 import SpeakeasyClubSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/sidebar';
 import RapidReviewSidebar from '../../pages/menusections/rapidreview/rapidreviewsidebar';
+import FetchSidebar from '../../pages/evershedsapplications/fetch/fetchsidebar';
+
+
+import DiversitySidebar from '../../pages/evershedsapplications/diversity/diversitysidebar';
+import EUCSDDSidebar from '../../pages/evershedsapplications/eucsdd/eucsddsidebar';
+import RecruitingSidebar from '../../pages/evershedsapplications/recruiting/recruitingsidebar';
+import MergerControlSidebar from '../../pages/evershedsapplications/mergercontrol/mergercontrolsidebar';
+import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
+
+
+
+
 import FlorenceGelatoSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/sidebar';
+import { useSidebar } from '../../context/SidebarContext';
 
 const BaseLayout = () => {
-  const [activeSidebar, setActiveSidebar] = useState('main');
+  const { activeSidebar, setActiveSidebar } = useSidebar();
 
   const sidebarComponents = {
     main: <MainSidebar onSidebarChange={setActiveSidebar} />,
@@ -47,6 +60,15 @@ const BaseLayout = () => {
     authentication: <AuthenticationSidebar onSidebarChange={setActiveSidebar} />,
     speakeasyclub: <SpeakeasyClubSidebar onSidebarChange={setActiveSidebar} />,
     rapidreview: <RapidReviewSidebar onSidebarChange={setActiveSidebar} />,
+    fetchsidebar: <FetchSidebar onSidebarChange={setActiveSidebar} />,
+
+    mergercontrolsidebar: <MergerControlSidebar onSidebarChange={setActiveSidebar} />,
+    financialservicessidebar: <FinancialServicesSidebar onSidebarChange={setActiveSidebar} />,
+    diversitysidebar: <DiversitySidebar onSidebarChange={setActiveSidebar} />,
+    eucsddsidebar: <EUCSDDSidebar onSidebarChange={setActiveSidebar} />,
+    recruitingsidebar: <RecruitingSidebar onSidebarChange={setActiveSidebar} />,
+
+
     florencegelato: <FlorenceGelatoSidebar onSidebarChange={setActiveSidebar} />
   };
 

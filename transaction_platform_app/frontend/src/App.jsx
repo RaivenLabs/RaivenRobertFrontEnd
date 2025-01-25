@@ -5,6 +5,9 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ConfigProvider } from './context/ConfigContext';
 import { AuthProvider } from './context/AuthContext';
 import { SpeakeasyProvider } from './context/SpeakeasyContext';
+import {MergerControlProvider} from './context/MergerControlContext';
+
+import {SidebarProvider} from './context/SidebarContext';
 import { useConfig } from './context/ConfigContext';
 import BaseLayout from './layouts/BaseLayout';
 import WelcomePage from './pages/WelcomePage';
@@ -55,13 +58,35 @@ import TeamMembers from './pages/menusections/tangibleteams/features/TeamMembers
 import BuildKitApplications from './pages/menusections/buildkits/features/BuildKitApplicationGroup';
 import InsightProgramApplications from './pages/menusections/r2d2/features/InsightPrograms';
 import MyInsightApplications from './pages/menusections/r2d2/features/MyInsightPrograms';
+import EvershedsFetch from './pages/evershedsapplications/fetch';
 
+import EvershedsRecruiting from './pages/evershedsapplications/recruiting';
+import EvershedsDiversity from './pages/evershedsapplications/diversity';
+import EvershedsEUCSDD from './pages/evershedsapplications/eucsdd';
+import EvershedsMergerControl from './pages/evershedsapplications/mergercontrol';
+import EvershedsFinancialServices from './pages/evershedsapplications/financialservices';
+
+
+
+
+
+
+
+
+
+import MergerControlConfiguration from './pages/evershedsapplications/mergercontrol/features/configuration';
+import MergerControlDashboard from './pages/evershedsapplications/mergercontrol/features/reporting';
+import MergerControlActiveProjects from './pages/evershedsapplications/mergercontrol/features/activeprojects';
+import FilingPackageBuilder from './pages/evershedsapplications/mergercontrol/features/filings';
+import TransactionAnalysis from './pages/evershedsapplications/mergercontrol/features/transactionanalysis';
+import TransactionLoader from './pages/evershedsapplications/mergercontrol/features/transactionloadergroup';
 // Florence Gelato feature imports
 import FlorenceGelatoIndex from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato';
 import FlorenceGelatoOverview from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Overview';
 import FlorenceGelatoLaunch from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Launch';
 import FlorenceGelatoInflight from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Inflight';
 import FlorenceGelatoPortfolio from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Portfolio';
+import { ApplicationRunProvider } from './context/ApplicationRunContext';
 
 function AppRoutes() {
   const { coreconfig } = useConfig();
@@ -93,6 +118,15 @@ function AppRoutes() {
         <Route path="speakeasy" element={<Speakeasy />} />
         <Route path="settings" element={<Settings />} />
         <Route path="speakeasyclub" element={<SpeakeasyClubIndex />} />
+        <Route path="rapidresponse/partnerapplications/fetchcomponent" element={<EvershedsFetch />} />
+        <Route path="rapidresponse/partnerapplications/diversitycomponent" element={<EvershedsDiversity/>} />
+        <Route path="rapidresponse/partnerapplications/mergercontrolcomponent" element={<EvershedsMergerControl />} />
+        <Route path="rapidresponse/partnerapplications/recruitingcomponent" element={<EvershedsRecruiting />} />
+        <Route path="rapidresponse/partnerapplications/eucsddcomponent" element={<EvershedsEUCSDD />} />
+        <Route path="rapidresponse/partnerapplications/financialservicescomponent" element={<EvershedsFinancialServices />} />
+        
+        
+        
         <Route path="authentication" element={<Authentication />} />
 
 
@@ -162,6 +196,17 @@ function AppRoutes() {
         <Route path="buildkits/mybuildkits" element={<BuildKitApplications />} />
         <Route path="buildkits/inflight" element={<BuildKitsOverview />} />
 
+ {/* Eversheds Merger Control routes */}
+ <Route path="mergercontrolcomponent" element={<EvershedsMergerControl />} />
+ <Route path="mergercontrol/overview" element={<EvershedsMergerControl />} />
+ <Route path="mergercontrol/loader" element={<TransactionLoader />} />
+ <Route path="mergercontrol/transactionanalysis" element={<TransactionAnalysis />} />
+ <Route path="mergercontrol/filings" element={<FilingPackageBuilder />} />
+ <Route path="mergercontrol/reporting" element={<MergerControlDashboard />} />
+ <Route path="mergercontrol/activeprojects" element={<MergerControlActiveProjects />} />
+ <Route path="mergercontrol/configuration" element={<MergerControlConfiguration />} />
+
+
         {/* R2D2 routes */}
         <Route path="r2d2/overview" element={<InsightsOverview />} />
         <Route path="r2d2/insightprograms" element={<InsightProgramApplications />} />
@@ -175,6 +220,10 @@ function AppRoutes() {
 function App() {
   return (
     <AuthProvider>
+    <SidebarProvider>
+      <ApplicationRunProvider>
+      <MergerControlProvider>
+    
       <ConfigProvider>
       <SpeakeasyProvider> 
         <BrowserRouter>
@@ -182,7 +231,11 @@ function App() {
         </BrowserRouter>
       </SpeakeasyProvider>
       </ConfigProvider>
-    </AuthProvider>
+    
+    </MergerControlProvider>
+    </ApplicationRunProvider>
+   </SidebarProvider> 
+   </AuthProvider>
   );
 }
 

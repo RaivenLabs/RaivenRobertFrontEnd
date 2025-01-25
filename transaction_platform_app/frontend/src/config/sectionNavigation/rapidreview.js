@@ -35,8 +35,7 @@ const rapidreviewConfig = {
       
       {
         id: 'tangibleinside',
-        label: 'CoreIntel™ Applications',      // Simple version
-        // OR for more control over the sizing
+        
         label: ['CoreIntel', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Applications'],
         icon: 'plus-circle',
         type: 'menu',

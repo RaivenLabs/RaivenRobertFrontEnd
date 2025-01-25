@@ -19,7 +19,7 @@
     "LAW001EV": {
       "id": "LAW001EV",
       "customer_type": "LAW_FIRM",
-      "company_name": "Evermore",
+      "company_name": "Eversheds",
       "cognito_group": "Atticus",
       "datapath": "lawfirms/atticus",
       "specific_settings": {
