@@ -6,7 +6,7 @@ const WorksheetHeader = ({ projectName, onImportClick }) => (
   <div className="flex justify-between items-center mb-6">
     <div>
       <h2 className="text-xl font-semibold text-royalBlue">
-        Jurisdictional Analysis Worksheet
+        Regional Block Analysis Worksheet
       </h2>
       {projectName && (
         <p className="text-gray-600 mt-1">Project: {projectName}</p>

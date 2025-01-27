@@ -10,6 +10,9 @@ import determineFilingRequirements, {
 const MergerControlContext = createContext();
 
 export const MergerControlProvider = ({ children }) => {
+  // Analysis State
+  const [activeRun, setActiveRun] = useState(null);
+  
   // State Management
   const [buyingCompany, setBuyingCompany] = useState(null);
   const [buyingCompanyData, setBuyingCompanyData] = useState(null);
@@ -129,6 +132,23 @@ export const MergerControlProvider = ({ children }) => {
     }
   };
 
+  // Analysis management
+  const startAnalysis = (runData) => {
+    console.log('📊 Starting analysis with run:', runData?.runId);
+    setActiveRun(runData);
+    // Update target company data from run if available
+    if (runData?.targetCompanyData) {
+      settargetCompanyData(runData.targetCompanyData.modified || runData.targetCompanyData.original);
+    }
+    // Update combined analysis
+    if (buyingCompanyData && runData?.targetCompanyData) {
+      updateCombinedAnalysis(
+        buyingCompanyData, 
+        runData.targetCompanyData.modified || runData.targetCompanyData.original
+      );
+    }
+  };
+
   // Project management functions
   const updateProjectName = (name) => {
     setProjectName(name);
@@ -200,6 +220,10 @@ export const MergerControlProvider = ({ children }) => {
         targetCompany,
         targetCompanyData,
         combinedAnalysis,
+        
+        // Analysis State
+        activeRun,
+        startAnalysis,
         
         // Project Management
         projectName,

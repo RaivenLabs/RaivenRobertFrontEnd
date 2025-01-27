@@ -1,4 +1,4 @@
-// src/config/sectionNavigation/buildkits.js
+// src/config/sectionNavigation/mergercontrol.js
 const mergerControlConfig = {
     sectionItems: [
       {

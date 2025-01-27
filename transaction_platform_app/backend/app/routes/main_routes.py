@@ -7,6 +7,7 @@ import boto3
 import os
 
 import time
+import copy
 
 
 from pathlib import Path
@@ -883,113 +884,6 @@ def setup_merger_control_directories():
         }), 500 
 
 
-@main_blueprint.route('/api/projects/<project_id>/runs', methods=['POST'])
-def create_run(project_id):
-   try:
-       # First load the main projects file to get the companies
-       base_path = os.path.abspath(os.path.join(
-           current_app.root_path,
-           '..',
-           '..',
-           'static',
-           'data',
-           'MergerControlDataPackages',
-           'mergerControlProjects.json'
-       ))
-
-       # Load projects data
-       with open(base_path, 'r') as f:
-           all_projects = json.load(f)
-           project_data = all_projects['projects'].get(project_id)
-           if not project_data:
-               raise ValueError(f"Project {project_id} not found")
-           
-           buying_company = project_data['buyingCompany']
-           target_company = project_data['targetCompany']
-           print(f"Creating new run for project: {project_id} under company: {buying_company}")
-
-       # Load target company data
-       target_data_path = os.path.abspath(os.path.join(
-           current_app.root_path,
-           '..',
-           '..',
-           'static',
-           'data',
-           'targetCompanyData.json'
-       ))
-
-       with open(target_data_path, 'r') as f:
-           target_companies = json.load(f)
-           target_company_data = target_companies[target_company]
-           if not target_company_data:
-               raise ValueError(f"Target company {target_company} data not found")
-
-       # Create timestamps - one for system use, one for display
-       timestamp_compact = time.strftime("%Y%m%d_%H%M")
-       timestamp_display = time.strftime("%B %d, %Y %I:%M %p")
-       
-       # Create run identifiers
-       run_id = f"{project_id}_run_{timestamp_compact}"  # System use
-       run_display_name = f"{project_data['projectName']} Analysis - {timestamp_display}"  # UI display
-
-       # Set up paths using compact naming
-       project_dir = os.path.join(os.path.dirname(base_path), buying_company.lower(), project_id)
-       run_path = os.path.join(project_dir, 'application_runs', run_id)
-       os.makedirs(run_path, exist_ok=True)
-
-       # Create run data structure with target company data
-       run_data = {
-           "runId": run_id,
-           "displayName": run_display_name,
-           "status": "setup_initiated",
-           "dateCreated": time.strftime("%Y-%m-%dT%H:%M:%S"),
-           "lastModified": time.strftime("%Y-%m-%dT%H:%M:%S"),
-           "analysis": {
-               "currentStep": "initial_assessment",
-               "jurisdictionalFindings": {},
-               "selectedJurisdictions": [],
-               "calculatedResults": {}
-           },
-           "targetCompanyData": {
-               "original": target_company_data,
-               "modified": target_company_data.copy(),
-               "changeLog": []
-           },
-           "workflowStatus": {
-               "stage": "setup",
-               "lastSaved": time.strftime("%Y-%m-%dT%H:%M:%S"),
-               "modifications": False,
-               "pendingChanges": False
-           }
-       }
-
-       # Save run data
-       run_data_path = os.path.join(run_path, 'run_data.json')
-       with open(run_data_path, 'w') as f:
-           json.dump(run_data, f, indent=2)
-
-       # Update project's application runs index with consistent naming
-       project_data.setdefault('applicationRuns', {})
-       project_data['applicationRuns'][run_id] = {
-           "runId": run_id,
-           "displayName": run_display_name,
-           "status": "setup_initiated",
-           "dateCreated": time.strftime("%Y-%m-%dT%H:%M:%S"),
-           "lastModified": time.strftime("%Y-%m-%dT%H:%M:%S")
-       }
-
-       # Save updated project data
-       with open(base_path, 'w') as f:
-           json.dump(all_projects, f, indent=2)
-
-       print(f"Successfully created run: {run_id}")
-       print(f"Run data saved at: {run_data_path}")
-       return jsonify(run_data)
-
-   except Exception as e:
-       print(f"Error creating new run: {str(e)}")
-       return jsonify({'error': str(e)}), 500
-
 
 
 
@@ -1039,8 +933,8 @@ def get_run(project_id, run_id):
         print(f"Error loading run data: {str(e)}")
         return jsonify({'error': str(e)}), 500
     
-@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>/toggle_jurisdiction', methods=['POST'])
-def toggle_jurisdiction(project_id, run_id):
+@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>/toggle_regional_blocks', methods=['POST'])
+def toggle_regional_blocks(project_id, run_id):
     try:
         request_data = request.get_json()
         changes = request_data.get('changes', [])
@@ -1085,56 +979,75 @@ def toggle_jurisdiction(project_id, run_id):
         with open(run_data_path, 'r') as f:
             run_data = json.load(f)
 
-        # Get jurisdictions from run data
-        jurisdictions = run_data['targetCompanyData']['original']['jurisdictional_presence']['countries']
-        template = jurisdictions.get('template', {
+        # Ensure regional_blocks structure exists
+        if 'regional_blocks' not in run_data['targetCompanyData']['original']:
+            run_data['targetCompanyData']['original']['regional_blocks'] = {}
+
+        regional_blocks = run_data['targetCompanyData']['original']['regional_blocks']
+        
+        # Get or create template for new member states
+        template = regional_blocks.get('template', {
             'presence': True,
             'filing_required': False,
-            'filing_threshold_met': False
+            'filing_threshold_met': False,
+            'member_states': {}
         })
         
-        print(f"Processing {len(changes)} jurisdiction changes")
+        print(f"Processing {len(changes)} regional block changes")
 
         # Process each change
         for change in changes:
-            country = change['country']
+            block_key = change['block_key']
+            member_state_key = change.get('member_state_key')  # Optional for block-level changes
             active = change['active']
-            parent_region = change.get('parent_region')  # Get parent region if it exists
             
-            print(f"Processing change for {country}: active={active}, parent_region={parent_region}")
+            print(f"Processing change for block: {block_key}, member state: {member_state_key}, active: {active}")
 
-            if active:
-                if country not in jurisdictions:
-                    # Create new jurisdiction entry
-                    new_jurisdiction = template.copy()
-                    new_jurisdiction['presence'] = True
+            # Ensure block exists in run_data
+            if block_key not in regional_blocks:
+                regional_blocks[block_key] = {
+                    'presence': False,
+                    'member_states': {}
+                }
+
+            if member_state_key:
+                # Member state level change
+                if 'member_states' not in regional_blocks[block_key]:
+                    regional_blocks[block_key]['member_states'] = {}
+
+                member_states = regional_blocks[block_key]['member_states']
+                
+                if active:
+                    # Create or update member state
+                    if member_state_key not in member_states:
+                        new_member_state = template.copy()
+                        new_member_state['presence'] = True
+                        member_states[member_state_key] = new_member_state
+                    else:
+                        member_states[member_state_key]['presence'] = True
                     
-                    # Add parent region information if available
-                    if parent_region:
-                        new_jurisdiction['parent_region'] = parent_region
-                        # Copy relevant data from parent if available
-                        if parent_region in jurisdictions:
-                            parent_data = jurisdictions[parent_region]
-                            new_jurisdiction['blocks'] = parent_data.get('blocks', [])
-                            # You might want to copy other relevant fields from parent
-                    
-                    jurisdictions[country] = new_jurisdiction
+                    # Ensure block is marked as present if it has active member states
+                    regional_blocks[block_key]['presence'] = True
                 else:
-                    # Update existing jurisdiction
-                    jurisdictions[country]['presence'] = True
+                    if member_state_key in member_states:
+                        member_states[member_state_key]['presence'] = False
             else:
-                if country in jurisdictions:
-                    jurisdictions[country]['presence'] = False
+                # Block level change
+                regional_blocks[block_key]['presence'] = active
+                if not active:
+                    # If block is deactivated, deactivate all member states
+                    for state in regional_blocks[block_key].get('member_states', {}).values():
+                        state['presence'] = False
 
         # Save updated run data
         with open(run_data_path, 'w') as f:
             json.dump(run_data, f, indent=2)
 
-        print(f"Successfully updated jurisdictions for run {run_id}")
+        print(f"Successfully updated regional blocks for run {run_id}")
         return jsonify({
             'success': True,
-            'message': f"Successfully updated jurisdictions for run {run_id}",
-            'updated_countries': [change['country'] for change in changes]
+            'message': f"Successfully updated regional blocks for run {run_id}",
+            'updated_blocks': [change['block_key'] for change in changes]
         })
 
     except FileNotFoundError as e:
@@ -1144,21 +1057,23 @@ def toggle_jurisdiction(project_id, run_id):
         print(f"JSON decode error: {str(e)}")
         return jsonify(error="Invalid JSON data encountered"), 400
     except Exception as e:
-        print(f"Error processing jurisdiction changes: {str(e)}")
+        print(f"Error processing regional block changes: {str(e)}")
         return jsonify(error=str(e)), 500
-
-@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>/update_jurisdiction_data', methods=['POST'])
-def update_jurisdiction_data(project_id, run_id):
+    
+@main_blueprint.route('/api/projects/<project_id>/runs/<run_id>/update_member_state_data', methods=['POST'])
+def update_member_state_data(project_id, run_id):
     try:
         request_data = request.get_json()
-        jurisdiction = request_data.get('jurisdiction')
-        region = request_data.get('region')
+        block_key = request_data.get('block_key')            # e.g., 'uk' as it exists in run_data
+        member_state_key = request_data.get('member_state_key')  # e.g., 'uk' as it exists in run_data
         updates = request_data.get('updates')
         
-        if not all([jurisdiction, region, updates]):
+        print(f"Updating member state data: block={block_key}, state={member_state_key}")
+        
+        if not all([block_key, member_state_key, updates]):
             return jsonify(error="Missing required data"), 400
 
-        # Get path to run_data.json (reusing our existing pattern)
+        # Get path to run_data.json
         base_path = os.path.abspath(os.path.join(
             current_app.root_path,
             '..',
@@ -1192,35 +1107,60 @@ def update_jurisdiction_data(project_id, run_id):
         with open(run_data_path, 'r') as f:
             run_data = json.load(f)
 
-        # Get jurisdiction data
-        jurisdictions = run_data['targetCompanyData']['original']['jurisdictional_presence']['countries']
+        # Get regional blocks data structure
+        target_data = run_data['targetCompanyData']['original']
+        if 'regional_blocks' not in target_data:
+            target_data['regional_blocks'] = {}
+
+        regional_blocks = target_data['regional_blocks']
         
-        # Update jurisdiction data
-        if jurisdiction not in jurisdictions:
-            # If jurisdiction doesn't exist, create it using template
-            template = jurisdictions.get('template', {
+        # Ensure block exists
+        if block_key not in regional_blocks:
+            template = regional_blocks.get('template', {
                 'presence': True,
-                'revenue': None,
-                'employees': None,
-                'assets': None,
-                'local_entities': [],
-                'market_position': None,
-                'vertical_relationships': [],
+                'member_states': {},
                 'merger_control_info': {
-                    'filing_required': None,
+                    'filing_required': False,
                     'has_asset_test': False,
                     'has_market_share_test': False,
                     'review_period_days': None
                 }
             })
-            jurisdictions[jurisdiction] = template.copy()
+            regional_blocks[block_key] = template.copy()
+
+        # Ensure member_states structure exists
+        if 'member_states' not in regional_blocks[block_key]:
+            regional_blocks[block_key]['member_states'] = {}
+
+        member_states = regional_blocks[block_key]['member_states']
+        
+        # Update member state data
+        if member_state_key not in member_states:
+            # If member state doesn't exist, create it
+            member_state_template = {
+                'presence': True,
+                'revenue': None,
+                'employees': None,
+                'assets': None,
+                'market_share': None,
+                'local_entities': [],
+                'merger_control_info': {
+                    'filing_required': False,
+                    'has_asset_test': False,
+                    'has_market_share_test': False,
+                    'review_period_days': None
+                }
+            }
+            member_states[member_state_key] = member_state_template
 
         # Update fields
         for key, value in updates.items():
             if key == 'merger_control_info':
-                jurisdictions[jurisdiction]['merger_control_info'].update(value)
+                member_states[member_state_key]['merger_control_info'].update(value)
             else:
-                jurisdictions[jurisdiction][key] = value
+                member_states[member_state_key][key] = value
+
+        print(f"Updated member state data: {member_states[member_state_key]}")
 
         # Save updated run data
         with open(run_data_path, 'w') as f:
@@ -1228,7 +1168,7 @@ def update_jurisdiction_data(project_id, run_id):
 
         return jsonify({
             'success': True,
-            'message': f"Successfully updated {jurisdiction} data",
+            'message': f"Successfully updated {member_state_key} data in {block_key}",
             'updated_fields': list(updates.keys())
         })
 
@@ -1239,5 +1179,118 @@ def update_jurisdiction_data(project_id, run_id):
         print(f"JSON decode error: {str(e)}")
         return jsonify(error="Invalid JSON data encountered"), 400
     except Exception as e:
-        print(f"Error updating jurisdiction data: {str(e)}")
+        print(f"Error updating member state data: {str(e)}")
         return jsonify(error=str(e)), 500
+
+
+@main_blueprint.route('/api/projects/<project_id>/runs', methods=['POST'])
+def create_run(project_id):
+   try:
+       print(f"🚀 Creating new run for project: {project_id}")
+       
+       # First load the main projects file to get the companies
+       base_path = os.path.abspath(os.path.join(
+           current_app.root_path,
+           '..',
+           '..',
+           'static',
+           'data',
+           'MergerControlDataPackages',
+           'mergerControlProjects.json'
+       ))
+
+       # Load projects data
+       with open(base_path, 'r') as f:
+           all_projects = json.load(f)
+           project_data = all_projects['projects'].get(project_id)
+           if not project_data:
+               raise ValueError(f"Project {project_id} not found")
+           
+           buying_company = project_data['buyingCompany']
+           target_company = project_data['targetCompany']
+           print(f"📊 Project details - Buying: {buying_company}, Target: {target_company}")
+
+       # Load target company data for new run initialization
+       target_data_path = os.path.abspath(os.path.join(
+           current_app.root_path,
+           '..',
+           '..',
+           'static',
+           'data',
+           'targetCompanyData.json'
+       ))
+
+       print(f"📁 Loading target company data from: {target_data_path}")
+       with open(target_data_path, 'r') as f:
+           target_companies = json.load(f)
+           target_company_data = target_companies[target_company]
+           if not target_company_data:
+               raise ValueError(f"Target company {target_company} data not found")
+
+       # Create timestamps
+       timestamp_compact = time.strftime("%Y%m%d_%H%M")
+       timestamp_display = time.strftime("%B %d, %Y %I:%M %p")
+       
+       # Create run identifiers
+       run_id = f"{project_id}_run_{timestamp_compact}"
+       run_display_name = f"{project_data['projectName']} Analysis - {timestamp_display}"
+
+       # Set up paths using compact naming
+       project_dir = os.path.join(os.path.dirname(base_path), buying_company.lower(), project_id)
+       run_path = os.path.join(project_dir, 'application_runs', run_id)
+       os.makedirs(run_path, exist_ok=True)
+       print(f"📂 Created run directory: {run_path}")
+
+       # Create run data structure initialized with target company data
+       run_data = {
+           "runId": run_id,
+           "projectId": project_id,
+           "displayName": run_display_name,
+           "status": "setup_initiated",
+           "dateCreated": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "lastModified": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "analysis": {
+               "currentStep": "initial_assessment",
+               "jurisdictionalFindings": {},
+               "selectedJurisdictions": [],
+               "calculatedResults": {}
+           },
+           "targetCompanyData": {
+               "original": target_company_data,
+               "modified": copy.deepcopy(target_company_data),  # Deep copy to prevent reference issues
+               "changeLog": []
+           },
+           "workflowStatus": {
+               "stage": "setup",
+               "lastSaved": time.strftime("%Y-%m-%dT%H:%M:%S"),
+               "modifications": False,
+               "pendingChanges": False
+           }
+       }
+
+       # Save run data
+       run_data_path = os.path.join(run_path, 'run_data.json')
+       with open(run_data_path, 'w') as f:
+           json.dump(run_data, f, indent=2)
+       print(f"💾 Saved run data to: {run_data_path}")
+
+       # Update project's application runs index
+       project_data.setdefault('applicationRuns', {})
+       project_data['applicationRuns'][run_id] = {
+           "runId": run_id,
+           "displayName": run_display_name,
+           "status": "setup_initiated",
+           "dateCreated": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "lastModified": time.strftime("%Y-%m-%dT%H:%M:%S")
+       }
+
+       # Save updated project data
+       with open(base_path, 'w') as f:
+           json.dump(all_projects, f, indent=2)
+
+       print(f"✅ Successfully created new run: {run_id}")
+       return jsonify(run_data)
+
+   except Exception as e:
+       print(f"❌ Error creating new run: {str(e)}")
+       return jsonify({'error': str(e)}), 500

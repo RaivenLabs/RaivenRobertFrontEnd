@@ -108,6 +108,33 @@
         }
       }
     },
+
+
+
+
+"ENT0097NIKE": {
+      "id": "ENT0097NIKE",
+      "customer_type": "ENTERPRISE",
+      "company_name": "Juneau",
+      "cognito_group": "Juneau",
+      "datapath": "enterprises/juneau",
+      "specific_settings": {
+        "industry": "Manufacturing",
+        "region": "North America",
+        "custom_templates": {
+          "nda": "/templates/customers/nike/nda.html",
+          "msa": "/templates/customers/nike/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+
+
+
+
     "ENT002UPS": {
       "id": "ENT002UPS",
       "customer_type": "ENTERPRISE",

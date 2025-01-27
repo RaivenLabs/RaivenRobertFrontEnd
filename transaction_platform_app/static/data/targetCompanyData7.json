@@ -20,26 +20,26 @@
       "size_of_transaction": {
         "formatted": {
           "global": "$520M",
-          "us": "$520M"
+          "usa": "$520M"
         },
         "numeric": {
           "global": 520000000,
-          "us": 520000000
+          "usa": 520000000
         }
       },
       "revenue": {
         "global": "$850M",
-        "us": "$400M",
+        "usa": "$400M",
         "eu": "€300M",
         "numeric": {
           "global": 850000000,
-          "us": 400000000,
+          "usa": 400000000,
           "eu": 300000000
         }
       },
       "employees": {
         "global": 2800,
-        "us": 1200,
+        "usa": 1200,
         "eu": 1000,
         "countries": {
           "germany": 400,
@@ -55,7 +55,7 @@
         "registered_offices": {
           "eu": "Munich, Germany",
           "uk": "Cambridge, UK",
-          "us": "Delaware, USA"
+          "usa": "Delaware, USA"
         }
       },
       "subsidiaries": [
@@ -84,7 +84,7 @@
      
       "key_markets": ["Clinical Software", "Medical Devices", "Healthcare Analytics"],
       "market_share": {
-        "us": {
+        "usa": {
           "clinical_software": 0.12,
           "medical_devices": 0.08,
           "healthcare_analytics": 0.09
@@ -142,11 +142,11 @@
       },
       "assets": {
         "global": "$600M",
-        "us": "$280M",
+        "usa": "$280M",
         "eu": "€200M",
         "numeric": {
           "global": 600000000,
-          "us": 280000000,
+          "usa": 280000000,
           "eu": 200000000
         },
         "types": {

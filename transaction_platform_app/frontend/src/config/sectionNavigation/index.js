@@ -6,6 +6,8 @@ import conciergeConfig from './concierge';
 import inflightConfig from './inflight';
 
 import mergerControlConfig from './mergercontrol';
+import nikeRaivenConfig from './nikeraiven';
+
 import financialServicesConfig from './financialservices';
 import EUCSDDConfig from './eucsdd';
 import recruitingConfig from './recruitingrights';
@@ -40,6 +42,9 @@ const configs = {
 
 
   mergercontrol: mergerControlConfig,
+  nikeraiven: nikeRaivenConfig,
+
+
   financialservices: financialServicesConfig,
   eucsdd: EUCSDDConfig,
   recruiting: recruitingConfig,
@@ -72,6 +77,7 @@ export {
 
   financialServicesConfig,
   mergerControlConfig,
+  nikeRaivenConfig,
   diversityConfig,
   recruitingConfig,
   EUCSDDConfig,

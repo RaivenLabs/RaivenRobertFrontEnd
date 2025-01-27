@@ -18,26 +18,26 @@
       "size_of_transaction": {
         "formatted": {
           "global": "$180M",
-          "us": "$180M"
+          "usa": "$180M"
         },
         "numeric": {
           "global": 180000000,
-          "us": 180000000
+          "usa": 180000000
         }
       },
       "revenue": {
         "global": "$380M",
-        "us": "$200M",
+        "usa": "$200M",
         "eu": "€120M",
         "numeric": {
           "global": 380000000,
-          "us": 200000000,
+          "usa": 200000000,
           "eu": 120000000
         }
       },
       "employees": {
         "global": 1200,
-        "us": 600,
+        "usa": 600,
         "eu": 400,
         "countries": {
           "germany": 180,
@@ -53,7 +53,7 @@
         "registered_offices": {
           "eu": "Frankfurt, Germany",
           "uk": "London, UK",
-          "us": "Delaware, USA"
+          "usa": "Delaware, USA"
         }
       },
       "subsidiaries": [
@@ -82,7 +82,7 @@
    
       "key_markets": ["Digital Libraries", "Academic Software", "Learning Management"],
       "market_share": {
-        "us": {
+        "usa": {
           "digital_libraries": 0.08,
           "learning_management": 0.05,
           "academic_software": 0.06
@@ -149,11 +149,11 @@
       },
       "assets": {
         "global": "$250M",
-        "us": "$150M",
+        "usa": "$150M",
         "eu": "€70M",
         "numeric": {
           "global": 250000000,
-          "us": 150000000,
+          "usa": 150000000,
           "eu": 70000000
         },
         "types": {
@@ -209,26 +209,26 @@
       "size_of_transaction": {
         "formatted": {
           "global": "$520M",
-          "us": "$520M"
+          "usa": "$520M"
         },
         "numeric": {
           "global": 520000000,
-          "us": 520000000
+          "usa": 520000000
         }
       },
       "revenue": {
         "global": "$850M",
-        "us": "$400M",
+        "usa": "$400M",
         "eu": "€300M",
         "numeric": {
           "global": 850000000,
-          "us": 400000000,
+          "usa": 400000000,
           "eu": 300000000
         }
       },
       "employees": {
         "global": 2800,
-        "us": 1200,
+        "usa": 1200,
         "eu": 1000,
         "countries": {
           "germany": 400,
@@ -244,7 +244,7 @@
         "registered_offices": {
           "eu": "Munich, Germany",
           "uk": "Cambridge, UK",
-          "us": "Delaware, USA"
+          "usa": "Delaware, USA"
         }
       },
       "subsidiaries": [
@@ -273,7 +273,7 @@
     
       "key_markets": ["Clinical Software", "Medical Devices", "Healthcare Analytics"],
       "market_share": {
-        "us": {
+        "usa": {
           "clinical_software": 0.12,
           "medical_devices": 0.08,
           "healthcare_analytics": 0.09
@@ -331,11 +331,11 @@
       },
       "assets": {
         "global": "$600M",
-        "us": "$280M",
+        "usa": "$280M",
         "eu": "€200M",
         "numeric": {
           "global": 600000000,
-          "us": 280000000,
+          "usa": 280000000,
           "eu": 200000000
         },
         "types": {
@@ -393,26 +393,26 @@
       "size_of_transaction": {
         "formatted": {
           "global": "$200M",
-          "us": "$200M"
+          "usa": "$200M"
         },
         "numeric": {
           "global": 200000000,
-          "us": 200000000
+          "usa": 200000000
         }
       },
       "revenue": {
         "global": "$450M",
-        "us": "$250M",
+        "usa": "$250M",
         "eu": "€150M",
         "numeric": {
           "global": 450000000,
-          "us": 250000000,
+          "usa": 250000000,
           "eu": 150000000
         }
       },
       "employees": {
         "global": 1500,
-        "us": 800,
+        "usa": 800,
         "eu": 500,
         "countries": {
           "germany": 200,
@@ -428,7 +428,7 @@
         "registered_offices": {
           "eu": "Munich, Germany",
           "uk": "London, UK",
-          "us": "Delaware, USA"
+          "usa": "Delaware, USA"
         }
       },
       "subsidiaries": [
@@ -457,7 +457,7 @@
     
       "key_markets": ["Climbing Equipment", "Winter Sports", "Outdoor Apparel"],
       "market_share": {
-        "us": {
+        "usa": {
           "climbing_equipment": 0.15,
           "winter_sports": 0.12,
           "outdoor_apparel": 0.08
@@ -506,11 +506,11 @@
       },
       "assets": {
         "global": "$300M",
-        "us": "$180M",
+        "usa": "$180M",
         "eu": "€90M",
         "numeric": {
           "global": 300000000,
-          "us": 180000000,
+          "usa": 180000000,
           "eu": 90000000
         },
         "types": {

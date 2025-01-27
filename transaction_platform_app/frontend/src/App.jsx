@@ -67,6 +67,14 @@ import EvershedsMergerControl from './pages/evershedsapplications/mergercontrol'
 import EvershedsFinancialServices from './pages/evershedsapplications/financialservices';
 
 
+import NIKERaivenContent from './pages/nikeapplications/raiven';
+//import NIKERaivenConfiguration from './pages/nikeapplications/raiven/features/configuration';
+//import NIKERaivenDashboard from './pages/nikeapplications/raiven/features/reporting';
+//import NikeRaivenActiveProjects from './pages/nikeapplications/raiven/features/activeprojects';
+//import NIKERaivenPackageBuilder from './pages/nikeapplications/raiven/features/filings';
+//import NIKERaivenTransactionAnalysis from './pages/nikeapplications/raiven/features/transactionanalysis';
+//import NIKERaivenTransactionLoader from './pages/nikeapplications/raiven/features/transactionloadergroup';
+
 
 
 
@@ -197,6 +205,7 @@ function AppRoutes() {
         <Route path="buildkits/inflight" element={<BuildKitsOverview />} />
 
  {/* Eversheds Merger Control routes */}
+ <Route path="rapidresponse/partnerapplications/nikeraivencomponent" element={<NIKERaivenContent />} />
  <Route path="mergercontrolcomponent" element={<EvershedsMergerControl />} />
  <Route path="mergercontrol/overview" element={<EvershedsMergerControl />} />
  <Route path="mergercontrol/loader" element={<TransactionLoader />} />
@@ -205,6 +214,20 @@ function AppRoutes() {
  <Route path="mergercontrol/reporting" element={<MergerControlDashboard />} />
  <Route path="mergercontrol/activeprojects" element={<MergerControlActiveProjects />} />
  <Route path="mergercontrol/configuration" element={<MergerControlConfiguration />} />
+
+{/* NIKE Raiven routes */}
+<Route path="rapidresponse/partnerapplications/nikeraivencomponent" element={<NIKERaivenContent />} />
+
+ <Route path="nikeraiven/overview" element={<EvershedsMergerControl />} />
+ <Route path="nikeraiven/loader" element={<TransactionLoader />} />
+ <Route path="nikeraiven/transactionanalysis" element={<TransactionAnalysis />} />
+ <Route path="nikeraiven/filings" element={<FilingPackageBuilder />} />
+ <Route path="nikeraiven/reporting" element={<MergerControlDashboard />} />
+ <Route path="nikeraiven/activeprojects" element={<MergerControlActiveProjects />} />
+ <Route path="nikeraiven/configuration" element={<MergerControlConfiguration />} />
+
+
+
 
 
         {/* R2D2 routes */}

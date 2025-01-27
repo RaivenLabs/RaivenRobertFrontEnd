@@ -29,6 +29,10 @@ import DiversitySidebar from '../../pages/evershedsapplications/diversity/divers
 import EUCSDDSidebar from '../../pages/evershedsapplications/eucsdd/eucsddsidebar';
 import RecruitingSidebar from '../../pages/evershedsapplications/recruiting/recruitingsidebar';
 import MergerControlSidebar from '../../pages/evershedsapplications/mergercontrol/mergercontrolsidebar';
+import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
+
+
+
 import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
 
 
@@ -63,6 +67,8 @@ const BaseLayout = () => {
     fetchsidebar: <FetchSidebar onSidebarChange={setActiveSidebar} />,
 
     mergercontrolsidebar: <MergerControlSidebar onSidebarChange={setActiveSidebar} />,
+    nikeraivensidebar: <NIKERaivenSidebar onSidebarChange={setActiveSidebar} />,
+
     financialservicessidebar: <FinancialServicesSidebar onSidebarChange={setActiveSidebar} />,
     diversitysidebar: <DiversitySidebar onSidebarChange={setActiveSidebar} />,
     eucsddsidebar: <EUCSDDSidebar onSidebarChange={setActiveSidebar} />,

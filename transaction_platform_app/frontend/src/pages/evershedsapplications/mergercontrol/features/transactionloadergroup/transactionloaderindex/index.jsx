@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Scale, Save, CheckCircle, XCircle } from 'lucide-react';
 import { useMergerControl } from '../../../../../../context/MergerControlContext';
 import TransactionCompanySelector from '../components/TransactionCompanySelector';
 import ProjectSelector from '../components/ProjectSelector';
-import RegionSelector from '../components/RegionSelector';
+import RegionalBlockSelector from '../components/RegionalBlockSelector';
 import ProcessSteps from './ProcessSteps';
-import JurisdictionWorksheet from '../components/worksheet/JurisdictionWorksheet';
+import RegionalBlockWorksheet from '../components/worksheet/RegionalBlockWorksheet';
 
 const TransactionLoader = () => {
   const [currentStep, setCurrentStep] = useState('company_selection');
+  const navigate = useNavigate();
   const [activeRun, setActiveRun] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [regionConfiguration, setRegionConfiguration] = useState(null);
-  const { buyingCompany, targetCompany } = useMergerControl();
+  const [blockConfiguration, setBlockConfiguration] = useState(null);
+  const { buyingCompany, targetCompany, startAnalysis } = useMergerControl();
   
-  // Track completed steps - our "partridge" tracker! 🦃
+  // Track completed steps
   const [completedSteps, setCompletedSteps] = useState(new Set());
 
   // Helper to mark a step as complete and move to next
@@ -31,15 +33,28 @@ const TransactionLoader = () => {
   };
 
   const handleRunSelectionComplete = (runData) => {
-    console.log('🏁 Run selected, moving to region selection...', runData?.runId);
+    console.log('🏁 Run selected, moving to regional block selection...', runData?.runId);
     setActiveRun(runData);
-    completeStepAndAdvance('project_setup', 'region_selection');
+    completeStepAndAdvance('project_setup', 'block_selection');
   };
 
-  const handleWorksheetGenerate = (regionData) => {
-    console.log('🎯 Receiving region configuration handoff...', regionData);
-    setRegionConfiguration(regionData);
-    completeStepAndAdvance('region_selection', 'worksheet');
+  const handleWorksheetGenerate = (blockData) => {
+    console.log('🎯 Receiving block configuration handoff:', blockData);
+    
+    // Update activeRun with fresh data if provided
+    if (blockData.runData) {
+      console.log('📥 Updating active run with fresh data');
+      setActiveRun(blockData.runData);
+    }
+    
+    setBlockConfiguration({
+      regional_blocks: blockData.regional_blocks,
+      member_states: blockData.member_states,
+      runId: blockData.runId,
+      projectId: blockData.projectId
+    });
+  
+    completeStepAndAdvance('block_selection', 'worksheet');
   };
 
   // Helper to check if we should show a component
@@ -52,16 +67,28 @@ const TransactionLoader = () => {
     return true;
   };
 
-// In TransactionLoader
-useEffect(() => {
-  // Only watch buyingCompany and targetCompany if we're in company_selection
-  if (currentStep === 'company_selection' && buyingCompany && targetCompany) {
-    handleCompanySelectionComplete();
-  }
-}, [buyingCompany, targetCompany, currentStep]);
+  // Effect to auto-advance company selection
+  useEffect(() => {
+    if (currentStep === 'company_selection' && buyingCompany && targetCompany) {
+      handleCompanySelectionComplete();
+    }
+  }, [buyingCompany, targetCompany, currentStep]);
 
 
-
+  const handleAnalysisNavigation = async () => {
+    try {
+      // Mark worksheet as complete
+      completeStepAndAdvance('worksheet', 'completed');
+      
+      // Start the analysis (this updates the context)
+      startAnalysis(activeRun);
+      
+      // Navigate to analysis page
+      navigate('/mergercontrol/transactionanalysis');
+    } catch (error) {
+      console.error('Error transitioning to analysis:', error);
+    }
+  };
 
 
   return (
@@ -76,7 +103,7 @@ useEffect(() => {
         </div>
         <div className="prose max-w-none">
           <p className="text-gray-600 mb-6">
-            Configure your merger control analysis by following these steps.
+            Configure your merger control analysis by selecting regional blocks and member states.
           </p>
           <ProcessSteps 
             currentStep={currentStep} 
@@ -111,28 +138,28 @@ useEffect(() => {
           </div>
         )}
 
-        {/* Region Selection */}
-        {shouldShowStep('region_selection') && (
+        {/* Regional Block Selection */}
+        {shouldShowStep('block_selection') && (
           <div className={`transition-opacity duration-300 
-            ${currentStep === 'region_selection' ? 'opacity-100' : 'opacity-70'}`}
+            ${currentStep === 'block_selection' ? 'opacity-100' : 'opacity-70'}`}
           >
-            <RegionSelector 
+            <RegionalBlockSelector 
               activeRun={activeRun}
               projectName={activeRun?.projectName}
               onWorksheetGenerate={handleWorksheetGenerate}
-              disabled={completedSteps.has('region_selection')}
+              disabled={completedSteps.has('block_selection')}
             />
           </div>
         )}
 
-        {/* Jurisdiction Worksheet */}
+        {/* Regional Block Worksheet */}
         {shouldShowStep('worksheet') && (
           <div className={`transition-opacity duration-300 
             ${currentStep === 'worksheet' ? 'opacity-100' : 'opacity-70'}`}
           >
-            <JurisdictionWorksheet 
+            <RegionalBlockWorksheet 
               runData={activeRun}
-              regionConfiguration={regionConfiguration}
+              blockConfiguration={blockConfiguration}
             />
           </div>
         )}
@@ -154,13 +181,18 @@ useEffect(() => {
             </div>
 
             {currentStep === 'worksheet' && (
-              <button className="px-6 py-2 bg-teal text-white rounded-lg 
-                             hover:bg-teal/90 transition-colors
-                             flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>Go to Results</span>
-              </button>
-            )}
+    <button 
+      onClick={handleAnalysisNavigation}
+      className="px-6 py-2 bg-teal text-white rounded-lg 
+                hover:bg-teal/90 transition-colors
+                flex items-center space-x-2"
+    >
+      <CheckCircle className="w-5 h-5" />
+      <span>Go to Results</span>
+    </button>
+  )}
+
+
           </div>
         </div>
       </div>

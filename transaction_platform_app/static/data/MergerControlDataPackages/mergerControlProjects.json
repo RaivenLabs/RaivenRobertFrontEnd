@@ -24,7 +24,7 @@
         "outOfScope": [],
         "pending": [
           "eu",
-          "us",
+          "usa",
           "uk"
         ]
       },
@@ -34,67 +34,131 @@
         "mandatoryFiling": null
       },
       "applicationRuns": {
-        "hamilton_run_20240122_1400": {
-          "runId": "hamilton_run_20240122_1400",
-          "displayName": "January 22, 2024, 2:00 PM",
-          "status": "in_progress",
-          "dateCreated": "2024-01-22T14:00:00",
-          "lastModified": "2024-01-22T14:00:00",
-          "savedData": {
-            "currentStep": "initial_assessment",
-            "jurisdictionalFindings": {},
-            "userInputs": {},
-            "calculatedResults": {}
-          }
-        },
-        "hamilton_run_20250124_0717": {
-          "runId": "hamilton_run_20250124_0717",
-          "displayName": "Hamilton Analysis - January 24, 2025 07:17 AM",
+        "hamilton_run_20250125_0821": {
+          "runId": "hamilton_run_20250125_0821",
+          "displayName": "Hamilton Analysis - January 25, 2025 08:21 AM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T07:17:58",
-          "lastModified": "2025-01-24T07:17:58"
+          "dateCreated": "2025-01-25T08:21:12",
+          "lastModified": "2025-01-25T08:21:12"
         },
-        "hamilton_run_20250124_0718": {
-          "runId": "hamilton_run_20250124_0718",
-          "displayName": "Hamilton Analysis - January 24, 2025 07:18 AM",
+        "hamilton_run_20250125_1806": {
+          "runId": "hamilton_run_20250125_1806",
+          "displayName": "Hamilton Analysis - January 25, 2025 06:06 PM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T07:18:55",
-          "lastModified": "2025-01-24T07:18:55"
+          "dateCreated": "2025-01-25T18:06:40",
+          "lastModified": "2025-01-25T18:06:40"
         },
-        "hamilton_run_20250124_0719": {
-          "runId": "hamilton_run_20250124_0719",
-          "displayName": "Hamilton Analysis - January 24, 2025 07:19 AM",
+        "hamilton_run_20250126_0658": {
+          "runId": "hamilton_run_20250126_0658",
+          "displayName": "Hamilton Analysis - January 26, 2025 06:58 AM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T07:19:20",
-          "lastModified": "2025-01-24T07:19:20"
+          "dateCreated": "2025-01-26T06:58:40",
+          "lastModified": "2025-01-26T06:58:40"
         },
-        "hamilton_run_20250124_0909": {
-          "runId": "hamilton_run_20250124_0909",
-          "displayName": "Hamilton Analysis - January 24, 2025 09:09 AM",
+        "hamilton_run_20250126_0830": {
+          "runId": "hamilton_run_20250126_0830",
+          "displayName": "Hamilton Analysis - January 26, 2025 08:30 AM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T09:09:26",
-          "lastModified": "2025-01-24T09:09:26"
+          "dateCreated": "2025-01-26T08:30:44",
+          "lastModified": "2025-01-26T08:30:44"
         },
-        "hamilton_run_20250124_0917": {
-          "runId": "hamilton_run_20250124_0917",
-          "displayName": "Hamilton Analysis - January 24, 2025 09:17 AM",
+        "hamilton_run_20250126_0858": {
+          "runId": "hamilton_run_20250126_0858",
+          "displayName": "Hamilton Analysis - January 26, 2025 08:58 AM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T09:17:43",
-          "lastModified": "2025-01-24T09:17:43"
+          "dateCreated": "2025-01-26T08:58:15",
+          "lastModified": "2025-01-26T08:58:15"
         },
-        "hamilton_run_20250124_1029": {
-          "runId": "hamilton_run_20250124_1029",
-          "displayName": "Hamilton Analysis - January 24, 2025 10:29 AM",
+        "hamilton_run_20250126_0901": {
+          "runId": "hamilton_run_20250126_0901",
+          "displayName": "Hamilton Analysis - January 26, 2025 09:01 AM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T10:29:56",
-          "lastModified": "2025-01-24T10:29:56"
+          "dateCreated": "2025-01-26T09:01:06",
+          "lastModified": "2025-01-26T09:01:06"
         },
-        "hamilton_run_20250124_1813": {
-          "runId": "hamilton_run_20250124_1813",
-          "displayName": "Hamilton Analysis - January 24, 2025 06:13 PM",
+        "hamilton_run_20250126_0907": {
+          "runId": "hamilton_run_20250126_0907",
+          "displayName": "Hamilton Analysis - January 26, 2025 09:07 AM",
           "status": "setup_initiated",
-          "dateCreated": "2025-01-24T18:13:02",
-          "lastModified": "2025-01-24T18:13:02"
+          "dateCreated": "2025-01-26T09:07:24",
+          "lastModified": "2025-01-26T09:07:24"
+        },
+        "hamilton_run_20250126_0912": {
+          "runId": "hamilton_run_20250126_0912",
+          "displayName": "Hamilton Analysis - January 26, 2025 09:12 AM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T09:12:57",
+          "lastModified": "2025-01-26T09:12:57"
+        },
+        "hamilton_run_20250126_1322": {
+          "runId": "hamilton_run_20250126_1322",
+          "displayName": "Hamilton Analysis - January 26, 2025 01:22 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T13:22:39",
+          "lastModified": "2025-01-26T13:22:39"
+        },
+        "hamilton_run_20250126_1338": {
+          "runId": "hamilton_run_20250126_1338",
+          "displayName": "Hamilton Analysis - January 26, 2025 01:38 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T13:38:24",
+          "lastModified": "2025-01-26T13:38:24"
+        },
+        "hamilton_run_20250126_1403": {
+          "runId": "hamilton_run_20250126_1403",
+          "displayName": "Hamilton Analysis - January 26, 2025 02:03 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T14:03:02",
+          "lastModified": "2025-01-26T14:03:02"
+        },
+        "hamilton_run_20250126_1405": {
+          "runId": "hamilton_run_20250126_1405",
+          "displayName": "Hamilton Analysis - January 26, 2025 02:05 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T14:05:48",
+          "lastModified": "2025-01-26T14:05:48"
+        },
+        "hamilton_run_20250126_1549": {
+          "runId": "hamilton_run_20250126_1549",
+          "displayName": "Hamilton Analysis - January 26, 2025 03:49 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T15:49:43",
+          "lastModified": "2025-01-26T15:49:43"
+        },
+        "hamilton_run_20250126_1558": {
+          "runId": "hamilton_run_20250126_1558",
+          "displayName": "Hamilton Analysis - January 26, 2025 03:58 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T15:58:08",
+          "lastModified": "2025-01-26T15:58:08"
+        },
+        "hamilton_run_20250126_1615": {
+          "runId": "hamilton_run_20250126_1615",
+          "displayName": "Hamilton Analysis - January 26, 2025 04:15 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T16:15:23",
+          "lastModified": "2025-01-26T16:15:23"
+        },
+        "hamilton_run_20250126_1658": {
+          "runId": "hamilton_run_20250126_1658",
+          "displayName": "Hamilton Analysis - January 26, 2025 04:58 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T16:58:39",
+          "lastModified": "2025-01-26T16:58:39"
+        },
+        "hamilton_run_20250126_1714": {
+          "runId": "hamilton_run_20250126_1714",
+          "displayName": "Hamilton Analysis - January 26, 2025 05:14 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T17:14:22",
+          "lastModified": "2025-01-26T17:14:22"
+        },
+        "hamilton_run_20250126_1729": {
+          "runId": "hamilton_run_20250126_1729",
+          "displayName": "Hamilton Analysis - January 26, 2025 05:29 PM",
+          "status": "setup_initiated",
+          "dateCreated": "2025-01-26T17:29:48",
+          "lastModified": "2025-01-26T17:29:48"
         }
       }
     },
@@ -122,7 +186,7 @@
         "outOfScope": [],
         "pending": [
           "eu",
-          "us",
+          "usa",
           "uk"
         ]
       },
@@ -171,7 +235,7 @@
         "outOfScope": [],
         "pending": [
           "eu",
-          "us",
+          "usa",
           "uk"
         ]
       },
@@ -220,7 +284,7 @@
         "outOfScope": [],
         "pending": [
           "eu",
-          "us",
+          "usa",
           "uk"
         ]
       },
@@ -259,7 +323,7 @@
         "outOfScope": [],
         "pending": [
           "eu",
-          "us",
+          "usa",
           "uk"
         ]
       },
