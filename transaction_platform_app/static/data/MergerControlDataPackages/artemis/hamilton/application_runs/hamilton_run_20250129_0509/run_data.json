@@ -1,0 +1,63 @@
+{
+  "name": "Hippocrates Medical Solutions",
+  "sector": "Healthcare/Pharmaceuticals",
+  "is_manufacturer": true,
+  "global_metrics": {
+    "size_of_person": {
+      "annual_net_sales": {
+        "formatted": "$850M",
+        "numeric": 850000000
+      },
+      "total_assets": {
+        "formatted": "$600M",
+        "numeric": 600000000
+      }
+    },
+    "global_revenue": {
+      "formatted": "$850M",
+      "numeric": 850000000
+    },
+    "global_employees": 2800
+  },
+  "projects": {
+    "Redwood": {
+      "projectName": "Redwood",
+      "buyingCompany": "hermes",
+      "dateCreated": 1705860000000,
+      "status": "active"
+    }
+  },
+  "projectId": "hamilton",
+  "targetCompanyData": {
+    "regional_blocks": {
+      "comesa": {
+        "presence": true,
+        "member_states": {
+          "rwanda": {
+            "presence": true,
+            "metrics": {
+              "revenue": null,
+              "employees": null,
+              "assets": null
+            },
+            "market_shares": {},
+            "merger_control_info": {
+              "filing_required": null,
+              "thresholds": {
+                "revenue": null,
+                "market_share": null
+              },
+              "review_period_days": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "lastModified": "2025-01-29T05:10:01",
+  "workflowStatus": {
+    "lastSaved": "2025-01-29T05:10:01",
+    "modifications": true,
+    "pendingChanges": true
+  }
+}

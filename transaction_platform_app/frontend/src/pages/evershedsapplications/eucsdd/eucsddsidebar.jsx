@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-import { EUCSDDConfig } from '../../../config/sectionNavigation';
+import { eucsddConfig } from '../../../config/sectionNavigation';
 import { ArrowLeft } from 'lucide-react';
 
 const EUCSDDSidebar = ({ onSidebarChange }) => {
@@ -37,14 +37,14 @@ const EUCSDDSidebar = ({ onSidebarChange }) => {
     <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
       <div className="mb-6">
         <div className="text-2xl font-bold text-cyan mb-2 p-6">
-          Mission Control
+          EUCSDD Application by Eversheds
         </div>
         <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
       </div>
 
       <div className="flex-1 overflow-y-auto">
         {/* Section menu items */}
-        {EUCSDDConfig.sectionItems.map((item) => (
+        {eucsddConfig.sectionItems.map((item) => (
           <div key={item.id}>
             <button
               onClick={() => handleSectionNavigation(item)}

@@ -7,12 +7,12 @@
             "programs": [
                 {
                     "id": "esfetchprototype",
-                    "name": "Fetch Prototype",
+                    "name": "Fund Monitoring Prototype",
                     "icon": "path d='M9 17h6M9 12h6M9 7h6'",
                     "action": "launch_program",
                     "isLive": true,
-                    "outletroute": "fetchcomponent",
-                    "sidebarroute": "fetchsidebar"
+                    "outletroute": "fundcomponent",
+                    "sidebarroute": "fundsidebar"
                 },
                 {
                     "id": "esmergercontrolprototype",

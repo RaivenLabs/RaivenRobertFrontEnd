@@ -7,10 +7,16 @@ import inflightConfig from './inflight';
 
 import mergerControlConfig from './mergercontrol';
 import nikeRaivenConfig from './nikeraiven';
+import paceAidaConfig from './paceaida';
+import fundMonitoringConfig from './fundmonitoring';
+import eucsddConfig from './eucsdd'
+
+
+
 
 import financialServicesConfig from './financialservices';
-import EUCSDDConfig from './eucsdd';
-import recruitingConfig from './recruitingrights';
+
+import recruitingConfig from './recruiting';
 import diversityConfig from './diversity';
 
 
@@ -38,15 +44,18 @@ const configs = {
   buildkits: buildkitsConfig,
   companyreport: companyreportConfig,
   concierge: conciergeConfig,
-  fetch: fetchConfig,
+ 
 
 
   mergercontrol: mergerControlConfig,
+
+  fundmonitoring:fundMonitoringConfig,
   nikeraiven: nikeRaivenConfig,
+  paceaida: paceAidaConfig,
 
 
   financialservices: financialServicesConfig,
-  eucsdd: EUCSDDConfig,
+  eucsdd: eucsddConfig,
   recruiting: recruitingConfig,
   diversity: diversityConfig,
 
@@ -77,10 +86,12 @@ export {
 
   financialServicesConfig,
   mergerControlConfig,
+  fundMonitoringConfig,
   nikeRaivenConfig,
+  paceAidaConfig,
   diversityConfig,
   recruitingConfig,
-  EUCSDDConfig,
+  eucsddConfig,
 
   inflightConfig,
   flightdeckConfig,

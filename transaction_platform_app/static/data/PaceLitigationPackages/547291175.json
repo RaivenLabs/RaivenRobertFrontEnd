@@ -1,0 +1,303 @@
+{
+    "file_name": "PACE DEVELOP/547291175.pdf",
+    "file": {
+        "file_sent_from": "CT Corporation",
+        "log_number": "547291175",
+        "file_category_type": "Lawsuit"
+    },
+    "lawsuit_service": [
+        {
+            "lawsuit_case_caption": "PATRICK J. SULLIVAN, EXECUTOR OF THE ESTATE OF PAUL A. SULLIVAN, JR. vs. ABB, INC.",
+            "lawsuit_summons_date": null,
+            "lawsuit_jurisdiction": "PHILADELPHIA",
+            "lawsuit_docket_number": "230400107",
+            "lawsuit_discovery_included": "NO",
+            "lawsuit_amendment_number": "000",
+            "lawsuit_jurisdiction_state": "PA",
+            "lawsuit_damage_descriptions": "Personal Injury",
+            "lawsuit_company_served": "Viking Pump, Inc.",
+            "lawsuit_service_date": "09/11/2024",
+            "lawsuit_received_date": "09/11/2024",
+            "lawsuit_answer_due_days": "20",
+            "lawsuit_answer_due_date": "10/01/2024",
+            "lawsuit_allegation": "Product",
+            "lawsuit_third_party_company": null,
+            "lawsuit_harmful_material": "ASBESTOS",
+            "lawsuit_is_multi_district": null,
+            "lawsuit_administrative": "FALSE",
+            "lawsuit_file_date": "09/11/2024",
+            "lawsuit_tender_date": null,
+            "counsel": [
+                {
+                    "counsel_firm_name": "Brookman, Rosenberg, Brown & Sandler",
+                    "counsel_name_of_attorney": "Steven J Cooperstein",
+                    "counsel_type": "Local Plaintiff Counsel",
+                    "counsel_primary": "Yes"
+                }
+            ],
+            "injured_party": [
+                {
+                    "injured_party_last_name": "Sullivan",
+                    "injured_party_first_name": "Paul",
+                    "injured_party_suffix": "Jr",
+                    "injured_party_gender": "Male",
+                    "injured_party_plaintiff_type": "Individual",
+                    "injured_party_marital_status": "UNKNOWN",
+                    "injured_party_birth_date": "08/11/42",
+                    "plaintiff": [
+                        {
+                            "plaintiff_first_name": "Patrick",
+                            "plaintiff_last_name": "Sullivan",
+                            "plaintiff_suffix": "Jr",
+                            "lead_plaintiff_yn": "YES",
+                            "plaintiff_legal_capacity": "SELF",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": "101 Fennee Drive",
+                            "plaintiff_city": "Landenberg",
+                            "plaintiff_state": "PA",
+                            "plaintiff_zip": "19350",
+                            "plaintiff_zip_extension": null,
+                            "plaintiff_middle_name": "J.",
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        },
+                        {
+                            "plaintiff_first_name": "Paul",
+                            "plaintiff_last_name": "Sullivan",
+                            "plaintiff_suffix": null,
+                            "lead_plaintiff_yn": "NO",
+                            "plaintiff_legal_capacity": "DECEDENT",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": "101 Fennee Drive",
+                            "plaintiff_city": "Landenberg",
+                            "plaintiff_state": "PA",
+                            "plaintiff_zip": "19350",
+                            "plaintiff_zip_extension": null,
+                            "plaintiff_middle_name": "A.",
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        }
+                    ],
+                    "occupation_exposure": [
+                        {
+                            "occupation_title": "PLUMBER APPRENTICE",
+                            "occupation_jobsite": "Sullivan & Lynam Co., Inc",
+                            "occupation_jobsite_category": "PLUMBER",
+                            "occupation_jobsite_city": "UNKNOWN",
+                            "occupation_start_date": "01/01/1960",
+                            "occupation_end_date": "12/31/1960",
+                            "occupation_is_primary": "YES"
+                        }
+                    ],
+                    "diagnosis": [
+                        {
+                            "diagnosis_disease_name": "MESOTHELIOMA",
+                            "diagnosis_disease_category": "MESOTHELIOMA",
+                            "diagnosis_date": "03/01/2023",
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "YES"
+                        }
+                    ],
+                    "physician": [
+                        {
+                            "physician_first_name": null,
+                            "physician_middle_name": null,
+                            "physician_last_name": null,
+                            "physician_suffix": null,
+                            "physician_role": null,
+                            "physician_specialty": null,
+                            "date_of_physician_s_report": null,
+                            "date_of_physician_s_deposition": null,
+                            "physician_is_primary": "FALSE"
+                        }
+                    ],
+                    "tobacco": [
+                        {
+                            "tobacco_type": "NON-SMOKER",
+                            "tobacco_start_date": null,
+                            "tobacco_end_date": null,
+                            "tobacco_packs_per_day": 0,
+                            "tobacco_is_primary": "No",
+                            "tobacco_comment": null
+                        }
+                    ],
+                    "product_exposure": [],
+                    "related_party": [
+                        {
+                            "related_party_last_name": "Sullivan",
+                            "related_party_first_name": "Patrick",
+                            "related_party_middle_name": "J",
+                            "related_party_suffix": null,
+                            "related_party_relationship": "OTHER",
+                            "related_party_legal_capacity": "Executor",
+                            "related_party_SSN": null,
+                            "related_party_birth_date": null
+                        }
+                    ],
+                    "injured_party_death_date": "04/09/2023",
+                    "injured_party_street": "101 Fennee Drive",
+                    "injured_party_city": "Landenberg",
+                    "injured_party_state": "PA",
+                    "injured_party_zip": "19350",
+                    "injured_party_zip_ext": null,
+                    "injured_party_SSN": null,
+                    "injured_party_middle_name": null,
+                    "injured_party_is_loss_of_consortium_claimed": "No",
+                    "injured_party_is_wrongful_death_claimed": "YES",
+                    "injured_party_individual_docket_number": "MDL-875",
+                    "injured_party_military_member": "NAVY",
+                    "injured_party_phone_no": null,
+                    "injured_party_phone_no_ext": null,
+                    "injured_party_deceased": "DECEASED"
+                }
+            ],
+            "defendant_namings": [
+                {
+                    "defendant_company": "ABB, INC., SUED INDIVIDUALLY AND AS SUCCESSOR-IN-INTEREST TO ITE IMPERIAL CO., F/K/A ITE CIRCUIT BREAKER CO.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ARMSTRONG INTERNATIONAL",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BROUDY SUPPLY COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BROWN BOVERI CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CARRIER CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CLEAVER BROOKS, INC. (155)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "COMPUDYNE CORPORATION, SUCCESSOR-IN-INTEREST TO YORK SHIPLEY, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "COPES VULCAN",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CRANE CO., DEMMING DIVISION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CROUSE-HINDS, A DIVISION OF COOPER INDUSTRIES",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "DAP, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FLOW-SERVE CORPORATION, INDIVIDUALLY AND AS SUCCESSOR TO BYRON JACKSON PUMPS, WORTHINGTON PUMPS AND IDP PUMPS, F/K/A INGERSOLL DRESSER PUMPS, F/K/A PACIFIC PUMPS AND AS SUCCESSOR-IN-INTEREST TO DURCO INTERNATIONAL, INC F/K/A THE DURIRON CO., INC. AND ROCKWELL VALVES",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FMC CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FOSTER WHEELER CORPORATION (131)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GENERAL ELECTRIC COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GOULD ELECTRONICS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GOULDS PUMPS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GREENE, TWEED NC, LLC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GRINNELL LLC, D/B/A GRINNELL CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "HAJOCA PLUMBING SUPPLY COMPANY (258)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "HERMAN GOLDNER",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "HONEYWELL INTERNATIONAL, INC., AS SUCCESSOR-IN-INTEREST TO ALLIED SIGNAL, INC. AND BENDIX CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "IMO INDUSTRIES, INC., F/K/A DE LAVAL TURBINE, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ITT CORPORATION, F/K/A BELL & GOSSETT",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "JOHN CRANE, INC., F/K/A CRANE PACKING (060)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PEP BOYS",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "RILEY POWER, INC. (233)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SCHNEIDER ELECTRIC F/K/A SQUARE D COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SID HARVEY MID ATLANTIC, INC. (160)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SPIRAX SARCO USA",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "TACO, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "UNION CARBIDE CORPORATION (081)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "WEIL McLAIN CO. (163), DIVISION OF THE MARLEY COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "WEINSTEIN SUPPLY COMPANY (264)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ZURN INDUSTRIES, INC., A/K/A AND SUCCESSOR-BY-MERGER TO ERIE CITY IRON WORKS",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "VIKING PUMP, INC.",
+                    "defendant_parent": "IDEX CORPORATION"
+                }
+            ],
+            "jurisdiction": "unknown"
+        }
+    ]
+}

@@ -1,0 +1,392 @@
+{
+    "file_name": "PACE DEVELOP/29836378.pdf",
+    "file": {
+        "log_number": "29836378",
+        "file_sent_from": "CT Corporation",
+        "file_category_type": "Lawsuit"
+    },
+    "lawsuit_service": [
+        {
+            "lawsuit_summons_date": "09/06/2024",
+            "lawsuit_allegation": "Product",
+            "lawsuit_damage_descriptions": "Fatal Injury/Wrongful Death",
+            "lawsuit_discovery_included": "NO",
+            "lawsuit_harmful_material": "ASBESTOS",
+            "lawsuit_amendment_number": "2",
+            "lawsuit_jurisdiction": "MIDDLESEX",
+            "lawsuit_is_multi_district": null,
+            "lawsuit_administrative": "FALSE",
+            "lawsuit_file_date": "09/06/2024",
+            "lawsuit_jurisdiction_state": "MA",
+            "lawsuit_third_party_company": null,
+            "lawsuit_company_served": "R.T. Vanderbilt Company, Inc.",
+            "lawsuit_docket_number": "22-3142",
+            "lawsuit_service_date": "09/06/2024",
+            "lawsuit_received_date": "09/06/2024",
+            "lawsuit_answer_due_days": "20",
+            "lawsuit_answer_due_date": "09/26/2024",
+            "lawsuit_tender_date": null,
+            "lawsuit_case_caption": "Diane S. Walden, Individually and As Personal Representative of the Estate of Donald E. Walden, Plaintiffs, vs. 3M Company, et al.",
+            "counsel": [
+                {
+                    "counsel_firm_name": "Law Offices of Michael P. Joyce, PC",
+                    "counsel_name_of_attorney": "Michael P Joyce",
+                    "counsel_type": "Local Plaintiff Counsel",
+                    "counsel_primary": "Yes"
+                },
+                {
+                    "counsel_firm_name": "Belluck & Fox LLP",
+                    "counsel_name_of_attorney": "Joseph W Belluck",
+                    "counsel_type": "Local Plaintiff Counsel",
+                    "counsel_primary": "No"
+                }
+            ],
+            "injured_party": [
+                {
+                    "injured_party_last_name": "Walden",
+                    "injured_party_first_name": "Donald",
+                    "injured_party_suffix": null,
+                    "injured_party_gender": "Male",
+                    "injured_party_plaintiff_type": "Individual",
+                    "injured_party_marital_status": "MARRIED",
+                    "injured_party_birth_date": null,
+                    "plaintiff": [
+                        {
+                            "plaintiff_first_name": "Diane",
+                            "plaintiff_last_name": "Walden",
+                            "plaintiff_suffix": null,
+                            "lead_plaintiff_yn": "YES",
+                            "plaintiff_legal_capacity": "SELF",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": "31 Greenvate Ave",
+                            "plaintiff_city": "Weymouth",
+                            "plaintiff_state": "MA",
+                            "plaintiff_zip": "02188",
+                            "plaintiff_zip_extension": null,
+                            "plaintiff_middle_name": "S.",
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        },
+                        {
+                            "plaintiff_first_name": "Donald",
+                            "plaintiff_last_name": "Walden",
+                            "plaintiff_suffix": null,
+                            "lead_plaintiff_yn": "NO",
+                            "plaintiff_legal_capacity": "DECEASED",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": "31 Greenvate Ave",
+                            "plaintiff_city": "Weymouth",
+                            "plaintiff_state": "MA",
+                            "plaintiff_zip": "02188",
+                            "plaintiff_zip_extension": null,
+                            "plaintiff_middle_name": "E.",
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        }
+                    ],
+                    "occupation_exposure": [
+                        {
+                            "occupation_title": "MAINTENANCE/REPAIR/CONSTRUCTION",
+                            "occupation_jobsite": "RESIDENTIAL SETTINGS THROUGHOUT MASSACHUSETTS",
+                            "occupation_jobsite_category": "OTHER",
+                            "occupation_jobsite_city": "UNKNOWN",
+                            "occupation_start_date": "01/01/1960",
+                            "occupation_end_date": "12/31/1970",
+                            "occupation_is_primary": "YES"
+                        },
+                        {
+                            "occupation_title": "GOVT EMPLOYEE",
+                            "occupation_jobsite": "ARMSTRONG WORLD INDUSTRIES",
+                            "occupation_jobsite_category": "GOVERNMENT",
+                            "occupation_jobsite_city": "BRAINTREE, MA",
+                            "occupation_start_date": "01/01/1970",
+                            "occupation_end_date": "12/31/1970",
+                            "occupation_is_primary": "NO"
+                        }
+                    ],
+                    "diagnosis": [
+                        {
+                            "diagnosis_disease_name": "MESOTHELIOMA",
+                            "diagnosis_disease_category": "MESOTHELIOMA",
+                            "diagnosis_date": "06/01/2022",
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "YES"
+                        },
+                        {
+                            "diagnosis_disease_name": "ASBESTOSIS",
+                            "diagnosis_disease_category": "NON-MALIGNANT",
+                            "diagnosis_date": null,
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "NO"
+                        },
+                        {
+                            "diagnosis_disease_name": "UNKNOWN",
+                            "diagnosis_disease_category": "UNKNOWN",
+                            "diagnosis_date": null,
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "NO"
+                        }
+                    ],
+                    "physician": [
+                        {
+                            "physician_first_name": null,
+                            "physician_middle_name": null,
+                            "physician_last_name": null,
+                            "physician_suffix": null,
+                            "physician_role": null,
+                            "physician_specialty": null,
+                            "date_of_physician_s_report": null,
+                            "date_of_physician_s_deposition": null,
+                            "physician_is_primary": "FALSE"
+                        }
+                    ],
+                    "tobacco": [
+                        {
+                            "tobacco_type": null,
+                            "tobacco_start_date": null,
+                            "tobacco_end_date": null,
+                            "tobacco_packs_per_day": null,
+                            "tobacco_is_primary": null,
+                            "tobacco_comment": null
+                        }
+                    ],
+                    "product_exposure": [],
+                    "related_party": [
+                        {
+                            "related_party_last_name": "WALDEN",
+                            "related_party_first_name": "DIANE",
+                            "related_party_middle_name": "S",
+                            "related_party_suffix": null,
+                            "related_party_relationship": "OTHER",
+                            "related_party_legal_capacity": "Personal Representative",
+                            "related_party_SSN": "888-88-8888",
+                            "related_party_birth_date": "01/01/1970"
+                        }
+                    ],
+                    "injured_party_death_date": "09/09/2022",
+                    "injured_party_street": "31 Greenvate Ave",
+                    "injured_party_city": "Weymouth",
+                    "injured_party_state": "MA",
+                    "injured_party_zip": "02188",
+                    "injured_party_zip_ext": null,
+                    "injured_party_SSN": null,
+                    "injured_party_middle_name": "E.",
+                    "injured_party_is_loss_of_consortium_claimed": "Yes",
+                    "injured_party_is_wrongful_death_claimed": "YES",
+                    "injured_party_individual_docket_number": null,
+                    "injured_party_military_member": null,
+                    "injured_party_phone_no": null,
+                    "injured_party_phone_no_ext": null,
+                    "injured_party_deceased": "DECEASED"
+                }
+            ],
+            "defendant_namings": [
+                {
+                    "defendant_company": "3M Company, f/k/a Minnesota Mining and Manufacturing",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AII Acquisition Corporation, LLC, sued individually and as successor-in-interest to Athlone Industries Inc. and Holland Furnace Company",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AIR & LIQUID SYSTEMS CORPORATION, successor-by-merger to BUFFALO PUMPS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ALGOMA HARDWOODS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AMERICAN BILTRITE, INC., f/k/a AMERICAN BILTRITE RUBBER COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ASBESTOS CORPORATION, LTD",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AURORA PUMP COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BASF CATALYSTS LLC, individually and as successor-in-interest to ENGELHARD CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BEAZER EAST, f/k/a KOPPERS COMPANY, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BOSTIK, INC., as successor-in-interest to UPCO COMPANY, a subsidiary of UNITED SHOE MACHINERY HYDROMENT TILE MATE (TILE-MATE), a division of UPCO COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BURNHAM CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CARRIER CORPORATION, f/k/a BRYANT HEATING & COOLING SYSTEMS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CBS CORPORATION, f/k/a VIACOM, INC., successor-by-merger to CBS CORPORATION, a Pennsylvania corporation, f/k/a WESTINGHOUSE ELECTRIC CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CLEAVER-BROOKS COMPANY, f/k/a AQUA CHEM, INC.",
+                    "defendant_parent": "CLEAVER BROOKS INC"
+                },
+                {
+                    "defendant_company": "CLIFTON ASSOCIATES, INC., f/k/a JOHNSON ASBESTOS CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CONWED CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CRANE CO., individually and as successor-in-interest to National Boiler Co., National Radiator Corporation, National-US Radiator Corporation and Pacific Steel Boiler",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CROWN BOILER CO.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "D.N. LUKENS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "DAP PRODUCTS INC., individually and as successor-in-interest to DAP, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "DOMCO PRODUCTS TEXAS INC., d/b/a TARKETT, INC., individually and as successor-in-interest to AZROCK INDUSTRIES, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ECKEL INDUSTRIES, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FOSTER WHEELER LLC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GENERAL ELECTRIC COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GOULDS PUMPS, INCORPORATED",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GRINNELL LLC, f/k/a as GRINNELL FIRE PROTECTION SYSTEMS COMPANY, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "H.B. FULLER CO.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "THE H. B. SMITH COMPANY, INCORPORATED",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "H.M. ROYAL, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "HOMASOTE COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "INTERNATIONAL PAPER COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "KAISER GYPSUM COMPANY, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "KARNAK CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "KOHLER CO.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "LENNOX INDUSTRIES, INC., individually and as successor to LENNOX FURNACE COMPANY and DUCANE",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "MANNINGTON MILLS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "METROPOLITAN LIFE INSURANCE COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "NEW ENGLAND INSULATION COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "OCCIDENTAL CHEMICAL CORPORATION, individually and as successor-in-interest to DUREZ",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "OMYA, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PALMER ASPHALT COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PFIZER, INC., individually and as successor-in-interest to AUSTERNAL AND SPECIALTY MINERALS",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PPG ARCHITECTURAL FINISHES, INC., as successor-in-interest to AKZO NOBEL PAINTS LLC f/k/a THE GLIDDEN COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "R.T. VANDERBILT COMPANY, INC.",
+                    "defendant_parent": "VANDERBILT MINERALS, LLC"
+                },
+                {
+                    "defendant_company": "RILEY POWER, INC., f/k/a BABCOCK BORSIG POWER, INC. and f/k/a RILEY-STOKER CORPORATION d/b/a DB RILEY, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SHERWIN WILLIAMS COMPANY, sued individually and as successor-in-interest to THE VALSPAR CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "UNION CARBIDE CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "WALDO BROS. COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "WEYERHAEUSER COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "W.W. HENRY COMPANY, L.P. (THE)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "YORK INTERNATIONAL CORPORATION, individually and as successor-in-interest to FRICK COMPANY",
+                    "defendant_parent": null
+                }
+            ],
+            "jurisdiction": "unknown"
+        }
+    ]
+}

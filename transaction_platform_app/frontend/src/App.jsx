@@ -6,6 +6,7 @@ import { ConfigProvider } from './context/ConfigContext';
 import { AuthProvider } from './context/AuthContext';
 import { SpeakeasyProvider } from './context/SpeakeasyContext';
 import {MergerControlProvider} from './context/MergerControlContext';
+import {FundProvider} from './context/FundContext';
 
 import {SidebarProvider} from './context/SidebarContext';
 import { useConfig } from './context/ConfigContext';
@@ -58,12 +59,27 @@ import TeamMembers from './pages/menusections/tangibleteams/features/TeamMembers
 import BuildKitApplications from './pages/menusections/buildkits/features/BuildKitApplicationGroup';
 import InsightProgramApplications from './pages/menusections/r2d2/features/InsightPrograms';
 import MyInsightApplications from './pages/menusections/r2d2/features/MyInsightPrograms';
-import EvershedsFetch from './pages/evershedsapplications/fetch';
 
-import EvershedsRecruiting from './pages/evershedsapplications/recruiting';
+//Eversheds Application Group
+
+//Eversheds Fund Management
+import FundComponent from './pages/evershedsapplications/funds';
+import FundDashboard from './pages/evershedsapplications/funds/features/dashboard';
+import FundLoader from './pages/evershedsapplications/funds/features/loader';
+import FundFamiliesTable from './pages/evershedsapplications/funds/features/fundfamilies';
+
+//import EUCSDDConfiguration from './pages/evershedsapplications/eucsdd/features/configuration';
+import EUCSDDDashboard from './pages/evershedsapplications/eucsdd/features/dashboard';
+
+import EUCSDDLoader from './pages/evershedsapplications/eucsdd/features/loader';
+
+
+
+
+
 import EvershedsDiversity from './pages/evershedsapplications/diversity';
 import EvershedsEUCSDD from './pages/evershedsapplications/eucsdd';
-import EvershedsMergerControl from './pages/evershedsapplications/mergercontrol';
+import MergerControlContent from './pages/evershedsapplications/mergercontrol';
 import EvershedsFinancialServices from './pages/evershedsapplications/financialservices';
 
 
@@ -76,6 +92,14 @@ import NIKERaivenContent from './pages/nikeapplications/raiven';
 //import NIKERaivenTransactionLoader from './pages/nikeapplications/raiven/features/transactionloadergroup';
 
 
+import PaceAida from './pages/paceapplications/paceaida';
+import PaceAidaDashboard from './pages/paceapplications/paceaida/features/dashboard';
+
+import EvershedsRecruiting from './pages/evershedsapplications/recruiting';
+import ActiveReviewsTable from './pages/evershedsapplications/recruiting/features/activereviews';
+import RecruitingDashboard from './pages/evershedsapplications/recruiting/features/dashboard';
+import RecruitingLoader from './pages/evershedsapplications/recruiting/features/loader';
+import ReviewArchiveTable from './pages/evershedsapplications/recruiting/features/reviewarchive';
 
 
 
@@ -126,9 +150,9 @@ function AppRoutes() {
         <Route path="speakeasy" element={<Speakeasy />} />
         <Route path="settings" element={<Settings />} />
         <Route path="speakeasyclub" element={<SpeakeasyClubIndex />} />
-        <Route path="rapidresponse/partnerapplications/fetchcomponent" element={<EvershedsFetch />} />
+        <Route path="rapidresponse/partnerapplications/fundcomponent" element={<FundComponent />} />
         <Route path="rapidresponse/partnerapplications/diversitycomponent" element={<EvershedsDiversity/>} />
-        <Route path="rapidresponse/partnerapplications/mergercontrolcomponent" element={<EvershedsMergerControl />} />
+        <Route path="rapidresponse/partnerapplications/mergercontrolcomponent" element={<MergerControlContent />} />
         <Route path="rapidresponse/partnerapplications/recruitingcomponent" element={<EvershedsRecruiting />} />
         <Route path="rapidresponse/partnerapplications/eucsddcomponent" element={<EvershedsEUCSDD />} />
         <Route path="rapidresponse/partnerapplications/financialservicescomponent" element={<EvershedsFinancialServices />} />
@@ -206,8 +230,10 @@ function AppRoutes() {
 
  {/* Eversheds Merger Control routes */}
  <Route path="rapidresponse/partnerapplications/nikeraivencomponent" element={<NIKERaivenContent />} />
- <Route path="mergercontrolcomponent" element={<EvershedsMergerControl />} />
- <Route path="mergercontrol/overview" element={<EvershedsMergerControl />} />
+
+
+ <Route path="mergercontrolcomponent" element={<MergerControlContent />} />
+ <Route path="mergercontrol/overview" element={<MergerControlContent />} />
  <Route path="mergercontrol/loader" element={<TransactionLoader />} />
  <Route path="mergercontrol/transactionanalysis" element={<TransactionAnalysis />} />
  <Route path="mergercontrol/filings" element={<FilingPackageBuilder />} />
@@ -218,13 +244,54 @@ function AppRoutes() {
 {/* NIKE Raiven routes */}
 <Route path="rapidresponse/partnerapplications/nikeraivencomponent" element={<NIKERaivenContent />} />
 
- <Route path="nikeraiven/overview" element={<EvershedsMergerControl />} />
+ <Route path="nikeraiven/overview" element={<MergerControlContent />} />
  <Route path="nikeraiven/loader" element={<TransactionLoader />} />
  <Route path="nikeraiven/transactionanalysis" element={<TransactionAnalysis />} />
  <Route path="nikeraiven/filings" element={<FilingPackageBuilder />} />
  <Route path="nikeraiven/reporting" element={<MergerControlDashboard />} />
  <Route path="nikeraiven/activeprojects" element={<MergerControlActiveProjects />} />
  <Route path="nikeraiven/configuration" element={<MergerControlConfiguration />} />
+
+
+{/* Pace Aida routes */}
+<Route path="rapidresponse/partnerapplications/paceaidacomponent" element={<PaceAida />} />
+<Route path="paceaida/dashboard" element={<PaceAidaDashboard />} />
+<Route path="paceaida/overview" element={<PaceAida />} />
+
+
+
+{/* Eversheds Fund Management routes */}
+
+<Route path="fundmonitoring/overview" element={<FundComponent />} />
+<Route path="fundmonitoring/families" element={<FundFamiliesTable />} />
+
+ <Route path="fundmonitoring/research" element={<FundLoader />} />
+
+ <Route path="fundmonitoring/dashboard" element={<FundDashboard />} />
+
+
+ <Route path="eucsddcomponent" element={<EvershedsEUCSDD />} />
+ <Route path="eucsdd/overview" element={<EvershedsEUCSDD />} />
+ <Route path="eucsdd/loader" element={<EUCSDDLoader />} />
+ 
+ <Route path="eucsdd/dashboard" element={<EUCSDDDashboard />} />
+ 
+ <Route path="eucsdd/configuration" element={<EvershedsEUCSDD />} />
+
+
+
+ <Route path="recruiting/overview" element={<EvershedsRecruiting />} />
+ <Route path="recruiting/loader" element={<RecruitingLoader />} />
+ 
+ <Route path="recruiting/dashboard" element={<RecruitingDashboard />} />
+
+ <Route path="recruiting/activereviews" element={<ActiveReviewsTable />} />
+
+ <Route path="recruiting/archive" element={<ReviewArchiveTable />} />
+ 
+ <Route path="recruiting/configuration" element={<EvershedsEUCSDD />} />
+
+
 
 
 
@@ -242,23 +309,25 @@ function AppRoutes() {
 
 function App() {
   return (
-    <AuthProvider>
-    <SidebarProvider>
-      <ApplicationRunProvider>
-      <MergerControlProvider>
-    
-      <ConfigProvider>
-      <SpeakeasyProvider> 
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </SpeakeasyProvider>
-      </ConfigProvider>
-    
-    </MergerControlProvider>
-    </ApplicationRunProvider>
-   </SidebarProvider> 
+      <AuthProvider>
+        <ConfigProvider>
+  
+      <SidebarProvider>
+        <ApplicationRunProvider>
+          <MergerControlProvider>
+            <FundProvider>
+              <SpeakeasyProvider> 
+                <BrowserRouter>
+                  <AppRoutes />
+                </BrowserRouter>
+              </SpeakeasyProvider>
+            </FundProvider>
+          </MergerControlProvider>
+        </ApplicationRunProvider>
+      </SidebarProvider>
+   </ConfigProvider> 
    </AuthProvider>
+  
   );
 }
 

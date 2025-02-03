@@ -1,0 +1,196 @@
+{
+    "file_name": "PACE DEVELOP/29418565.pdf",
+    "file": {
+        "log_number": "29418565",
+        "file_sent_from": "CSC Corporation",
+        "file_category_type": "Lawsuit"
+    },
+    "lawsuit_service": [
+        {
+            "lawsuit_third_party_company": null,
+            "lawsuit_jurisdiction": "DELAWARE",
+            "lawsuit_harmful_material": "ASBESTOS",
+            "lawsuit_discovery_included": "NO",
+            "lawsuit_administrative": "FALSE",
+            "lawsuit_jurisdiction_state": "DE",
+            "lawsuit_allegation": "Product",
+            "lawsuit_is_multi_district": null,
+            "lawsuit_file_date": "06/11/2024",
+            "lawsuit_damage_descriptions": "Personal Injury",
+            "lawsuit_tender_date": null,
+            "lawsuit_case_caption": "GARY VAN CAMP vs. CATERPILLAR, INC.",
+            "lawsuit_summons_date": "06/17/2024",
+            "lawsuit_service_date": "07/01/2024",
+            "lawsuit_received_date": "07/02/2024",
+            "lawsuit_answer_due_days": "20",
+            "lawsuit_answer_due_date": "07/21/2024",
+            "lawsuit_docket_number": "N24C06099ASB",
+            "lawsuit_amendment_number": null,
+            "lawsuit_company_served": "PECW HOLDING COMPANY",
+            "counsel": [
+                {
+                    "counsel_firm_name": "DALTON & ASSOCIATES, P.A.",
+                    "counsel_name_of_attorney": "Bartholomew J Dalton",
+                    "counsel_type": "Local Plaintiff Counsel",
+                    "counsel_primary": "Yes"
+                },
+                {
+                    "counsel_firm_name": "BALICK & BALICK, LLC",
+                    "counsel_name_of_attorney": "Adam Balick",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "WEITZ & LUXENBERG, P.C.",
+                    "counsel_name_of_attorney": "Unknown",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                }
+            ],
+            "injured_party": [
+                {
+                    "injured_party_last_name": "VAN CAMP",
+                    "injured_party_first_name": "GARY",
+                    "injured_party_suffix": null,
+                    "injured_party_gender": "Male",
+                    "injured_party_plaintiff_type": "Individual",
+                    "injured_party_marital_status": null,
+                    "injured_party_birth_date": "11/04/1960",
+                    "plaintiff": [
+                        {
+                            "plaintiff_first_name": "GARY",
+                            "plaintiff_last_name": "VAN CAMP",
+                            "plaintiff_suffix": null,
+                            "lead_plaintiff_yn": "YES",
+                            "plaintiff_legal_capacity": "SELF",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": "516 Leisure Acres St",
+                            "plaintiff_city": "Sparta",
+                            "plaintiff_state": "MI",
+                            "plaintiff_zip": "49345",
+                            "plaintiff_zip_extension": "1557",
+                            "plaintiff_middle_name": null,
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        }
+                    ],
+                    "occupation_exposure": [
+                        {
+                            "occupation_title": "STOCKER",
+                            "occupation_jobsite": "Spartan Foods Warehouse",
+                            "occupation_jobsite_category": "OTHER",
+                            "occupation_jobsite_city": "Grand Rapids, MI",
+                            "occupation_start_date": "01/01/1977",
+                            "occupation_end_date": "12/31/1977",
+                            "occupation_is_primary": "NO"
+                        },
+                        {
+                            "occupation_title": "BRAKE PRESS OPERATOR",
+                            "occupation_jobsite": "Steelcase, Inc.",
+                            "occupation_jobsite_category": "OTHER",
+                            "occupation_jobsite_city": "Grand Rapids, MI",
+                            "occupation_start_date": "01/01/1983",
+                            "occupation_end_date": "12/31/2018",
+                            "occupation_is_primary": "YES"
+                        }
+                    ],
+                    "diagnosis": [
+                        {
+                            "diagnosis_disease_name": "MESOTHELIOMA",
+                            "diagnosis_disease_category": "MESOTHELIOMA",
+                            "diagnosis_date": "12/01/2023",
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "YES"
+                        }
+                    ],
+                    "physician": [
+                        {
+                            "physician_first_name": null,
+                            "physician_middle_name": null,
+                            "physician_last_name": null,
+                            "physician_suffix": null,
+                            "physician_role": null,
+                            "physician_specialty": null,
+                            "date_of_physician_s_report": null,
+                            "date_of_physician_s_deposition": null,
+                            "physician_is_primary": "FALSE"
+                        }
+                    ],
+                    "tobacco": [
+                        {
+                            "tobacco_type": null,
+                            "tobacco_start_date": null,
+                            "tobacco_end_date": null,
+                            "tobacco_packs_per_day": null,
+                            "tobacco_is_primary": null,
+                            "tobacco_comment": null
+                        }
+                    ],
+                    "product_exposure": [],
+                    "related_party": [
+                        {
+                            "related_party_last_name": null,
+                            "related_party_first_name": null,
+                            "related_party_middle_name": null,
+                            "related_party_suffix": null,
+                            "related_party_relationship": null,
+                            "related_party_legal_capacity": null,
+                            "related_party_SSN": null,
+                            "related_party_birth_date": null
+                        }
+                    ],
+                    "injured_party_death_date": null,
+                    "injured_party_street": "516 Leisure Acres St",
+                    "injured_party_city": "Sparta",
+                    "injured_party_state": "MI",
+                    "injured_party_zip": "49345",
+                    "injured_party_zip_ext": "1557",
+                    "injured_party_SSN": null,
+                    "injured_party_middle_name": null,
+                    "injured_party_is_loss_of_consortium_claimed": "No",
+                    "injured_party_is_wrongful_death_claimed": "NO",
+                    "injured_party_individual_docket_number": "MDL-875",
+                    "injured_party_military_member": null,
+                    "injured_party_phone_no": null,
+                    "injured_party_phone_no_ext": null,
+                    "injured_party_deceased": "LIVING"
+                }
+            ],
+            "defendant_namings": [
+                {
+                    "defendant_company": "CATERPILLAR, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CINCINNATI INCORPORATED",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GUARD-LINE, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "HYSTER-YALE GROUP, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "INDUSTRIAL HOLDINGS CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PECW HOLDING COMPANY f/k/a PLASTICS ENGINEERING COMPANY",
+                    "defendant_parent": "PLASTICS ENGINEERING COMPANY"
+                },
+                {
+                    "defendant_company": "SAINT-GOBAIN ABRASIVES, INC., Individually, and as Successor to NORTON COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "UNION CARBIDE CORPORATION",
+                    "defendant_parent": null
+                }
+            ],
+            "jurisdiction": "unknown"
+        }
+    ]
+}

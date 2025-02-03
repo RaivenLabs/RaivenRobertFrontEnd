@@ -22,15 +22,21 @@ import SettingsSidebar from '../../pages/menusections/settings/settingssidebar';
 import AuthenticationSidebar from '../../pages/menusections/authentication/authenticationsidebar';
 import SpeakeasyClubSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/sidebar';
 import RapidReviewSidebar from '../../pages/menusections/rapidreview/rapidreviewsidebar';
-import FetchSidebar from '../../pages/evershedsapplications/fetch/fetchsidebar';
+import FundSidebar from '../../pages/evershedsapplications/funds/fundsidebar';
 
 
 import DiversitySidebar from '../../pages/evershedsapplications/diversity/diversitysidebar';
 import EUCSDDSidebar from '../../pages/evershedsapplications/eucsdd/eucsddsidebar';
 import RecruitingSidebar from '../../pages/evershedsapplications/recruiting/recruitingsidebar';
 import MergerControlSidebar from '../../pages/evershedsapplications/mergercontrol/mergercontrolsidebar';
+
+
 import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
 
+
+
+
+import PaceAidaSidebar from '../../pages/paceapplications/paceaida/paceaidasidebar';
 
 
 import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
@@ -64,10 +70,12 @@ const BaseLayout = () => {
     authentication: <AuthenticationSidebar onSidebarChange={setActiveSidebar} />,
     speakeasyclub: <SpeakeasyClubSidebar onSidebarChange={setActiveSidebar} />,
     rapidreview: <RapidReviewSidebar onSidebarChange={setActiveSidebar} />,
-    fetchsidebar: <FetchSidebar onSidebarChange={setActiveSidebar} />,
+    fundsidebar: <FundSidebar onSidebarChange={setActiveSidebar} />,
 
     mergercontrolsidebar: <MergerControlSidebar onSidebarChange={setActiveSidebar} />,
     nikeraivensidebar: <NIKERaivenSidebar onSidebarChange={setActiveSidebar} />,
+    paceaidasidebar: <PaceAidaSidebar onSidebarChange={setActiveSidebar} />,
+
 
     financialservicessidebar: <FinancialServicesSidebar onSidebarChange={setActiveSidebar} />,
     diversitysidebar: <DiversitySidebar onSidebarChange={setActiveSidebar} />,

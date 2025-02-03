@@ -3,6 +3,7 @@ export const CUSTOMER_TYPES = {
     TANGIBLE: 'TANGIBLE',
     GLOBAL: 'GLOBAL',
     LAW_FIRM: 'LAW_FIRM',
+    API: 'API',
     ENTERPRISE: 'ENTERPRISE'
   };
   
@@ -42,6 +43,16 @@ export const CUSTOMER_TYPES = {
         applications_dock_text: 'Law Firm Applications Dock'
       }
     },
+    [CUSTOMER_TYPES.API]: {
+      id: CUSTOMER_TYPES.API,
+      company_name: 'API Customer',
+      menu_config: {
+        briefing_room_text: 'Briefing Room',
+        applications_dock_text: 'Applications Dock'
+      }
+    },
+
+
     [CUSTOMER_TYPES.TANGIBLE]: {
       id: CUSTOMER_TYPES.TANGIBLE,
       company_name: 'Tangible',

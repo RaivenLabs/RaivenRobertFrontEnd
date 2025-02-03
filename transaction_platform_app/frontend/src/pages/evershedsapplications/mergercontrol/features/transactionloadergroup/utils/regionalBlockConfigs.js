@@ -3,7 +3,7 @@
 export const regionalBlockConfigs = {
   european_union: {
     display: "European Union",
-    dataKey: "european_union",
+    blockKey: "european_union",
     requiresParent: false,
     currency: "EUR",
     headers: {
@@ -33,7 +33,7 @@ export const regionalBlockConfigs = {
 
   comesa: {
     display: "COMESA",
-    dataKey: "comesa",
+    blockKey: "comesa",
     requiresParent: false,
     currency: "USD",
     headers: {
@@ -61,7 +61,7 @@ export const regionalBlockConfigs = {
 
   south_america: {
     display: "South America",
-    dataKey: "south_america",
+    blockKey: "south_america",
     requiresParent: false,
     currency: "USD",
     headers: {
@@ -88,7 +88,7 @@ export const regionalBlockConfigs = {
 
   united_states: {
     display: "United States",
-    dataKey: "united_states",
+    blockKey: "united_states",
     requiresParent: false,
     currency: "USD",
     headers: {
@@ -113,7 +113,7 @@ export const regionalBlockConfigs = {
       },
       {
         display: "USA Total",
-        dataKey: "ustotal",
+        dataKey: "us_total",
         requiresLocalData: true
       }
 
@@ -128,7 +128,7 @@ export const regionalBlockConfigs = {
 
   united_kingdom: {
     display: "United Kingdom",
-    dataKey: "united_kingdom",
+    blockKey: "united_kingdom",
     requiresParent: false,
     currency: "GBP",
     headers: {
@@ -199,6 +199,20 @@ export const requiresLocalData = (blockKey, memberStateDisplay) => {
   const memberState = getMemberStates(blockKey)
     .find(state => state.display === memberStateDisplay);
   return memberState?.requiresLocalData || false;
+};
+
+// Add this with the other helper functions in regionalBlockConfigs.js
+export const createInitialPresenceState = () => {
+  const presenceState = {};
+  
+  Object.entries(regionalBlockConfigs).forEach(([regionKey, region]) => {
+    presenceState[regionKey] = {};
+    region.member_states.forEach(state => {
+      presenceState[regionKey][state.dataKey] = false;
+    });
+  });
+  
+  return presenceState;
 };
 
 export default regionalBlockConfigs;

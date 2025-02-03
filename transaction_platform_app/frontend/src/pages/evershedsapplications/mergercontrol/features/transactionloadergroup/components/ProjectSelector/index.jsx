@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useProjectManagement } from '../../hooks/useProjectManagement';
+import { useMergerControl } from '../../../../../../../context/MergerControlContext';
+
 
 
 const ProjectSelector = ({onRunSelectionComplete, disabled}) => {
@@ -24,8 +26,9 @@ const ProjectSelector = ({onRunSelectionComplete, disabled}) => {
     const [savedRuns, setSavedRuns] = useState([]);
     const [showSavedRuns, setShowSavedRuns] = useState(false);
     const [activeRun, setActiveRun] = useState(null);
+    const {dealSize, setDealSize } = useMergerControl();
     const [showNewRunSuccess, setShowNewRunSuccess] = useState(false);
-  
+    const { startAnalysis } = useMergerControl();  // Add this line to get startAnalysis
  
   useEffect(() => {
     const checkExistingProject = async () => {
@@ -97,6 +100,9 @@ const ProjectSelector = ({onRunSelectionComplete, disabled}) => {
     try {
       await selectProject(existingProject.projectId);
       setSelectedProject(existingProject);
+      if (setDealSize && existingProject.dealSize) {
+        setDealSize(existingProject.dealSize);
+      }
     } catch (err) {
       console.error('Error selecting project:', err);
     }
@@ -109,7 +115,7 @@ const ProjectSelector = ({onRunSelectionComplete, disabled}) => {
       setIsLoading(true);
       
       const response = await fetch(`/api/projects/${selectedProject.projectId}/runs`, {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -123,6 +129,7 @@ const ProjectSelector = ({onRunSelectionComplete, disabled}) => {
       console.log('Created new run:', newRun);  // Debug log
       
       setActiveRun(newRun);
+      startAnalysis(newRun);  // This will update the merger context
       setShowNewRunSuccess(true);
 
       // Refresh the saved runs list to include the new run
@@ -223,27 +230,58 @@ return (
                     </div>
                     <div className="text-sm text-green-600">✓ Ready for Application Run</div>
                   </div>
+                  
                 </div>
               ) : existingProject ? (
-                <div className="p-4 border-2 border-royalBlue rounded-lg bg-gray-50 h-32" >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">{existingProject.projectName}</p>
-                      <p className="text-xs text-gray-500">
-                        Created: {new Date(existingProject.dateCreated).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <button
-                      onClick={handleSelectProject}
-                      disabled={isLoading}
-                      className="px-6 py-2 bg-royalBlue text-white rounded-lg 
-                               hover:bg-blue-700 disabled:bg-gray-300
-                               font-medium"
-                    >
-                      Confirm Project
-                    </button>
+                <div className="p-4 border-2 border-royalBlue rounded-lg bg-gray-50 space-y-2">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">{existingProject.projectName}</p>
+                    <p className="text-xs text-gray-500">
+                      Created: {new Date(existingProject.dateCreated).toLocaleDateString()}
+                    </p>
+                    <input
+                      type="text"
+                      value={existingProject?.dealSize ? 
+                        new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                          maximumFractionDigits: 0
+                        }).format(existingProject.dealSize) : 
+                        ''
+                      }
+                      onChange={(e) => {
+                        // Remove all non-digits first
+                        const rawValue = e.target.value.replace(/[^0-9]/g, '');
+                        // Convert to number or null if empty
+                        const numericValue = rawValue ? parseInt(rawValue) : null;
+                        
+                        const updatedProject = {
+                          ...existingProject,
+                          dealSize: numericValue
+                        };
+                        setExistingProject(updatedProject);
+                        
+                        // This updates the merger context
+                        setDealSize(numericValue);
+                      }}
+                      placeholder="Set Deal Size"
+                      className="w-[106px] mt-2 p-2 border border-gray-300 rounded
+                               focus:border-royalBlue focus:ring-1 focus:ring-royalBlue
+                               text-sm"
+                    />
                   </div>
+                  <button
+                    onClick={handleSelectProject}
+                    disabled={isLoading}
+                    className="px-6 py-2 bg-royalBlue text-white rounded-lg 
+                             hover:bg-blue-700 disabled:bg-gray-300
+                             font-medium"
+                  >
+                    Confirm Project
+                  </button>
                 </div>
+              </div> 
               ) : (
                 <div className="p-4 border-2 border-royalBlue rounded-lg bg-gray-50 h-32">
                   <h4 className="font-medium text-gray-700 mb-2">Create New Project</h4>

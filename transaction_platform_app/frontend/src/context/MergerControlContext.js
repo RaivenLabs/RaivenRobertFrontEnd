@@ -1,24 +1,41 @@
-// contexts/MergerControlContext.js
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { buyingCompanies } from '../data/buyingCompanyData';
-import { targetCompanies } from '../data/targetCompanyData';
-import determineFilingRequirements, {
-  calculateMarketShareOverlap,
-  validateCompanyData
-} from '../utils/mergerControlAlgorithms';
+import React, { createContext, useState, useEffect } from 'react';
+import { buyingCompanies } from '../data/buyingCompanyData.js';
+import { targetCompanies } from '../data/targetCompanyData.js';
 
 const MergerControlContext = createContext();
 
-export const MergerControlProvider = ({ children }) => {
+const MergerControlProvider = ({ children }) => {
   // Analysis State
   const [activeRun, setActiveRun] = useState(null);
+  const [projectId, setProjectId] = useState(null);
   
-  // State Management
+  // Original Company State Management
   const [buyingCompany, setBuyingCompany] = useState(null);
   const [buyingCompanyData, setBuyingCompanyData] = useState(null);
-  const [targetCompany, settargetCompany] = useState(null);
-  const [targetCompanyData, settargetCompanyData] = useState(null);
-  const [combinedAnalysis, setCombinedAnalysis] = useState(null);
+  const [targetCompany, setTargetCompany] = useState(null);
+  const [targetCompanyData, setTargetCompanyData] = useState(null);
+  const [dealSize, setDealSize] = useState(null);
+  const [error, setError] = useState(null);
+  
+  // Transaction-specific Company States
+  const [transactionTargetCompany, setTransactionTargetCompany] = useState(null);
+  const [transactionBuyingCompany, setTransactionBuyingCompany] = useState(null);
+  
+  // Analysis Results State
+  const [analysisResults, setAnalysisResults] = useState({
+    filingRequirements: null,
+    marketOverlap: null,
+    combinedMetrics: null,
+    regionalPresence: null
+  });
+
+  // Deal Card State
+  const [dealCard, setDealCard] = useState({
+    totalValue: null,
+    closingDate: null,
+    keyMetrics: {},
+    riskFactors: []
+  });
   
   // Project Management State
   const [projectName, setProjectName] = useState('');
@@ -43,72 +60,54 @@ export const MergerControlProvider = ({ children }) => {
   // Status States
   const [isLoading, setIsLoading] = useState(false);
 
-  // Load initial data
-  useEffect(() => {
-    const loadSavedData = async () => {
-      setIsLoading(true);
-      try {
-        const savedBuyer = localStorage.getItem('selectedBuyingCompany');
-        const savedSeller = localStorage.getItem('selectedTargetCompany');
-        const savedProject = localStorage.getItem('currentProject');
-        const savedProjectsData = localStorage.getItem('savedProjects');
-        
-        if (savedBuyer) {
-          setBuyingCompany(savedBuyer);
-          setBuyingCompanyData(buyingCompanies[savedBuyer]);
-        }
-        
-        if (savedSeller) {
-          settargetCompany(savedSeller);
-          settargetCompanyData(targetCompanies[savedSeller]);
-        }
-
-        if (savedProject) {
-          const projectData = JSON.parse(savedProject);
-          setProjectName(projectData.name);
-          setProjectMetadata(projectData.metadata);
-          setWorksheetData(projectData.worksheetData || {});
-        }
-
-        if (savedProjectsData) {
-          setSavedProjects(JSON.parse(savedProjectsData));
-        }
-      } catch (err) {
-        console.log('Unable to load saved data');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadSavedData();
-  }, []);
-
-  // Update combined analysis using the algorithm file
-  const updateCombinedAnalysis = (buyer, seller) => {
-    if (!buyer || !seller) return;
-
+  // Load run data for transaction analysis
+  const loadRunData = async (runData) => {
     try {
-      validateCompanyData(buyer);
-      validateCompanyData(seller);
+      setIsLoading(true);
+      const { projectId, runId } = runData;
+      
+      const targetDataPath = `/api/projects/${projectId}/runs/${runId}`;
+      const buyingDataPath = `/api/projects/${projectId}/runs/${runId}/buying_data`;
+      
+      const [targetResponse, buyingResponse] = await Promise.all([
+        fetch(targetDataPath),
+        fetch(buyingDataPath)
+      ]);
 
-      const filingRequirements = determineFilingRequirements(buyer, seller, {
-        checkHealthcare: true,
-        considerJointVenture: false
-      });
+      if (!targetResponse.ok || !buyingResponse.ok) {
+        throw new Error('Failed to fetch company data');
+      }
 
-      const analysis = {
-        filing_requirements: filingRequirements,
-        market_analysis: calculateMarketShareOverlap(buyer, seller),
-        metadata: {
-          calculation_date: new Date().toISOString(),
-          status: 'complete'
-        }
-      };
+      const targetData = await targetResponse.json();
+      const buyingData = await buyingResponse.json();
 
-      setCombinedAnalysis(analysis);
-    } catch (err) {
-      console.log('Unable to update combined analysis');
+      // Update states with the fetched data
+      setTransactionTargetCompany(targetData.targetCompanyData);
+      setTransactionBuyingCompany(buyingData.buyingCompanyData);
+
+      // Update deal card with basic metrics
+      updateDealCard(targetData.targetCompanyData, buyingData.buyingCompanyData);
+
+    } catch (error) {
+      console.error('❌ Error loading run data:', error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  // Basic metrics calculation
+  const updateDealCard = (targetData, buyingData) => {
+    setDealCard({
+      totalValue: dealSize,
+      closingDate: new Date().toISOString(),
+      keyMetrics: {
+        combinedRevenue: (targetData?.global_metrics?.global_revenue?.numeric || 0) + 
+                        (buyingData?.global_metrics?.global_revenue?.numeric || 0),
+        combinedEmployees: (targetData?.global_metrics?.global_employees || 0) + 
+                         (buyingData?.global_metrics?.global_employees || 0)
+      }
+    });
   };
 
   // Company update functions
@@ -118,17 +117,15 @@ export const MergerControlProvider = ({ children }) => {
     if (companyData) {
       setBuyingCompanyData(companyData);
       localStorage.setItem('selectedBuyingCompany', companyId);
-      updateCombinedAnalysis(companyData, targetCompanyData);
     }
   };
 
   const updateTargetCompany = (companyId) => {
-    settargetCompany(companyId);
+    setTargetCompany(companyId);
     const companyData = targetCompanies[companyId];
     if (companyData) {
-      settargetCompanyData(companyData);
-      localStorage.setItem('selectedtargetCompany', companyId);
-      updateCombinedAnalysis(buyingCompanyData, companyData);
+      setTargetCompanyData(companyData);
+      localStorage.setItem('selectedTargetCompany', companyId);
     }
   };
 
@@ -136,17 +133,41 @@ export const MergerControlProvider = ({ children }) => {
   const startAnalysis = (runData) => {
     console.log('📊 Starting analysis with run:', runData?.runId);
     setActiveRun(runData);
-    // Update target company data from run if available
+    
     if (runData?.targetCompanyData) {
-      settargetCompanyData(runData.targetCompanyData.modified || runData.targetCompanyData.original);
+      setTargetCompanyData(runData.targetCompanyData.modified || runData.targetCompanyData.original);
     }
-    // Update combined analysis
-    if (buyingCompanyData && runData?.targetCompanyData) {
-      updateCombinedAnalysis(
-        buyingCompanyData, 
-        runData.targetCompanyData.modified || runData.targetCompanyData.original
-      );
+
+    if (runData?.projectId) {
+      setProjectId(runData.projectId);
     }
+
+    // Load transaction-specific data
+    loadRunData(runData);
+  };
+
+  // Clear function
+  const clearSelections = () => {
+    setBuyingCompany(null);
+    setBuyingCompanyData(null);
+    setTargetCompany(null);
+    setTargetCompanyData(null);
+    setTransactionTargetCompany(null);
+    setTransactionBuyingCompany(null);
+    setDealCard({
+      totalValue: null,
+      closingDate: null,
+      keyMetrics: {},
+      riskFactors: []
+    });
+    setWorksheetData({
+      regions: {},
+      targetInputs: {},
+      analysisResults: {}
+    });
+    localStorage.removeItem('selectedBuyingCompany');
+    localStorage.removeItem('selectedTargetCompany');
+    localStorage.removeItem('currentProject');
   };
 
   // Project management functions
@@ -177,40 +198,6 @@ export const MergerControlProvider = ({ children }) => {
     }));
   };
 
-  // Worksheet data management
-  const updateWorksheetData = (regionKey, jurisdictionKey, fieldKey, value) => {
-    setWorksheetData(prev => ({
-      ...prev,
-      regions: {
-        ...prev.regions,
-        [regionKey]: {
-          ...prev.regions[regionKey],
-          [jurisdictionKey]: {
-            ...(prev.regions[regionKey]?.[jurisdictionKey] || {}),
-            [fieldKey]: value
-          }
-        }
-      }
-    }));
-  };
-
-  // Clear function
-  const clearSelections = () => {
-    setBuyingCompany(null);
-    setBuyingCompanyData(null);
-    settargetCompany(null);
-    settargetCompanyData(null);
-    setCombinedAnalysis(null);
-    setWorksheetData({
-      regions: {},
-      targetInputs: {},
-      analysisResults: {}
-    });
-    localStorage.removeItem('selectedBuyingCompany');
-    localStorage.removeItem('selectedtargetCompany');
-    localStorage.removeItem('currentProject');
-  };
-
   return (
     <MergerControlContext.Provider
       value={{
@@ -219,7 +206,14 @@ export const MergerControlProvider = ({ children }) => {
         buyingCompanyData,
         targetCompany,
         targetCompanyData,
-        combinedAnalysis,
+        dealSize,
+        setDealSize,
+        
+        // Transaction-specific Data
+        transactionTargetCompany,
+        transactionBuyingCompany,
+        analysisResults,
+        dealCard,
         
         // Analysis State
         activeRun,
@@ -229,11 +223,11 @@ export const MergerControlProvider = ({ children }) => {
         projectName,
         projectMetadata,
         savedProjects,
+        projectId,
         updateProjectName,
         
         // Worksheet Data
         worksheetData,
-        updateWorksheetData,
         
         // Region Selection
         selectedRegions,
@@ -243,17 +237,20 @@ export const MergerControlProvider = ({ children }) => {
           setSelectedJurisdictions(jurisdictions);
         },
         
-        // Status Indicator
+        // Status & Error States
         isLoading,
-        
+        error,
+        setError,
+
         // Functions
         updateBuyingCompany,
         updateTargetCompany,
         clearSelections,
+        loadRunData,
         
         // Available Companies Lists
         buyingCompanies,
-        targetCompanies
+        targetCompanies,
       }}
     >
       {children}
@@ -261,12 +258,13 @@ export const MergerControlProvider = ({ children }) => {
   );
 };
 
-export const useMergerControl = () => {
-  const context = useContext(MergerControlContext);
+function useMergerControl() {
+  const context = React.useContext(MergerControlContext);
   if (!context) {
     throw new Error('useMergerControl must be used within a MergerControlProvider');
   }
   return context;
-};
+}
 
+export { MergerControlProvider, useMergerControl };
 export default MergerControlContext;

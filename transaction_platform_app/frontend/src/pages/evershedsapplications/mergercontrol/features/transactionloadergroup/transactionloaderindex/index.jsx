@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Scale, Save, CheckCircle, XCircle } from 'lucide-react';
 import { useMergerControl } from '../../../../../../context/MergerControlContext';
 import TransactionCompanySelector from '../components/TransactionCompanySelector';
@@ -13,6 +13,8 @@ const TransactionLoader = () => {
   const navigate = useNavigate();
   const [activeRun, setActiveRun] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+  const isAnalysisPage = location.pathname.includes('/transactionanalysis');
   const [blockConfiguration, setBlockConfiguration] = useState(null);
   const { buyingCompany, targetCompany, startAnalysis } = useMergerControl();
   
@@ -69,10 +71,13 @@ const TransactionLoader = () => {
 
   // Effect to auto-advance company selection
   useEffect(() => {
-    if (currentStep === 'company_selection' && buyingCompany && targetCompany) {
+    if (currentStep === 'company_selection' && 
+        buyingCompany && 
+        targetCompany && 
+        !isAnalysisPage) {  // Add this check
       handleCompanySelectionComplete();
     }
-  }, [buyingCompany, targetCompany, currentStep]);
+  }, [buyingCompany, targetCompany, currentStep, isAnalysisPage]);
 
 
   const handleAnalysisNavigation = async () => {

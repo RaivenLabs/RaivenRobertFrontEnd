@@ -10,7 +10,7 @@ const ApplicationsOverview = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-          <h1>Application Suite & Solutions</h1>
+          <h1>Application Suite</h1>
           <p>Transform your transaction workflows with purpose-built applications</p>
           <p>Designed for every stakeholder in your ecosystem</p>
         </div>

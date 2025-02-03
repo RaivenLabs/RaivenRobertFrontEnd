@@ -85,6 +85,7 @@ const CustomerSelector = () => {
       'GLOBAL': [],
       'LAW_FIRM': [],
       'ENTERPRISE': [],
+      'API': [],
       'TANGIBLE': []
     };
 
@@ -172,6 +173,14 @@ const CustomerSelector = () => {
 
           <optgroup label="Enterprise Customers">
             {groupedCustomers['ENTERPRISE'].map(customer => (
+              <option key={customer.id} value={customer.id}>
+                {customer.company_name}
+              </option>
+            ))}
+          </optgroup>
+
+          <optgroup label="API Customers">
+            {groupedCustomers['API'].map(customer => (
               <option key={customer.id} value={customer.id}>
                 {customer.company_name}
               </option>

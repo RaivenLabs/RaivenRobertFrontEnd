@@ -51,6 +51,25 @@
         }
       }
     },
+
+  "LAWBARRISTER": {
+      "id": "LAWBARRISTER",
+      "customer_type": "LAW_FIRM",
+      "company_name": "Pace",
+      "cognito_group": "Covent",
+      "datapath": "apicustomers/barrister",
+      "specific_settings": {
+        "region": "Global",
+        "preferred_language": "en-US",
+        "custom_templates": {},
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+
+
     "LAW00115EV": {
       "id": "LAW00115EV",
       "customer_type": "LAW_FIRM",

@@ -1,0 +1,245 @@
+{
+  "name": "Hippocrates Medical Solutions",
+  "sector": "Healthcare/Pharmaceuticals",
+  "is_manufacturer": true,
+  "global_metrics": {
+    "size_of_person": {
+      "annual_net_sales": {
+        "formatted": "$850M",
+        "numeric": 850000000
+      },
+      "total_assets": {
+        "formatted": "$600M",
+        "numeric": 600000000
+      }
+    },
+    "global_revenue": {
+      "formatted": "$850M",
+      "numeric": 850000000
+    },
+    "global_employees": 2800
+  },
+  "regional_blocks": {
+    "template": {
+      "presence": false,
+      "block_metrics": {
+        "revenue": null,
+        "revenue_formatted": null,
+        "employees": null,
+        "assets": null,
+        "registered_office": null,
+        "aggregated_market_share": null
+      },
+      "member_states": {
+        "template": {
+          "presence": false,
+          "metrics": {
+            "revenue": null,
+            "employees": null,
+            "assets": null
+          },
+          "market_position": null,
+          "local_entities": [],
+          "vertical_relationships": [],
+          "market_shares": {},
+          "subsidiaries": [],
+          "merger_control_info": {
+            "filing_required": null,
+            "thresholds": {
+              "revenue": null,
+              "assets": null,
+              "market_share": null
+            },
+            "review_period_days": null
+          }
+        }
+      }
+    },
+    "european_union": {
+      "presence": true,
+      "block_metrics": {
+        "revenue": 300000000,
+        "revenue_formatted": "\u00e2\u201a\u00ac300M",
+        "employees": 1000,
+        "assets": 200000000,
+        "registered_office": "Munich, Germany",
+        "currency": "EUR"
+      },
+      "member_states": {
+        "germany": {
+          "presence": true,
+          "metrics": {
+            "revenue": 120000000,
+            "employees": 400,
+            "assets": 80000000
+          },
+          "market_position": "Leading provider",
+          "local_entities": [
+            "Hippocrates GmbH"
+          ],
+          "vertical_relationships": [
+            "Medical research centers"
+          ],
+          "market_shares": {
+            "clinical_software": 0.1,
+            "medical_devices": 0.07,
+            "healthcare_analytics": 0.08
+          },
+          "subsidiaries": [
+            {
+              "name": "Clinical Data Systems",
+              "revenue": 120000000,
+              "employees": 300,
+              "key_contracts": [
+                "European Hospital Network"
+              ]
+            }
+          ],
+          "merger_control_info": {
+            "filing_required": true,
+            "thresholds": {
+              "revenue": 50000000,
+              "market_share": 0.25
+            },
+            "review_period_days": 30
+          }
+        },
+        "france": {
+          "presence": true,
+          "metrics": {
+            "revenue": 100000000,
+            "employees": 350,
+            "assets": 70000000
+          },
+          "market_position": "Established player",
+          "local_entities": [
+            "Hippocrates France SAS"
+          ],
+          "vertical_relationships": [
+            "French hospitals"
+          ],
+          "merger_control_info": {
+            "filing_required": true,
+            "thresholds": {
+              "revenue": 40000000
+            },
+            "review_period_days": 25
+          }
+        }
+      }
+    },
+    "united_states": {
+      "presence": true,
+      "block_metrics": {
+        "revenue": 400000000,
+        "revenue_formatted": "$400M",
+        "employees": 1200,
+        "assets": 280000000,
+        "registered_office": "Delaware, USA",
+        "currency": "USD",
+        "size_of_transaction": {
+          "formatted": "$520M",
+          "numeric": 520000000
+        }
+      },
+      "member_states": {
+        "california": {
+          "presence": true,
+          "metrics": {
+            "revenue": 250000000,
+            "employees": 600,
+            "assets": 150000000
+          },
+          "market_position": "Major player",
+          "local_entities": [
+            "Hippocrates US Inc."
+          ],
+          "vertical_relationships": [
+            "Hospitals",
+            "Research institutions"
+          ],
+          "market_shares": {
+            "clinical_software": 0.12,
+            "medical_devices": 0.08,
+            "healthcare_analytics": 0.09
+          },
+          "merger_control_info": {
+            "filing_required": null,
+            "thresholds": {
+              "revenue": null
+            }
+          }
+        },
+        "connecticut": {
+          "presence": true,
+          "metrics": {
+            "revenue": 150000000,
+            "employees": 600,
+            "assets": 130000000
+          }
+        },
+        "us_total": {
+          "presence": true,
+          "metrics": {
+            "revenue": 700000000,
+            "employees": 600,
+            "assets": 130000000
+          }
+        }
+      }
+    },
+    "united_kingdom": {
+      "presence": true,
+      "block_metrics": {
+        "revenue": 80000000,
+        "revenue_formatted": "\u00c2\u00a380M",
+        "employees": 200,
+        "assets": 50000000,
+        "registered_office": "Cambridge, UK",
+        "currency": "GBP"
+      },
+      "member_states": {
+        "uk": {
+          "presence": true,
+          "metrics": {
+            "revenue": 88000000,
+            "employees": 200,
+            "assets": 50000000
+          },
+          "market_position": "Growing presence",
+          "local_entities": [
+            "Hippocrates UK Ltd"
+          ],
+          "vertical_relationships": [
+            "NHS trusts"
+          ],
+          "market_shares": {
+            "clinical_software": 0.11,
+            "medical_devices": 0.06,
+            "healthcare_analytics": 0.09
+          },
+          "subsidiaries": [
+            {
+              "name": "Healthcare Analytics Co",
+              "revenue": 90000000,
+              "employees": 150,
+              "key_contracts": [
+                "NHS Framework Agreement"
+              ]
+            }
+          ],
+          "merger_control_info": {
+            "filing_required": true,
+            "thresholds": {
+              "revenue": 70000000,
+              "market_share": 0.25
+            },
+            "review_period_days": 40
+          }
+        }
+      }
+    }
+  },
+  "projectId": "hamilton",
+  "lastModified": "2025-01-30T13:05:59"
+}

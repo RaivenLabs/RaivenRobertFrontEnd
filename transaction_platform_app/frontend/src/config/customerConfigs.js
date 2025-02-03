@@ -62,6 +62,28 @@ export const CUSTOMER_CONFIGS = {
  
   
   },
+
+  [CUSTOMER_TYPES.API]: {
+    id: CUSTOMER_TYPES.API,
+    company_name: 'API Customer',  // Default name for testing
+    menu_config: {
+      side_bar_text: 'Digital Applications',
+      briefing_room_text: 'Briefing Room',
+      applications_dock_text: 'Applications Dock'
+    },
+    templates: {
+      saas_agreement: '/templates/api/saas_agreement.html',
+      msa: '/templates/api/msa.html'
+    },
+    theme: {
+      primary: 'blue',
+      secondary: 'silver'
+    },
+
+ 
+  
+  },
+
   
   [CUSTOMER_TYPES.TANGIBLE]: {
     id: CUSTOMER_TYPES.TANGIBLE,

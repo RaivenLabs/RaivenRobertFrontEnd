@@ -45,6 +45,19 @@ export const CUSTOMER_CONFIGS = {
     }
   },
 
+  API: {
+    id: 'API',
+    // Template for law firm configs
+    templates: {
+      saas_agreement: '/templates/api/saas_agreement.html',
+      msa: '/templates/api/msa.html'
+    },
+    theme: {
+      primary: 'navy',
+      secondary: 'gold'
+    }
+  },
+
   LAW_FIRM: {
     id: 'LAW_FIRM',
     // Template for law firm configs
@@ -70,6 +83,8 @@ export const CUSTOMER_CONFIGS = {
     }
   }
 };
+
+
 
 
 

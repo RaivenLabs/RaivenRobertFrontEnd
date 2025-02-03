@@ -1,21 +1,41 @@
-// src/config/sectionNavigation/buildkits.js
-const EUCSDDConfig = {
+// src/config/sectionNavigation/eucsdd.js
+const eucsddConfig = {
     sectionItems: [
       {
-        id: 'fetchoverview',
+        id: 'eucsddoverview',
         label: 'Overview',
         icon: 'plus-circle',
         type: 'menu',
-        route: 'fetch/overview'
+        route: 'eucsdd/overview'
 
       },
       {
-        id: 'fetchaction1',
-        label: 'Active Projects',
+        id: 'eucsddloader',
+        label: 'Transaction Loader',
         icon: 'template',
         type: 'menu',
-        route: 'fetch/activeprojects',
+        route: 'eucsdd/loader',
+      },
+
+     
+      {
+        id: 'eucsddreporting',
+        label: 'Dashboard',
+        icon: 'template',
+        type: 'menu',
+        route: 'eucsdd/dashboard',
+      },
+     
+     
+      
+      
+      {
+        id: 'eucsddaction1',
+        label: 'Application Configuration',
+        icon: 'template',
+        type: 'menu',
+        route: 'eucsdd/configuration',
       }
     ]
   };
-  export default EUCSDDConfig;
+  export default eucsddConfig;

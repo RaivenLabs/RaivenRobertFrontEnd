@@ -1,11 +1,6 @@
-// src/features/transaction-loader/components/Worksheet/RegionalBlockWorksheet.jsx
 import React, { useState } from 'react';
-
-
 import { useWorksheetData } from '../../hooks/useWorksheetData';
-import { regionalBlockConfigs, getBlockDisplay, getMemberStateDisplay } from '../../utils/regionalBlockConfigs';
-
-
+import { regionalBlockConfigs } from '../../utils/regionalBlockConfigs';
 import { FileSpreadsheet } from 'lucide-react';
 
 // Currency formatting utilities
@@ -151,10 +146,11 @@ const WorksheetRow = ({ type, data, blockKey, onInputChange, getValue }) => {
 };
 
 // Main Worksheet Component
-const RegionalBlockWorksheet = ({ runData, blockConfiguration }) => {
+const RegionalBlockWorksheet = ({ runData }) => {
   const [pendingChanges, setPendingChanges] = useState({});
   const [hasChanges, setHasChanges] = useState(false);
   const [localError, setLocalError] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const {
     worksheetData,
@@ -162,22 +158,99 @@ const RegionalBlockWorksheet = ({ runData, blockConfiguration }) => {
     getValue,
     error: hookError,
     projectName,
-    loadWorksheetData
-  } = useWorksheetData(runData, blockConfiguration);
+    loadWorksheetData,
+    saveAllChanges
+  } = useWorksheetData(runData);
 
   const handlePendingChange = (blockKey, memberStateKey, field, value) => {
-    setPendingChanges(prev => ({
-      ...prev,
-      [`${blockKey}-${memberStateKey}-${field}`]: {
+    console.log('🔄 Adding pending change:', { 
+        blockKey, 
+        memberStateKey, 
+        field, 
+        value,
+        type: typeof value
+    });
+
+    // Update pending changes
+    setPendingChanges(prev => {
+        const newChanges = {
+            ...prev,
+            [`${blockKey}-${memberStateKey}-${field}`]: {
+                blockKey,
+                memberStateKey,
+                field,
+                value,
+                previousValue: getValue(blockKey, memberStateKey, field)
+            }
+        };
+        console.log('📦 Updated pending changes:', newChanges);
+        return newChanges;
+    });
+
+    setHasChanges(true);
+
+    // Also update the local worksheet data through handleInputChange
+    handleInputChange({
         blockKey,
         memberStateKey,
         field,
-        value,
-        previousValue: getValue(blockKey, memberStateKey, field)
-      }
-    }));
-    setHasChanges(true);
-  };
+        value
+    });
+};
+
+const handleSaveWorksheet = async () => {
+  console.log('💾 Starting worksheet save...', new Date().toISOString());
+  setIsSaving(true);
+  setLocalError(null);
+  
+  try {
+      console.log('📦 Current worksheet data:', worksheetData);
+      console.log('📦 Pending changes to save:', pendingChanges);
+      
+      // Convert pending changes to the format expected by the API
+      const updates = {};
+      
+      Object.values(pendingChanges).forEach(change => {
+          const { blockKey, memberStateKey, field, value } = change;
+          console.log('🔄 Processing change:', { blockKey, memberStateKey, field, value });
+          
+          if (!updates[blockKey]) {
+              updates[blockKey] = {};
+          }
+          if (!updates[blockKey][memberStateKey]) {
+              updates[blockKey][memberStateKey] = {
+                  metrics: {},
+                  market_shares: {}
+              };
+          }
+          
+          // Sort the field into the appropriate category
+          if (['revenue', 'employees', 'assets', 'transactionSize'].includes(field)) {
+              const metricKey = field === 'transactionSize' ? 'transaction_size' : field;
+              updates[blockKey][memberStateKey].metrics[metricKey] = value;
+          } else if (field === 'marketShare' && blockKey !== 'united_states') {
+              updates[blockKey][memberStateKey].market_shares.clinical_software = value;
+          }
+      });
+      
+      console.log('📤 Formatted updates for API:', JSON.stringify(updates, null, 2));
+      
+      // Call the saveAllChanges function
+      const result = await saveAllChanges(updates);
+      
+      console.log('✅ Save successful:', result);
+      setPendingChanges({});
+      setHasChanges(false);
+      
+      
+      
+  } catch (error) {
+      console.error('❌ Save failed:', error);
+      setLocalError(`Failed to save worksheet: ${error.message}`);
+  } finally {
+      setIsSaving(false);
+  }
+};
 
   const getEffectiveValue = (blockKey, memberStateKey, field) => {
     const changeKey = `${blockKey}-${memberStateKey}-${field}`;
@@ -225,7 +298,7 @@ const RegionalBlockWorksheet = ({ runData, blockConfiguration }) => {
         // Add US Total row first
         allRows.push({
           type: 'memberState',
-          name: "United States Total",
+          name: "All States",
           dataKey: 'us_total',
           blockKey,
           isTotal: true,
@@ -301,51 +374,23 @@ const RegionalBlockWorksheet = ({ runData, blockConfiguration }) => {
           />
         ))}
       </div>
-
-      {hasChanges && (
-        <div className="sticky bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="text-sm text-gray-600">
-              {Object.keys(pendingChanges).length} pending changes
-            </div>
-            <div className="space-x-4">
-              <button
-                onClick={() => {
-                  setPendingChanges({});
-                  setHasChanges(false);
-                }}
-                className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900"
-              >
-                Discard Changes
-              </button>
-              <button
-                onClick={async () => {
-                  try {
-                    await Promise.all(
-                      Object.values(pendingChanges).map(change => 
-                        handleInputChange({
-                          blockKey: change.blockKey,
-                          memberStateKey: change.memberStateKey,
-                          field: change.field,
-                          value: change.value
-                        })
-                      )
-                    );
-                    await loadWorksheetData();
-                    setPendingChanges({});
-                    setHasChanges(false);
-                  } catch (error) {
-                    setLocalError(`Failed to save changes: ${error.message}`);
-                  }
-                }}
-                className="px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"
-              >
-                Submit All Changes
-              </button>
-            </div>
-          </div>
+    
+      {/* Save button section */}
+      <div className="sticky bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
+        <div className="max-w-7xl mx-auto flex justify-end">
+          <button
+            onClick={handleSaveWorksheet}
+            disabled={!hasChanges || isSaving}
+            className={`px-6 py-3 text-sm text-white rounded-md ${
+              hasChanges && !isSaving
+                ? 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-gray-400 cursor-not-allowed'
+            }`}
+          >
+            {isSaving ? 'Saving...' : 'Save Worksheet'}
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 };

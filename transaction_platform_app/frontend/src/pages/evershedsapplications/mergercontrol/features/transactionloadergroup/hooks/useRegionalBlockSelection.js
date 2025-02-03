@@ -10,14 +10,14 @@ export const useRegionalBlockSelection = (activeRun) => {
 
   // Initialize from run data function
   const initializeFromRunData = useCallback(async (runData) => {
-    if (!runData?.targetCompanyData?.original?.regional_blocks) {
+    if (!runData?.targetCompanyData?.regional_blocks) {
       console.error('❌ No regional block data found in run data');
       return;
     }
  
     console.log('📦 Loading regional block data...');
   
-    const regionalBlockPresence = runData.targetCompanyData.original.regional_blocks;
+    const regionalBlockPresence = runData.targetCompanyData.regional_blocks;
     const selectedBlockIds = new Set();
  
     // Check presence and blocks for each member state

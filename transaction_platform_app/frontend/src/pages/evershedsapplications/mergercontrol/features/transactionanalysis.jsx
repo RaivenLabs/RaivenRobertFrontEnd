@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { 
   Building2, Globe, Scale, AlertTriangle, Clipboard,
   DollarSign, Users, PieChart, Flag, ChevronDown, Clock,
@@ -24,53 +24,27 @@ const formatCurrency = (value, currency = 'USD') => {
 const formatNumber = (value) => {
   if (!value) return 'N/A';
   const numericValue = typeof value === 'number' ? value : Number(value);
-  
-  if (numericValue >= 1000) {
-    return numericValue.toLocaleString();
-  }
-  return numericValue.toString();
+  return numericValue.toLocaleString();
 };
 
-// DataPanel component
-const DataPanel = ({ title, icon, companyData, isTargetCompany = false }) => {
+// DataPanel component with updated structure handling
+const DataPanel = ({ title, icon, companyData }) => {
   const getMetrics = () => {
-    if (isTargetCompany) {
-      return {
-        "Financial Metrics": {
-          "Global Revenue": formatCurrency(companyData?.global_metrics?.global_revenue?.numeric),
-          "US Revenue": formatCurrency(companyData?.regional_blocks?.united_states?.block_metrics?.revenue),
-          "EU Revenue": formatCurrency(companyData?.regional_blocks?.european_union?.block_metrics?.revenue, 'EUR'),
-          "UK Revenue": formatCurrency(companyData?.regional_blocks?.united_kingdom?.block_metrics?.revenue, 'GBP')
-        },
-        "Asset Information": {
-          "Global Assets": formatCurrency(companyData?.global_metrics?.size_of_person?.total_assets?.numeric),
-          "US Assets": formatCurrency(companyData?.regional_blocks?.united_states?.block_metrics?.assets),
-          "EU Assets": formatCurrency(companyData?.regional_blocks?.european_union?.block_metrics?.assets, 'EUR')
-        },
-        "Employment": {
-          "Global Employees": formatNumber(companyData?.global_metrics?.global_employees),
-          "US Employees": formatNumber(companyData?.regional_blocks?.united_states?.block_metrics?.employees),
-          "EU Employees": formatNumber(companyData?.regional_blocks?.european_union?.block_metrics?.employees)
-        }
-      };
-    }
-
     return {
-      "Financial Metrics": {
-        "Global Revenue": formatCurrency(companyData?.revenue?.numeric?.global),
-        "US Revenue": formatCurrency(companyData?.revenue?.numeric?.us),
-        "EU Revenue": formatCurrency(companyData?.revenue?.numeric?.eu, 'EUR'),
-        "UK Revenue": formatCurrency(companyData?.jurisdictional_presence?.countries?.uk?.revenue, 'GBP')
+      "Global Metrics": {
+        "Global Revenue": formatCurrency(companyData?.global_metrics?.global_revenue?.numeric),
+        "Total Assets": formatCurrency(companyData?.global_metrics?.size_of_person?.total_assets?.numeric),
+        "Global Employees": formatNumber(companyData?.global_metrics?.global_employees)
       },
-      "Asset Information": {
-        "Global Assets": formatCurrency(companyData?.assets?.numeric?.global),
-        "US Assets": formatCurrency(companyData?.assets?.numeric?.us),
-        "EU Assets": formatCurrency(companyData?.assets?.numeric?.eu, 'EUR')
+      "Regional Metrics": {
+        "US Revenue": formatCurrency(companyData?.regional_blocks?.united_states?.block_metrics?.revenue),
+        "EU Revenue": formatCurrency(companyData?.regional_blocks?.european_union?.block_metrics?.revenue, 'EUR'),
+        "UK Revenue": formatCurrency(companyData?.regional_blocks?.united_kingdom?.block_metrics?.revenue, 'GBP')
       },
       "Employment": {
-        "Global Employees": formatNumber(companyData?.employees?.global),
-        "US Employees": formatNumber(companyData?.employees?.us),
-        "EU Employees": formatNumber(companyData?.employees?.eu)
+        "US Employees": formatNumber(companyData?.regional_blocks?.united_states?.block_metrics?.employees),
+        "EU Employees": formatNumber(companyData?.regional_blocks?.european_union?.block_metrics?.employees),
+        "UK Employees": formatNumber(companyData?.regional_blocks?.united_kingdom?.block_metrics?.employees)
       }
     };
   };
@@ -103,181 +77,90 @@ const DataPanel = ({ title, icon, companyData, isTargetCompany = false }) => {
     </div>
   );
 };
-// JurisdictionAnalysis component
-const JurisdictionAnalysis = ({ jurisdiction, analysis }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
 
-  return (
-    <div className="bg-white rounded-lg shadow">
-      <button 
-        className="w-full p-4 flex items-center justify-between"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        <div className="flex items-center">
-          <div className={`mr-3 ${
-            analysis.status === 'Filing Required' ? 'text-red-500' :
-            analysis.status === 'Further Analysis Needed' ? 'text-orange-500' :
-            'text-green-500'
-          }`}>
-            {analysis.status === 'Filing Required' ? <AlertCircle /> :
-             analysis.status === 'Further Analysis Needed' ? <AlertTriangle /> :
-             <CheckCircle />}
-          </div>
-          <div>
-            <h4 className="font-semibold text-royal-blue">{jurisdiction}</h4>
-            <span className="text-sm text-teal">{analysis.status}</span>
-          </div>
-        </div>
-        {isExpanded ? <ChevronUp /> : <ChevronDown />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-4">
-          <div className="space-y-3">
-            {analysis.thresholds.map((threshold, index) => (
-              <div key={index} className="flex items-start">
-                <div className={`mt-1 mr-2 ${
-                  threshold.met ? 'text-red-500' : 'text-green-500'
-                }`}>
-                  {threshold.met ? <AlertCircle className="w-4 h-4" /> : 
-                                 <CheckCircle className="w-4 h-4" />}
-                </div>
-                <div>
-                  <div className="text-sm font-medium">{threshold.name}</div>
-                  <div className="text-sm text-gray-600">{threshold.value}</div>
-                </div>
-              </div>
-            ))}
-            {analysis.notes && (
-              <div className="mt-2 text-sm text-gray-600 bg-light-ivory p-3 rounded">
-                <div className="flex items-center mb-1">
-                  <Info className="w-4 h-4 mr-1" />
-                  <span className="font-medium">Additional Considerations</span>
-                </div>
-                {analysis.notes}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-// Sample jurisdictional analysis data
-const jurisdictionAnalyses = {
-  "United States (HSR)": {
-    status: "Filing Required",
-    thresholds: [
-      {
-        name: "Size of Transaction",
-        value: "$8.5B (Threshold: $111.4M)",
-        met: true
-      },
-      {
-        name: "Size of Person",
-        value: "Both parties exceed thresholds",
-        met: true
-      }
-    ],
-    notes: "Early termination unlikely due to market overlap in key sectors"
-  },
-  "European Union": {
-    status: "Filing Required",
-    thresholds: [
-      {
-        name: "Combined Worldwide Turnover",
-        value: "€53.7B (Threshold: €5B)",
-        met: true
-      },
-      {
-        name: "EU-wide Turnover",
-        value: "Both exceed €250M threshold",
-        met: true
-      }
-    ],
-    notes: "Phase I review likely; vertical relationships require detailed analysis"
-  },
-  "Germany": {
-    status: "Further Analysis Needed",
-    thresholds: [
-      {
-        name: "Combined Worldwide Turnover",
-        value: "€53.7B (Threshold: €500M)",
-        met: true
-      },
-      {
-        name: "Domestic Turnover",
-        value: "Analysis of local nexus ongoing",
-        met: false
-      }
-    ],
-    notes: "Additional data needed on German market specifics"
-  }
-};
-
-// Helper to combine company metrics
-const combineMetrics = (buyingCompany, targetCompany) => {
-  const buying = {
-    global_revenue: buyingCompany?.revenue?.numeric?.global || 0,
-    us_revenue: buyingCompany?.revenue?.numeric?.us || 0,
-    eu_revenue: buyingCompany?.revenue?.numeric?.eu || 0,
-    global_assets: buyingCompany?.assets?.numeric?.global || 0,
-    us_assets: buyingCompany?.assets?.numeric?.us || 0,
-    eu_assets: buyingCompany?.assets?.numeric?.eu || 0,
-    global_employees: buyingCompany?.employees?.global || 0,
-    us_employees: buyingCompany?.employees?.us || 0,
-    eu_employees: buyingCompany?.employees?.eu || 0
-  };
-
-  const target = {
-    global_revenue: targetCompany?.global_metrics?.global_revenue?.numeric || 0,
-    us_revenue: targetCompany?.regional_blocks?.united_states?.block_metrics?.revenue || 0,
-    eu_revenue: targetCompany?.regional_blocks?.european_union?.block_metrics?.revenue || 0,
-    global_assets: targetCompany?.global_metrics?.size_of_person?.total_assets?.numeric || 0,
-    us_assets: targetCompany?.regional_blocks?.united_states?.block_metrics?.assets || 0,
-    eu_assets: targetCompany?.regional_blocks?.european_union?.block_metrics?.assets || 0,
-    global_employees: targetCompany?.global_metrics?.global_employees || 0,
-    us_employees: targetCompany?.regional_blocks?.united_states?.block_metrics?.employees || 0,
-    eu_employees: targetCompany?.regional_blocks?.european_union?.block_metrics?.employees || 0
-  };
-
-  return {
-    revenue: {
-      numeric: {
-        global: buying.global_revenue + target.global_revenue,
-        us: buying.us_revenue + target.us_revenue,
-        eu: buying.eu_revenue + target.eu_revenue
-      }
-    },
-    assets: {
-      numeric: {
-        global: buying.global_assets + target.global_assets,
-        us: buying.us_assets + target.us_assets,
-        eu: buying.eu_assets + target.eu_assets
-      }
-    },
-    employees: {
-      global: buying.global_employees + target.global_employees,
-      us: buying.us_employees + target.us_employees,
-      eu: buying.eu_employees + target.eu_employees
-    }
-  };
-};
-
-// Main TransactionAnalysis component
-const TransactionAnalysis = () => {
-  const { buyingCompanyData, activeRun } = useMergerControl();
+// Helper to analyze filing requirements based on company data
+const analyzeFilingRequirements = (buyingCompany, targetCompany) => {
+  const requirements = [];
+  const regions = ['european_union', 'united_states', 'united_kingdom'];
   
-  // Debug logging
-  console.log('🔍 Analysis Initialization:', {
-    activeRun,
-    buyingCompanyData,
-    targetCompanyData: activeRun?.targetCompanyData,
-    modified: activeRun?.targetCompanyData?.modified,
-    original: activeRun?.targetCompanyData?.original
+  regions.forEach(region => {
+    const buyerPresent = buyingCompany?.regional_blocks?.[region]?.presence;
+    const targetPresent = targetCompany?.regional_blocks?.[region]?.presence;
+    
+    if (buyerPresent && targetPresent) {
+      // Check member states for filing requirements
+      const memberStates = Object.entries(targetCompany.regional_blocks[region].member_states || {});
+      memberStates.forEach(([state, data]) => {
+        if (data.merger_control_info?.filing_required) {
+          requirements.push({
+            jurisdiction: state.charAt(0).toUpperCase() + state.slice(1),
+            status: 'Filing Required',
+            thresholds: data.merger_control_info.thresholds,
+            reviewPeriod: data.merger_control_info.review_period_days
+          });
+        }
+      });
+    }
   });
   
-  if (!activeRun) {
+  return requirements;
+};
+
+// Helper to identify key risks
+const identifyKeyRisks = (buyingCompany, targetCompany) => {
+  const risks = [];
+  
+  // Check for sector overlap
+  if (buyingCompany?.sector === targetCompany?.sector) {
+    risks.push('Horizontal overlap in sector');
+  }
+
+  // Check for high market shares
+  const regions = ['european_union', 'united_states', 'united_kingdom'];
+  regions.forEach(region => {
+    const states = targetCompany?.regional_blocks?.[region]?.member_states || {};
+    Object.entries(states).forEach(([state, data]) => {
+      Object.entries(data.market_shares || {}).forEach(([market, share]) => {
+        if (share > 0.25) {
+          risks.push(`High market share (${(share * 100).toFixed(1)}%) in ${state} ${market}`);
+        }
+      });
+    });
+  });
+
+  return risks;
+};
+
+// Main component
+const TransactionAnalysis = () => {
+  const { 
+    transactionTargetCompany,
+    transactionBuyingCompany,
+    loadRunData,
+    isLoading,
+    activeRun,
+    projectId
+  } = useMergerControl();
+
+  // Load data when component mounts
+  useEffect(() => {
+    const loadAnalysisData = async () => {
+      if (!transactionTargetCompany || !transactionBuyingCompany) {
+        console.log('📊 Loading transaction data...');
+        
+        if (activeRun?.runId && projectId) {
+          await loadRunData({
+            projectId: projectId,
+            runId: activeRun.runId
+          });
+        }
+      }
+    };
+
+    loadAnalysisData();
+  }, [activeRun?.runId, projectId]);
+
+  if (isLoading) {
     return (
       <div className="p-6 bg-ivory min-h-screen">
         <div className="flex justify-center items-center h-64">
@@ -287,8 +170,67 @@ const TransactionAnalysis = () => {
     );
   }
 
-  const targetCompanyData = activeRun.targetCompanyData?.modified || 
-                          activeRun.targetCompanyData?.original;
+  if (!transactionTargetCompany || !transactionBuyingCompany) {
+    return (
+      <div className="p-6 bg-ivory min-h-screen">
+        <div className="flex justify-center items-center h-64">
+          <div className="text-gray-600">
+            Unable to load analysis data. 
+            {!transactionTargetCompany && ' (Missing target company data)'}
+            {!transactionBuyingCompany && ' (Missing buying company data)'}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Calculate filing requirements and risks
+  const filingRequirements = analyzeFilingRequirements(transactionBuyingCompany, transactionTargetCompany);
+  const keyRisks = identifyKeyRisks(transactionBuyingCompany, transactionTargetCompany);
+
+  // Helper to combine metrics
+  const combinedMetrics = {
+    global_metrics: {
+      global_revenue: {
+        numeric: (transactionBuyingCompany?.global_metrics?.global_revenue?.numeric || 0) +
+                (transactionTargetCompany?.global_metrics?.global_revenue?.numeric || 0)
+      },
+      size_of_person: {
+        total_assets: {
+          numeric: (transactionBuyingCompany?.global_metrics?.size_of_person?.total_assets?.numeric || 0) +
+                  (transactionTargetCompany?.global_metrics?.size_of_person?.total_assets?.numeric || 0)
+        }
+      },
+      global_employees: (transactionBuyingCompany?.global_metrics?.global_employees || 0) +
+                      (transactionTargetCompany?.global_metrics?.global_employees || 0)
+    },
+    regional_blocks: {
+      united_states: {
+        block_metrics: {
+          revenue: (transactionBuyingCompany?.regional_blocks?.united_states?.block_metrics?.revenue || 0) +
+                  (transactionTargetCompany?.regional_blocks?.united_states?.block_metrics?.revenue || 0),
+          employees: (transactionBuyingCompany?.regional_blocks?.united_states?.block_metrics?.employees || 0) +
+                    (transactionTargetCompany?.regional_blocks?.united_states?.block_metrics?.employees || 0)
+        }
+      },
+      european_union: {
+        block_metrics: {
+          revenue: (transactionBuyingCompany?.regional_blocks?.european_union?.block_metrics?.revenue || 0) +
+                  (transactionTargetCompany?.regional_blocks?.european_union?.block_metrics?.revenue || 0),
+          employees: (transactionBuyingCompany?.regional_blocks?.european_union?.block_metrics?.employees || 0) +
+                    (transactionTargetCompany?.regional_blocks?.european_union?.block_metrics?.employees || 0)
+        }
+      },
+      united_kingdom: {
+        block_metrics: {
+          revenue: (transactionBuyingCompany?.regional_blocks?.united_kingdom?.block_metrics?.revenue || 0) +
+                  (transactionTargetCompany?.regional_blocks?.united_kingdom?.block_metrics?.revenue || 0),
+          employees: (transactionBuyingCompany?.regional_blocks?.united_kingdom?.block_metrics?.employees || 0) +
+                    (transactionTargetCompany?.regional_blocks?.united_kingdom?.block_metrics?.employees || 0)
+        }
+      }
+    }
+  };
 
   return (
     <div className="p-6 bg-ivory min-h-screen">
@@ -306,21 +248,19 @@ const TransactionAnalysis = () => {
             <div className="space-y-2">
               <div className="flex items-center text-red-500">
                 <AlertCircle className="w-4 h-4 mr-2" />
-                <span>2 Mandatory Filings</span>
-              </div>
-              <div className="flex items-center text-orange-500">
-                <AlertTriangle className="w-4 h-4 mr-2" />
-                <span>1 Additional Analysis</span>
+                <span>{filingRequirements.length} Required Filings</span>
               </div>
             </div>
           </div>
           <div className="bg-light-ivory p-4 rounded-lg">
             <h3 className="font-semibold mb-2">Key Risks</h3>
             <div className="space-y-2">
-              <div className="flex items-center text-orange-500">
-                <AlertTriangle className="w-4 h-4 mr-2" />
-                <span>Market Share &gt; 30% in EU</span>
-              </div>
+              {keyRisks.map((risk, index) => (
+                <div key={index} className="flex items-center text-orange-500">
+                  <AlertTriangle className="w-4 h-4 mr-2" />
+                  <span>{risk}</span>
+                </div>
+              ))}
             </div>
           </div>
           <div className="bg-light-ivory p-4 rounded-lg">
@@ -328,47 +268,64 @@ const TransactionAnalysis = () => {
             <div className="space-y-2">
               <div className="flex items-center text-royal-blue">
                 <Clock className="w-4 h-4 mr-2" />
-                <span>4-6 months expected</span>
+                <span>
+                  {Math.max(...filingRequirements.map(r => r.reviewPeriod || 0))} days review period
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Jurisdiction Analysis */}
-      <div className="space-y-4 mb-6">
-        {Object.entries(jurisdictionAnalyses).map(([jurisdiction, analysis]) => (
-          <JurisdictionAnalysis 
-            key={jurisdiction} 
-            jurisdiction={jurisdiction} 
-            analysis={analysis} 
-          />
-        ))}
-      </div>
-
       {/* Company Analysis Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <DataPanel 
-          title="Our Company" 
+          title="Acquiring Company" 
           icon={<Building2 className="text-royal-blue w-6 h-6" />} 
-          companyData={buyingCompanyData}
-          isTargetCompany={false}
+          companyData={transactionBuyingCompany}
         />
         <DataPanel 
           title="Target Company" 
           icon={<Flag className="text-royal-blue w-6 h-6" />} 
-          companyData={targetCompanyData}
-          isTargetCompany={true}
+          companyData={transactionTargetCompany}
         />
         <DataPanel 
           title="Combined Entity" 
           icon={<PieChart className="text-royal-blue w-6 h-6" />} 
-          companyData={combineMetrics(buyingCompanyData, targetCompanyData)}
-          isTargetCompany={false}
+          companyData={combinedMetrics}
         />
+      </div>
+
+      {/* Filing Requirements Analysis */}
+      <div className="mt-6 space-y-4">
+        <h3 className="text-xl font-semibold text-royal-blue">Filing Requirements Analysis</h3>
+        {filingRequirements.map((requirement, index) => (
+          <div key={index} className="bg-white rounded-lg shadow p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <AlertCircle className="text-red-500 w-5 h-5 mr-2" />
+                <h4 className="font-semibold">{requirement.jurisdiction}</h4>
+              </div>
+              <span className="text-sm text-gray-600">
+                {requirement.reviewPeriod} day review period
+              </span>
+            </div>
+            <div className="mt-2">
+              {Object.entries(requirement.thresholds || {}).map(([key, value]) => (
+                <div key={key} className="text-sm text-gray-600">
+                  • {key.replace(/_/g, ' ')}: {formatCurrency(value)}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
+
+
+
+
 
 export default TransactionAnalysis;

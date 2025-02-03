@@ -63,7 +63,7 @@ const RapidReviewSidebar = () => {  // Remove onSidebarChange prop
     <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
       <div className="mb-6">
         <div className="text-2xl font-bold text-cyan mb-2 p-6">
-          Application Suite & Solutions
+          Application Suite
         </div>
         <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
       </div>
