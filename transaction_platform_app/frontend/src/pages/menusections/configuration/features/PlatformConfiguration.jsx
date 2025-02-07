@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useConfig } from '../../../../context/ConfigContext';
 import { CUSTOMER_TYPES } from '../../../../constants/customerTypes';
 import { useAuth } from '../../../../context/AuthContext';
+import MongoPanel from './MongoCollectionManager';
 import AuthTester from './AuthTester';
 import Authentication from '../../../../components/shared/Authentication';
 import { 
@@ -140,8 +141,8 @@ const CustomerSelector = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
-      <div className="flex items-center mb-4">
+    <div className="bg-white rounded-lg shadow-sm p-4 h-52">
+      <div className="flex items-center mb-2">
         <Building2 className="w-6 h-6 text-royalBlue mr-3" />
         <h3 className="text-xl font-semibold">Customer Selection</h3>
       </div>
@@ -383,7 +384,7 @@ const PlatformConfiguration = () => {
   const configSections = [
     {
       id: 'testing',
-      label: 'Testing',
+      label: 'Core Configuration',
       icon: <Settings className="w-5 h-5" />,
     },
     {
@@ -459,17 +460,38 @@ const PlatformConfiguration = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <CustomerSelector />
-          <div className="space-y-6">
-            <PlatformControls section="environment" />
-            <PlatformControls section="customerSetup" />
-          </div>
-          <PlatformControls section="platformPackages" />
-          <PlatformControls section="integrations" />
+          {activeSection === 'testing' ? (
+            <>
+              {/* Core Configuration Layout */}
+              <CustomerSelector />
+              <div className="lg:col-span-2">
+                <MongoPanel />
+              </div>
+              <div className="space-y-6">
+                <PlatformControls section="environment" />
+                <PlatformControls section="customerSetup" />
+              </div>
+              <div className="space-y-6">
+                <PlatformControls section="platformPackages" />
+                <PlatformControls section="integrations" />
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Other Sections Layout */}
+              <CustomerSelector />
+              <div className="space-y-6">
+                <PlatformControls section="environment" />
+                <PlatformControls section="customerSetup" />
+              </div>
+              <PlatformControls section="platformPackages" />
+              <PlatformControls section="integrations" />
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default PlatformConfiguration;
+export default PlatformConfiguration; 

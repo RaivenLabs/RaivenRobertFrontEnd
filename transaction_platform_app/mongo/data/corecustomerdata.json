@@ -1,0 +1,395 @@
+[
+  {
+    "official_name": "3M Company",
+    "current_name": "3M Company",
+    "previous_names": [
+      {
+        "name": "Minnesota Mining and Manufacturing",
+        "date_changed": "1978-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "Scotch",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-01-15"
+      },
+      {
+        "name": "Post-it",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-01-15"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "3M Company, f/k/a Minnesota Mining and Manufacturing",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["case123", "case456"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-10",
+          "verification_notes": "Confirmed by client legal team"
+        },
+        "match_frequency": 15,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Caterpillar Inc.",
+    "current_name": "Caterpillar Inc.",
+    "previous_names": [
+      {
+        "name": "Caterpillar Tractor Co.",
+        "date_changed": "1986-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "CAT",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-01-15"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "Caterpillar Inc., formerly known as Caterpillar Tractor Co.",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["case789", "case101"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-10",
+          "verification_notes": "Verified against SEC filings"
+        },
+        "match_frequency": 12,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+ {
+    "official_name": "Flowserve Corporation",
+    "current_name": "Flowserve Corporation",
+    "previous_names": [
+      {
+        "name": "Durco International",
+        "date_changed": "1997-07-01",
+        "source": "historical_record"
+      },
+      {
+        "name": "BW/IP",
+        "date_changed": "1997-07-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "Flowserve",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-01-15"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "Flowserve Corporation, successor to Durco International",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["case202", "case303"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-10",
+          "verification_notes": "Verified through merger documentation"
+        },
+        "match_frequency": 8,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Honeywell International Inc.",
+    "current_name": "Honeywell International Inc.",
+    "previous_names": [
+      {
+        "name": "AlliedSignal Inc.",
+        "date_changed": "1999-12-01",
+        "source": "historical_record"
+      },
+      {
+        "name": "The Bendix Corporation",
+        "date_changed": "1983-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "Honeywell",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-02-05"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "Honeywell International, Inc., Individually and f/k/a AlliedSignal, Inc., and as Successor-in-Interest to The Bendix Corp.",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["543092863"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Verified through corporate history documents"
+        },
+        "match_frequency": 18,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Union Carbide Corporation",
+    "current_name": "Union Carbide Corporation",
+    "previous_names": [],
+    "trade_names": [],
+    "matched_names": [
+      {
+        "name": "Union Carbide Corporation",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["543092863", "29361461"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Consistent naming across litigation"
+        },
+        "match_frequency": 15,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+ {
+    "official_name": "Flowserve Corporation",
+    "current_name": "Flowserve Corporation",
+    "previous_names": [
+      {
+        "name": "Durco International",
+        "date_changed": "1997-07-01",
+        "source": "historical_record"
+      },
+      {
+        "name": "BW/IP",
+        "date_changed": "1997-07-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "Flowserve",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-01-15"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "Flowserve Corporation, successor to Durco International",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["case202", "case303"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-10",
+          "verification_notes": "Verified through merger documentation"
+        },
+        "match_frequency": 8,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Honeywell International Inc.",
+    "current_name": "Honeywell International Inc.",
+    "previous_names": [
+      {
+        "name": "AlliedSignal Inc.",
+        "date_changed": "1999-12-01",
+        "source": "historical_record"
+      },
+      {
+        "name": "The Bendix Corporation",
+        "date_changed": "1983-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "Honeywell",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-02-05"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "Honeywell International, Inc., Individually and f/k/a AlliedSignal, Inc., and as Successor-in-Interest to The Bendix Corp.",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["543092863"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Verified through corporate history documents"
+        },
+        "match_frequency": 18,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Union Carbide Corporation",
+    "current_name": "Union Carbide Corporation",
+    "previous_names": [],
+    "trade_names": [],
+    "matched_names": [
+      {
+        "name": "Union Carbide Corporation",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["543092863", "29361461"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Consistent naming across litigation"
+        },
+        "match_frequency": 15,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  }
+
+

@@ -1,20 +1,52 @@
 import React from 'react';
-import { 
-  Compass, 
-  BarChart2, 
-  Eye, 
-  FileText, 
-  HeartHandshake,
-  MessageCircle,
+import {
+  Boxes,
+  Network,
   Users,
+  FileText,
+  Settings,
+  Workflow,
+  Building2,
+  GitMerge,
+  Shield,
+  Scale,
+  Eye,
+  BarChart2,
   Sparkles,
-  Clock,
-  Layout,
-  FolderOpen,
-  Settings
+  MessageCircle,
+  HeartHandshake,
+  Compass,
+  ArrowRightCircle
 } from 'lucide-react';
 
 const ConciergeOverview = () => {
+  const programs = [
+    {
+      title: "Sourcing Program",
+      description: "Automated vendor management and contract generation",
+      icon: <Network className="w-8 h-8" />,
+      features: ["SaaS Agreements", "Service Orders", "Master Rate Cards"]
+    },
+    {
+      title: "Real Estate Program",
+      description: "End-to-end property transaction management",
+      icon: <Building2 className="w-8 h-8" />,
+      features: ["Lease Management", "Property Acquisition", "Facility Services"]
+    },
+    {
+      title: "Sales Program",
+      description: "Customer relationship and contract lifecycle",
+      icon: <Users className="w-8 h-8" />,
+      features: ["Customer Onboarding", "Contract Generation", "Terms Management"]
+    },
+    {
+      title: "Privacy Compliance",
+      description: "Comprehensive data protection and compliance",
+      icon: <Shield className="w-8 h-8" />,
+      features: ["GDPR Templates", "Privacy Assessment", "Data Processing"]
+    }
+  ];
+
   return (
     <div className="guide-wrapper">
       {/* Header Section */}
@@ -26,7 +58,6 @@ const ConciergeOverview = () => {
         </div>
       </header>
 
-      
       {/* Digital Compass */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
@@ -55,6 +86,32 @@ const ConciergeOverview = () => {
                 <div className="text-royalBlue mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Programs Overview */}
+      <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
+          Enterprise Programs
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {programs.map((program, idx) => (
+            <div key={idx} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 p-6">
+                <div className="text-royalBlue mb-4">{program.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{program.title}</h3>
+                <p className="text-gray-600 mb-4">{program.description}</p>
+                <ul className="space-y-2">
+                  {program.features.map((feature, fidx) => (
+                    <li key={fidx} className="flex items-center text-sm text-gray-600">
+                      <ArrowRightCircle className="w-4 h-4 mr-2 text-royalBlue" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
@@ -98,7 +155,9 @@ const ConciergeOverview = () => {
       {/* Our Commitment */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Our Commitment</h2>
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+            Our Commitment
+          </h2>
           <div className="border border-gray-200 rounded-xl overflow-hidden">
             <div className="bg-gray-50 p-6">
               <ul className="space-y-4">

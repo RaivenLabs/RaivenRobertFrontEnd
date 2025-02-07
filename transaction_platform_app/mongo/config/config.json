@@ -1,0 +1,7 @@
+{
+    "connection_string": "mongodb://127.0.0.1:27017/",
+    "options": {
+        "serverSelectionTimeoutMS": 5000,
+        "connectTimeoutMS": 10000
+    }
+}

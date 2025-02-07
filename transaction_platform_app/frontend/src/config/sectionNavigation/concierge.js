@@ -12,7 +12,7 @@
 
       {
         id: 'conciergelaunch',
-        label: 'Start New Matter',
+        label: 'Launchpad',
         icon: 'check-square',
         type: 'view',
         route: 'concierge/launch'
@@ -21,7 +21,7 @@
 
       {
         id: 'conciergedashboard',
-        label: 'My Dashboard',
+        label: 'Dashboard',
         icon: 'dashboard',
         type: 'view',
         route: 'concierge/dashboard'
@@ -33,6 +33,29 @@
         icon: 'briefcase',
         type: 'menu',
        route: 'concierge/portfolio'
+      },  
+      {
+        id: 'conciergetimemanagement',
+        label: 'Time Management',
+        icon: 'users',
+        type: 'menu',
+        route: 'concierge/timemanagement'
+      },
+      {
+        id: 'conciergefinancedesk',
+        label: 'Finance Desk',
+        icon: 'users',
+        type: 'menu',
+        route: 'concierge/financedesk'
+      },
+
+
+      {
+        id: 'conciergeconfiguration',
+        label: 'Program Configuration',
+        icon: 'users',
+        type: 'menu',
+        route: 'concierge/programconfiguration'
       },
      
       {
@@ -42,7 +65,10 @@
         type: 'menu',
         route: 'concierge/operations'
       }
+
+    
     
     ]
   };
  export default conciergeConfig
+

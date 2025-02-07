@@ -4,6 +4,8 @@ import json
 
 import boto3
 
+
+
 import requests
 
 import os
@@ -11,6 +13,18 @@ import os
 import traceback
 
 import re
+
+from pymongo import MongoClient
+from pymongo.errors import CollectionInvalid
+
+import csv
+import io
+from bson import json_util
+
+
+
+from bson import ObjectId
+
 
 import time
 import copy
@@ -20,6 +34,9 @@ from pathlib import Path
 #from ..auth.auth_engine import login_required  # Add this import
 
 from botocore.exceptions import ClientError
+
+from ..utilities.json_accessor import JsonAccessor
+from ..utilities.classifier import Classifier
 
 # Get AWS credentials from environment variables
 AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -32,8 +49,10 @@ s3_client = boto3.client(
     aws_access_key_id=AWS_ACCESS_KEY,
     aws_secret_access_key=AWS_SECRET_KEY
 )
+client = MongoClient('mongodb://localhost:27017/')
+db = client.litigationDatabase
 
-
+company_matcher = Classifier()
 
 
 
@@ -1759,4 +1778,1060 @@ def query_fund_details():
         return jsonify({
             'status': 'error',
             'message': str(e)
+        }), 500
+
+@main_blueprint.route('/api/utility/json-access', methods=['POST'])
+def access_json():
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        required_fields = ['endpoint', 'action']
+        if not all(field in data for field in required_fields):
+            return jsonify({
+                'status': 'error',
+                'message': 'Missing required fields'
+            }), 400
+
+        # Build standardized base path ending with static/data
+        base_path = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data'
+        ))
+
+        # Construct full path by joining base_path with provided endpoint
+        full_path = os.path.join(base_path, data['endpoint'])
+        print(f"🔍 Accessing JSON at path: {full_path}")
+
+        # Initialize accessor
+        accessor = JsonAccessor(file_path=full_path)
+
+        # Handle different actions
+        if data['action'] == 'get_value':
+            result = accessor.get_value(data['path'], data.get('default'))
+            return jsonify({
+                'status': 'success',
+                'value': result
+            })
+
+        elif data['action'] == 'get_schema':
+            schema = accessor.get_schema()
+            return jsonify({
+                'status': 'success',
+                'schema': schema
+            })
+            
+        elif data['action'] == 'find_key':
+            results = accessor.find_key_recursive(data['key'])
+            return jsonify({
+                'status': 'success',
+                'results': results
+            })   
+
+    except Exception as e:
+        print(f"❌ Error in JSON access: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+
+
+def get_mongo_client():
+    """Get MongoDB client using configuration from mongo config directory"""
+    config_path = os.path.abspath(os.path.join(
+        current_app.root_path,  # starts at backend where application.py is
+        '..',                   # up one level to backend parent
+        '..',                   # up another level to project root
+        'mongo',               # into mongo directory
+        'config',
+        'config.json'  # the config file
+    ))
+    
+    # Debug print to see the path
+    print(f"Attempting to read config from: {config_path}")
+    
+    with open(config_path) as f:
+        config = json.load(f)
+    
+    return MongoClient(config['connection_string'])
+
+def infer_schema_from_data(data):
+    """
+    Infer MongoDB schema from sample data
+    Returns a JSON Schema compatible with MongoDB validation
+    """
+    if not data:
+        return None
+        
+    sample = data[0] if isinstance(data, list) else data
+    schema = {
+        "bsonType": "object",
+        "required": [],
+        "properties": {}
+    }
+    
+    for key, value in sample.items():
+        if value is not None:  # Only add non-null fields
+            field_type = type(value)
+            
+            if field_type == str:
+                schema["properties"][key] = {"bsonType": "string"}
+            elif field_type == int:
+                schema["properties"][key] = {"bsonType": "int"}
+            elif field_type == float:
+                schema["properties"][key] = {"bsonType": "double"}
+            elif field_type == bool:
+                schema["properties"][key] = {"bsonType": "bool"}
+            elif field_type == list:
+                schema["properties"][key] = {"bsonType": "array"}
+            elif field_type == dict:
+                nested_schema = infer_schema_from_data(value)
+                if nested_schema:
+                    schema["properties"][key] = nested_schema
+            
+            schema["required"].append(key)
+    
+    return schema
+
+@main_blueprint.route('/api/mongodb/databases', methods=['GET'])
+def get_databases():
+    """List all databases and their collections"""
+    try:
+        client = get_mongo_client()
+        database_list = []
+        
+        # Print available databases for debugging
+        print(f"Available databases: {client.list_database_names()}")
+        
+        for db_name in client.list_database_names():
+            if db_name not in ['admin', 'local', 'config']:
+                db = client[db_name]
+                collections = []
+                
+                # Print collections for debugging
+                print(f"Collections in {db_name}: {db.list_collection_names()}")
+                
+                for coll_name in db.list_collection_names():
+                    try:
+                        # Get collection info including validation rules
+                        collection_info = db.command("listCollections", 
+                                                  filter={"name": coll_name})
+                        
+                        # Get a sample document
+                        sample = list(db[coll_name].find().limit(1))
+                        
+                        collections.append({
+                            'name': coll_name,
+                            'path': f'{db_name}/{coll_name}',
+                            'sample': json.loads(json_util.dumps(sample[0])) if sample else None,
+                            'schema': collection_info['cursor']['firstBatch'][0].get('options', {}).get('validator', {})
+                        })
+                    except Exception as e:
+                        print(f"Error processing collection {coll_name}: {str(e)}")
+                        continue
+                
+                database_list.append({
+                    'name': db_name,
+                    'collections': collections
+                })
+        
+        # Return in format expected by React component
+        return jsonify({
+            'databases': database_list,
+            'error': None
+        })
+        
+    except Exception as e:
+        print(f"Error in get_databases: {str(e)}")
+        return jsonify({
+            'databases': [],
+            'error': str(e)
+        })
+
+@main_blueprint.route('/api/mongodb/databases', methods=['POST'])
+def create_database():
+    """Create a new database"""
+    try:
+        data = request.json
+        db_name = data.get('name')
+        
+        if not db_name:
+            return jsonify({'error': 'Database name is required'}), 400
+            
+        client = get_mongo_client()
+        
+        # MongoDB creates databases lazily - create a temporary collection
+        db = client[db_name]
+        db.create_collection('temp')
+        db.drop_collection('temp')
+        
+        return jsonify({
+            'message': f'Database {db_name} created successfully',
+            'error': None
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e)
+        }), 500
+
+@main_blueprint.route('/api/mongodb/collections', methods=['POST'])
+def create_collection():
+    """Create a new collection with optional schema validation"""
+    try:
+        data = request.json
+        db_name = data.get('database')
+        coll_name = data.get('name')
+        schema = data.get('schema')  # Optional schema
+        
+        if not db_name or not coll_name:
+            return jsonify({'error': 'Database and collection names are required'}), 400
+            
+        client = get_mongo_client()
+        db = client[db_name]
+        
+        # If schema is provided, create collection with validation
+        if schema:
+            validator = {"$jsonSchema": schema}
+            db.create_collection(
+                coll_name,
+                validator=validator,
+                validationAction="error"  # or "warn"
+            )
+        else:
+            db.create_collection(coll_name)
+        
+        return jsonify({
+            'message': f'Collection {coll_name} created successfully',
+            'error': None
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e)
+        }), 500
+
+@main_blueprint.route('/api/mongodb/load-data', methods=['POST'])
+def load_data():
+    """Load data from JSON or CSV file into specified collection"""
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file provided'}), 400
+            
+        file = request.files['file']
+        db_name = request.form.get('database')
+        coll_name = request.form.get('collection')
+        infer_schema = request.form.get('infer_schema', 'false').lower() == 'true'
+        
+        if not db_name or not coll_name:
+            return jsonify({'error': 'Database and collection names are required'}), 400
+            
+        client = get_mongo_client()
+        db = client[db_name]
+        collection = db[coll_name]
+        
+        # Process file and load data
+        if file.filename.endswith('.json'):
+            data = json.load(file)
+        elif file.filename.endswith('.csv'):
+            stream = io.StringIO(file.stream.read().decode("UTF8"))
+            csv_reader = csv.DictReader(stream)
+            data = list(csv_reader)
+        else:
+            return jsonify({'error': 'Unsupported file format'}), 400
+        
+        # If requested, infer and update schema from the data
+        if infer_schema:
+            schema = infer_schema_from_data(data)
+            if schema:
+                db.command("collMod", coll_name,
+                          validator={"$jsonSchema": schema},
+                          validationAction="error")
+        
+        # Insert the data
+        if isinstance(data, list):
+            collection.insert_many(data)
+        else:
+            collection.insert_one(data)
+        
+        return jsonify({
+            'message': 'Data loaded successfully',
+            'error': None
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e)
+        }), 500
+
+@main_blueprint.route('/api/mongodb/schema', methods=['GET', 'PUT'])
+def manage_schema():
+    """Get or update schema for a collection"""
+    try:
+        db_name = request.args.get('database')
+        coll_name = request.args.get('collection')
+        
+        if not db_name or not coll_name:
+            return jsonify({'error': 'Database and collection names are required'}), 400
+            
+        client = get_mongo_client()
+        db = client[db_name]
+        
+        if request.method == 'GET':
+            # Get current schema
+            collection_info = db.command("listCollections", 
+                                      filter={"name": coll_name})
+            schema = collection_info['cursor']['firstBatch'][0].get('options', {}).get('validator', {})
+            return jsonify({'schema': schema})
+            
+        else:  # PUT
+            # Update schema
+            new_schema = request.json.get('schema')
+            if not new_schema:
+                return jsonify({'error': 'Schema is required'}), 400
+                
+            db.command("collMod", coll_name,
+                      validator={"$jsonSchema": new_schema},
+                      validationAction="error")
+            return jsonify({'message': 'Schema updated successfully'})
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+
+
+
+@main_blueprint.route('/api/litigation/current', methods=['GET'])
+def get_current_litigation():
+    print("Starting get_current_litigation route handler")
+    try:
+        litigation_data = list(db.asbestosLitigation.find({}, {'_id': 0}))
+        print(f"Retrieved {len(litigation_data)} documents from MongoDB")
+        
+        transformed_data = []
+        for case in litigation_data:
+            print(f"\nProcessing case...")
+            
+            # Get data from correct paths
+            lawsuit_info = case.get('lawsuit_info', {})
+            file_metadata = case.get('file_metadata', {})
+            
+            # Transform the case data
+            transformed_case = {
+                'log_number': file_metadata.get('log_number', lawsuit_info.get('docket_number')),  # Use docket as fallback
+                'case_caption': lawsuit_info.get('case_caption'),
+                'defendants': [d.get('company_name', d.get('defendant_company')) 
+                             for d in case.get('defendants', [])],
+                'jurisdiction': f"{lawsuit_info.get('jurisdiction', '')}, {lawsuit_info.get('jurisdiction_state', '')}".strip(', '),
+                'disease_name': (case.get('injured_parties', [{}])[0]
+                               .get('diagnoses', [{}])[0]
+                               .get('disease_name', 'Unknown')),
+                'file_date': lawsuit_info.get('file_date'),
+                'answer_due_date': lawsuit_info.get('answer_due_date'),
+                'status': 'NEW'  # Default status
+            }
+            
+            # Debug print
+            print(f"Transformed case data:")
+            print(f"Log/Docket: {transformed_case['log_number']}")
+            print(f"Caption: {transformed_case['case_caption']}")
+            print(f"Jurisdiction: {transformed_case['jurisdiction']}")
+            
+            # Only add cases that have essential data
+            if transformed_case['case_caption']:  # At minimum need a caption
+                transformed_data.append(transformed_case)
+                print(f"Successfully added case to transformed data")
+        
+        print(f"Transformation complete. Returning {len(transformed_data)} cases")
+        return jsonify(transformed_data)
+    except Exception as e:
+        print(f"Error in get_current_litigation: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+
+@main_blueprint.route('/api/litigation/production', methods=['GET'])
+def get_production_litigation():
+    print("Starting get_production_litigation route handler")
+    try:
+        # Changed collection to asbestosProduction
+        litigation_data = list(db.asbestosProduction.find({}, {'_id': 0}))
+        print(f"Retrieved {len(litigation_data)} documents from asbestosProduction")
+        
+        transformed_data = []
+        for case in litigation_data:
+            print(f"\nProcessing production case...")
+            
+            # Get data from correct paths
+            lawsuit_info = case.get('lawsuit_info', {})
+            file_metadata = case.get('file_metadata', {})
+            
+            # Transform the case data - same logic as before
+            transformed_case = {
+                'log_number': file_metadata.get('log_number', lawsuit_info.get('docket_number')),
+                'case_caption': lawsuit_info.get('case_caption'),
+                'defendants': [d.get('company_name', d.get('defendant_company')) 
+                             for d in case.get('defendants', [])],
+                'jurisdiction': f"{lawsuit_info.get('jurisdiction', '')}, {lawsuit_info.get('jurisdiction_state', '')}".strip(', '),
+                'disease_name': (case.get('injured_parties', [{}])[0]
+                               .get('diagnoses', [{}])[0]
+                               .get('disease_name', 'Unknown')),
+                'file_date': lawsuit_info.get('file_date'),
+                'answer_due_date': lawsuit_info.get('answer_due_date'),
+                'status': 'NEW'  # These are all new cases by definition
+            }
+            
+            # Debug print
+            print(f"Transformed production case data:")
+            print(f"Log/Docket: {transformed_case['log_number']}")
+            print(f"Caption: {transformed_case['case_caption']}")
+            print(f"Jurisdiction: {transformed_case['jurisdiction']}")
+            
+            # Only add cases that have essential data
+            if transformed_case['case_caption']:
+                transformed_data.append(transformed_case)
+                print(f"Successfully added production case")
+        
+        print(f"Production transformation complete. Returning {len(transformed_data)} cases")
+        return jsonify(transformed_data)
+    except Exception as e:
+        print(f"Error in get_production_litigation: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+
+
+
+
+@main_blueprint.route('/api/litigation/run-matching', methods=['POST'])
+def run_matching():
+    try:
+        print("Starting matching process for production cases")
+        
+        # Get our customer list from the database
+        customer_list = list(db.coreCustomers.find({}, {"official_name": 1}))
+        customer_names = [c["official_name"] for c in customer_list]
+        
+        # Get unprocessed cases from asbestosConfirmed
+        unprocessed_cases = list(db.asbestosConfirmed.find({
+            "confirmation_data.processing_status": "NEW"
+        }))
+        
+        processed_count = 0
+        for case in unprocessed_cases:
+            # Get defendants from the case
+            defendants = case.get("defendants", [])
+            
+            # Store all matches for this case
+            case_matches = []
+            highest_confidence = 0
+            best_match = None
+            
+            # Process each defendant
+            for defendant in defendants:
+                defendant_name = defendant.get("defendant_company", "")
+                matches = company_matcher.find_matches(
+                    defendant_name, 
+                    customer_names, 
+                    min_confidence=70  # Our minimum threshold
+                )
+                
+                # Store matches and track highest confidence
+                for match in matches:
+                    case_matches.append(match)
+                    if match['confidence'] > highest_confidence:
+                        highest_confidence = match['confidence']
+                        best_match = match
+            
+            # Determine match status based on confidence
+            match_status = "NO_MATCH"
+            if highest_confidence >= 90:
+                match_status = "CONFIRMED"
+            elif highest_confidence >= 70:
+                match_status = "PROBABLE"
+            
+            # Update the case with matching results
+            update_data = {
+                "confirmation_data.confidence_score": highest_confidence,
+                "confirmation_data.match_status": match_status,
+                "confirmation_data.processing_status": "PROCESSING",
+                "matching_results": {
+                    "best_match": best_match,
+                    "confidence_threshold": 70,
+                    "potential_matches": case_matches,
+                    "match_date": datetime.utcnow()
+                },
+                "audit_trail.last_modified": datetime.utcnow(),
+                "$push": {
+                    "audit_trail.modification_history": {
+                        "date": datetime.utcnow(),
+                        "action": "MATCHING_COMPLETE",
+                        "details": f"Matching completed with {len(case_matches)} potential matches"
+                    }
+                }
+            }
+            
+            if best_match:
+                update_data["confirmation_data.matched_client"] = best_match['customer']
+            
+            db.asbestosConfirmed.update_one(
+                {"_id": case["_id"]},
+                {"$set": update_data}
+            )
+            
+            processed_count += 1
+            
+            # If NO_MATCH, move to archived
+            if match_status == "NO_MATCH":
+                archive_case(str(case["_id"]), "NO_MATCH")
+        
+        return jsonify({
+            "success": True,
+            "message": f"Processed {processed_count} cases",
+            "processed_count": processed_count
+        })
+        
+    except Exception as e:
+        print(f"Error in run_matching: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+        
+        
+        
+@main_blueprint.route('/api/litigation/process-matches', methods=['POST'])
+def process_matches():
+    """
+    Process matches after confirmation
+    """
+    try:
+        data = request.get_json()
+        case_ids = data.get('case_ids', [])
+        action = data.get('action', 'CONFIRM')  # CONFIRM or REJECT
+        
+        processed = 0
+        for case_id in case_ids:
+            if action == 'CONFIRM':
+                # Update case status
+                db.asbestosConfirmed.update_one(
+                    {"_id": ObjectId(case_id)},
+                    {
+                        "$set": {
+                            "confirmation_data.match_status": "CONFIRMED",
+                            "confirmation_data.processing_status": "REVIEWED",
+                            "confirmation_data.confirmation_date": datetime.utcnow(),
+                            "confirmation_data.confirmed_by": "user",  # Could be from session
+                            "audit_trail.last_modified": datetime.utcnow()
+                        },
+                        "$push": {
+                            "audit_trail.modification_history": {
+                                "date": datetime.utcnow(),
+                                "action": "MATCH_CONFIRMED",
+                                "details": "Match confirmed by user"
+                            }
+                        }
+                    }
+                )
+            else:  # REJECT
+                # Archive the case
+                archive_case(case_id, "REJECTED_MATCH")
+            
+            processed += 1
+        
+        return jsonify({
+            "success": True,
+            "message": f"Processed {processed} cases",
+            "processed_count": processed
+        })
+        
+    except Exception as e:
+        print(f"Error in process_matches: {str(e)}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500     
+
+
+
+# routes/litigation.py
+
+@main_blueprint.route('/api/litigation/promote', methods=['POST'])
+def promote_to_confirmation():
+    try:
+        print("Starting promotion to confirmation process")
+        
+        # Get cases from asbestosProduction that need to be processed
+        production_cases = list(db.asbestosProduction.find({}))
+        
+        confirmed_cases = []
+        for case in production_cases:
+            # Create new document structure
+            confirmed_case = {
+                # Preserve original data structure
+                "file_metadata": case.get("file_metadata", {}),
+                "lawsuit_info": case.get("lawsuit_info", {}),
+                "counsel": case.get("counsel", []),
+                "injured_parties": case.get("injured_parties", []),
+                "defendants": case.get("defendants", []),
+                
+                # Add confirmation-specific fields
+                "confirmation_data": {
+                    "original_case_id": str(case.get("_id")),
+                    "confidence_score": None,  # Will be populated by matching algorithm
+                    "match_status": "PENDING",  # PENDING, NO_MATCH, PROBABLE, CONFIRMED
+                    "matched_client": None,
+                    "confirmation_date": None,
+                    "confirmed_by": None,
+                    "processing_status": "NEW"  # NEW, PROCESSING, REVIEWED, ARCHIVED
+                },
+                
+                # Add matching results (will be populated later)
+                "matching_results": {
+                    "best_match": None,
+                    "confidence_threshold": 70,
+                    "potential_matches": [],
+                    "match_date": None
+                },
+                
+                # Add audit trail
+                "audit_trail": {
+                    "created_at": datetime.utcnow(),
+                    "created_by": "system",
+                    "last_modified": datetime.utcnow(),
+                    "modification_history": [
+                        {
+                            "date": datetime.utcnow(),
+                            "action": "CREATED",
+                            "details": "Initial promotion to confirmation queue"
+                        }
+                    ]
+                }
+            }
+            
+            confirmed_cases.append(confirmed_case)
+        
+        if confirmed_cases:
+            # Insert into asbestosConfirmed collection
+            result = db.asbestosConfirmed.insert_many(confirmed_cases)
+            print(f"Successfully promoted {len(result.inserted_ids)} cases to confirmation")
+            
+            return jsonify({
+                "success": True,
+                "message": f"Promoted {len(result.inserted_ids)} cases to confirmation queue",
+                "promoted_count": len(result.inserted_ids)
+            })
+        else:
+            return jsonify({
+                "success": False,
+                "message": "No cases found to promote"
+            }), 404
+            
+    except Exception as e:
+        print(f"Error in promote_to_confirmation: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+# Helper function to archive cases
+def archive_case(case_id, reason="NO_MATCH"):
+    try:
+        # Get the case from asbestosConfirmed
+        case = db.asbestosConfirmed.find_one({"_id": ObjectId(case_id)})
+        
+        if not case:
+            return False
+            
+        # Add archive-specific data
+        case["archive_data"] = {
+            "archive_date": datetime.utcnow(),
+            "archive_reason": reason,
+            "archived_by": "system",
+            "original_confirmation_data": case.get("confirmation_data", {})
+        }
+        
+        # Insert into archive collection
+        db.asbestosArchived.insert_one(case)
+        
+        # Remove from confirmation collection
+        db.asbestosConfirmed.delete_one({"_id": ObjectId(case_id)})
+        
+        return True
+        
+    except Exception as e:
+        print(f"Error archiving case {case_id}: {str(e)}")
+        return False
+
+
+
+
+
+@main_blueprint.route('/api/litigation/confirmation', methods=['GET'])
+def get_confirmation_queue():
+    print("\n=== Starting Customer Collection Debug ===")
+    
+    try:
+        # Get access to the customer database collection directly
+        core_customers = db.client.customerDatabase.coreCustomers
+        print("Attempting to fetch from customerDatabase.coreCustomers collection...")
+        
+        # Get raw customer documents and process into customer names
+        customer_list = list(core_customers.find())
+        print(f"\nRaw customer documents found: {len(customer_list)}")
+        
+        # Initialize customer names list and process all variations
+        customer_names = set()  # Using a set for faster lookups and uniqueness
+        
+        for doc in customer_list:
+            # Current name
+            if doc.get('current_name'):
+                customer_names.add(doc['current_name'])
+            
+            # Previous names
+            if doc.get('previous_names'):
+                for prev_name in doc['previous_names']:
+                    if isinstance(prev_name, dict) and prev_name.get('name'):
+                        customer_names.add(prev_name['name'])
+                    elif isinstance(prev_name, str):
+                        customer_names.add(prev_name)
+            
+            # Official name
+            if doc.get('official_name'):
+                customer_names.add(doc['official_name'])
+            
+            # Trade names
+            if doc.get('trade_names'):
+                for trade in doc['trade_names']:
+                    if isinstance(trade, dict) and trade.get('name'):
+                        customer_names.add(trade['name'])
+
+        # Convert set to list for classifier
+        customer_names = list(filter(None, customer_names))
+        print(f"\nTotal unique customer names found: {len(customer_names)}")
+        
+        # Get cases from litigation database
+        cases = list(db.asbestosConfirmed.find({
+            "confirmation_data.match_status": "PENDING"
+        }, {
+            "_id": 1,
+            "file_metadata.log_number": 1,
+            "lawsuit_info.docket_number": 1,
+            "lawsuit_info.case_caption": 1,
+            "defendants": 1
+        }))  # Only fetch the fields we need
+        
+        print(f"\nFound {len(cases)} total cases to process")
+        
+        transformed_cases = []
+        classifier = Classifier()
+        MIN_CONFIDENCE = 75.0
+        MAX_MATCHES_PER_CASE = 5  # Limit matches per case for performance
+        
+        for case in cases:
+            identifier = (
+                case.get("file_metadata", {}).get("log_number") or 
+                case.get("lawsuit_info", {}).get("docket_number")
+            )
+            
+            if not identifier:
+                continue
+                
+            # Get unique defendants
+            defendants = list(set(
+                d.get("company", "") for d in case.get("defendants", [])
+                if d.get("company")
+            ))
+            
+            case_matches = []
+            
+            for defendant in defendants:
+                # Get matches for this defendant
+                matches = classifier.find_matches(
+                    defendant=defendant,
+                    customer_list=customer_names
+                )
+                
+                # Filter and limit matches
+                valid_matches = [
+                    match for match in matches 
+                    if match['confidence'] >= MIN_CONFIDENCE
+                ][:MAX_MATCHES_PER_CASE]
+                
+                for match in valid_matches:
+                    case_matches.append({
+                        "case_id": str(case["_id"]),
+                        "log_number": identifier,
+                        "case_caption": case.get("lawsuit_info", {}).get("case_caption", ""),
+                        "confidence_score": f"{match['confidence']:.1f}%",
+                        "matched_client": match['customer'],
+                        "matched_defendant": defendant,
+                        "match_details": match['match_details']
+                    })
+            
+            # If we found matches, sort them and update the case
+            if case_matches:
+                # Sort matches by confidence
+                case_matches.sort(
+                    key=lambda x: float(x['confidence_score'].rstrip('%')), 
+                    reverse=True
+                )
+                
+                # Take top matches
+                top_matches = case_matches[:MAX_MATCHES_PER_CASE]
+                transformed_cases.extend(top_matches)
+                
+                # Update MongoDB with best match only
+                best_match = top_matches[0]
+                db.asbestosConfirmed.update_one(
+                    {"_id": case["_id"]},
+                    {"$set": {
+                        "matching_results": {
+                            "confidence_score": float(best_match['confidence_score'].rstrip('%')),
+                            "best_match": best_match['matched_client'],
+                            "matched_defendant": best_match['matched_defendant'],
+                            "match_date": datetime.utcnow(),
+                            "match_details": best_match['match_details']
+                        }
+                    }}
+                )
+
+        # Sort all cases by confidence
+        transformed_cases.sort(
+            key=lambda x: float(x['confidence_score'].rstrip('%')), 
+            reverse=True
+        )
+        
+        print(f"\nFound {len(transformed_cases)} valid matches across {len(cases)} cases")
+        
+        response_data = {
+            "success": True,
+            "count": len(transformed_cases),
+            "cases": transformed_cases
+        }
+        
+        return jsonify(response_data)
+            
+    except Exception as e:
+        print(f"\nError in processing: {str(e)}")
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": f"Error processing data: {str(e)}"
+        }), 500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+@main_blueprint.route('/api/litigation/archived-queue', methods=['GET'])
+def get_archived_queue():
+    try:
+        # Get archived cases (<75% confidence)
+        cases = list(db.asbestosArchived.find().sort("archive_data.archive_date", -1))
+        
+        transformed_cases = []
+        for case in cases:
+            transformed_case = {
+                "case_id": str(case["_id"]),
+                "log_number": case.get("log_number"),
+                "case_caption": case.get("case_caption"),
+                "confidence_score": case.get("matching_results", {}).get("confidence_score"),
+                "archive_date": case.get("archive_data", {}).get("archive_date"),
+                "archive_reason": case.get("archive_data", {}).get("archive_reason"),
+                "jurisdiction": case.get("lawsuit_info", {}).get("jurisdiction"),
+                "defendants": case.get("defendants", [])
+            }
+            transformed_cases.append(transformed_case)
+            
+        return jsonify({
+            "success": True,
+            "count": len(transformed_cases),
+            "cases": transformed_cases
+        })
+        
+    except Exception as e:
+        print(f"Error getting archived queue: {str(e)}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500  
+
+
+
+
+
+
+
+
+@main_blueprint.route('/api/litigation/promote-to-client', methods=['POST'])
+def promote_to_client():
+    try:
+        data = request.get_json()
+        case_strings = data.get('cases', [])
+        
+        if not case_strings:
+            return jsonify({
+                "success": False,
+                "error": "No cases provided for promotion"
+            }), 400
+            
+        print(f"Promoting {len(case_strings)} cases to client table")
+        promoted_count = 0
+        
+        for case_string in case_strings:
+            # Parse the combined string back into log_number and defendant
+            try:
+                log_number, defendant = case_string.split('|||')
+            except ValueError:
+                print(f"Invalid case string format: {case_string}")
+                continue
+            
+            print(f"Processing log_number: {log_number}, defendant: {defendant}")
+            
+            # Find the case in asbestosConfirmed
+            case_doc = db.asbestosConfirmed.find_one({
+                "$or": [
+                    {"file_metadata.log_number": log_number},
+                    {"lawsuit_info.docket_number": log_number}
+                ]
+            })
+            
+            if case_doc:
+                # Get the matching results
+                matching_results = case_doc.get('matching_results', {})
+                
+                if matching_results:
+                    # Create client table entry
+                    client_entry = {
+                        "log_number": log_number,
+                        "case_caption": case_doc.get("lawsuit_info", {}).get("case_caption"),
+                        "client": matching_results.get("best_match"),
+                        "matched_defendant": defendant,
+                        "confidence_score": matching_results.get("confidence_score"),
+                        "promotion_date": datetime.utcnow(),
+                        "original_case_id": str(case_doc["_id"]),
+                        "lawsuit_info": case_doc.get("lawsuit_info", {}),
+                        "file_metadata": case_doc.get("file_metadata", {}),
+                        "defendants": case_doc.get("defendants", []),
+                        "confirmation_data": {
+                            "promotion_date": datetime.utcnow(),
+                            "promoted_by": "system",
+                            "original_match_results": matching_results
+                        }
+                    }
+                    
+                    try:
+                        # Insert into asbestosClient
+                        result = db.asbestosClient.insert_one(client_entry)
+                        
+                        if result.inserted_id:
+                            # Remove from asbestosConfirmed only if successfully inserted
+                            db.asbestosConfirmed.delete_one({"_id": case_doc["_id"]})
+                            promoted_count += 1
+                            print(f"Successfully promoted case {log_number} to client table")
+                        
+                    except Exception as insert_error:
+                        print(f"Error inserting case {log_number}: {str(insert_error)}")
+                        continue
+        
+        if promoted_count > 0:
+            return jsonify({
+                "success": True,
+                "promoted_count": promoted_count,
+                "message": f"Successfully promoted {promoted_count} cases to client table"
+            })
+        else:
+            return jsonify({
+                "success": False,
+                "error": "No cases were successfully promoted"
+            }), 400
+        
+    except Exception as e:
+        print(f"Error promoting cases: {str(e)}")
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@main_blueprint.route('/api/litigation/clear-confirmed', methods=['POST'])
+def clear_confirmed_cases():
+    try:
+        # Get initial count
+        initial_count = db.asbestosConfirmed.count_documents({})
+        print(f"\nStarting clear operation. Current document count: {initial_count}")
+        
+        # Delete all documents from the collection
+        result = db.asbestosConfirmed.delete_many({})
+        
+        # Verify deletion
+        remaining_count = db.asbestosConfirmed.count_documents({})
+        
+        print(f"Deleted {result.deleted_count} documents")
+        print(f"Remaining documents: {remaining_count}")
+        
+        return jsonify({
+            "success": True,
+            "deleted_count": result.deleted_count,
+            "remaining_count": remaining_count
+        })
+        
+    except Exception as e:
+        print(f"Error clearing confirmed cases: {str(e)}")
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": str(e)
         }), 500

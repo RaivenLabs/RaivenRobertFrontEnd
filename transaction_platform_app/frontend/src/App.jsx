@@ -94,6 +94,10 @@ import NIKERaivenContent from './pages/nikeapplications/raiven';
 
 import PaceAida from './pages/paceapplications/paceaida';
 import PaceAidaDashboard from './pages/paceapplications/paceaida/features/dashboard';
+import FullPayload from './pages/paceapplications/paceaida/features/fullpayload';
+import  ConfirmationTable from './pages/paceapplications/paceaida/features/confirmation';
+import  ClientTable from './pages/paceapplications/paceaida/features/clienttable';
+
 
 import EvershedsRecruiting from './pages/evershedsapplications/recruiting';
 import ActiveReviewsTable from './pages/evershedsapplications/recruiting/features/activereviews';
@@ -102,6 +106,9 @@ import RecruitingLoader from './pages/evershedsapplications/recruiting/features/
 import ReviewArchiveTable from './pages/evershedsapplications/recruiting/features/reviewarchive';
 
 
+
+import ProgramConfiguration from './pages/menusections/concierge/features/programconfiguration';
+import ConciergeDashboard from './pages/menusections/concierge/features/conciergedashboard';
 
 
 
@@ -193,6 +200,12 @@ function AppRoutes() {
         <Route path="configuration/overview" element={<Configuration />} />
         <Route path="configuration/platformconfiguration" element={<PlatformConfiguration />} />
 
+
+       {/* Concierge routes */}
+        <Route path="concierge/overview" element={<Concierge />} />
+        <Route path="concierge/programconfiguration" element={<ProgramConfiguration />} />
+        <Route path="concierge/dashboard" element={<ConciergeDashboard />} />
+
         {/* Company Report routes */}
         <Route path="companyreport/overview" element={<CompanyReport />} />
         <Route path="companyreport/resources" element={<CompanyResources />} />
@@ -257,6 +270,9 @@ function AppRoutes() {
 <Route path="rapidresponse/partnerapplications/paceaidacomponent" element={<PaceAida />} />
 <Route path="paceaida/dashboard" element={<PaceAidaDashboard />} />
 <Route path="paceaida/overview" element={<PaceAida />} />
+<Route path="paceaida/payload" element={<FullPayload />} />
+<Route path="paceaida/confirmation" element={<ConfirmationTable />} />
+<Route path="paceaida/activematters" element={<ClientTable />} />
 
 
 
@@ -291,7 +307,7 @@ function AppRoutes() {
  
  <Route path="recruiting/configuration" element={<EvershedsEUCSDD />} />
 
-
+ <Route path="recruiting/configuration" element={<EvershedsEUCSDD />} />
 
 
 

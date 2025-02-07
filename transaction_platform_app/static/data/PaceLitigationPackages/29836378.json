@@ -1,31 +1,31 @@
 {
-    "file_name": "PACE DEVELOP/29836378.pdf",
+    "file_name": "PACE TEST/29836378-test-4.pdf",
     "file": {
+        "file_sent_from": "CSC Corporation",
         "log_number": "29836378",
-        "file_sent_from": "CT Corporation",
         "file_category_type": "Lawsuit"
     },
     "lawsuit_service": [
         {
-            "lawsuit_summons_date": "09/06/2024",
-            "lawsuit_allegation": "Product",
             "lawsuit_damage_descriptions": "Fatal Injury/Wrongful Death",
-            "lawsuit_discovery_included": "NO",
-            "lawsuit_harmful_material": "ASBESTOS",
-            "lawsuit_amendment_number": "2",
-            "lawsuit_jurisdiction": "MIDDLESEX",
-            "lawsuit_is_multi_district": null,
             "lawsuit_administrative": "FALSE",
-            "lawsuit_file_date": "09/06/2024",
-            "lawsuit_jurisdiction_state": "MA",
+            "lawsuit_summons_date": "09/06/2024",
+            "lawsuit_company_served": "3M Company",
             "lawsuit_third_party_company": null,
-            "lawsuit_company_served": "R.T. Vanderbilt Company, Inc.",
-            "lawsuit_docket_number": "22-3142",
+            "lawsuit_allegation": "Product",
+            "lawsuit_file_date": "09/06/2024",
             "lawsuit_service_date": "09/06/2024",
             "lawsuit_received_date": "09/06/2024",
             "lawsuit_answer_due_days": "20",
             "lawsuit_answer_due_date": "09/26/2024",
+            "lawsuit_harmful_material": "ASBESTOS",
+            "lawsuit_is_multi_district": null,
+            "lawsuit_jurisdiction": "MIDDLESEX",
+            "lawsuit_discovery_included": "NO",
             "lawsuit_tender_date": null,
+            "lawsuit_amendment_number": "2",
+            "lawsuit_docket_number": "22-3142",
+            "lawsuit_jurisdiction_state": "MA",
             "lawsuit_case_caption": "Diane S. Walden, Individually and As Personal Representative of the Estate of Donald E. Walden, Plaintiffs, vs. 3M Company, et al.",
             "counsel": [
                 {
@@ -50,40 +50,6 @@
                     "injured_party_plaintiff_type": "Individual",
                     "injured_party_marital_status": "MARRIED",
                     "injured_party_birth_date": null,
-                    "plaintiff": [
-                        {
-                            "plaintiff_first_name": "Diane",
-                            "plaintiff_last_name": "Walden",
-                            "plaintiff_suffix": null,
-                            "lead_plaintiff_yn": "YES",
-                            "plaintiff_legal_capacity": "SELF",
-                            "plaintiff_ssn": null,
-                            "plaintiff_street": "31 Greenvate Ave",
-                            "plaintiff_city": "Weymouth",
-                            "plaintiff_state": "MA",
-                            "plaintiff_zip": "02188",
-                            "plaintiff_zip_extension": null,
-                            "plaintiff_middle_name": "S.",
-                            "plaintiff_phone_number": null,
-                            "plaintiff_phone_number_extension": null
-                        },
-                        {
-                            "plaintiff_first_name": "Donald",
-                            "plaintiff_last_name": "Walden",
-                            "plaintiff_suffix": null,
-                            "lead_plaintiff_yn": "NO",
-                            "plaintiff_legal_capacity": "DECEASED",
-                            "plaintiff_ssn": null,
-                            "plaintiff_street": "31 Greenvate Ave",
-                            "plaintiff_city": "Weymouth",
-                            "plaintiff_state": "MA",
-                            "plaintiff_zip": "02188",
-                            "plaintiff_zip_extension": null,
-                            "plaintiff_middle_name": "E.",
-                            "plaintiff_phone_number": null,
-                            "plaintiff_phone_number_extension": null
-                        }
-                    ],
                     "occupation_exposure": [
                         {
                             "occupation_title": "MAINTENANCE/REPAIR/CONSTRUCTION",
@@ -91,14 +57,14 @@
                             "occupation_jobsite_category": "OTHER",
                             "occupation_jobsite_city": "UNKNOWN",
                             "occupation_start_date": "01/01/1960",
-                            "occupation_end_date": "12/31/1970",
+                            "occupation_end_date": "12/31/1960",
                             "occupation_is_primary": "YES"
                         },
                         {
                             "occupation_title": "GOVT EMPLOYEE",
                             "occupation_jobsite": "ARMSTRONG WORLD INDUSTRIES",
                             "occupation_jobsite_category": "GOVERNMENT",
-                            "occupation_jobsite_city": "BRAINTREE, MA",
+                            "occupation_jobsite_city": "BRAINTREE, MASSACHUSETTS",
                             "occupation_start_date": "01/01/1970",
                             "occupation_end_date": "12/31/1970",
                             "occupation_is_primary": "NO"
@@ -186,7 +152,7 @@
                     "defendant_parent": null
                 },
                 {
-                    "defendant_company": "AII Acquisition Corporation, LLC, sued individually and as successor-in-interest to Athlone Industries Inc. and Holland Furnace Company",
+                    "defendant_company": "AII Acquisition Corporation, LLC, Individually and as Successor-in-Interest to Athlone Industries Inc. and Holland Furnace Company",
                     "defendant_parent": null
                 },
                 {
@@ -230,7 +196,7 @@
                     "defendant_parent": null
                 },
                 {
-                    "defendant_company": "CBS CORPORATION, f/k/a VIACOM, INC., successor-by-merger to CBS CORPORATION, a Pennsylvania corporation, f/k/a WESTINGHOUSE ELECTRIC CORPORATION",
+                    "defendant_company": "CBS CORPORATION, a Delaware corporation, f/k/a VIACOM, INC., successor-by-merger to CBS CORPORATION, a Pennsylvania corporation, f/k/a WESTINGHOUSE ELECTRIC CORPORATION",
                     "defendant_parent": null
                 },
                 {

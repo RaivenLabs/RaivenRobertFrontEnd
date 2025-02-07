@@ -1,0 +1,224 @@
+[
+  {
+    "official_name": "General Electric Company",
+    "current_name": "General Electric Company",
+    "previous_names": [],
+    "trade_names": [
+      {
+        "name": "GE",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-02-05"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "General Electric Company",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["543092863", "546046434"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Consistent naming across all cases"
+        },
+        "match_frequency": 25,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Morse Tec LLC",
+    "current_name": "Morse Tec LLC",
+    "previous_names": [
+      {
+        "name": "Borg Warner Morse Tec LLC",
+        "date_changed": "2019-01-01",
+        "source": "historical_record"
+      },
+      {
+        "name": "Borg-Warner Corporation",
+        "date_changed": "2009-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [],
+    "matched_names": [
+      {
+        "name": "Morse Tec LLC, as Successor-by-Merger to Borg-Warner Corporation",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["29361461"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Succession verified through corporate filings"
+        },
+        "match_frequency": 14,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "FMC Corporation",
+    "current_name": "FMC Corporation",
+    "previous_names": [],
+    "trade_names": [],
+    "matched_names": [
+      {
+        "name": "FMC Corporation, on behalf of its former Chicago Pump & Northern Pump businesses",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["29361461"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Business division history verified"
+        },
+        "match_frequency": 12,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Air & Liquid Systems Corporation",
+    "current_name": "Air & Liquid Systems Corporation",
+    "previous_names": [
+      {
+        "name": "Buffalo Pumps, Inc.",
+        "date_changed": "2010-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [],
+    "matched_names": [
+      {
+        "name": "Air & Liquid Systems Corporation, successor-by-merger to Buffalo Pumps, Inc.",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["29361461", "546046434"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Merger history verified through corporate documentation"
+        },
+        "match_frequency": 16,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  },
+  {
+    "official_name": "Grinnell LLC",
+    "current_name": "Grinnell LLC",
+    "previous_names": [
+      {
+        "name": "Grinnell Corporation",
+        "date_changed": "2015-01-01",
+        "source": "historical_record"
+      },
+      {
+        "name": "Grinnell Fire Protection Systems Company, Inc.",
+        "date_changed": "2000-01-01",
+        "source": "historical_record"
+      }
+    ],
+    "trade_names": [
+      {
+        "name": "Grinnell Fire",
+        "is_verified": true,
+        "verified_by": "client_submission",
+        "verified_date": "2024-02-05"
+      }
+    ],
+    "matched_names": [
+      {
+        "name": "Grinnell LLC, f/k/a Grinnell Corporation, a/k/a Grinnell Fire",
+        "confidence_score": 1.0,
+        "first_seen": "2024-02-05",
+        "source_documents": ["546046434"],
+        "verification_status": {
+          "is_verified": true,
+          "verified_by": "manual_review",
+          "verified_date": "2024-02-05",
+          "verification_notes": "Corporate history verified through state filings"
+        },
+        "match_frequency": 9,
+        "last_seen": "2024-02-05"
+      }
+    ],
+    "metadata": {
+      "created_date": "2024-02-05",
+      "last_updated": "2024-02-05",
+      "last_verified": "2024-02-05",
+      "update_history": [
+        {
+          "date": "2024-02-05",
+          "field": "matched_names",
+          "type": "initial_creation",
+          "user": "system",
+          "details": "Initial company record creation"
+        }
+      ]
+    }
+  }
+]

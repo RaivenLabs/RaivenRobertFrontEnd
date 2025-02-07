@@ -16,7 +16,7 @@
                 },
                 {
                     "id": "paceaidaprototype",
-                    "name": "Pace Aida Prototype",
+                    "name": "Pace Vector Prototype",
                     "icon": "path d='M9 17h6M9 12h6M9 7h6'",
                     "action": "launch_program",
                     "isLive": true,  

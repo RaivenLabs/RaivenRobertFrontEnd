@@ -1,32 +1,32 @@
 {
-    "file_name": "PACE DEVELOP/29418565.pdf",
+    "file_name": "PACE TEST/29418565.pdf",
     "file": {
-        "log_number": "29418565",
+        "file_category_type": "Lawsuit",
         "file_sent_from": "CSC Corporation",
-        "file_category_type": "Lawsuit"
+        "log_number": "29418565"
     },
     "lawsuit_service": [
         {
-            "lawsuit_third_party_company": null,
-            "lawsuit_jurisdiction": "DELAWARE",
-            "lawsuit_harmful_material": "ASBESTOS",
-            "lawsuit_discovery_included": "NO",
-            "lawsuit_administrative": "FALSE",
-            "lawsuit_jurisdiction_state": "DE",
-            "lawsuit_allegation": "Product",
-            "lawsuit_is_multi_district": null,
-            "lawsuit_file_date": "06/11/2024",
-            "lawsuit_damage_descriptions": "Personal Injury",
-            "lawsuit_tender_date": null,
-            "lawsuit_case_caption": "GARY VAN CAMP vs. CATERPILLAR, INC.",
-            "lawsuit_summons_date": "06/17/2024",
             "lawsuit_service_date": "07/01/2024",
             "lawsuit_received_date": "07/02/2024",
             "lawsuit_answer_due_days": "20",
             "lawsuit_answer_due_date": "07/21/2024",
-            "lawsuit_docket_number": "N24C06099ASB",
-            "lawsuit_amendment_number": null,
+            "lawsuit_allegation": "Product",
+            "lawsuit_tender_date": null,
             "lawsuit_company_served": "PECW HOLDING COMPANY",
+            "lawsuit_damage_descriptions": "Personal Injury",
+            "lawsuit_discovery_included": "NO",
+            "lawsuit_administrative": "FALSE",
+            "lawsuit_summons_date": "06/17/2024",
+            "lawsuit_amendment_number": null,
+            "lawsuit_file_date": "06/11/2024",
+            "lawsuit_third_party_company": null,
+            "lawsuit_jurisdiction": "NEW CASTLE",
+            "lawsuit_harmful_material": "ASBESTOS",
+            "lawsuit_is_multi_district": null,
+            "lawsuit_case_caption": "GARY VAN CAMP vs. CATERPILLAR, INC.",
+            "lawsuit_docket_number": "N24C06099ASB",
+            "lawsuit_jurisdiction_state": null,
             "counsel": [
                 {
                     "counsel_firm_name": "DALTON & ASSOCIATES, P.A.",
@@ -76,12 +76,21 @@
                     ],
                     "occupation_exposure": [
                         {
+                            "occupation_title": "SET UP MAN",
+                            "occupation_jobsite": "Stephenson & Lawyer Foam Fabrication Co.",
+                            "occupation_jobsite_category": "OTHER",
+                            "occupation_jobsite_city": "Grand Rapids, MI",
+                            "occupation_start_date": "01/01/1978",
+                            "occupation_end_date": "12/31/1983",
+                            "occupation_is_primary": "NO"
+                        },
+                        {
                             "occupation_title": "STOCKER",
                             "occupation_jobsite": "Spartan Foods Warehouse",
                             "occupation_jobsite_category": "OTHER",
                             "occupation_jobsite_city": "Grand Rapids, MI",
-                            "occupation_start_date": "01/01/1977",
-                            "occupation_end_date": "12/31/1977",
+                            "occupation_start_date": "01/01/1997",
+                            "occupation_end_date": "12/31/1978",
                             "occupation_is_primary": "NO"
                         },
                         {
@@ -101,6 +110,20 @@
                             "diagnosis_date": "12/01/2023",
                             "diagnosis_disease_source": "Plaintiff Disease",
                             "diagnosis_is_primary": "YES"
+                        },
+                        {
+                            "diagnosis_disease_name": "ASBESTOS RELATED DISEASE",
+                            "diagnosis_disease_category": "UNKNOWN",
+                            "diagnosis_date": null,
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "NO"
+                        },
+                        {
+                            "diagnosis_disease_name": null,
+                            "diagnosis_disease_category": null,
+                            "diagnosis_date": null,
+                            "diagnosis_disease_source": null,
+                            "diagnosis_is_primary": null
                         }
                     ],
                     "physician": [
@@ -149,11 +172,11 @@
                     "injured_party_middle_name": null,
                     "injured_party_is_loss_of_consortium_claimed": "No",
                     "injured_party_is_wrongful_death_claimed": "NO",
-                    "injured_party_individual_docket_number": "MDL-875",
+                    "injured_party_individual_docket_number": null,
                     "injured_party_military_member": null,
                     "injured_party_phone_no": null,
                     "injured_party_phone_no_ext": null,
-                    "injured_party_deceased": "LIVING"
+                    "injured_party_deceased": "UNKNOWN"
                 }
             ],
             "defendant_namings": [

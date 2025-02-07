@@ -11,48 +11,48 @@ const paceAidaConfig = {
       },
       {
         id: 'paceaidadashboard',
-        label: 'Package Dashboard',
+        label: 'Dashboard',
         icon: 'template',
         type: 'menu',
         route: 'paceaida/dashboard',
       },
 
       {
-        id: 'paceaidaanalysis',
-        label: 'Package Loader',
+        id: 'paceaidaactivematters',
+        label: 'Client Table',
         icon: 'template',
         type: 'menu',
-        route: 'paceaida/transactionanalysis',
+        route: 'paceaida/activematters',
       },  
 
 
 
       {
         id: 'paceaidareporting',
-        label: 'Reporting',
+        label: 'Confirmation Queue',
         icon: 'template',
         type: 'menu',
-        route: 'paceaida/reporting',
+        route: 'paceaida/confirmation',
       },
      
       {
         id: 'paceaidarouting',
-        label: 'Routing Packages',
+        label: 'Full Payload',
         icon: 'template',
         type: 'menu',
-        route: 'paceaida/routing',
+        route: 'paceaida/payload',
       }, 
       
       {
         id: 'paceaidaactiveprojects',
-        label: 'Active Projects',
+        label: 'Archives',
         icon: 'template',
         type: 'menu',
-        route: 'paceaida/activeprojects',
+        route: 'paceaida/archives',
       },
       {
         id: 'paceaidaaction1',
-        label: 'Application Configuration97',
+        label: 'Application Configuration',
         icon: 'template',
         type: 'menu',
         route: 'paceaida/configuration',
