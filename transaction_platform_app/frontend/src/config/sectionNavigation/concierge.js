@@ -15,7 +15,7 @@
         label: 'Launchpad',
         icon: 'check-square',
         type: 'view',
-        route: 'concierge/launch'
+        route: 'concierge/launchpad'
 
       },
 
@@ -28,11 +28,11 @@
       },
 
       {
-        id: 'conciergeportfolio',
-        label: 'Active Portfolio',
+        id: 'conciergeregistry',
+        label: 'Engagement Registry',
         icon: 'briefcase',
         type: 'menu',
-       route: 'concierge/portfolio'
+       route: 'concierge/registry'
       },  
       {
         id: 'conciergetimemanagement',

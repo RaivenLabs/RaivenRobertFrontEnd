@@ -1,191 +1,175 @@
 import React, { useState } from 'react';
-import {
-  Boxes,
-  FileText,
-  Users,
-  Settings,
-  Database,
-  Layout,
-  Building2,
-  Shield,
-  ChevronRight,
-  Files,
-  BookOpen,
-  Network,
-  GitBranch
+import { 
+  FileText, Users, Building2, Shield, Files,
+  Scale, CheckCircle
 } from 'lucide-react';
 
-const ProgramConfiguration = () => {
-  const [selectedProgram, setSelectedProgram] = useState(null);
-  const [selectedSection, setSelectedSection] = useState('overview');
-  
-  const navigationSections = [
-    {
-      id: 'overview',
-      label: 'Program Overview',
-      icon: <Layout className="w-5 h-5" />
-    },
-    {
-      id: 'agreements',
-      label: 'Agreement Types',
-      icon: <FileText className="w-5 h-5" />,
-      subsections: [
-        { id: 'saas', label: 'SaaS Agreements' },
-        { id: 'services', label: 'Service Agreements' },
-        { id: 'infrastructure', label: 'Infrastructure' }
-      ]
-    },
-    {
-      id: 'templates',
-      label: 'Templates & Documents',
-      icon: <Files className="w-5 h-5" />,
-      subsections: [
-        { id: 'master-agreements', label: 'Master Agreements' },
-        { id: 'rate-cards', label: 'Rate Cards' },
-        { id: 'order-forms', label: 'Order Forms' }
-      ]
-    },
-    {
-      id: 'team',
-      label: 'Team Configuration',
-      icon: <Users className="w-5 h-5" />,
-      subsections: [
-        { id: 'roles', label: 'Roles & Responsibilities' },
-        { id: 'contacts', label: 'Contact Directory' },
-        { id: 'approvers', label: 'Approval Matrix' }
-      ]
-    },
-    {
-      id: 'vendors',
-      label: 'Vendor Management',
-      icon: <Building2 className="w-5 h-5" />,
-      subsections: [
-        { id: 'core-vendors', label: 'Core Vendors' },
-        { id: 'integrations', label: 'Integrations' }
-      ]
-    },
-    {
-      id: 'protocols',
-      label: 'Corporate Protocols',
-      icon: <Shield className="w-5 h-5" />,
-      subsections: [
-        { id: 'compliance', label: 'Compliance Rules' },
-        { id: 'authority', label: 'Signature Authority' },
-        { id: 'privacy', label: 'Privacy Requirements' }
-      ]
-    }
-  ];
+const programs = [
+  { id: 'sourcing', label: 'Sourcing' },
+  { id: 'real-estate', label: 'Real Estate' },
+  { id: 'sales', label: 'Sales' },
+  { id: 'finance', label: 'Finance' },
+  { id: 'hr', label: 'HR' }
+];
 
-  const programs = [
-    {
-      id: 'sourcing',
-      name: 'Sourcing Program',
-      description: 'Vendor and contract management automation',
-      icon: <Network className="w-6 h-6" />
-    },
-    {
-      id: 'real-estate',
-      name: 'Real Estate Program',
-      description: 'Property transaction and lease management',
-      icon: <Building2 className="w-6 h-6" />
+const configGroups = [
+  {
+    id: 'agreements',
+    label: 'Agreement Types',
+    icon: <FileText className="w-5 h-5" />,
+    subsections: [
+      { id: 'saas', label: 'SaaS Agreements' },
+      { id: 'services', label: 'Service Agreements' },
+      { id: 'infrastructure', label: 'Infrastructure' }
+    ]
+  },
+  {
+    id: 'templates',
+    label: 'Templates & Documents',
+    icon: <Files className="w-5 h-5" />,
+    subsections: [
+      { id: 'master-agreements', label: 'Master Agreements' },
+      { id: 'rate-cards', label: 'Rate Cards' },
+      { id: 'order-forms', label: 'Order Forms' }
+    ]
+  },
+  {
+    id: 'team',
+    label: 'Team Configuration',
+    icon: <Users className="w-5 h-5" />,
+    subsections: [
+      { id: 'roles', label: 'Roles & Responsibilities' },
+      { id: 'contacts', label: 'Contact Directory' },
+      { id: 'approvers', label: 'Approval Matrix' }
+    ]
+  },
+  {
+    id: 'vendors',
+    label: 'Vendor Management',
+    icon: <Building2 className="w-5 h-5" />,
+    subsections: [
+      { id: 'core-vendors', label: 'Core Vendors' },
+      { id: 'integrations', label: 'Integrations' }
+    ]
+  },
+  {
+    id: 'protocols',
+    label: 'Corporate Protocols',
+    icon: <Shield className="w-5 h-5" />,
+    subsections: [
+      { id: 'compliance', label: 'Compliance Rules' },
+      { id: 'authority', label: 'Signature Authority' },
+      { id: 'privacy', label: 'Privacy Requirements' }
+    ]
+  }
+];
+
+const ConfigurationCard = ({ title, children, className = "" }) => (
+  <div className={`bg-white rounded-lg shadow p-6 ${className}`}>
+    <h3 className="text-lg font-semibold text-gray-900 mb-4">{title}</h3>
+    {children}
+  </div>
+);
+
+const ProgramConfiguration = () => {
+  // Initialize with defaults
+  const [activeProgram, setActiveProgram] = useState('sourcing');
+  const [activeGroup, setActiveGroup] = useState('agreements');
+  const [completedGroups, setCompletedGroups] = useState(new Set());
+
+  const handleGroupComplete = () => {
+    if (activeGroup) {
+      setCompletedGroups(prev => new Set([...prev, activeGroup]));
     }
-  ];
+  };
 
   return (
-    <div className="min-h-screen bg-ivory">
+    <div className="p-6 bg-ivory min-h-screen">
       {/* Header */}
-      <header className="guide-header">
-        <div className="guide-container">
-          <h1>Program Configuration</h1>
-          <p>Configure and customize your enterprise programs</p>
-          <p>Set up workflows, templates, and team structures</p>
+      <div className="bg-white rounded-lg shadow p-6 mb-6">
+        <div className="flex items-center mb-4">
+          <Scale className="text-royal-blue w-6 h-6 mr-2" />
+          <h2 className="text-2xl font-semibold text-royal-blue">
+            Program Configuration
+          </h2>
         </div>
-      </header>
+        <p className="text-gray-600">
+          Configure your program settings and manage configurations
+        </p>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        {!selectedProgram ? (
-          // Program Selection Screen
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {programs.map((program) => (
+      {/* Configuration Setup Panel */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Active Program */}
+        <ConfigurationCard title="Active Program">
+          <div className="space-y-2">
+            {programs.map(program => (
               <button
                 key={program.id}
-                onClick={() => setSelectedProgram(program)}
-                className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-left"
+                onClick={() => setActiveProgram(program.id)}
+                className={`w-full p-2 text-left rounded-lg transition-colors
+                  ${activeProgram === program.id 
+                    ? 'bg-teal text-white' 
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'}`}
               >
-                <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-blue-50 rounded-lg">
-                    {program.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">{program.name}</h3>
-                    <p className="text-gray-600">{program.description}</p>
-                  </div>
-                </div>
+                {program.label}
               </button>
             ))}
           </div>
-        ) : (
-          // Configuration Interface
-          <div className="flex gap-6">
-            {/* Navigation Sidebar */}
-            <div className="w-64 bg-white rounded-lg shadow-sm p-4">
-              <div className="flex items-center space-x-2 mb-6 p-2 bg-blue-50 rounded-lg">
-                {selectedProgram.icon}
-                <h2 className="font-semibold">{selectedProgram.name}</h2>
-              </div>
-              
-              <nav className="space-y-2">
-                {navigationSections.map((section) => (
-                  <div key={section.id}>
-                    <button
-                      onClick={() => setSelectedSection(section.id)}
-                      className={`w-full flex items-center justify-between p-2 rounded-lg text-left
-                        ${selectedSection === section.id 
-                          ? 'bg-blue-50 text-blue-700' 
-                          : 'hover:bg-gray-50'}`}
-                    >
-                      <div className="flex items-center space-x-2">
-                        {section.icon}
-                        <span>{section.label}</span>
-                      </div>
-                      {section.subsections && (
-                        <ChevronRight className="w-4 h-4" />
-                      )}
-                    </button>
-                    
-                    {/* Subsections */}
-                    {section.subsections && selectedSection === section.id && (
-                      <div className="ml-4 mt-2 space-y-1">
-                        {section.subsections.map((subsection) => (
-                          <button
-                            key={subsection.id}
-                            className="w-full p-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg text-left"
-                          >
-                            {subsection.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </nav>
-            </div>
+        </ConfigurationCard>
 
-            {/* Main Content Area */}
-            <div className="flex-1 bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
-                <span>{selectedProgram.name}</span>
-                <ChevronRight className="w-4 h-4" />
-                <span>{navigationSections.find(s => s.id === selectedSection)?.label}</span>
-              </div>
-
-              {/* Content placeholder - to be replaced with actual configuration forms */}
-              <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500">
-                Configuration interface for {selectedSection} will be displayed here
-              </div>
-            </div>
+        {/* Active Group */}
+        <ConfigurationCard title="Active Program Group">
+          <div className="space-y-2">
+            {configGroups.map(group => (
+              <button
+                key={group.id}
+                onClick={() => setActiveGroup(group.id)}
+                className={`w-full p-2 text-left rounded-lg transition-colors flex items-center justify-between
+                  ${activeGroup === group.id 
+                    ? 'bg-teal text-white' 
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'}`}
+              >
+                <span className="flex items-center">
+                  {group.icon}
+                  <span className="ml-2">{group.label}</span>
+                </span>
+                {completedGroups.has(group.id) && (
+                  <CheckCircle className="w-4 h-4" />
+                )}
+              </button>
+            ))}
           </div>
-        )}
+        </ConfigurationCard>
+      </div>
+
+      {/* Active Configuration Panel */}
+      <div className="bg-white rounded-lg shadow p-6">
+        <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          {configGroups.find(g => g.id === activeGroup)?.label} Configuration
+        </h3>
+        <div className="min-h-[400px] bg-gray-50 rounded-lg p-4 mb-4">
+          {/* Display active group's subsections */}
+          <div className="space-y-4">
+            {configGroups.find(g => g.id === activeGroup)?.subsections.map(subsection => (
+              <div 
+                key={subsection.id}
+                className="p-4 bg-white rounded-lg shadow-sm hover:shadow transition-shadow"
+              >
+                <h4 className="font-medium text-gray-900">{subsection.label}</h4>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <button 
+            onClick={handleGroupComplete}
+            className="px-6 py-2 bg-teal text-white rounded-lg hover:bg-teal/90 flex items-center space-x-2"
+          >
+            <CheckCircle className="w-5 h-5" />
+            <span>Confirm Configuration</span>
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -118,7 +118,7 @@ const flowchartDefinition = `graph TB
     {/* Header Section */}
     <header className="guide-header">
       <div className="guide-container">
-        <h1>Application Design Center</h1>
+      <h1>AIDA<sup style={{ fontSize: '0.6em' }}>™</sup> Design Center</h1>
        
         <p>From natural language process descriptions to fully automated workflows</p>
       </div>

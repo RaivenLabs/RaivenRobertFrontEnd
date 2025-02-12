@@ -4,7 +4,9 @@ import json
 
 import boto3
 
+from anthropic import Anthropic  # Now this will work after installation
 
+import logging
 
 import requests
 
@@ -37,11 +39,19 @@ from botocore.exceptions import ClientError
 
 from ..utilities.json_accessor import JsonAccessor
 from ..utilities.classifier import Classifier
+from .. utilities.tooljet_parser import TooljetParser
+from .. utilities.templatemaker import DocumentProcessor
 
 # Get AWS credentials from environment variables
 AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 S3_BUCKET = os.environ.get('S3_BUCKET')
+
+
+# Initialize Anthropic client
+anthropic_client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
+
 
 # Initialize S3 client
 s3_client = boto3.client(
@@ -2805,7 +2815,6 @@ def promote_to_client():
 
 
 
-
 @main_blueprint.route('/api/litigation/clear-confirmed', methods=['POST'])
 def clear_confirmed_cases():
     try:
@@ -2835,3 +2844,345 @@ def clear_confirmed_cases():
             "success": False,
             "error": str(e)
         }), 500
+
+
+@main_blueprint.route('/api/prototyping/chat', methods=['POST'])
+def chat_with_aida():
+    try:
+        data = request.get_json()
+        user_message = data.get('message')
+        conversation_history = data.get('history', [])
+        current_stage = data.get('currentStage')
+        selected_pattern = data.get('pattern')
+
+        print("Received message:", user_message)
+        print("Current stage:", current_stage)
+        print("Selected pattern:", selected_pattern)
+
+        # Build system prompt based on stage and pattern
+        base_system_prompt = """You are AIDA (AI Design Assistant). You help users create structured workflows 
+        based on established enterprise patterns.
+
+        When analyzing workflow requirements, always structure your response as follows:
+
+        Step X: [Descriptive Name]
+        Components:
+        - Primary: [Component Type] - [Purpose]
+        - Secondary: [Component Type] - [Purpose]
+
+        Data Requirements:
+        - Data Sources: [Required Data Sources/APIs]
+        - State Management: [State Requirements]
+
+        User Flow:
+        - Entry Point: [How users start this step]
+        - Actions: [What users/system can do]
+        - Exit Conditions: [When step is complete]
+
+        Available Components:
+        - Form: Input collection with validation
+        - Table: Data display with sorting/filtering
+        - Modal: Pop-up dialogs and forms
+        - FileUpload: Document handling
+        - Calendar: Date and scheduling
+        - Kanban: Status and progress tracking
+        - Timeline: Process visualization
+        - Chart: Data visualization
+        - Alert: User notifications
+        """
+
+        if selected_pattern:
+            pattern_context = f"""
+            The user has selected the {selected_pattern.get('name')} pattern, which is designed for 
+            {selected_pattern.get('purpose')}.
+
+            Key Pattern Features:
+            {', '.join(selected_pattern.get('key_features', []))}
+
+            Common Use Cases:
+            {', '.join(selected_pattern.get('use_cases', []))}
+
+            Please ensure the workflow structure follows {selected_pattern.get('name')} pattern best practices
+            and leverages its core capabilities.
+            """
+            system_prompt = base_system_prompt + "\n\n" + pattern_context
+        else:
+            system_prompt = base_system_prompt
+
+        # Format conversation history for Claude
+        formatted_history = []
+        for msg in conversation_history:
+            role = "assistant" if msg['type'] == 'assistant' else "user"
+            formatted_history.append({
+                "role": role,
+                "content": msg['content']
+            })
+
+        # Add the new user message
+        formatted_history.append({
+            "role": "user",
+            "content": user_message
+        })
+
+        try:
+            # Get response from Claude
+            response = anthropic_client.messages.create(
+                model="claude-3-sonnet-20240229",
+                max_tokens=2000,
+                temperature=0.7,
+                system=system_prompt,
+                messages=formatted_history
+            )
+
+            if response and hasattr(response, 'content') and response.content:
+                response_text = response.content[0].text
+                print("Claude response:", response_text)
+                
+                # If we're in specification stage, ensure response is structured
+                if current_stage == 'specification' and not any(line.startswith('Step') for line in response_text.split('\n')):
+                    return jsonify({
+                        "error": "Response not properly structured. Please try again."
+                    }), 400
+
+                return jsonify({
+                    "response": response_text
+                })
+            else:
+                raise Exception("No valid response content from Claude")
+
+        except Exception as e:
+            print(f"Error from Claude API: {str(e)}")
+            raise
+
+    except Exception as e:
+        current_app.logger.error(f"Error in chat endpoint: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+
+def validate_response_structure(response_text):
+    """
+    Validates that the response follows our required structure
+    """
+    required_sections = ['Step', 'Components', 'Data Requirements', 'User Flow']
+    lines = response_text.split('\n')
+    
+    return all(any(section in line for line in lines) for section in required_sections)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@main_blueprint.route('/api/prototyping/promote-to-canvas', methods=['POST'])
+def promote_to_canvas():
+    try:
+        data = request.get_json()
+        workflow_text = data.get('workflow_text')
+        
+        if not workflow_text:
+            return jsonify({'error': 'No workflow text provided'}), 400
+            
+        parser = TooljetParser()
+        canvas_json = parser.parse_workflow_text(workflow_text)
+        
+        # Here you could either:
+        # 1. Return the JSON for the frontend to handle
+        # 2. Make a direct API call to Tooljet to create the canvas
+        # 3. Store the JSON in your database for later use
+        
+        return jsonify({
+            'success': True,
+            'canvas_json': canvas_json
+        })
+        
+    except Exception as e:
+        current_app.logger.error(f"Error converting to canvas: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@main_blueprint.route('/api/templates/<program_class>', methods=['GET'])
+def get_template(program_class):
+    try:
+        foundation = request.args.get('foundation', 'tangible')
+        print(f"🔍 Processing request for program_class: {program_class}, foundation: {foundation}")
+
+        # Build path to templates directory
+        base_dir = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'TangibleITTemplates'
+        ))
+        print(f"📂 Base directory path: {base_dir}")
+
+        template_path = f"{program_class}_{foundation}_template.docx"
+        full_path = os.path.join(base_dir, template_path)
+        print(f"📄 Looking for template at: {full_path}")
+
+        if not os.path.exists(full_path):
+            print(f"❌ Template not found: {template_path}")
+            return jsonify({
+                'error': f'Template not found: {template_path}'
+            }), 404
+
+        print(f"✅ Template file found!")
+        print(f"🔄 Processing template with DocumentProcessor...")
+        
+        processor = DocumentProcessor(anthropic_client=anthropic_client)
+        doc = processor.process_template(full_path, {
+            'customer_name': '3M Corporation',
+            'customer_address': '3M Center, St. Paul, MN'
+        })
+
+        # Extract and print content
+        content = ""
+        for paragraph in doc.paragraphs:
+            content += paragraph.text + "\n"
+
+        print(f"📝 Template Content:\n{content}")
+
+        # Save processed template
+        output_path = os.path.join(base_dir, 'Configured', f'temp_{template_path}')
+        print(f"💾 Saving processed template to: {output_path}")
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        doc.save(output_path)
+        print(f"✅ Template saved successfully!")
+
+        return jsonify({
+            'success': True,
+            'path': output_path,
+            'template': content
+        })
+
+    except Exception as e:
+        print(f"❌ Error processing template: {str(e)}")
+        print(f"🔍 Error details: {type(e).__name__}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+
+@main_blueprint.route('/api/templates', methods=['POST'])
+def save_configured_template():
+    try:
+        data = request.get_json()
+        program_class = data.get('programClass')
+        customer_name = data.get('customerConstants', {}).get('customerName', 'unknown')
+        
+        base_dir = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'TangibleITTemplates',
+            'Configured'
+        ))
+
+        os.makedirs(base_dir, exist_ok=True)
+
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        template_filename = f"{customer_name}_{program_class}_configured_{timestamp}.docx"  # Changed to .docx
+        template_path = os.path.join(base_dir, template_filename)
+
+        print(f"💾 Saving configured template to: {template_path}")
+
+        processor = DocumentProcessor(anthropic_client=anthropic_client)
+        doc = processor.process_template(
+            data.get('template_path'),
+            data.get('variables', {})
+        )
+        doc.save(template_path)
+
+        metadata_filename = f"{template_filename}.meta.json"
+        metadata_path = os.path.join(base_dir, metadata_filename)
+        
+        with open(metadata_path, 'w', encoding='utf-8') as file:
+            json.dump({
+                'program_class': program_class,
+                'customer_constants': data.get('customerConstants', {}),
+                'metadata': data.get('metadata', {}),
+                'created_at': datetime.now().isoformat(),
+                'template_path': template_path,
+                'variables_used': data.get('variables', {})
+            }, file, indent=2)
+
+        return jsonify({
+            'message': 'Template saved successfully',
+            'template_path': template_path,
+            'metadata_path': metadata_path
+        })
+
+    except Exception as e:
+        print(f"❌ Error saving template: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+@main_blueprint.route('/api/templates', methods=['GET'])
+def list_templates():
+    try:
+        foundation = request.args.get('foundation')
+        program_class = request.args.get('program_class')
+        
+        base_dir = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'TangibleITTemplates'
+        ))
+
+        templates = []
+        for filename in os.listdir(base_dir):
+            if filename.endswith('_template.docx'):  # Changed to .docx
+                template_info = {
+                    'filename': filename,
+                    'program_class': filename.split('_')[0],
+                    'foundation': filename.split('_')[1]
+                }
+                
+                if foundation and template_info['foundation'] != foundation:
+                    continue
+                if program_class and template_info['program_class'] != program_class:
+                    continue
+                    
+                templates.append(template_info)
+
+        return jsonify({
+            'templates': templates
+        })
+
+    except Exception as e:
+        print(f"❌ Error listing templates: {str(e)}")
+        return jsonify({'error': str(e)}), 500

@@ -27,7 +27,7 @@ const rapidreviewConfig = {
 
       {
         id: 'partnerapplications',
-        label: 'Engagement Applications',
+        label: ['Catalyx', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Applications'],
         icon: 'template',
         type: 'menu',
         route:'rapidresponse/partnerapplications'
@@ -41,13 +41,22 @@ const rapidreviewConfig = {
         type: 'menu',
         route: 'rapidresponse/tangibleinside'
       },
+      {
+        id: 'configurableapplications',
+        label: 'Configurable Applications',
+        icon: 'template',
+        type: 'menu',
+        route:'rapidresponse/configurableapplications'
+      },  
+
  
       {
         id: 'sandbox',
-        label: 'Application Design',
+        label: ['AIDA', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Design Center'],
         icon: 'plus-circle',
         type: 'menu',
-        route: 'rapidresponse/rapidprototyping'
+        route: 'rapidresponse/rapidprototyping',
+        sidebarRoute: 'sandboxsidebar'
 
       },
 

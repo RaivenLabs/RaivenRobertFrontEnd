@@ -61,7 +61,7 @@ const BaseLayout = () => {
     landed: <LandedSidebar onSidebarChange={setActiveSidebar} />,
     readyroom: <ReadyRoomSidebar onSidebarChange={setActiveSidebar} />,
     configuration: <ConfigurationSidebar onSidebarChange={setActiveSidebar} />,
-    sandbox: <SandboxSidebar onSidebarChange={setActiveSidebar} />,
+    sandboxsidebar: <SandboxSidebar onSidebarChange={setActiveSidebar} />,
     tangibleteams: <TangibleTeamsSidebar onSidebarChange={setActiveSidebar} />,
     houseapps: <HouseAppsSidebar onSidebarChange={setActiveSidebar} />,
     exchange: <ExchangeSidebar onSidebarChange={setActiveSidebar} />,

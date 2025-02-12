@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 import { SpeakeasyProvider } from './context/SpeakeasyContext';
 import {MergerControlProvider} from './context/MergerControlContext';
 import {FundProvider} from './context/FundContext';
+import {PrototypingProvider} from './context/PrototypingContext'
 
 import {SidebarProvider} from './context/SidebarContext';
 import { useConfig } from './context/ConfigContext';
@@ -51,6 +52,7 @@ import PartnerApplications from './pages/menusections/rapidreview/features/Partn
 import IndustryApplications from './pages/menusections/rapidreview/features/IndustryApplications';
 import EnterpriseApplications from './pages/menusections/rapidreview/features/EnterpriseApplications';
 import RapidPrototyping from './pages/menusections/rapidreview/features/Sandbox';
+
 import AuthenticationConfiguration from './pages/menusections/authentication/features/AuthenticationConfiguration';
 import ResetPassword from './pages/menusections/authentication/features/ResetPassword';
 import HouseApplicationsDock from './pages/menusections/houseapps/features/HouseApplicationsDock';
@@ -73,6 +75,14 @@ import EUCSDDDashboard from './pages/evershedsapplications/eucsdd/features/dashb
 
 import EUCSDDLoader from './pages/evershedsapplications/eucsdd/features/loader';
 
+
+//Application Configuration Components
+import ApplicationConfiguration from './pages/menusections/applicationconfiguration/features/LandingPage';
+
+
+
+//Sandbox Components
+import PrototypingLab from './pages/menusections/sandbox/features/sandboxlab';
 
 
 
@@ -109,7 +119,10 @@ import ReviewArchiveTable from './pages/evershedsapplications/recruiting/feature
 
 import ProgramConfiguration from './pages/menusections/concierge/features/programconfiguration';
 import ConciergeDashboard from './pages/menusections/concierge/features/conciergedashboard';
-
+import Launchpad from './pages/menusections/concierge/features/launchpad';
+import FinanceDesk from './pages/menusections/concierge/features/financedesk';
+import TimeManagement from './pages/menusections/concierge/features/timemanagement';
+import RegistryTable from './pages/menusections/concierge/features/registry';
 
 
 
@@ -195,7 +208,7 @@ function AppRoutes() {
         <Route path="landed/agreementtrees" element={<AgreementTree />} />
         <Route path="landed/logbook" element={<LandedLogBook />} />
 
-        {/* Configuration routes */}
+        {/* Platform Configuration routes */}
         <Route path="configuration" element={<Configuration />} />
         <Route path="configuration/overview" element={<Configuration />} />
         <Route path="configuration/platformconfiguration" element={<PlatformConfiguration />} />
@@ -205,6 +218,15 @@ function AppRoutes() {
         <Route path="concierge/overview" element={<Concierge />} />
         <Route path="concierge/programconfiguration" element={<ProgramConfiguration />} />
         <Route path="concierge/dashboard" element={<ConciergeDashboard />} />
+        <Route path="concierge/launchpad" element={<Launchpad />} />
+        <Route path="concierge/financedesk" element={<FinanceDesk />} />
+        <Route path="concierge/timemanagement" element={<TimeManagement />} />
+        <Route path="concierge/registry" element={<RegistryTable />} />
+
+      {/* Sandbox routes */}
+      <Route path="sandbox/overview" element={<Sandbox />} />
+      <Route path="sandbox/thelab" element={<PrototypingLab />} />
+
 
         {/* Company Report routes */}
         <Route path="companyreport/overview" element={<CompanyReport />} />
@@ -217,6 +239,7 @@ function AppRoutes() {
         <Route path="rapidresponse/industryapplications" element={<IndustryApplications />} />
         <Route path="rapidresponse/partnerapplications" element={<PartnerApplications />} />
         <Route path="rapidresponse/rapidprototyping" element={<RapidPrototyping />} />
+        <Route path="rapidresponse/configurable" element={<Configuration />} />
 
         {/* Authentication routes */}
         <Route path="authentication/overview" element={<Authentication />} />
@@ -310,6 +333,9 @@ function AppRoutes() {
  <Route path="recruiting/configuration" element={<EvershedsEUCSDD />} />
 
 
+{/* Application Configuration routes */}
+
+ <Route path="rapidresponse/configurableapplications" element={<ApplicationConfiguration />} />
 
 
 
@@ -330,6 +356,7 @@ function App() {
   
       <SidebarProvider>
         <ApplicationRunProvider>
+          <PrototypingProvider>
           <MergerControlProvider>
             <FundProvider>
               <SpeakeasyProvider> 
@@ -339,6 +366,7 @@ function App() {
               </SpeakeasyProvider>
             </FundProvider>
           </MergerControlProvider>
+          </PrototypingProvider>
         </ApplicationRunProvider>
       </SidebarProvider>
    </ConfigProvider> 

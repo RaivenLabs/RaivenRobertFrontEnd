@@ -21,30 +21,36 @@ const RapidReviewSidebar = () => {  // Remove onSidebarChange prop
   }, [speakeasyAccess, navigate]);
 
   const handleSectionNavigation = (item) => {
-    // Reset Speakeasy access when navigating
+    // Keep existing reset logic
     setSpeakeasyAccess(false);
     sessionStorage.removeItem('speakeasyAccess');
     setActiveItem(item.id);
-
+  
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
       type: item.type,
       route: item.route,
-      hasSubmenu: item.hasSubmenu
+      hasSubmenu: item.hasSubmenu,
+      sidebarRoute: item.sidebarRoute  // Log the sidebar route if exists
     });
-
+  
     if (item.hasSubmenu) {
       console.log('📂 Toggling section menu:', item.id);
       setExpandedSection(prev => prev === item.id ? null : item.id);
       return;
     }
-
+  
     // Navigate to application
     if (item.route) {
       console.log('🚀 Navigating to application:', item.route);
-      // Note: We don't need to change sidebar here because Partner component
-      // will handle its own sidebar state when user selects an application
+      
+      // Check if this item needs a special sidebar
+      if (item.sidebarRoute) {
+        console.log('🎮 Setting special sidebar for:', item.sidebarRoute);
+        setActiveSidebar(item.sidebarRoute);
+      }
+      
       navigate(`/${item.route}`);
     }
   };

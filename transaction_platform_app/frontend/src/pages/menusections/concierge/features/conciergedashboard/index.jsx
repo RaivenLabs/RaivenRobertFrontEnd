@@ -6,6 +6,7 @@ import {
   ArrowUpRight, ArrowDownRight, Heart, Zap,
   Settings, Users, FileText, HelpCircle
 } from 'lucide-react';
+import './ConciergeDashboard.css';
 
 const ConciergeDashboard = () => {
   const [timeframe, setTimeframe] = useState('7days');
