@@ -16,6 +16,8 @@ import traceback
 
 import re
 
+from docx2pdf import convert
+
 from pymongo import MongoClient
 from pymongo.errors import CollectionInvalid
 
@@ -3058,7 +3060,7 @@ def get_template(program_class):
         print(f"✅ Template file found!")
         print(f"🔄 Processing template with DocumentProcessor...")
         
-        processor = DocumentProcessor(anthropic_client=anthropic_client)
+        processor = DocumentProcessor()
         doc = processor.process_template(full_path, {
             'customer_name': '3M Corporation',
             'customer_address': '3M Center, St. Paul, MN'
@@ -3118,7 +3120,7 @@ def save_configured_template():
 
         print(f"💾 Saving configured template to: {template_path}")
 
-        processor = DocumentProcessor(anthropic_client=anthropic_client)
+        processor = DocumentProcessor()
         doc = processor.process_template(
             data.get('template_path'),
             data.get('variables', {})
@@ -3185,4 +3187,266 @@ def list_templates():
 
     except Exception as e:
         print(f"❌ Error listing templates: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+@main_blueprint.route('/api/housetemplates/<program_class>', methods=['GET'])
+def get_house_template(program_class):
+    try:
+        foundation = request.args.get('foundation', 'tangible')
+        print(f"🔍 Processing request for house template - program_class: {program_class}, foundation: {foundation}")
+
+        # Build path to house templates directory
+        base_dir = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'TangibleITTemplates'  # Our house templates location
+        ))
+        print(f"📂 Base directory path: {base_dir}")
+
+        template_path = f"{program_class}_{foundation}_template.docx"
+        full_path = os.path.join(base_dir, template_path)
+        print(f"📄 Looking for template at: {full_path}")
+
+        if not os.path.exists(full_path):
+            print(f"❌ Template not found: {template_path}")
+            return jsonify({
+                'error': f'Template not found: {template_path}'
+            }), 404
+
+        print(f"✅ Template file found!")
+        print(f"🔄 Processing house template with DocumentProcessor...")
+        
+        # Initialize with empty variables for preview
+        processor = DocumentProcessor()
+        doc = processor.process_template(full_path, {})
+
+        # Extract and print content
+        content = ""
+        for paragraph in doc.paragraphs:
+            content += paragraph.text + "\n"
+
+       
+
+        return jsonify({
+            'success': True,
+            'template': content,
+            'template_path': full_path,
+            'available_keys': [  # List available keys for frontend reference
+                '[Customer]',
+                '[Customer Address]',
+                '[Governing Law]'
+            ]
+        })
+
+    except Exception as e:
+        print(f"❌ Error processing house template: {str(e)}")
+        print(f"🔍 Error details: {type(e).__name__}")
+        return jsonify({'error': str(e)}), 500
+    
+    
+    
+    
+    
+    
+    
+    
+    
+@main_blueprint.route('/api/housetemplates', methods=['POST'])
+def save_house_template():
+    try:
+        print("\n--- Starting Template Processing ---")
+        data = request.get_json()
+        
+        # Extract key information
+        program_class = data.get('programClass')
+        customer_constants = data.get('customerConstants', {})
+        platform_name = customer_constants.get('platformName', 'unknown')
+        
+        print("\n--- Customer Constants Received ---")
+        print(json.dumps(customer_constants, indent=2))
+        
+        # Variables for replacement
+        template_variables = {
+            'Customer': customer_constants.get('customerName'),  # For {{Customer}}
+            'CustomerAddress': customer_constants.get('customerAddress'),  # For {{CustomerAddress}}
+            'GoverningLaw': customer_constants.get('governingLaw'),  # For {{Governing Law}}
+            'EffectiveDate': datetime.now().strftime('%B %d, %Y'),  # For {{Effective Date}}
+            'CustomerName': customer_constants.get('customerName'),  # For {{CustomerName}}
+            'CUSTOMERSIGNATUREBLOCK': customer_constants.get('customerSignatureBlock')  # For {{CUSTOMERSIGNATUREBLOCK}}
+                }
+        
+        print("\n--- Template Variables Prepared ---")
+        print(json.dumps(template_variables, indent=2))
+        
+        # Build paths
+        base_dir = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'CustomerTemplates',
+            platform_name,
+            'ITTemplates'
+        ))
+        os.makedirs(base_dir, exist_ok=True)
+        
+        # Source template path
+        source_template = os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'TangibleITTemplates',
+            f"{program_class}_tangible_template.docx"
+        )
+        
+        # Generate new filename with timestamp
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        output_filename = f"{platform_name}_{program_class}_{timestamp}.docx"
+        output_path = os.path.join(base_dir, output_filename)
+        
+        # Process template
+        processor = DocumentProcessor()
+        processed_doc = processor.process_template(source_template, template_variables)
+        processed_doc.save(output_path)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Template processed successfully',
+            'saved_path': output_path
+        })
+        
+    except Exception as e:
+        print(f"\n❌ Error processing template: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+    
+    
+    
+    
+    
+    
+    
+
+@main_blueprint.route('/api/housetemplates', methods=['GET'])
+def list_house_templates():
+    try:
+        foundation = request.args.get('foundation')
+        program_class = request.args.get('program_class')
+        
+        base_dir = os.path.abspath(os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'TangibleITTemplates'
+        ))
+
+        templates = []
+        for filename in os.listdir(base_dir):
+            if filename.endswith('_template.docx'):
+                template_info = {
+                    'filename': filename,
+                    'program_class': filename.split('_')[0],
+                    'foundation': filename.split('_')[1],
+                    'type': 'house',  # Explicitly mark as house template
+                    'available_keys': [  # List available keys for each template
+                        '[Customer]',
+                        '[Customer Address]',
+                        '[Governing Law]'
+                    ]
+                }
+                
+                if foundation and template_info['foundation'] != foundation:
+                    continue
+                if program_class and template_info['program_class'] != program_class:
+                    continue
+                    
+                templates.append(template_info)
+
+        return jsonify({
+            'templates': templates
+        })
+
+    except Exception as e:
+        print(f"❌ Error listing house templates: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+# New separate route for PDF conversion
+@main_blueprint.route('/api/housetemplates/convert-to-pdf', methods=['POST'])
+def convert_to_pdf():
+    try:
+        data = request.get_json()
+        docx_path = data.get('docx_path')
+        
+        if not docx_path or not os.path.exists(docx_path):
+            return jsonify({'error': 'DOCX file not found'}), 404
+            
+        # Create PDF path
+        pdf_path = docx_path.replace('.docx', '.pdf')
+        
+        print(f"\n--- Starting PDF Conversion ---")
+        print(f"Source DOCX: {docx_path}")
+        print(f"Target PDF: {pdf_path}")
+        
+        # Convert to PDF
+        convert(docx_path, pdf_path)
+        
+        print("PDF conversion complete")
+        
+        return jsonify({
+            'success': True,
+            'message': 'PDF created successfully',
+            'pdf_path': pdf_path
+        })
+
+    except Exception as e:
+        print(f"\n❌ Error converting to PDF: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+# Route to serve the PDF
+@main_blueprint.route('/api/housetemplates/pdf/<platform_name>/<filename>', methods=['GET'])
+def get_template_pdf(platform_name, filename):
+    try:
+        # Make sure we're looking for a PDF
+        if not filename.endswith('.pdf'):
+            filename = filename.replace('.docx', '.pdf')
+        
+        base_dir = os.path.join(
+            current_app.root_path,
+            '..',
+            '..',
+            'static',
+            'data',
+            'CustomerTemplates',
+            platform_name,
+            'ITTemplates'
+        )
+        
+        pdf_path = os.path.join(base_dir, filename)
+        print(f"\n--- PDF Request Details ---")
+        print(f"Looking for PDF at: {pdf_path}")
+        print(f"File exists: {os.path.exists(pdf_path)}")
+        
+        if os.path.exists(pdf_path):
+            return send_file(pdf_path, mimetype='application/pdf')
+        else:
+            # List directory contents for debugging
+            dir_path = os.path.dirname(pdf_path)
+            if os.path.exists(dir_path):
+                print(f"Directory contents of {dir_path}:")
+                print(os.listdir(dir_path))
+            return jsonify({'error': 'PDF not found'}), 404
+            
+    except Exception as e:
+        print(f"Error serving PDF: {str(e)}")
         return jsonify({'error': str(e)}), 500

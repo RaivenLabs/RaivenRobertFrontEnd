@@ -14,9 +14,11 @@
     "mermaid": "^11.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
+    "recharts": "^2.15.1",
     "redux": "^5.0.1",
     "web-vitals": "^2.1.4",
     "zustand": "^5.0.2"

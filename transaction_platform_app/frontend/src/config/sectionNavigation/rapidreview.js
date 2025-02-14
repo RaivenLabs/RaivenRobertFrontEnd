@@ -8,35 +8,29 @@ const rapidreviewConfig = {
         type: 'menu',
         route:'rapidresponse/overview'
       },
-          
+     
       {
-        id: 'companyapplications',
-        label: 'Enterprise Applications',
+        id: 'applicationsuite',
+        label: 'Application Suite',
         icon: 'template',
         type: 'menu',
-        route:'rapidresponse/enterpriseapplications'
+        route:'rapidresponse/applicationsuite'
       },  
 
       {
-        id: 'teamapplications',
-        label: 'Team Applications',
+        id: 'companydashboards',
+        label: 'Dashboards',
         icon: 'template',
         type: 'menu',
-        route:'rapidresponse/industryapplications'
+        route:'rapidresponse/forecastingdashboards'
       },  
 
-      {
-        id: 'partnerapplications',
-        label: ['Catalyx', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Applications'],
-        icon: 'template',
-        type: 'menu',
-        route:'rapidresponse/partnerapplications'
-      },  
+     
       
       {
         id: 'tangibleinside',
         
-        label: ['CoreIntel', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Applications'],
+        label: ['CoreIntel', <sup style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</sup>, ' Technologies'],
         icon: 'plus-circle',
         type: 'menu',
         route: 'rapidresponse/tangibleinside'

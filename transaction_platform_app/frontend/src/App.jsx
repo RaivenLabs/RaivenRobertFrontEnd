@@ -48,9 +48,11 @@ import { AgreementTree, LandedLogBook, LandedDashboard } from './pages/menusecti
 import PlatformConfiguration from './pages/menusections/configuration/features/PlatformConfiguration';
 import CompanyResources from './pages/menusections/companyreport/features/CompanyResources';
 import TangibleInside from './pages/menusections/rapidreview/features/TangibleInside';
-import PartnerApplications from './pages/menusections/rapidreview/features/PartnerApplications';
-import IndustryApplications from './pages/menusections/rapidreview/features/IndustryApplications';
-import EnterpriseApplications from './pages/menusections/rapidreview/features/EnterpriseApplications';
+
+
+import ApplicationSuite from './pages/menusections/rapidreview/features/ApplicationSuite';
+
+import ForecastingDashboards from './pages/menusections/rapidreview/features/ForecastingDashboards';
 import RapidPrototyping from './pages/menusections/rapidreview/features/Sandbox';
 
 import AuthenticationConfiguration from './pages/menusections/authentication/features/AuthenticationConfiguration';
@@ -235,9 +237,9 @@ function AppRoutes() {
         {/* Rapid Response routes */}
         <Route path="rapidresponse/overview" element={<RapidResponse />} />
         <Route path="rapidresponse/tangibleinside" element={<TangibleInside />} />
-        <Route path="rapidresponse/enterpriseapplications" element={<EnterpriseApplications />} />
-        <Route path="rapidresponse/industryapplications" element={<IndustryApplications />} />
-        <Route path="rapidresponse/partnerapplications" element={<PartnerApplications />} />
+        <Route path="rapidresponse/applicationsuite" element={<ApplicationSuite />} />
+        <Route path="rapidresponse/forecastingdashboards" element={<ForecastingDashboards />} />
+        <Route path="rapidresponse/partnerapplications" element={<ApplicationSuite />} />
         <Route path="rapidresponse/rapidprototyping" element={<RapidPrototyping />} />
         <Route path="rapidresponse/configurable" element={<Configuration />} />
 
