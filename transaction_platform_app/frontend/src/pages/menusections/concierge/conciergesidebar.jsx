@@ -6,11 +6,11 @@ import { ArrowLeft } from 'lucide-react';
 const ConciergeSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
   const [sectionItems, setSectionItems] = useState([]);
-  const [activeItem, setActiveItem] = useState(null);  // If you want active state
+  const [activeItem, setActiveItem] = useState(null); // If you want active state
 
   useEffect(() => {
     console.log('Initial conciergeConfig:', conciergeConfig);
-    
+
     // Safely set section items
     if (conciergeConfig?.sectionItems) {
       console.log('Setting section items:', conciergeConfig.sectionItems);
@@ -21,13 +21,12 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
   }, []);
 
   const handleSectionNavigation = (item) => {
-    
-    setActiveItem(item.id);  // Add this if you want active state
+    setActiveItem(item.id); // Add this if you want active state
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Navigate to application
@@ -44,13 +43,8 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
-      <div className="mb-6">
-        <div className="text-2xl font-bold text-cyan mb-2 p-6">
-          Program Concierge
-        </div>
-        <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
-      </div>
+    <div className="flex flex-col h-full bg-sidebarDark text-gray-medium shadow-sidebar relative">
+      <div className="text-2xl p-4">Program Concierge</div>
 
       <div className="flex-1 overflow-y-auto">
         {/* Section menu items */}
@@ -58,12 +52,12 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
           <div key={item.id}>
             <button
               onClick={() => handleSectionNavigation(item)}
-              className={`w-full px-6 py-3 flex items-center gap-3 
-                hover:bg-royalBlue-hover text-left transition-colors text-xl
+              className={`w-full px-6 py-2 flex items-center gap-3 
+                hover:bg-gray-light text-left transition-colors text-lg
                 ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               {item.icon && (
-                <svg className="w-5 h-5 text-ivory fill-current">
+                <svg className="w-5 h-5 fill-current">
                   <use href={`#icon-${item.icon}`} />
                 </svg>
               )}
@@ -73,20 +67,16 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
         ))}
 
         {/* Main Menu button */}
-        <div className="mt-4 border-t border-gray-700">
-          <button
-            onClick={handleReturn}
-            className="w-full px-6 py-3 flex items-center gap-3 hover:bg-royalBlue-hover text-left transition-colors text-xl"
-          >
-            <ArrowLeft className="w-5 h-5 text-ivory" />
-            <span>Main Menu</span>
-          </button>
-        </div>
+        <button
+          onClick={handleReturn}
+          className="mt-4 border-t border-gray-light w-full px-6 py-3 flex items-center gap-3 hover:bg-gray-light text-left transition-colors text-lg"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Main Menu</span>
+        </button>
       </div>
 
-      <div className="mt-auto border-t border-gray-700">
-        <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
-      </div>
+      <p className=" mb-2 p-6">Powered by Tangible Intelligence</p>
     </div>
   );
 };
