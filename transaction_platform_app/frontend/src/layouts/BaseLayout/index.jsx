@@ -23,13 +23,14 @@ import AuthenticationSidebar from '../../pages/menusections/authentication/authe
 import SpeakeasyClubSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/sidebar';
 import RapidReviewSidebar from '../../pages/menusections/rapidreview/rapidreviewsidebar';
 import FundSidebar from '../../pages/evershedsapplications/funds/fundsidebar';
+import MergerControlSidebar from '../../pages/evershedsapplications/mergercontrol/mergercontrolsidebar';
 
 
 import DiversitySidebar from '../../pages/evershedsapplications/diversity/diversitysidebar';
 import EUCSDDSidebar from '../../pages/evershedsapplications/eucsdd/eucsddsidebar';
 import RecruitingSidebar from '../../pages/evershedsapplications/recruiting/recruitingsidebar';
-import MergerControlSidebar from '../../pages/evershedsapplications/mergercontrol/mergercontrolsidebar';
 
+import WinslowSourcingHubSidebar from '../../pages/menusections/rapidreview/features/WinslowApplications/SourcingHub/sourcinghubsidebar';
 
 import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
 
@@ -46,6 +47,9 @@ import FinancialServicesSidebar from '../../pages/evershedsapplications/financia
 
 import FlorenceGelatoSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/sidebar';
 import { useSidebar } from '../../context/SidebarContext';
+
+
+// Make sure that the id (the "key") in sidebarComponents matches the id in the rapidresponse_json fiel taht feeds the sidebar route:)
 
 const BaseLayout = () => {
   const { activeSidebar, setActiveSidebar } = useSidebar();
@@ -69,6 +73,8 @@ const BaseLayout = () => {
     settings: <SettingsSidebar onSidebarChange={setActiveSidebar} />,
     authentication: <AuthenticationSidebar onSidebarChange={setActiveSidebar} />,
     speakeasyclub: <SpeakeasyClubSidebar onSidebarChange={setActiveSidebar} />,
+  
+    sourcinghubsidebar:<WinslowSourcingHubSidebar onSidebarChange={setActiveSidebar} />,
     rapidreview: <RapidReviewSidebar onSidebarChange={setActiveSidebar} />,
     fundsidebar: <FundSidebar onSidebarChange={setActiveSidebar} />,
 

@@ -1,0 +1,412 @@
+{
+  "registryVersion": "2.0",
+  "lastUpdated": "2025-02-18T20:21:10.605936",
+  "baseDirectories": {
+    "foundationalParent": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents",
+    "foundationalOrder": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders",
+    "sourceParent": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents",
+    "sourceOrder": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders"
+  },
+  "conversionStates": {
+    "SOURCE": {
+      "label": "Source Template",
+      "description": "Original template with standard variables, not yet converted",
+      "displayClass": "bg-amber-100 text-amber-800 border-amber-300"
+    },
+    "CONVERTED": {
+      "label": "Converted Template",
+      "description": "Template with double curly bracket syntax, ready for use",
+      "displayClass": "bg-green-100 text-green-800 border-green-300"
+    },
+    "IN_PROGRESS": {
+      "label": "Conversion In Progress",
+      "description": "Template is currently being processed",
+      "displayClass": "bg-blue-100 text-blue-800 border-blue-300"
+    },
+    "ERROR": {
+      "label": "Conversion Error",
+      "description": "Error occurred during template conversion",
+      "displayClass": "bg-red-100 text-red-800 border-red-300"
+    }
+  },
+  "programGroups": [
+    {
+      "id": "sourcing",
+      "name": "Sourcing Transactions",
+      "description": "Configure templates for SaaS, MSA, and other sourcing agreements",
+      "agreementTypes": [
+        {
+          "id": "parent",
+          "name": "Parent Agreements",
+          "description": "Foundation/master agreements that establish relationship terms",
+          "programClasses": [
+            {
+              "id": "equipment_purchase",
+              "name": "Equipment Purchase",
+              "description": "equipment_purchase parent agreements",
+              "forms": [
+                {
+                  "id": "equipment_purchase_template",
+                  "name": "Equipment Purchase Template",
+                  "description": "Parent template for equipment_purchase_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/equipment_purchase_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/equipment_purchase_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "nda_bilateral",
+              "name": "Nda Bilateral",
+              "description": "nda_bilateral parent agreements",
+              "forms": [
+                {
+                  "id": "nda_bilateral_template",
+                  "name": "Nda Bilateral Template",
+                  "description": "Parent template for nda_bilateral_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/nda_bilateral_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/nda_bilateral_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "nda_one",
+              "name": "Nda One",
+              "description": "nda_one parent agreements",
+              "forms": [
+                {
+                  "id": "nda_one_way_template",
+                  "name": "Nda One Way Template",
+                  "description": "Parent template for nda_one_way_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/nda_one_way_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/nda_one_way_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "professional_services",
+              "name": "Professional Services",
+              "description": "professional_services parent agreements",
+              "forms": [
+                {
+                  "id": "professional_services_template",
+                  "name": "Professional Services Template",
+                  "description": "Parent template for professional_services_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/professional_services_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/professional_services_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "reseller_standard",
+              "name": "Reseller Standard",
+              "description": "reseller_standard parent agreements",
+              "forms": [
+                {
+                  "id": "reseller_standard_template",
+                  "name": "Reseller Standard Template",
+                  "description": "Parent template for reseller_standard_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/reseller_standard_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/reseller_standard_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "saas_subscription",
+              "name": "Saas Subscription",
+              "description": "saas_subscription parent agreements",
+              "forms": [
+                {
+                  "id": "saas_subscription_config_template",
+                  "name": "Saas Subscription Config Template",
+                  "description": "Parent template for saas_subscription_config_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/saas_subscription_config_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/saas_subscription_config_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                },
+                {
+                  "id": "saas_subscription_template",
+                  "name": "Saas Subscription Template",
+                  "description": "Parent template for saas_subscription_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/saas_subscription_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/saas_subscription_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 2,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "software_license",
+              "name": "Software License",
+              "description": "software_license parent agreements",
+              "forms": [
+                {
+                  "id": "software_license_template",
+                  "name": "Software License Template",
+                  "description": "Parent template for software_license_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/software_license_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/software_license_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "tech_evaluation",
+              "name": "Tech Evaluation",
+              "description": "tech_evaluation parent agreements",
+              "forms": [
+                {
+                  "id": "tech_evaluation_template",
+                  "name": "Tech Evaluation Template",
+                  "description": "Parent template for tech_evaluation_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/tech_evaluation_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/tech_evaluation_template.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.605936",
+                  "displayOrder": 1,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "order",
+          "name": "Order Forms",
+          "description": "Order forms that reference parent agreements",
+          "programClasses": [
+            {
+              "id": "eng_us",
+              "name": "Engineering Services (US)",
+              "description": "US engineering services orders",
+              "forms": [
+                {
+                  "id": "eng_us_agile_order",
+                  "name": "Agile Services Order",
+                  "description": "Order for agile development services",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_agile_order_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_agile_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 1,
+                  "parentReferenceId": "eng_us_agile",
+                  "fileExists": false,
+                  "sourceFileExists": true
+                }
+              ]
+            },
+            {
+              "id": "eng_india",
+              "name": "Eng India",
+              "description": "eng_india orders",
+              "forms": [
+                {
+                  "id": "eng_india_agile_template",
+                  "name": "Eng India Agile Template",
+                  "description": "Order template for eng_india_agile_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_agile_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_agile_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 1,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_india_resource_template",
+                  "name": "Eng India Resource Template",
+                  "description": "Order template for eng_india_resource_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_resource_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_resource_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 4,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_india_managed_template",
+                  "name": "Eng India Managed Template",
+                  "description": "Order template for eng_india_managed_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_managed_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_managed_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 3,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_india_project_template",
+                  "name": "Eng India Project Template",
+                  "description": "Order template for eng_india_project_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_project_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_project_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 4,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_india_agile_template_processed",
+                  "name": "Eng India Agile Template Processed",
+                  "description": "Order template for eng_india_agile_template_processed",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_agile_template_processed.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_agile_template_processed.docx",
+                  "type": "house",
+                  "status": "foundational",
+                  "conversionState": "CONVERTED",
+                  "lastConverted": "2025-02-18T20:21:10.593502",
+                  "displayOrder": 5,
+                  "fileExists": true,
+                  "sourceFileExists": false
+                }
+              ]
+            },
+            {
+              "id": "eng_us",
+              "name": "Eng Us",
+              "description": "eng_us orders",
+              "forms": [
+                {
+                  "id": "eng_us_agile_template",
+                  "name": "Eng Us Agile Template",
+                  "description": "Order template for eng_us_agile_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_agile_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_agile_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 1,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_us_managed_template",
+                  "name": "Eng Us Managed Template",
+                  "description": "Order template for eng_us_managed_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_managed_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_managed_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 2,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_us_resource_template",
+                  "name": "Eng Us Resource Template",
+                  "description": "Order template for eng_us_resource_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_resource_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_resource_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 4,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                },
+                {
+                  "id": "eng_us_project_template",
+                  "name": "Eng Us Project Template",
+                  "description": "Order template for eng_us_project_template",
+                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_project_template.docx",
+                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_project_template.docx",
+                  "type": "house",
+                  "status": "source",
+                  "conversionState": "SOURCE",
+                  "lastConverted": null,
+                  "displayOrder": 4,
+                  "fileExists": false,
+                  "sourceFileExists": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "customerRegistries": {
+    "description": "Registry of customer-specific template registries",
+    "customers": [
+      {
+        "id": "ups",
+        "name": "UPS",
+        "registryPath": "/static/data/CustomerITTemplates/UPS/ups_template_registry.json",
+        "active": true,
+        "lastUpdated": "2025-02-18T12:34:20.723416",
+        "description": "UPS templates"
+      }
+    ]
+  }
+}

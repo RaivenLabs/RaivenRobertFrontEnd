@@ -36,6 +36,8 @@ import houseappsConfig from './houseapps';
 import exchangeConfig from './exchange';
 import speakeasyConfig from './speakeasy';
 import rapidreviewConfig from './rapidreview';
+import winslowSourcingHubConfig from './winslowsourcing';
+import winslowApplicationConfig from './winslowapplicationconfiguration';
 import settingsConfig from './settings';
 import authenticationConfig from './authentication';
 
@@ -69,6 +71,8 @@ const configs = {
   sandbox: sandboxConfig,
   tangibleteams: tangibleteamsConfig,
   platformtour: platformtourConfig,
+  winslowsourcing: winslowSourcingHubConfig,
+  winslowapplications: winslowApplicationConfig,
   houseapps: houseappsConfig,
   exchange: exchangeConfig,
   speakeasy: speakeasyConfig,
@@ -107,7 +111,9 @@ export {
   speakeasyConfig,
   settingsConfig,
   authenticationConfig,
-  rapidreviewConfig
+  rapidreviewConfig,
+  winslowSourcingHubConfig,
+  winslowApplicationConfig
 };
 
 // Helper function to get section config

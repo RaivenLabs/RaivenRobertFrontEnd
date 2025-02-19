@@ -33,7 +33,7 @@ from bson import ObjectId
 import time
 import copy
 
-from datetime import datetime
+import datetime
 from pathlib import Path
 #from ..auth.auth_engine import login_required  # Add this import
 
@@ -3449,4 +3449,287 @@ def get_template_pdf(platform_name, filename):
             
     except Exception as e:
         print(f"Error serving PDF: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+
+
+@main_blueprint.route('/api/programs/winslow', methods=['GET'])
+def get_winslow_programs():
+    try:
+       
+      
+        react_env = request.headers.get('X-Environment', 'development')
+        if react_env == 'development':
+            # Local file path construction
+            json_path = os.path.abspath(os.path.join(
+                current_app.root_path,
+                '..',
+                '..',
+                'static',
+                'data',
+                'hawkeye',
+                'winslow',
+                'winslow_programs.json'
+            ))
+            print(f"\n🔍 Using local path: {json_path}")
+            print(f"Does path exist? {os.path.exists(json_path)}")
+            
+            with open(json_path, 'r') as f:
+                programs_data = json.load(f)
+        else:
+            # S3 path construction
+            s3_key = f'data/programs/hawkeye/winslow/winslow_programs.json'
+            print(f"\n🔍 Using S3 path: {s3_key}")
+            
+            s3_client = boto3.client('s3')
+            response = s3_client.get_object(
+                Bucket='juniperproductiondata',
+                Key=s3_key
+            )
+            programs_data = json.loads(response['Body'].read().decode('utf-8'))
+            
+        return jsonify(programs_data)
+
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+        return jsonify({'error': 'Failed to load program data'}), 500
+
+
+# Internal functions for scanning
+def scan_source_orders_internal():
+    """Internal function to scan order templates"""
+    try:
+        # Construct paths
+        base_path = Path(current_app.root_path).parent.parent / 'static' / 'data'
+        registry_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'TemplateRegistry' / 'tangibletemplateregistry.json'
+        source_orders_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'Source' / 'Orders'
+        foundational_orders_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'Foundational' / 'Orders'
+
+        # Load existing registry
+        with open(registry_path, 'r') as f:
+            registry_data = json.load(f)
+
+        # Find sourcing group and order agreement type
+        sourcing_group = next(
+            (group for group in registry_data['programGroups']
+             if group['id'] == 'sourcing'),
+            None
+        )
+
+        if not sourcing_group:
+            return False
+
+        # Find order agreement type
+        order_type = next(
+            (atype for atype in sourcing_group['agreementTypes']
+             if atype['id'] == 'order'),
+            None
+        )
+
+        if not order_type:
+            return False
+
+        # Get list of actual files in both directories
+        existing_source_files = set()
+        if source_orders_path.exists():
+            existing_source_files = {
+                f.stem for f in source_orders_path.glob('*.docx')
+                if not f.name.startswith('~')
+            }
+
+        existing_foundational_files = set()
+        if foundational_orders_path.exists():
+            existing_foundational_files = {
+                f.stem for f in foundational_orders_path.glob('*.docx')
+                if not f.name.startswith('~')
+            }
+
+        # Track changes
+        for program_class in order_type.get('programClasses', []):
+            for form in program_class.get('forms', []):
+                old_status = form.get('status')
+                
+                # Check existence in both directories
+                source_filename = Path(form['sourceTemplatePath']).stem
+                foundational_filename = Path(form['templatePath']).stem
+                
+                source_exists = source_filename in existing_source_files
+                foundational_exists = foundational_filename in existing_foundational_files
+                
+                # Update existence flags
+                form['sourceFileExists'] = source_exists
+                form['fileExists'] = foundational_exists
+                
+                # Set status based on file existence
+                new_status = 'foundational' if foundational_exists else 'source' if source_exists else 'missing'
+                form['status'] = new_status
+                
+                        # Add this section to update conversionState
+                if source_exists:
+                    form['conversionState'] = 'SOURCE'
+                    form['lastConverted'] = None
+                elif foundational_exists:
+                    form['conversionState'] = 'CONVERTED'
+                    form['lastConverted'] = datetime.now().isoformat()
+
+        # Update timestamp
+        registry_data['lastUpdated'] = datetime.now().isoformat()
+
+        # Save updated registry
+        with open(registry_path, 'w') as f:
+            json.dump(registry_data, f, indent=2)
+
+        return True
+
+    except Exception as e:
+        print(f"❌ Error scanning orders: {str(e)}")
+        return False
+
+def scan_source_parents_internal():
+    """Internal function to scan parent templates"""
+    try:
+        # Construct paths
+        base_path = Path(current_app.root_path).parent.parent / 'static' / 'data'
+        registry_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'TemplateRegistry' / 'tangibletemplateregistry.json'
+        source_parents_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'Source' / 'Parents'
+        foundational_parents_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'Foundational' / 'Parents'
+
+        # Load existing registry
+        with open(registry_path, 'r') as f:
+            registry_data = json.load(f)
+
+        # Find sourcing group and parent agreement type
+        sourcing_group = next(
+            (group for group in registry_data['programGroups']
+             if group['id'] == 'sourcing'),
+            None
+        )
+
+        if not sourcing_group:
+            return False
+
+        # Find parent agreement type
+        parent_type = next(
+            (atype for atype in sourcing_group['agreementTypes']
+             if atype['id'] == 'parent'),
+            None
+        )
+
+        if not parent_type:
+            return False
+
+        # Get list of actual files in both directories
+        existing_source_files = set()
+        if source_parents_path.exists():
+            existing_source_files = {
+                f.stem for f in source_parents_path.glob('*.docx')
+                if not f.name.startswith('~')
+            }
+
+        existing_foundational_files = set()
+        if foundational_parents_path.exists():
+            existing_foundational_files = {
+                f.stem for f in foundational_parents_path.glob('*.docx')
+                if not f.name.startswith('~')
+            }
+
+        # Check each program class and form in registry
+        for program_class in parent_type.get('programClasses', []):
+            for form in program_class.get('forms', []):
+                old_status = form.get('status')
+                
+                # Check existence in both directories
+                source_filename = Path(form['sourceTemplatePath']).stem
+                foundational_filename = Path(form['templatePath']).stem
+                
+                source_exists = source_filename in existing_source_files
+                foundational_exists = foundational_filename in existing_foundational_files
+                
+                # Update existence flags
+                form['sourceFileExists'] = source_exists
+                form['fileExists'] = foundational_exists
+                
+                # Set status based on file existence
+                new_status = 'foundational' if foundational_exists else 'source' if source_exists else 'missing'
+                form['status'] = new_status
+
+                        # Add this section to update conversionState
+                if source_exists:
+                    form['conversionState'] = 'SOURCE'
+                    form['lastConverted'] = None
+                elif foundational_exists:
+                    form['conversionState'] = 'CONVERTED'
+                    form['lastConverted'] = datetime.now().isoformat()
+
+
+
+        # Update timestamp
+        registry_data['lastUpdated'] = datetime.now().isoformat()
+
+        # Save updated registry
+        with open(registry_path, 'w') as f:
+            json.dump(registry_data, f, indent=2)
+
+        return True
+
+    except Exception as e:
+        print(f"❌ Error scanning parents: {str(e)}")
+        return False
+
+# Routes for external API access
+@main_blueprint.route('/api/scan-source-orders', methods=['GET'])
+def scan_source_orders():
+    """Route endpoint for scanning orders"""
+    success = scan_source_orders_internal()
+    if success:
+        return jsonify({
+            'success': True,
+            'message': 'Order templates scanned successfully'
+        })
+    return jsonify({
+        'success': False,
+        'error': 'Failed to scan order templates'
+    }), 500
+
+@main_blueprint.route('/api/scan-source-parents', methods=['GET'])
+def scan_source_parents():
+    """Route endpoint for scanning parents"""
+    success = scan_source_parents_internal()
+    if success:
+        return jsonify({
+            'success': True,
+            'message': 'Parent templates scanned successfully'
+        })
+    return jsonify({
+        'success': False,
+        'error': 'Failed to scan parent templates'
+    }), 500
+
+@main_blueprint.route('/api/template-registry/tangible', methods=['GET'])
+def get_tangible_template_registry():
+    """Main route for getting template registry"""
+    try:
+        # Update registry by scanning both template types
+        orders_success = scan_source_orders_internal()
+        parents_success = scan_source_parents_internal()
+
+        if not orders_success or not parents_success:
+            raise Exception("Failed to update registry")
+
+        # Load the updated registry
+        base_path = Path(current_app.root_path).parent.parent / 'static' / 'data'
+        registry_path = base_path / 'SystemITTemplates' / 'TangibleITTemplates' / 'TemplateRegistry' / 'tangibletemplateregistry.json'
+
+        with open(registry_path, 'r') as f:
+            registry_data = json.load(f)
+            
+        # Right before returning the registry
+        print("DEBUG - Sample form data:", json.dumps(registry_data))
+  
+
+        # Return the complete registry
+        return jsonify(registry_data)
+
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
         return jsonify({'error': str(e)}), 500

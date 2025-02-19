@@ -8,16 +8,12 @@ import {
   Lock, FileSearch, Activity, Gauge, Bell
 } from 'lucide-react';
 
-const ApplicationGroup = ({ apiEndpoint }) => {
+const ApplicationGroup = ({ apiEndpoint }) => {  // No longer needs setActiveSidebar prop
   const navigate = useNavigate();
-  const { setActiveSidebar } = useSidebar();
+  const { setActiveSidebar } = useSidebar();  // Get setActiveSidebar from context
   const [apps, setApps] = useState([]);
   const { config, coreconfig, isAuthenticated } = useConfig();
-  
-  // Updated authentication check to include special demo platforms
-  const actuallyAuthenticated = config?.datapath && !config.datapath.includes('hawkeye') || 
-    apiEndpoint.includes('/programs/winslow') || 
-    apiEndpoint.includes('/programs/olmstead');
+  const actuallyAuthenticated = config?.datapath && !config.datapath.includes('hawkeye');
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,7 +31,6 @@ const ApplicationGroup = ({ apiEndpoint }) => {
           }
         });
         
-        // Only apply the random live apps logic for the general Hawkeye demo
         if (!isAuthenticated && !actuallyAuthenticated) {
           const allPrograms = data.program_groups.flatMap(group => group.programs);
           const selectedApps = [];
@@ -54,7 +49,6 @@ const ApplicationGroup = ({ apiEndpoint }) => {
           
           setApps(selectedApps.sort(() => Math.random() - 0.5));
         } else {
-          // For authenticated or special demo platforms, use the JSON configuration directly
           const customerApps = data.program_groups.flatMap(group => group.programs);
           setApps(customerApps);
         }
@@ -82,11 +76,14 @@ const ApplicationGroup = ({ apiEndpoint }) => {
           timestamp: new Date().toISOString()
         });
 
+        // First navigate to ensure the route is ready
         navigate(app.outletroute);
+        
+        // Set the sidebar route using context
         console.log('🎮 ApplicationGroup: Taking control of sidebar, setting to:', app.sidebarroute);
         setActiveSidebar(app.sidebarroute);
       }
-    }, 200);
+    },200);
     setPressTimer(timer);
   };
 

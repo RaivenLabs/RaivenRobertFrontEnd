@@ -60,22 +60,22 @@
                     "sidebarroute": "eucsddsidebar"
                 },
                 {
-                    "id": "winslowndaapplication",
-                    "name": "Winslow NDA Application",
+                    "id": "winslowapplicationconfiguration",
+                    "name": "Winslow Application Configuration",
                     "icon": "rect x='4' y='4' width='16' height='16' rx='2'M9 9h6v6H9z",
                     "action": "launch_program",
                     "isLive": false,
-                    "outletroute": "winslowndacomponent",
-                    "sidebarroute": "winslowndasidebar"
+                    "outletroute": "winslowconfigurationcomponent",
+                    "sidebarroute": "winslowconfigurationsidebar"
                 },
                 {
-                    "id": "esnetwork",
-                    "name": "Network",
+                    "id": "winslowsourcinghub",
+                    "name": "Winslow Sourcing Hub",
                     "icon": "path d='M9 2h6v3h-6zM5 5h14v4H5zM3 9h18v4H3zM5 13h14v4H5zM9 17h6v3h-6z'",
                     "action": "launch_program",
                     "isLive": true,
-                    "outletroute": "networkcomponent",
-                    "sidebarroute": "networksidebar"
+                    "outletroute": "sourcinghubcomponent",
+                    "sidebarroute": "sourcinghubsidebar"
                 },
                 {
                     "id": "esevaluation",
