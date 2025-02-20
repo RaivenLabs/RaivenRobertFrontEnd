@@ -7,9 +7,14 @@ import {
 
 import Tooltip from '../../../components/shared/common/Tooltip';
 import TemplateConfig from './templateconfiguration/TemplateConfig';
-import TemplateConversion from './features/components/stages/TemplateConversion';
 import TemplateProcessBar from './features/components/stages/TemplateProcessBar';
 import ErrorBoundary from './features/components/utility/ErrorBoundary';
+
+
+
+
+
+
 import ProgramGroupSelector from './features/components/selectors/ProgramGroupSelector';
 import AgreementTypeSelector from './features/components/selectors/AgreementTypeSelector';
 import ProgramClassSelector from './features/components/selectors/ProgramClassSelector';
@@ -46,27 +51,6 @@ const ConfigurableLanding = () => {
   const [isLoadingForms, setIsLoadingForms] = useState(false);
   const [classesError, setClassesError] = useState(null);
   const [formsError, setFormsError] = useState(null);
-  
-  // Determine if template needs conversion
-  const determineTemplateAction = () => {
-    if (!selectedForm && templateFoundation !== 'custom') return null;
-    
-    if (templateFoundation === 'custom') {
-      return 'conversion'; // Custom templates need conversion first
-    }
-    
-    const selectedFormData = availableForms.find(form => form.id === selectedForm);
-    
-    if (selectedFormData) {
-      if (selectedFormData.sourceFileExists && !selectedFormData.fileExists) {
-        return 'conversion'; // Needs conversion
-      } else if (selectedFormData.fileExists) {
-        return 'configuration'; // Ready for configuration
-      }
-    }
-    
-    return null;
-  };
   
   // Fetch conversion states from registry
   useEffect(() => {
@@ -183,18 +167,25 @@ const ConfigurableLanding = () => {
   const handleContinue = async () => {
     if (selectedGroup && selectedAgreementType && programClass && 
         ((templateFoundation === 'tangible' && selectedForm) || templateFoundation === 'custom')) {
-      
-      const action = determineTemplateAction();
       setIsTransitioning(true);
-      
       try {
-        // Set the appropriate next stage based on template action
-        if (action === 'conversion') {
+        // Determine if selected form is a source template that needs conversion
+        const selectedFormData = availableForms.find(form => form.id === selectedForm);
+        
+        if (selectedFormData) {
+          if (selectedFormData.sourceFileExists && !selectedFormData.fileExists) {
+            // This is a source template that needs conversion
+            setNeedsConversion(true);
+            setCurrentStage(TEMPLATE_STAGES.TEMPLATE_CONVERSION);
+          } else if (selectedFormData.fileExists) {
+            // This is a converted template ready for configuration
+            setNeedsConversion(false);
+            setCurrentStage(TEMPLATE_STAGES.TEMPLATE_SETUP);
+          }
+        } else if (templateFoundation === 'custom') {
+          // For custom templates, go to upload/conversion screen
           setNeedsConversion(true);
           setCurrentStage(TEMPLATE_STAGES.TEMPLATE_CONVERSION);
-        } else if (action === 'configuration') {
-          setNeedsConversion(false);
-          setCurrentStage(TEMPLATE_STAGES.TEMPLATE_SETUP);
         }
       } finally {
         setIsTransitioning(false);
@@ -296,17 +287,6 @@ const ConfigurableLanding = () => {
         </div>
       ) : currentStage === TEMPLATE_STAGES.PROGRAM_SELECTION ? (
         renderSelectionGrid()
-      ) : currentStage === TEMPLATE_STAGES.TEMPLATE_CONVERSION ? (
-        <TemplateConversion 
-          programGroup={selectedGroup}
-          agreementType={selectedAgreementType}
-          programClass={programClass}
-          selectedForm={selectedForm}
-          templateFoundation={templateFoundation}
-          setCurrentStage={setCurrentStage}
-          onBack={() => setCurrentStage(TEMPLATE_STAGES.PROGRAM_SELECTION)}
-          onComplete={() => setCurrentStage(TEMPLATE_STAGES.TEMPLATE_SETUP)}
-        />
       ) : (
         <TemplateConfig 
           programGroup={selectedGroup}
@@ -316,15 +296,7 @@ const ConfigurableLanding = () => {
           selectedForm={selectedForm}
           currentStage={currentStage}
           setCurrentStage={setCurrentStage}
-          onBack={() => {
-            // If coming from conversion, go back to conversion screen
-            if (needsConversion && currentStage === TEMPLATE_STAGES.TEMPLATE_SETUP) {
-              setCurrentStage(TEMPLATE_STAGES.TEMPLATE_CONVERSION);
-            } else {
-              // Otherwise go back to selection
-              setCurrentStage(TEMPLATE_STAGES.PROGRAM_SELECTION);
-            }
-          }}
+          onBack={() => setCurrentStage(TEMPLATE_STAGES.PROGRAM_SELECTION)}
         />
       )}
 
@@ -345,9 +317,7 @@ const ConfigurableLanding = () => {
                 ? 'Click Continue to upload your custom template'
                 : !selectedForm
                 ? 'Select a form template'
-                : determineTemplateAction() === 'conversion'
-                ? 'Click Continue to convert this template'
-                : 'Click Continue to configure this template'}
+                : 'Click Continue to start configuring your template'}
             </p>
             
             <button
@@ -365,9 +335,7 @@ const ConfigurableLanding = () => {
                   : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 }`}
             >
-              {determineTemplateAction() === 'conversion' 
-                ? 'Continue to Conversion' 
-                : 'Continue to Configuration'}
+              Continue
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>

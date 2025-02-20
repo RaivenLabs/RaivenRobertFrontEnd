@@ -1,12 +1,11 @@
-import CurrentTemplates from '../panels/CurrentTemplates';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { 
   ArrowLeft, 
   Code
 } from 'lucide-react';
 import TemplateDetails from '../panels/TemplateDetails';
-import ConversionSettings from '../panels/ConversionSettings';
 import AutomateConstants from '../panels/AutomateConstants';
+import ConversionSettings from '../panels/ConversionSettings';
 import ConversionProcess from '../panels/ConversionProcess';
 
 const TemplateConversion = ({
@@ -19,21 +18,18 @@ const TemplateConversion = ({
   onBack,
   onComplete
 }) => {
-  // Metadata state
-  const [formMetadata, setFormMetadata] = useState(null);
-
-  // Conversion settings state
+  const [conversionStatus, setConversionStatus] = useState('idle'); // idle, converting, success, error
   const [conversionSettings, setConversionSettings] = useState({
     preserveFormatting: true,
     detectVariables: true,
     enableLoopSupport: true,
     enableConditionals: true
   });
-
-  // Conversion process states
-  const [conversionStatus, setConversionStatus] = useState('idle'); // idle, converting, success, error
   const [conversionLog, setConversionLog] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+
+  // We'll use state to store the form metadata from the registry
+  const [formMetadata, setFormMetadata] = useState(null);
 
   // Fetch the actual form metadata from the registry
   useEffect(() => {
@@ -74,15 +70,13 @@ const TemplateConversion = ({
     fetchFormMetadata();
   }, [selectedForm, programGroup, agreementType, programClass]);
 
-  // Handle conversion setting changes
   const handleConversionSettingChange = (setting) => {
-    setConversionSettings(prev => ({
-      ...prev,
-      [setting]: !prev[setting]
-    }));
+    setConversionSettings({
+      ...conversionSettings,
+      [setting]: !conversionSettings[setting]
+    });
   };
 
-  // Handle conversion process
   const startConversion = async () => {
     setConversionStatus('converting');
     setConversionLog([]);
@@ -135,60 +129,48 @@ const TemplateConversion = ({
         </div>
         <p className="mt-2 text-gray-600">
           Convert your template to Jinja2 format for use with our template engine.
-          This process will replace standard variables with Jinja2 syntax and prepare your template for easy production runs of deal packages.
+          This process will replace standard variables with Jinja2 syntax (e.g., "Company Name" becomes "&#123;&#123;company_name&#125;&#125;").  This operation prepares your template for easy production runs of deal packages.
         </p>
       </div>
 
-      {/* Row 1: Template Details and Conversion Settings */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
-        <div className="grid grid-cols-2 gap-6">
-          {/* Template Details Panel */}
-          <div className="border rounded-lg p-4">
-            <h4 className="text-lg font-medium mb-4 text-teal">Template Details</h4>
-            <TemplateDetails 
-              formMetadata={formMetadata}
-              programGroup={programGroup}
-              agreementType={agreementType}
-              programClass={programClass}
-              selectedForm={selectedForm}
-              templateFoundation={templateFoundation}
-            />
-          </div>
+      {/* Main content - two column layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left column - Template Details & Settings */}
+        <div className="lg:col-span-1 space-y-6">
+          {/* Template Details Component */}
+          <TemplateDetails 
+            programGroup={programGroup}
+            agreementType={agreementType}
+            programClass={programClass}
+            selectedForm={selectedForm}
+            templateFoundation={templateFoundation}
+            formMetadata={formMetadata}
+          />
 
-          {/* Conversion Settings Panel */}
-          <div className="border rounded-lg p-4">
-            <h4 className="text-lg font-medium mb-4 text-teal">Conversion Settings</h4>
-            <div className="max-w-xl">
-              <ConversionSettings 
-                conversionSettings={conversionSettings}
-                onSettingChange={handleConversionSettingChange}
-              />
-            </div>
-          </div>
+          {/* Conversion Settings Component */}
+          <ConversionSettings 
+            conversionSettings={conversionSettings}
+            onSettingChange={handleConversionSettingChange}
+          />
+        </div>
+
+        {/* Right column - Dual Panel Container & Conversion Process */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Automate Constants Component */}
+          <AutomateConstants />
+
+          {/* Conversion Process Component */}
+          <ConversionProcess 
+            conversionStatus={conversionStatus}
+            conversionLog={conversionLog}
+            errorMessage={errorMessage}
+            onStartConversion={startConversion}
+            onComplete={onComplete}
+          />
         </div>
       </div>
-
-      {/* Row 2: Automate Constants */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-100">
-        <AutomateConstants />
-      </div>
-
-      {/* Row 3: Conversion Process */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-100">
-        <ConversionProcess 
-          conversionStatus={conversionStatus}
-          conversionLog={conversionLog}
-          errorMessage={errorMessage}
-          onStartConversion={startConversion}
-          onComplete={onComplete}
-        />
-      </div>
-      {/* Row 4: Current Templates */}
-      <CurrentTemplates />
-
-      </div>
+    </div>
   );
 };
-
 
 export default TemplateConversion;
