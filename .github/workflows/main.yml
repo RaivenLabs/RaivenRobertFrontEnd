@@ -10,47 +10,93 @@ on:
 
 jobs:
  
+  deploy-develop:
+      runs-on: ubuntu-latest
+  
+      if: github.ref == 'refs/heads/develop'
+  
+      steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - name: Checkout repository
+          uses: actions/checkout@v2
+  
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18
+  
+        # Installs dependencies 
+        - run: npm install && npm i tailwind-merge
+          working-directory: transaction_platform_app/frontend/
+  
+        # Create build artifacts
+        - run: npm run build
+          working-directory: transaction_platform_app/frontend/
+  
+        # Configure AWS credential and region environment variables for use in
+        # other GitHub Actions. The environment variables will be detected by
+        # both the AWS SDKs and the AWS CLI to determine the credentials and
+        # region to use for AWS API calls.
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1
+  
+        # Copy distribution static files to Amazon S3 for static hosting
+        - name: Upload to Amazon S3
+          run: aws s3 sync build/ s3://x3jix71g-develop-app
+          working-directory: transaction_platform_app/frontend/
+  
+        # Invalid CloudFront caches
+        - name: Invalidate Amazon CloudFront distribution
+          env:
+            AWS_CLOUDFRONT_DISTRIBUTION_ID: E2AP3AE4PRUO0X
+          run: sh "${GITHUB_WORKSPACE}/.github/workflows/cloudfront-invalidate.sh"
+    
   deploy-production:
-    runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/alpha-production'
-
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      # Installs dependencies 
-      - run: npm install && npm i tailwind-merge
-        working-directory: transaction_platform_app/frontend/
-
-      # Create build artifacts
-      - run: npm run build
-        working-directory: transaction_platform_app/frontend/
-
-      # Configure AWS credential and region environment variables for use in
-      # other GitHub Actions. The environment variables will be detected by
-      # both the AWS SDKs and the AWS CLI to determine the credentials and
-      # region to use for AWS API calls.
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      # Copy distribution static files to Amazon S3 for static hosting
-      - name: Upload to Amazon S3
-        run: aws s3 sync public/ s3://x3jix71g-default-app
-        working-directory: transaction_platform_app/frontend/
-
-      # Invalid CloudFront caches
-      - name: Invalidate Amazon CloudFront distribution
-        env:
-          AWS_CLOUDFRONT_DISTRIBUTION_ID: ENV6SR44X1IGU
-        run: sh "${GITHUB_WORKSPACE}/.github/workflows/cloudfront-invalidate.sh"
+      runs-on: ubuntu-latest
+  
+      if: github.ref == 'refs/heads/alpha-production'
+  
+      steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - name: Checkout repository
+          uses: actions/checkout@v2
+  
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18
+  
+        # Installs dependencies 
+        - run: npm install && npm i tailwind-merge
+          working-directory: transaction_platform_app/frontend/
+  
+        # Create build artifacts
+        - run: npm run build
+          working-directory: transaction_platform_app/frontend/
+  
+        # Configure AWS credential and region environment variables for use in
+        # other GitHub Actions. The environment variables will be detected by
+        # both the AWS SDKs and the AWS CLI to determine the credentials and
+        # region to use for AWS API calls.
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1
+  
+        # Copy distribution static files to Amazon S3 for static hosting
+        - name: Upload to Amazon S3
+          run: aws s3 sync build/ s3://x3jix71g-default-app
+          working-directory: transaction_platform_app/frontend/
+  
+        # Invalid CloudFront caches
+        - name: Invalidate Amazon CloudFront distribution
+          env:
+            AWS_CLOUDFRONT_DISTRIBUTION_ID: ENV6SR44X1IGU
+          run: sh "${GITHUB_WORKSPACE}/.github/workflows/cloudfront-invalidate.sh"
+        
