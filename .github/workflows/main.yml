@@ -46,7 +46,7 @@ jobs:
   
         # Copy distribution static files to Amazon S3 for static hosting
         - name: Upload to Amazon S3
-          run: aws s3 sync public/ s3://x3jix71g-default-app
+          run: aws s3 sync public/ s3://x3jix71g-develop-app
           working-directory: transaction_platform_app/frontend/
   
         # Invalid CloudFront caches
