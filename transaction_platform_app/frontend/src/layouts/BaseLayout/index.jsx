@@ -30,6 +30,7 @@ import MergerControlSidebar from '../../pages/evershedsapplications/mergercontro
 import DiversitySidebar from '../../pages/evershedsapplications/diversity/diversitysidebar';
 import EUCSDDSidebar from '../../pages/evershedsapplications/eucsdd/eucsddsidebar';
 import RecruitingSidebar from '../../pages/evershedsapplications/recruiting/recruitingsidebar';
+import MergerControlSidebar from '../../pages/evershedsapplications/mergercontrol/mergercontrolsidebar';
 
 import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
 
