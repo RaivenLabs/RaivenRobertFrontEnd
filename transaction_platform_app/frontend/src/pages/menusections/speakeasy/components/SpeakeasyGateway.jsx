@@ -34,7 +34,7 @@ const EntranceQuiz = ({ onAccessGranted }) => {
 
   const loadQuestions = async () => {
     try {
-      const data = await fetchFromAPI('/speakeasy/questions', coreconfig.apiUrl);
+      const data = await fetchFromAPI('/api/speakeasy/questions', coreconfig.apiUrl);
 if (!data.success) {
   throw new Error(data.error || 'Failed to load questions');
 }
