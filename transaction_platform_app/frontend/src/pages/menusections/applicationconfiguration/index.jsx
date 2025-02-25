@@ -15,7 +15,7 @@ import AgreementTypeSelector from './features/components/selectors/AgreementType
 import ProgramClassSelector from './features/components/selectors/ProgramClassSelector';
 import TemplateFoundationSelector from './features/components/selectors/TemplateFoundationSelector';
 import FormSelectionWrapper from './features/components/selectors/FormSelectionWrapper';
-import { TEMPLATE_STAGES, DEFAULT_CONVERSION_STATES } from './features/components/constants/index';
+import { TEMPLATE_STAGES, DEFAULT_CONVERSION_STATES, DEFAULT_STAGES } from './features/components/constants/index';
 
 // Import from our program structure module or API
 import { 
@@ -34,7 +34,8 @@ const ConfigurableLanding = () => {
   const [selectedForm, setSelectedForm] = useState(null);
   const [currentStage, setCurrentStage] = useState(TEMPLATE_STAGES.PROGRAM_SELECTION);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [conversionStates, setConversionStates] = useState({});
+  const [conversionStates, setConversionStates] = useState(DEFAULT_CONVERSION_STATES);
+  const [stages, setStages] = useState(DEFAULT_STAGES);
   const [needsConversion, setNeedsConversion] = useState(false);
   
   // Derived states for available options
@@ -52,30 +53,29 @@ const ConfigurableLanding = () => {
     if (!selectedForm && templateFoundation !== 'custom') return null;
     
     if (templateFoundation === 'custom') {
-      return 'conversion'; // Custom templates need conversion first
+      return 'conversion';
     }
     
     const selectedFormData = availableForms.find(form => form.id === selectedForm);
     
     if (selectedFormData) {
       if (selectedFormData.sourceFileExists && !selectedFormData.fileExists) {
-        return 'conversion'; // Needs conversion
+        return 'conversion';
       } else if (selectedFormData.fileExists) {
-        return 'configuration'; // Ready for configuration
+        return 'configuration';
       }
     }
     
     return null;
   };
   
-  // Fetch conversion states from registry
+  // Fetch registry metadata (stages and conversion states)
   useEffect(() => {
     const fetchRegistryMetadata = async () => {
       try {
-        // Call our backend API endpoint
-        const response = await fetch('/api/template-registry/tangible', {
+        const response = await fetch('/api/template/registry/tangible', {
           headers: {
-            'X-Environment': process.env.NODE_ENV  // Pass environment to backend
+            'X-Environment': process.env.NODE_ENV
           }
         });
         
@@ -84,15 +84,16 @@ const ConfigurableLanding = () => {
         }
         
         const data = await response.json();
+        if (data.stages) {
+          setStages(data.stages);
+        }
         if (data.conversionStates) {
           setConversionStates(data.conversionStates);
-        } else {
-          // Fallback to defaults
-          setConversionStates(DEFAULT_CONVERSION_STATES);
         }
       } catch (error) {
         console.error('Failed to load registry metadata:', error);
         // Use defaults in case of error
+        setStages(DEFAULT_STAGES);
         setConversionStates(DEFAULT_CONVERSION_STATES);
       }
     };
@@ -107,8 +108,6 @@ const ConfigurableLanding = () => {
         setIsLoadingClasses(true);
         setClassesError(null);
         try {
-          // In production, this could be an API call
-          // For now we'll use our utility function
           const classes = getAvailableProgramClasses(selectedGroup, selectedAgreementType);
           setAvailableProgramClasses(classes);
         } catch (error) {
@@ -120,7 +119,6 @@ const ConfigurableLanding = () => {
       } else {
         setAvailableProgramClasses([]);
       }
-      // Reset dependent selections
       setProgramClass(null);
     };
 
@@ -133,13 +131,7 @@ const ConfigurableLanding = () => {
       if (programClass && selectedAgreementType && templateFoundation === 'tangible') {
         setIsLoadingForms(true);
         try {
-          console.log('FETCH FORMS - Starting fetch for:', {
-            programClass,
-            selectedAgreementType,
-            selectedGroup
-          });
-  
-          const response = await fetch('/api/template-registry/tangible');
+          const response = await fetch('/api/template/registry/tangible');
           const registry = await response.json();
           
           let foundForms = [];
@@ -150,26 +142,16 @@ const ConfigurableLanding = () => {
               .find(at => at.id === selectedAgreementType);
               
             if (agreementType) {
-              // Find ALL program classes with matching ID
               const matchingProgramClasses = agreementType.programClasses
                 .filter(pc => pc.id === programClass);
               
-              console.log('FETCH FORMS - Found matching program classes:', 
-                matchingProgramClasses.map(pc => pc.name)
-              );
-  
-              // Combine all forms from all matching program classes
               foundForms = matchingProgramClasses.flatMap(pc => pc.forms);
-              
-              console.log('FETCH FORMS - Combined forms from all matches:', foundForms.length);
             }
           }
   
-          console.log('FETCH FORMS - Setting availableForms with:', foundForms);
           setAvailableForms(foundForms);
-  
         } catch (error) {
-          console.error('FETCH FORMS - Error:', error);
+          console.error('Error fetching forms:', error);
           setFormsError('Failed to load available forms');
         } finally {
           setIsLoadingForms(false);
@@ -181,31 +163,59 @@ const ConfigurableLanding = () => {
 
   // Handle transitions between stages
   const handleContinue = async () => {
-    if (selectedGroup && selectedAgreementType && programClass && 
-        ((templateFoundation === 'tangible' && selectedForm) || templateFoundation === 'custom')) {
-      
-      const action = determineTemplateAction();
-      setIsTransitioning(true);
-      
-      try {
-        // Set the appropriate next stage based on template action
-        if (action === 'conversion') {
-          setNeedsConversion(true);
-          setCurrentStage(TEMPLATE_STAGES.TEMPLATE_CONVERSION);
-        } else if (action === 'configuration') {
-          setNeedsConversion(false);
-          setCurrentStage(TEMPLATE_STAGES.TEMPLATE_SETUP);
-        }
-      } finally {
-        setIsTransitioning(false);
+    if (!selectedGroup || !selectedAgreementType || !programClass || 
+        (!selectedForm && templateFoundation !== 'custom')) {
+      return;
+    }
+  
+    setIsTransitioning(true);
+  
+    try {
+      // Get the selected form's data from the registry
+      const formData = availableForms.find(form => form.id === selectedForm);
+      console.log('Selected form data:', formData);
+  
+      if (!formData && templateFoundation !== 'custom') {
+        throw new Error('Selected form not found in registry');
       }
+  
+      const needsConversion = templateFoundation === 'custom' || 
+                            (formData?.conversionState === 'SOURCE');
+  
+      if (needsConversion) {
+        console.log('Template needs conversion, proceeding to conversion stage');
+        // Include the full template info when transitioning
+        setCurrentStage(TEMPLATE_STAGES.TEMPLATE_CONVERSION);
+      } else {
+        console.log('Template already converted, proceeding to configuration stage');
+        setCurrentStage(TEMPLATE_STAGES.TEMPLATE_SETUP);
+      }
+    } catch (error) {
+      console.error('Error in handleContinue:', error);
+      // Consider adding error state/display here
+    } finally {
+      setIsTransitioning(false);
     }
   };
+  
+  // Add a new state for the selected template data
+  const [selectedTemplateData, setSelectedTemplateData] = useState(null);
+  
+  // Update template data when form is selected
+  useEffect(() => {
+    if (selectedForm && availableForms.length > 0) {
+      const formData = availableForms.find(form => form.id === selectedForm);
+      setSelectedTemplateData(formData);
+    } else {
+      setSelectedTemplateData(null);
+    }
+  }, [selectedForm, availableForms]);
+  
+ 
 
   // Render main selection grid
   const renderSelectionGrid = () => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-      {/* Program Group Selection */}
       <ProgramGroupSelector
         programGroups={programGroups}
         selectedGroup={selectedGroup}
@@ -217,7 +227,6 @@ const ConfigurableLanding = () => {
         }}
       />
 
-      {/* Agreement Type Selection */}
       <AgreementTypeSelector
         agreementTypes={agreementTypes}
         selectedAgreementType={selectedAgreementType}
@@ -229,7 +238,6 @@ const ConfigurableLanding = () => {
         isActive={!!selectedGroup}
       />
 
-      {/* Program Class Selection */}
       <ProgramClassSelector
         isActive={!!selectedAgreementType}
         availableProgramClasses={availableProgramClasses}
@@ -240,20 +248,20 @@ const ConfigurableLanding = () => {
         onRetry={() => setSelectedAgreementType(selectedAgreementType)}
       />
 
-      {/* Template Foundation Selection */}
       <TemplateFoundationSelector
         isActive={!!programClass}
         templateFoundation={templateFoundation}
         onSelectFoundation={setTemplateFoundation}
       />
 
-      {/* Form Selection (conditionally rendered) */}
       {templateFoundation === 'tangible' && (
         <FormSelectionWrapper
           isActive={templateFoundation === 'tangible'}
           forms={availableForms}
           selectedForm={selectedForm}
           setSelectedForm={setSelectedForm}
+          stages={stages}
+          agreementType={selectedAgreementType}
           conversionStates={conversionStates}
           isLoading={isLoadingForms}
           error={formsError}
@@ -262,7 +270,6 @@ const ConfigurableLanding = () => {
     </div>
   );
 
-  // Main render
   return (
     <div className="min-h-screen bg-ivory p-6 space-y-6">
       {/* Header Section */}
@@ -302,6 +309,7 @@ const ConfigurableLanding = () => {
           agreementType={selectedAgreementType}
           programClass={programClass}
           selectedForm={selectedForm}
+          templateData={selectedTemplateData}
           templateFoundation={templateFoundation}
           setCurrentStage={setCurrentStage}
           onBack={() => setCurrentStage(TEMPLATE_STAGES.PROGRAM_SELECTION)}
@@ -317,11 +325,9 @@ const ConfigurableLanding = () => {
           currentStage={currentStage}
           setCurrentStage={setCurrentStage}
           onBack={() => {
-            // If coming from conversion, go back to conversion screen
             if (needsConversion && currentStage === TEMPLATE_STAGES.TEMPLATE_SETUP) {
               setCurrentStage(TEMPLATE_STAGES.TEMPLATE_CONVERSION);
             } else {
-              // Otherwise go back to selection
               setCurrentStage(TEMPLATE_STAGES.PROGRAM_SELECTION);
             }
           }}

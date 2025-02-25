@@ -37,6 +37,8 @@ import exchangeConfig from './exchange';
 import speakeasyConfig from './speakeasy';
 import rapidreviewConfig from './rapidreview';
 import winslowSourcingHubConfig from './winslowsourcing';
+import winslowBooneConfig from './winslowboone';
+import winslowCypressConfig from './winslowcypress';
 import winslowApplicationConfig from './winslowapplicationconfiguration';
 import settingsConfig from './settings';
 import authenticationConfig from './authentication';
@@ -72,6 +74,8 @@ const configs = {
   tangibleteams: tangibleteamsConfig,
   platformtour: platformtourConfig,
   winslowsourcing: winslowSourcingHubConfig,
+  winslowboone: winslowBooneConfig,
+  winslowcypress: winslowCypressConfig,
   winslowapplications: winslowApplicationConfig,
   houseapps: houseappsConfig,
   exchange: exchangeConfig,
@@ -113,6 +117,8 @@ export {
   authenticationConfig,
   rapidreviewConfig,
   winslowSourcingHubConfig,
+  winslowBooneConfig,
+  winslowCypressConfig,
   winslowApplicationConfig
 };
 

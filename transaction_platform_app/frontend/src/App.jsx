@@ -141,7 +141,15 @@ import TransactionLoader from './pages/evershedsapplications/mergercontrol/featu
 
 //Winslow feature imports
 import SourcingHubContent from './pages/menusections/rapidreview/features/WinslowApplications/SourcingHub';
+import BooneLanding from './pages/menusections/rapidreview/features/WinslowApplications/Boone';
 
+
+//Boone
+import BooneConfiguration from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/booneconfiguration/booneconfiguration';
+import BoonePayload from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/payload/payloads';
+import BooneDashboard from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/dashboard/dashboard';
+
+//Cypress
 
 // Florence Gelato feature imports
 import FlorenceGelatoIndex from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato';
@@ -226,6 +234,8 @@ function AppRoutes() {
         <Route path="configuration/platformconfiguration" element={<PlatformConfiguration />} />
 
 
+
+
        {/* Concierge routes */}
         <Route path="concierge/overview" element={<Concierge />} />
         <Route path="concierge/programconfiguration" element={<ProgramConfiguration />} />
@@ -280,6 +290,15 @@ function AppRoutes() {
  {/* Winslow Sourcing Hub routes */}
  <Route path="rapidresponse/winslowapplications/sourcinghubcomponent" element={<SourcingHubContent />} />
  <Route path="winslowsourcing/overview" element={<SourcingHubContent />} />
+
+ <Route path="rapidresponse/winslowapplications/boonecomponent" element={<BooneLanding />} />
+ <Route path="winslowboone/overview" element={<BooneLanding />} />
+ <Route path="winslowboone/configuration" element={<BooneConfiguration />} />
+
+ <Route path="winslowboone/payloads" element={<BoonePayload />} />
+ <Route path="winslowboone/dashboard" element={<BooneDashboard />} />
+
+
 
  {/* Eversheds Merger Control routes */}
  <Route path="rapidresponse/partnerapplications/nikeraivencomponent" element={<NIKERaivenContent />} />

@@ -51,14 +51,14 @@ const programGroups = [
             id: 'subscription-only',
             name: 'Subscription Only',
             description: 'Basic SaaS subscription agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/saas_subscription_template.docx',
+            templatePath: 'Foundational/Parents/saas_subscription_template.docx',
             displayOrder: 1
           },
           {
             id: 'subscription-config',
             name: 'Subscription + Configuration',
             description: 'SaaS subscription with professional services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/saas_subscription_config_template.docx',
+            templatePath: 'Foundational/Parents/saas_subscription_config_template.docx',
             displayOrder: 2
           }
         ]
@@ -73,30 +73,30 @@ const programGroups = [
             id: 'software_license_template',
             name: 'Perpetual License',
             description: 'Standard perpetual software license',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/software_license_template.docx',
+            templatePath: 'Foundational/Parents/software_license_template.docx',
             displayOrder: 1
           }
         ]
       },
       {
-        id: 'nda_one',
-        name: 'Confidentiality',
+        id: 'Customer Only',
+        name: 'Customer Only Confidentiality Agreement',
         description: 'Non-disclosure agreements',
         group: 'sourcing',
         forms: [
           {
             id: 'nda_one_way_template',
-            name: 'One-Way NDA',
+            name: 'Customer Only Confidentiality Agreement',
             description: 'Unidirectional confidentiality agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/nda_one_way_template.docx',
+            templatePath: 'Foundational/Parents/nda_one_way_template.docx',
             displayOrder: 1
           }
 
         ]
       },
-          {
-            id: 'nda_bilateral',
-            name: 'Confidentiality',
+      {
+            id: 'Mutual Confidentiality',
+            name: 'Mutual Confidentiality Agreement',
             description: 'Bilateral non-disclosure agreements',
             group: 'sourcing',
             forms: [
@@ -106,7 +106,7 @@ const programGroups = [
             id: 'nda_bilateral_template',
             name: 'Bilateral NDA',
             description: 'Mutual confidentiality agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/nda_bilateral_template.docx',
+            templatePath: 'Foundational/Parents/nda_bilateral_template.docx',
             displayOrder: 2
           }
         ]
@@ -121,7 +121,7 @@ const programGroups = [
             id: 'equipment_purchase_template',
             name: 'Equipment Purchase',
             description: 'Standard equipment purchase agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/equipment_purchase_template.docx',
+            templatePath: 'Foundational/Parents/equipment_purchase_template.docx',
             displayOrder: 1
           }
         ]
@@ -129,15 +129,15 @@ const programGroups = [
 
       {
         id: 'professional_services',
-        name: 'Master Servcices Agreement',
+        name: 'Master Services Agreement',
         description: 'Master Services Agreements',
         group: 'sourcing',
         forms: [
           {
             id: 'professional_service_template',
-            name: 'Equipment Purchase',
-            description: 'Standard equipment purchase agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/equipment_purchase_template.docx',
+            name: 'Master Services Agreement',
+            description: 'Standard Master Services Agreement',
+            templatePath: 'Foundational/Parents/professional_services_template.docx',
             displayOrder: 1
           }
         ]
@@ -151,9 +151,9 @@ const programGroups = [
         forms: [
           {
             id: 'reseller_standard_template',
-            name: 'Equipment Purchase',
-            description: 'Standard equipment purchase agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/equipment_purchase_template.docx',
+            name: 'Master Reseller',
+            description: 'Standard Master Reseller Agreement',
+            templatePath: 'Foundational/Parents/reseller_standard_template.docx',
             displayOrder: 1
           }
         ]
@@ -169,7 +169,7 @@ const programGroups = [
             id: 'tech-evaluation_template',
             name: 'Technology Evaluation',
             description: 'Standard technology evaluation agreement',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/ParentAgreementFoundationalTemplates/tech_evaluation_template.docx',
+            templatePath: 'Foundational/Parents/tech_evaluation_template.docx',
             displayOrder: 1
           }
         ]
@@ -186,7 +186,7 @@ const programGroups = [
             id: 'agile-us-order',
             name: 'Agile Services',
             description: 'Order for agile development services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_us_agile_template.docx',
+            templatePath: 'Foundational/Orders/eng_us_agile_template.docx',
             displayOrder: 1,
             parentReferenceId: 'agile-us'
           },
@@ -194,7 +194,7 @@ const programGroups = [
             id: 'resource-us-order',
             name: 'Resource Services',
             description: 'Order for resource-based engineering services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_us_resource_template.docx',
+            templatePath: 'Foundational/Orders/eng_us_resource_template.docx',
             displayOrder: 2,
             parentReferenceId: 'resource-us'
           },
@@ -202,7 +202,7 @@ const programGroups = [
             id: 'project-us-order',
             name: 'Project Services',
             description: 'Order for project-based engineering services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_us_project_template.docx',
+            templatePath: 'Foundational/Orders/eng_us_project_template.docx',
             displayOrder: 3,
             parentReferenceId: 'project-us'
           },
@@ -210,7 +210,7 @@ const programGroups = [
             id: 'managed-us-order',
             name: 'Managed Services',
             description: 'Order for managed engineering services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_us_managed_template.docx',
+            templatePath: 'Foundational/Orders/eng_us_managed_template.docx',
             displayOrder: 4,
             parentReferenceId: 'managed-us'
           }
@@ -226,7 +226,7 @@ const programGroups = [
             id: 'agile-india-order',
             name: 'Agile Services',
             description: 'Order for agile development services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_india_agile_template.docx',
+            templatePath: 'Foundational/Orders/eng_india_agile_template.docx',
             displayOrder: 1,
             parentReferenceId: 'agile-india'
           },
@@ -234,7 +234,7 @@ const programGroups = [
             id: 'resource-india-order',
             name: 'Resource Services',
             description: 'Order for resource-based engineering services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_india_resource_template.docx',
+            templatePath: 'Foundational/Orders/eng_india_resource_template.docx',
             displayOrder: 2,
             parentReferenceId: 'resource-india'
           },
@@ -242,7 +242,7 @@ const programGroups = [
             id: 'project-india-order',
             name: 'Project Services',
             description: 'Order for project-based engineering services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_india_project_template.docx',
+            templatePath: 'Foundational/Orders/eng_india_project_template.docx',
             displayOrder: 3,
             parentReferenceId: 'project-india'
           },
@@ -250,7 +250,7 @@ const programGroups = [
             id: 'managed-india-order',
             name: 'Managed Services',
             description: 'Order for managed engineering services',
-            templatePath: '/static/data/SystemITTemplates/TangibleITTemplates/FoundationalITTemplates/OrderFoundationalTemplates/eng_india_managed_template.docx',
+            templatePath: 'Foundational/Orders/eng_india_managed_template.docx',
             displayOrder: 4,
             parentReferenceId: 'managed-india'
           }

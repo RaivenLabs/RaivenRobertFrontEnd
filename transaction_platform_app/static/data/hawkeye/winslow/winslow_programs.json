@@ -6,8 +6,8 @@
             "icon": "path d='M20 7h-7m7 10h-7M7 7h-2M7 17h-2M8 5v4M8 15v4M14 5v4m0 6v4'",
             "programs": [
                 {
-                    "id": "esfetchprototype",
-                    "name": "Fetch Prototype",
+                    "id": "winslowfetchprototype",
+                    "name": "Winslow Fetch Prototype",
                     "icon": "path d='M9 17h6M9 12h6M9 7h6'",
                     "action": "launch_program",
                     "isLive": true,
@@ -33,13 +33,13 @@
                     "sidebarroute": "recruitingsidebar"
                 },
                 {
-                    "id": "esdiversidata",
-                    "name": "Diversidata Prototype",
+                    "id": "winslowcypress",
+                    "name": "Winslow Cypress Prototype",
                     "icon": "path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z'",
                     "action": "launch_program",
                     "isLive":true,
-                    "outletroute": "diversitycomponent",
-                    "sidebarroute": "diversitysidebar"
+                    "outletroute": "cypresscomponent",
+                    "sidebarroute": "cypresssidebar"
                 },
                 {
                     "id": "esfinancialservices",
@@ -78,13 +78,13 @@
                     "sidebarroute": "sourcinghubsidebar"
                 },
                 {
-                    "id": "esevaluation",
-                    "name": "Evaluation",
+                    "id": "winslowboone",
+                    "name": "Winslow Boone",
                     "icon": "path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM9 10h6M9 14h6M9 18h6'",
                     "action": "launch_program",
                     "isLive": true,
-                    "outletroute": "evaluationcomponent",
-                    "sidebarroute": "evaluationsidebar"
+                    "outletroute": "boonecomponent",
+                    "sidebarroute": "boonesidebar"
                 }
             ]
         }
