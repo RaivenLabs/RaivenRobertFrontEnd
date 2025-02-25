@@ -31,6 +31,11 @@ import DiversitySidebar from '../../pages/evershedsapplications/diversity/divers
 import EUCSDDSidebar from '../../pages/evershedsapplications/eucsdd/eucsddsidebar';
 import RecruitingSidebar from '../../pages/evershedsapplications/recruiting/recruitingsidebar';
 
+import WinslowSourcingHubSidebar from '../../pages/menusections/rapidreview/features/WinslowApplications/SourcingHub/sourcinghubsidebar';
+import WinslowBooneSidebar from '../../pages/menusections/rapidreview/features/WinslowApplications/Boone/boonesidebar';
+
+import WinslowCypressSidebar from '../../pages/menusections/rapidreview/features/WinslowApplications/Cypress/cypresssidebar';
+
 import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
 
 import PaceAidaSidebar from '../../pages/paceapplications/paceaida/paceaidasidebar';
@@ -69,6 +74,8 @@ const BaseLayout = () => {
     speakeasyclub: <SpeakeasyClubSidebar onSidebarChange={setActiveSidebar} />,
   
     sourcinghubsidebar:<WinslowSourcingHubSidebar onSidebarChange={setActiveSidebar} />,
+    boonesidebar:<WinslowBooneSidebar onSidebarChange={setActiveSidebar} />,
+    cypresssidebar:<WinslowCypressSidebar onSidebarChange={setActiveSidebar} />,
     rapidreview: <RapidReviewSidebar onSidebarChange={setActiveSidebar} />,
     fundsidebar: <FundSidebar onSidebarChange={setActiveSidebar} />,
 

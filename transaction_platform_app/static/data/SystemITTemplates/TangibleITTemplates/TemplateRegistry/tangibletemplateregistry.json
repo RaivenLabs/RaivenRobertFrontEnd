@@ -1,22 +1,66 @@
 {
-  "registryVersion": "2.0",
-  "lastUpdated": "2025-02-19T06:55:29.399740",
+  "registryVersion": "2.1",
+  "lastUpdated": "2025-02-21T14:13:59.459581",
   "baseDirectories": {
     "foundationalParent": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents",
     "foundationalOrder": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders",
     "sourceParent": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents",
-    "sourceOrder": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders"
+    "sourceOrder": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders",
+    "customerSpecific": "/static/data/CustomerITTemplates"
+  },
+  "stages": {
+    "SOURCE": {
+      "label": "Source Template",
+      "description": "Original template with standard variables, not yet converted",
+      "displayClass": "bg-amber-100 text-amber-800 border-amber-300",
+      "allowedTransitions": [
+        "BASE"
+      ]
+    },
+    "BASE": {
+      "label": "Base Template",
+      "description": "Converted template with Jinja2 syntax, ready for customer configuration",
+      "displayClass": "bg-green-100 text-green-800 border-green-300",
+      "allowedTransitions": [
+        "CUSTOMER_SPECIFIC"
+      ]
+    },
+    "CUSTOMER_SPECIFIC": {
+      "label": "Customer Specific",
+      "description": "Template configured for specific customer",
+      "displayClass": "bg-purple-100 text-purple-800 border-purple-300",
+      "allowedTransitions": [
+        "CUSTOMER_PROVIDER_SPECIFIC"
+      ],
+      "allowedTemplateTypes": [
+        "order"
+      ]
+    },
+    "CUSTOMER_PROVIDER_SPECIFIC": {
+      "label": "Provider Ready",
+      "description": "Template configured for customer-provider pair",
+      "displayClass": "bg-indigo-100 text-indigo-800 border-indigo-300",
+      "allowedTransitions": [],
+      "allowedTemplateTypes": [
+        "order"
+      ],
+      "requiredArtifacts": [
+        "rateCard"
+      ]
+    }
   },
   "conversionStates": {
     "SOURCE": {
       "label": "Source Template",
       "description": "Original template with standard variables, not yet converted",
-      "displayClass": "bg-amber-100 text-amber-800 border-amber-300"
+      "displayClass": "bg-amber-100 text-amber-800 border-amber-300",
+      "mapsToStage": "SOURCE"
     },
     "CONVERTED": {
       "label": "Converted Template",
       "description": "Template with double curly bracket syntax, ready for use",
-      "displayClass": "bg-green-100 text-green-800 border-green-300"
+      "displayClass": "bg-green-100 text-green-800 border-green-300",
+      "mapsToStage": "BASE"
     },
     "IN_PROGRESS": {
       "label": "Conversion In Progress",
@@ -28,6 +72,61 @@
       "description": "Error occurred during template conversion",
       "displayClass": "bg-red-100 text-red-800 border-red-300"
     }
+  },
+  "customerRegistries": {
+    "description": "Registry of customer-specific template registries",
+    "customers": [
+      {
+        "id": "ups",
+        "name": "UPS",
+        "registryPath": "/static/data/CustomerITTemplates/UPS/ups_template_registry.json",
+        "active": true,
+        "lastUpdated": "2025-02-18T12:34:20.723416",
+        "description": "UPS templates",
+        "templates": {
+          "parent": [
+            {
+              "id": "saas_subscription_template_ups",
+              "baseTemplateId": "saas_subscription_template",
+              "name": "UPS SaaS Subscription Agreement",
+              "description": "Customer-specific SaaS subscription agreement for UPS",
+              "templatePath": "/static/data/CustomerITTemplates/UPS/Parents/saas_subscription_template.docx",
+              "type": "customer",
+              "stage": "CUSTOMER_SPECIFIC",
+              "lastModified": "2025-02-18T12:34:20.723416",
+              "customerSpecificTerms": {
+                "companyName": "United Parcel Service, Inc.",
+                "companyAddress": "55 Glenlake Parkway NE, Atlanta, GA 30328",
+                "governingLaw": "Georgia"
+              }
+            }
+          ],
+          "order": [
+            {
+              "id": "eng_us_agile_order_ups_infosys",
+              "baseTemplateId": "eng_us_agile_order",
+              "name": "UPS-Infosys Agile Services Order",
+              "description": "Provider-specific agile services order for UPS-Infosys engagement",
+              "templatePath": "/static/data/CustomerITTemplates/UPS/Orders/eng_us_agile_order_infosys.docx",
+              "type": "customer_provider",
+              "stage": "CUSTOMER_PROVIDER_SPECIFIC",
+              "lastModified": "2025-02-19T15:45:33.123456",
+              "customerSpecificTerms": {
+                "companyName": "United Parcel Service, Inc.",
+                "companyAddress": "55 Glenlake Parkway NE, Atlanta, GA 30328"
+              },
+              "providerSpecificTerms": {
+                "providerId": "infosys",
+                "providerName": "Infosys Limited",
+                "providerAddress": "Electronics City, Hosur Road, Bangalore 560 100",
+                "rateCardPath": "/static/data/CustomerITTemplates/UPS/RateCards/infosys_2025_rates.xlsx",
+                "parentAgreementReference": "MSA-2024-001"
+              }
+            }
+          ]
+        }
+      }
+    ]
   },
   "programGroups": [
     {
@@ -50,14 +149,15 @@
                   "name": "Equipment Purchase Template",
                   "description": "Parent template for equipment_purchase_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/equipment_purchase_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/equipment_purchase_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/equipment_purchase_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -71,14 +171,15 @@
                   "name": "Nda Bilateral Template",
                   "description": "Parent template for nda_bilateral_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/nda_bilateral_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/nda_bilateral_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/nda_bilateral_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -92,14 +193,15 @@
                   "name": "Nda One Way Template",
                   "description": "Parent template for nda_one_way_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/nda_one_way_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/nda_one_way_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/nda_one_way_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -113,14 +215,15 @@
                   "name": "Professional Services Template",
                   "description": "Parent template for professional_services_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/professional_services_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/professional_services_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/professional_services_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -134,14 +237,15 @@
                   "name": "Reseller Standard Template",
                   "description": "Parent template for reseller_standard_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/reseller_standard_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/reseller_standard_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/reseller_standard_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -155,28 +259,30 @@
                   "name": "Saas Subscription Config Template",
                   "description": "Parent template for saas_subscription_config_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/saas_subscription_config_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/saas_subscription_config_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/saas_subscription_config_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 },
                 {
                   "id": "saas_subscription_template",
                   "name": "Saas Subscription Template",
                   "description": "Parent template for saas_subscription_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/saas_subscription_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/saas_subscription_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/saas_subscription_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 2,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -190,14 +296,15 @@
                   "name": "Software License Template",
                   "description": "Parent template for software_license_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/software_license_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/software_license_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/software_license_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             },
@@ -211,14 +318,15 @@
                   "name": "Tech Evaluation Template",
                   "description": "Parent template for tech_evaluation_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Parents/tech_evaluation_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Parents/tech_evaluation_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Parents/tech_evaluation_template.docx",
                   "type": "house",
                   "status": "foundational",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.399740",
+                  "lastConverted": "2025-02-21T14:13:59.459581",
                   "displayOrder": 1,
                   "fileExists": true,
-                  "sourceFileExists": false
+                  "sourceFileExists": false,
+                  "stage": "BASE"
                 }
               ]
             }
@@ -239,7 +347,7 @@
                   "name": "Agile Services Order",
                   "description": "Order for agile development services",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_agile_order_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_agile_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_agile_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
@@ -247,7 +355,8 @@
                   "displayOrder": 1,
                   "parentReferenceId": "eng_us_agile",
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 }
               ]
             },
@@ -261,70 +370,75 @@
                   "name": "Eng India Agile Template",
                   "description": "Order template for eng_india_agile_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_agile_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_agile_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_agile_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 1,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_india_resource_template",
                   "name": "Eng India Resource Template",
                   "description": "Order template for eng_india_resource_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_resource_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_resource_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_resource_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 4,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_india_managed_template",
                   "name": "Eng India Managed Template",
                   "description": "Order template for eng_india_managed_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_managed_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_managed_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_managed_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 3,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_india_project_template",
                   "name": "Eng India Project Template",
                   "description": "Order template for eng_india_project_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_project_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_project_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_project_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 4,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_india_agile_template_processed",
                   "name": "Eng India Agile Template Processed",
                   "description": "Order template for eng_india_agile_template_processed",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_india_agile_template_processed.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_agile_template_processed.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_india_agile_template_processed.docx",
                   "type": "house",
-                  "status": "foundational",
+                  "status": "missing",
                   "conversionState": "CONVERTED",
-                  "lastConverted": "2025-02-19T06:55:29.378374",
+                  "lastConverted": "2025-02-19T13:08:05.963633",
                   "displayOrder": 5,
-                  "fileExists": true,
-                  "sourceFileExists": false
+                  "fileExists": false,
+                  "sourceFileExists": false,
+                  "stage": "SOURCE"
                 }
               ]
             },
@@ -338,56 +452,60 @@
                   "name": "Eng Us Agile Template",
                   "description": "Order template for eng_us_agile_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_agile_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_agile_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_agile_template.docx",
                   "type": "house",
-                  "status": "source",
+                  "status": "foundational",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 1,
-                  "fileExists": false,
-                  "sourceFileExists": true
+                  "fileExists": true,
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_us_managed_template",
                   "name": "Eng Us Managed Template",
                   "description": "Order template for eng_us_managed_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_managed_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_managed_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_managed_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 2,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_us_resource_template",
                   "name": "Eng Us Resource Template",
                   "description": "Order template for eng_us_resource_template",
                   "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_resource_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_resource_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_resource_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 4,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 },
                 {
                   "id": "eng_us_project_template",
                   "name": "Eng Us Project Template",
                   "description": "Order template for eng_us_project_template",
-                  "templatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_project_template.docx",
-                  "sourceTemplatePath": "/static/data/SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_project_template.docx",
+                  "templatePath": "/SystemITTemplates/TangibleITTemplates/Foundational/Orders/eng_us_project_template.docx",
+                  "sourceTemplatePath": "SystemITTemplates/TangibleITTemplates/Source/Orders/eng_us_project_template.docx",
                   "type": "house",
                   "status": "source",
                   "conversionState": "SOURCE",
                   "lastConverted": null,
                   "displayOrder": 4,
                   "fileExists": false,
-                  "sourceFileExists": true
+                  "sourceFileExists": true,
+                  "stage": "SOURCE"
                 }
               ]
             }
@@ -395,18 +513,5 @@
         }
       ]
     }
-  ],
-  "customerRegistries": {
-    "description": "Registry of customer-specific template registries",
-    "customers": [
-      {
-        "id": "ups",
-        "name": "UPS",
-        "registryPath": "/static/data/CustomerITTemplates/UPS/ups_template_registry.json",
-        "active": true,
-        "lastUpdated": "2025-02-18T12:34:20.723416",
-        "description": "UPS templates"
-      }
-    ]
-  }
+  ]
 }
