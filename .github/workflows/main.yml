@@ -26,7 +26,6 @@ jobs:
             node-version: 18
   
         # Installs dependencies 
-<<<<<<< HEAD
         - run: |
             npm install
             npm i tailwind-merge dotenv
@@ -38,19 +37,6 @@ jobs:
           env:
             REACT_APP_ENV: develop 
         
-=======
-        - run: npm install && npm i tailwind-merge
-          working-directory: transaction_platform_app/frontend/
-  
-        # Create build artifacts
-        - run: npm run build
-          working-directory: transaction_platform_app/frontend/
-  
-        # Configure AWS credential and region environment variables for use in
-        # other GitHub Actions. The environment variables will be detected by
-        # both the AWS SDKs and the AWS CLI to determine the credentials and
-        # region to use for AWS API calls.
->>>>>>> dd1173966cf48018d2c6a3e5b95003d419c0e9d7
         - name: Configure AWS credentials
           uses: aws-actions/configure-aws-credentials@v1
           with:
@@ -85,7 +71,6 @@ jobs:
             node-version: 18
   
         # Installs dependencies 
-<<<<<<< HEAD
         - run: |
             npm install
             npm i tailwind-merge dotenv
@@ -97,19 +82,6 @@ jobs:
           env:
             REACT_APP_ENV: production
   
-=======
-        - run: npm install && npm i tailwind-merge
-          working-directory: transaction_platform_app/frontend/
-  
-        # Create build artifacts
-        - run: npm run build
-          working-directory: transaction_platform_app/frontend/
-  
-        # Configure AWS credential and region environment variables for use in
-        # other GitHub Actions. The environment variables will be detected by
-        # both the AWS SDKs and the AWS CLI to determine the credentials and
-        # region to use for AWS API calls.
->>>>>>> dd1173966cf48018d2c6a3e5b95003d419c0e9d7
         - name: Configure AWS credentials
           uses: aws-actions/configure-aws-credentials@v1
           with:
@@ -127,8 +99,4 @@ jobs:
           env:
             AWS_CLOUDFRONT_DISTRIBUTION_ID: ENV6SR44X1IGU
           run: sh "${GITHUB_WORKSPACE}/.github/workflows/cloudfront-invalidate.sh"
-<<<<<<< HEAD
         
-=======
-        
->>>>>>> dd1173966cf48018d2c6a3e5b95003d419c0e9d7
