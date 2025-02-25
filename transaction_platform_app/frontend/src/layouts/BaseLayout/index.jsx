@@ -41,7 +41,6 @@ import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensid
 import PaceAidaSidebar from '../../pages/paceapplications/paceaida/paceaidasidebar';
 
 import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
-import WinslowSourcingHubSidebar from '../../pages/menusections/rapidreview/features/WinslowApplications/SourcingHub/sourcinghubsidebar';
 import FlorenceGelatoSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/sidebar';
 import { useSidebar } from '../../context/SidebarContext';
 
