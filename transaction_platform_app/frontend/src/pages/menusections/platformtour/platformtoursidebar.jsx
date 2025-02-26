@@ -24,24 +24,24 @@ const PlatformTourSidebar = ({ onSidebarChange }) => {
       id: item.id,
       level: item.level,
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Check if we should toggle section expansion
     if (item.id === 'platformtour-applications') {
       console.log('🔄 Toggling applications section');
-      setExpandedSection(prev => prev === item.id ? null : item.id);
+      setExpandedSection((prev) => (prev === item.id ? null : item.id));
     }
 
     // Handle navigation based on level
-    switch(item.level) {
+    switch (item.level) {
       case 'section':
         console.log('🔷 Section Navigation Starting');
         if (item.route) {
           console.log('🚀 Navigating to section route:', item.route);
           navigate(`/${item.route}`);
         }
-        
+
         if (item.type === 'applications-package') {
           console.log('📦 Loading program data for:', item.id);
           const programData = await loadProgramData(item.id);
@@ -49,7 +49,7 @@ const PlatformTourSidebar = ({ onSidebarChange }) => {
           setIsConsoleOpen(!!programData);
         }
         break;
-        
+
       case 'application':
         console.log('💠 Application Navigation');
         if (item.route) {
@@ -72,8 +72,10 @@ const PlatformTourSidebar = ({ onSidebarChange }) => {
 
   // Helper function to check if we have application items for a section
   const hasApplicationItems = (sectionId) => {
-    return platformtourApplicationsConfig?.applicationItems?.length > 0 && 
-           sectionId === 'platformtour-applications';
+    return (
+      platformtourApplicationsConfig?.applicationItems?.length > 0 &&
+      sectionId === 'platformtour-applications'
+    );
   };
 
   return (
@@ -106,32 +108,38 @@ const PlatformTourSidebar = ({ onSidebarChange }) => {
               </button>
 
               {/* Application Items - only render if we have them */}
-              {hasApplicationItems(item.id) && expandedSection === item.id && 
-                platformtourApplicationsConfig.applicationItems.map((appItem) => {
-                  console.log('📱 Rendering application item:', {
-                    id: appItem.id,
-                    level: appItem.level,
-                    type: appItem.type
-                  });
-                  
-                  return (
-                    <button
-                      key={appItem.id}
-                      onClick={() => {
-                        console.log('👆 Application item clicked:', appItem.id);
-                        handleNavigation(appItem);
-                      }}
-                      className="w-full px-6 py-2 pl-8 text-left hover:bg-royalBlue-hover text-xs transition-colors"
-                    >
-                      {appItem.icon && (
-                        <svg className="w-4 h-4 text-ivory fill-current">
-                          <use href={`#icon-${appItem.icon}`} />
-                        </svg>
-                      )}
-                      <span>{appItem.label}</span>
-                    </button>
-                  );
-                })}
+              {hasApplicationItems(item.id) &&
+                expandedSection === item.id &&
+                platformtourApplicationsConfig.applicationItems.map(
+                  (appItem) => {
+                    console.log('📱 Rendering application item:', {
+                      id: appItem.id,
+                      level: appItem.level,
+                      type: appItem.type,
+                    });
+
+                    return (
+                      <button
+                        key={appItem.id}
+                        onClick={() => {
+                          console.log(
+                            '👆 Application item clicked:',
+                            appItem.id
+                          );
+                          handleNavigation(appItem);
+                        }}
+                        className="w-full px-6 py-2 pl-8 text-left hover:bg-royalBlue-hover text-xs transition-colors"
+                      >
+                        {appItem.icon && (
+                          <svg className="w-4 h-4 text-ivory fill-current">
+                            <use href={`#icon-${appItem.icon}`} />
+                          </svg>
+                        )}
+                        <span>{appItem.label}</span>
+                      </button>
+                    );
+                  }
+                )}
             </div>
           ))}
 
@@ -148,7 +156,9 @@ const PlatformTourSidebar = ({ onSidebarChange }) => {
         </div>
 
         <div className="mt-auto border-t border-gray-700">
-          <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+          <p className=" text-cyan mb-2 p-6">
+            Powered by Tangible Intelligence
+          </p>
         </div>
       </div>
 
