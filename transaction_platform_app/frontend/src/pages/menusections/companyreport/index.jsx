@@ -17,7 +17,7 @@ const CompanyReport = () => {
         console.log('Fetching data for customer:', customerId);
         
         const customerData = await fetchFromAPI(
-          `/company-report/${customerId}`, 
+          `/api/company-report/${customerId}`, 
           coreconfig.apiUrl
         );
         console.log('Received customer data:', customerData);
