@@ -23,10 +23,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.15.1",
     "redux": "^5.0.1",
-<<<<<<< HEAD
-=======
     "tailwind-merge": "^3.0.2",
->>>>>>> f96a2d0e14cfd34ccae1c3cd080b2331f339d816
     "web-vitals": "^2.1.4",
     "zustand": "^5.0.2"
   },
@@ -34,11 +31,8 @@
     "start": "react-scripts start  --disable-host-check",
     "start-with-ngrok": "concurrently \"npm start\" \"ngrok http 3000 --host-header=localhost:3000\"",
     "build": "react-scripts build",
-<<<<<<< HEAD
-=======
     "build:develop": "CI=false BUILD_ENV=develop node setEnv.js",
     "build:production": "CI=false BUILD_ENV=production node setEnv.js",
->>>>>>> f96a2d0e14cfd34ccae1c3cd080b2331f339d816
     "build:css": "tailwindcss -i ./src/index.css -o ./src/output.css --watch",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
