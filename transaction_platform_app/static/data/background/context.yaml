@@ -1,0 +1,149 @@
+---
+project:
+  name: "Project Sequoia - Artemis Acquisition"
+  type: "M&A Due Diligence"
+  client: "3M Corporation"
+  start_date: "2025-01-15"
+  expected_completion: "2025-03-30"
+  project_lead: "Jane Smith"
+
+business_context: >
+  3M is considering acquiring Artemis Adhesives, a mid-sized specialty 
+  adhesives manufacturer, for approximately $500M. This acquisition is 
+  strategically important as it would fill critical gaps in 3M's supply chain, 
+  reducing dependency on third-party suppliers and mitigating supply chain risk 
+  by approximately 35%. Artemis has proprietary technology in eco-friendly adhesives 
+  that aligns with 3M's sustainability initiatives.
+
+document_collection:
+  types: 
+    - "Financial statements"
+    - "Contracts and agreements"
+    - "Technical documentation"
+    - "Patent filings"
+    - "Environmental compliance records"
+    - "HR documentation"
+  volume: "2,500 documents, approximately 45,000 pages"
+  date_range: "2015-2023"
+  languages: 
+    - name: "English"
+      percentage: 80
+    - name: "German"
+      percentage: 15
+    - name: "French"
+      percentage: 5
+  formats:
+    - name: "PDF"
+      percentage: 75
+    - name: "Excel"
+      percentage: 15
+    - name: "Word"
+      percentage: 10
+
+extraction_objectives:
+  - name: "Indemnification Analysis"
+    description: "Identify all indemnification clauses and their scope"
+    priority: 1
+    
+  - name: "Environmental Compliance"
+    description: "Extract environmental compliance history and incidents"
+    priority: 2
+    
+  - name: "Intellectual Property"
+    description: "Catalog intellectual property assets and their status"
+    priority: 3
+    
+  - name: "Regulatory Issues"
+    description: "Identify potential regulatory issues related to product safety"
+    priority: 4
+    
+  - name: "Financial Obligations"
+    description: "Extract financial obligations and contingent liabilities"
+    priority: 5
+    
+  - name: "Supply Chain Analysis"
+    description: "Map key suppliers and identify any single points of failure"
+    priority: 6
+
+special_considerations:
+  industry_terminology:
+    - "Chemical manufacturing terminology"
+    - "Specialized adhesive technical terms"
+    - "Manufacturing process documentation"
+  
+  regulatory_framework:
+    - "EPA regulations"
+    - "REACH compliance (EU)"
+    - "RoHS"
+    - "ISO 9001 and 14001"
+  
+  confidentiality:
+    level: "Highly confidential"
+    notes: "Subject to NDA, limited distribution to approved team members only"
+  
+  time_constraints:
+    preliminary_findings: "14 days"
+    final_report: "30 days"
+
+output_requirements:
+  data_format: "JSON structure with nested attributes for hierarchical relationships"
+  integration_needs:
+    - "Must be compatible with Power BI dashboard"
+    - "Integration with existing SQL database"
+    - "API access for legal team review platform"
+  
+  key_metrics:
+    - name: "Risk Assessment"
+      type: "Scale"
+      range: "1-5"
+      description: "Risk score for each identified issue"
+    
+    - name: "Financial Impact"
+      type: "Currency"
+      description: "Estimated financial impact in USD"
+  
+  categorization:
+    - "Critical"
+    - "Major"
+    - "Minor"
+    - "Informational"
+
+previous_similar_projects:
+  - name: "Project Horizon"
+    year: 2022
+    type: "M&A due diligence"
+    target: "Medical device manufacturer"
+    notes: >
+      Schema focused on regulatory compliance, patent portfolio analysis, 
+      and product liability risk. Unique challenges included handling FDA 
+      documentation and international patent filings.
+  
+  - name: "Project Evergreen"
+    year: 2023
+    type: "Environmental compliance review"
+    target: "Chemical production facilities"
+    notes: >
+      Involved extraction of historical emissions data and comparison against 
+      regulatory thresholds across multiple jurisdictions.
+
+schema_suggestions:
+  top_level_entities:
+    - "Document"
+    - "Party" 
+    - "Obligation"
+    - "Intellectual Property"
+    - "Compliance"
+    - "Financial Data"
+  
+  recommended_relationships:
+    - from: "Document"
+      to: "Party"
+      type: "many-to-many"
+      
+    - from: "Document"
+      to: "Obligation"
+      type: "one-to-many"
+      
+    - from: "Intellectual Property"
+      to: "Document"
+      type: "many-to-one"
