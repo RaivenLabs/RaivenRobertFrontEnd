@@ -9,7 +9,7 @@ const ExchangeSidebar = ({ onSidebarChange }) => {
 
   useEffect(() => {
     console.log('Initial exchangeConfig:', exchangeConfig);
-    
+
     // Safely set section items
     if (exchangeConfig?.sectionItems) {
       console.log('Setting section items:', exchangeConfig.sectionItems);
@@ -24,7 +24,7 @@ const ExchangeSidebar = ({ onSidebarChange }) => {
       id: item.id,
       level: 'section',
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Navigate to application
@@ -79,7 +79,7 @@ const ExchangeSidebar = ({ onSidebarChange }) => {
       </div>
 
       <div className="mt-auto border-t border-gray-700">
-        <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+        <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
       </div>
     </div>
   );

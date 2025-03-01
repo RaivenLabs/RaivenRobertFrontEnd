@@ -1,9 +1,9 @@
 import React from 'react';
-import { 
-  Compass, 
-  BarChart2, 
-  Eye, 
-  FileText, 
+import {
+  Compass,
+  BarChart2,
+  Eye,
+  FileText,
   HeartHandshake,
   MessageCircle,
   Users,
@@ -11,7 +11,7 @@ import {
   Clock,
   Layout,
   FolderOpen,
-  Settings
+  Settings,
 } from 'lucide-react';
 
 const ConciergeOverview = () => {
@@ -26,7 +26,6 @@ const ConciergeOverview = () => {
         </div>
       </header>
 
-      
       {/* Digital Compass */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
@@ -36,21 +35,26 @@ const ConciergeOverview = () => {
           {[
             {
               icon: <Eye className="w-8 h-8" />,
-              title: "Real-Time Deal Visibility",
-              description: "Monitor transaction progress and status updates instantly"
+              title: 'Real-Time Deal Visibility',
+              description:
+                'Monitor transaction progress and status updates instantly',
             },
             {
               icon: <BarChart2 className="w-8 h-8" />,
-              title: "Dynamic Performance Analytics",
-              description: "Track key metrics and insights across your portfolio"
+              title: 'Dynamic Performance Analytics',
+              description:
+                'Track key metrics and insights across your portfolio',
             },
             {
               icon: <Sparkles className="w-8 h-8" />,
-              title: "Action-Based Insights",
-              description: "Receive intelligent recommendations for next steps"
-            }
+              title: 'Action-Based Insights',
+              description: 'Receive intelligent recommendations for next steps',
+            },
           ].map((feature, index) => (
-            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl overflow-hidden"
+            >
               <div className="bg-gray-50 p-6">
                 <div className="text-royalBlue mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -70,21 +74,24 @@ const ConciergeOverview = () => {
           {[
             {
               icon: <MessageCircle className="w-8 h-8" />,
-              title: "Responsive Support",
-              description: "Expert assistance available when you need it"
+              title: 'Responsive Support',
+              description: 'Expert assistance available when you need it',
             },
             {
               icon: <Users className="w-8 h-8" />,
-              title: "Expert Guidance",
-              description: "Professional insights to optimize your workflow"
+              title: 'Expert Guidance',
+              description: 'Professional insights to optimize your workflow',
             },
             {
               icon: <HeartHandshake className="w-8 h-8" />,
-              title: "Customer Delight",
-              description: "Going above and beyond to ensure your success"
-            }
+              title: 'Customer Delight',
+              description: 'Going above and beyond to ensure your success',
+            },
           ].map((service, index) => (
-            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl overflow-hidden"
+            >
               <div className="bg-gray-50 p-6">
                 <div className="text-royalBlue mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
@@ -98,14 +105,16 @@ const ConciergeOverview = () => {
       {/* Our Commitment */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Our Commitment</h2>
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+            Our Commitment
+          </h2>
           <div className="border border-gray-200 rounded-xl overflow-hidden">
             <div className="bg-gray-50 p-6">
               <ul className="space-y-4">
                 {[
-                  "Drive customer success through every decision",
-                  "Focus resources on business-critical priorities",
-                  "Enhance human expertise with digital intelligence"
+                  'Drive customer success through every decision',
+                  'Focus resources on business-critical priorities',
+                  'Enhance human expertise with digital intelligence',
                 ].map((commitment, index) => (
                   <li key={index} className="flex items-start">
                     <Compass className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -121,7 +130,9 @@ const ConciergeOverview = () => {
       {/* Contact Support */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-6">Need Assistance?</h2>
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6">
+            Need Assistance?
+          </h2>
           <p className="text-gray-600 mb-8">Our experts are ready to help</p>
           <div className="flex justify-center gap-4">
             <button className="bg-royalBlue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
@@ -136,7 +147,9 @@ const ConciergeOverview = () => {
 
       {/* Footer */}
       <footer className="guide-footer">
-        <p>© 2024 Tangible Intelligence, ai. Your partner in business excellence.</p>
+        <p>
+          © 2025 Tangible Intelligence, ai. Your partner in business excellence.
+        </p>
       </footer>
     </div>
   );

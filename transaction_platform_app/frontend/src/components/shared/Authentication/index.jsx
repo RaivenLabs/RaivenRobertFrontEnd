@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { authService } from '../../../services/authService';
 
+import { Mail, User, Eye, EyeOff, X } from 'lucide-react';
 
-
-import { Mail, User, Eye, EyeOff } from 'lucide-react';
-
-const Authentication = ({ onSuccess }) => {
+const Authentication = ({ onSuccess, onCloseModal }) => {
   // Keep all existing state hooks
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { login } = useAuth();
 
   const isEmail = (value) => {
@@ -26,32 +24,34 @@ const Authentication = ({ onSuccess }) => {
     setIsLoading(true);
 
     try {
-        // Use our new initiateLogin from authService
-        const result = await authService.initiateLogin(identifier, password);
-        
-        if (result.success) {
-            // Only update AuthContext if we got success
-            await login({
-                accessToken: result.data.accessToken,
-                idToken: result.data.idToken,
-                refreshToken: result.data.refreshToken,
-                userGroups: result.data.userGroups || [],
-                expiresIn: result.data.expiresIn
-            });
+      // Use our new initiateLogin from authService
+      const result = await authService.initiateLogin(identifier, password);
 
-            // Only call onSuccess (which closes modal) after confirmed success
-            if (onSuccess) {
-                onSuccess();
-            }
-        } else {
-            // Handle specific error from service
-            setError(result.error || 'Login failed. Please check your credentials.');
+      if (result.success) {
+        // Only update AuthContext if we got success
+        await login({
+          accessToken: result.data.accessToken,
+          idToken: result.data.idToken,
+          refreshToken: result.data.refreshToken,
+          userGroups: result.data.userGroups || [],
+          expiresIn: result.data.expiresIn,
+        });
+
+        // Only call onSuccess (which closes modal) after confirmed success
+        if (onSuccess) {
+          onSuccess();
         }
+      } else {
+        // Handle specific error from service
+        setError(
+          result.error || 'Login failed. Please check your credentials.'
+        );
+      }
     } catch (err) {
-        console.error('Login error:', err);
-        setError(err.message || 'An unexpected error occurred.');
+      console.error('Login error:', err);
+      setError(err.message || 'An unexpected error occurred.');
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -63,7 +63,7 @@ const Authentication = ({ onSuccess }) => {
       response_type: 'code',
       scope: 'openid email profile',
       redirect_uri: window.location.origin + '/auth/callback',
-      identity_provider: 'AzureAD'
+      identity_provider: 'AzureAD',
     });
 
     const url = `https://cognito-idp.us-west-2.amazonaws.com/us-west-2_DUnrszKaF/oauth2/authorize?${msftAuthParams}`;
@@ -72,8 +72,16 @@ const Authentication = ({ onSuccess }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center p-5 bg-black bg-opacity-50 z-[9999]">
-      <div className="w-[400px] h-[7in] bg-gray-100 p-8 rounded-lg shadow-lg flex flex-col justify-between">
-        <div className="h-full w-full bg-ivory rounded-lg p-6 mb-[24px]">
+      <div className="w-[400px] bg-ivory pt-4 pb-8 px-4 rounded-lg shadow-lg flex flex-col justify-between">
+        <div className="flex justify-end pb-1">
+          <button
+            onClick={onCloseModal}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        <div className="h-full w-full bg-ivory rounded-lg px-6 py-3">
           <h2 className="text-2xl text-teal font-bold text-center mb-6">
             Tangible Intelligence Login
           </h2>
@@ -111,13 +119,6 @@ const Authentication = ({ onSuccess }) => {
                   disabled={isLoading}
                 />
               </div>
-              {identifier && (
-                <p className="mt-1 text-xs text-gray-500">
-                  {isEmail(identifier) 
-                    ? 'Using email address for login'
-                    : 'Using username for login'}
-                </p>
-              )}
             </div>
 
             <div>
@@ -130,7 +131,7 @@ const Authentication = ({ onSuccess }) => {
               <div className="relative">
                 <input
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -155,7 +156,7 @@ const Authentication = ({ onSuccess }) => {
               type="submit"
               disabled={isLoading}
               className={`w-full p-3 bg-gray-100 text-royal-blue rounded-md transition-colors ${
-                isLoading 
+                isLoading
                   ? 'opacity-50 cursor-not-allowed'
                   : 'hover:bg-hover-blue'
               }`}
@@ -177,7 +178,7 @@ const Authentication = ({ onSuccess }) => {
             onClick={handleMicrosoftLogin}
             disabled={isLoading}
             className={`w-full p-3 bg-gray-100 text-royal-blue border-2 border-royal-blue rounded-md transition-colors flex items-center justify-center space-x-2 ${
-              isLoading 
+              isLoading
                 ? 'opacity-50 cursor-not-allowed'
                 : 'hover:bg-light-blue'
             }`}

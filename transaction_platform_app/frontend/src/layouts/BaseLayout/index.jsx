@@ -44,9 +44,10 @@ import WinslowCypressSidebar from '../../pages/menusections/rapidreview/features
 
 import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
 
+import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
+
 import PaceAidaSidebar from '../../pages/paceapplications/paceaida/paceaidasidebar';
 
-import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
 import FlorenceGelatoSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/sidebar';
 import { useSidebar } from '../../context/SidebarContext';
 

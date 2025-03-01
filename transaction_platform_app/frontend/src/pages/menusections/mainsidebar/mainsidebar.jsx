@@ -75,7 +75,7 @@ const MainSidebar = () => {
   }
 
   return (
-    <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
+    <div className="flex flex-col justify-between h-full bg-sidebarDark text-ivory shadow-sidebar relative">
       <nav className="overflow-y-auto mt-[24px]">
         {navigationConfig.mainItems.map((item) => (
           <div key={item.id}>
@@ -122,6 +122,7 @@ const MainSidebar = () => {
           </div>
         ))}
       </nav>
+      <p className="mb-2 p-6 text-gray-500">Powered by Tangible Intelligence</p>
     </div>
   );
 };

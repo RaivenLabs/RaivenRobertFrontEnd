@@ -12,20 +12,33 @@ const TangibleInside = () => {
       {/* Header Section */}
       <header className="guide-header">
         <div className="guide-container">
-        <h1>CoreIntel<sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup> Applications</h1>
+          <h1>
+            CoreIntel
+            <sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup>{' '}
+            Applications
+          </h1>
           <p>Transform unstructured data into actionable intelligence</p>
-          <p>Advanced data extraction and analytics powered by proprietary vector technology</p>
+          <p>
+            Advanced data extraction and analytics powered by proprietary vector
+            technology
+          </p>
         </div>
       </header>
 
       {/* Core Capabilities */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-        <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Core Capabilities</h2>
+        <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+          Core Capabilities
+        </h2>
         <div className="max-w-4xl mx-auto grid grid-cols-2 gap-8">
           {/* Data Transformation */}
           <div className="p-8 bg-gray-50 rounded-xl">
-            <h3 className="text-xl font-semibold text-royalBlue mb-4">Data Transformation</h3>
-            <p className="text-gray-600 mb-6">Convert complex data stores into structured insights</p>
+            <h3 className="text-xl font-semibold text-royalBlue mb-4">
+              Data Transformation
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Convert complex data stores into structured insights
+            </p>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -33,7 +46,9 @@ const TangibleInside = () => {
               </li>
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
-                <span className="text-gray-600">Vector Database Integration</span>
+                <span className="text-gray-600">
+                  Vector Database Integration
+                </span>
               </li>
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -48,8 +63,12 @@ const TangibleInside = () => {
 
           {/* Intelligence Layer */}
           <div className="p-8 bg-gray-50 rounded-xl">
-            <h3 className="text-xl font-semibold text-royalBlue mb-4">Intelligence Layer</h3>
-            <p className="text-gray-600 mb-6">Advanced analytics and pattern recognition</p>
+            <h3 className="text-xl font-semibold text-royalBlue mb-4">
+              Intelligence Layer
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Advanced analytics and pattern recognition
+            </p>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -74,11 +93,15 @@ const TangibleInside = () => {
 
       {/* Use Cases */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-        <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Industry Applications</h2>
+        <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+          Industry Applications
+        </h2>
         <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6">
           {/* Claims Processing */}
           <div className="p-6 border border-gray-100 rounded-xl">
-            <h3 className="text-lg font-semibold text-royalBlue mb-4">Claims Processing</h3>
+            <h3 className="text-lg font-semibold text-royalBlue mb-4">
+              Claims Processing
+            </h3>
             <ul className="space-y-2">
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -97,7 +120,9 @@ const TangibleInside = () => {
 
           {/* M&A Data Rooms */}
           <div className="p-6 border border-gray-100 rounded-xl">
-            <h3 className="text-lg font-semibold text-royalBlue mb-4">Due Diligence</h3>
+            <h3 className="text-lg font-semibold text-royalBlue mb-4">
+              Due Diligence
+            </h3>
             <ul className="space-y-2">
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -116,7 +141,9 @@ const TangibleInside = () => {
 
           {/* Enterprise Data */}
           <div className="p-6 border border-gray-100 rounded-xl">
-            <h3 className="text-lg font-semibold text-royalBlue mb-4">Enterprise Data</h3>
+            <h3 className="text-lg font-semibold text-royalBlue mb-4">
+              Enterprise Data
+            </h3>
             <ul className="space-y-2">
               <li className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -137,15 +164,17 @@ const TangibleInside = () => {
 
       {/* Key Benefits */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-        <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Key Benefits</h2>
+        <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+          Key Benefits
+        </h2>
         <div className="max-w-4xl mx-auto grid grid-cols-2 gap-6">
           {[
-            "Weeks to Days: Dramatic timeline reduction",
-            "Security First: Proprietary data protection",
-            "Human Partnership: Quality assured review",
-            "Advanced Analytics: Beyond simple extraction",
-            "Insight Generation: Pattern recognition",
-            "Full Integration: Legacy system support"
+            'Weeks to Days: Dramatic timeline reduction',
+            'Security First: Proprietary data protection',
+            'Human Partnership: Quality assured review',
+            'Advanced Analytics: Beyond simple extraction',
+            'Insight Generation: Pattern recognition',
+            'Full Integration: Legacy system support',
           ].map((benefit, index) => (
             <div key={index} className="flex items-start">
               <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -161,19 +190,26 @@ const TangibleInside = () => {
           Available Applications
         </h2>
         <div className="max-w-4xl mx-auto">
-          <ApplicationGroup apiEndpoint="/programs/rapidreview"
+          <ApplicationGroup
+            apiEndpoint="/programs/rapidreview"
             onSidebarChange={handleSidebarChange}
           />
         </div>
         <div className="text-center mt-8 text-gray-600">
           <p>Press and hold any highlighted application to launch</p>
-          <p className="text-sm mt-2">Blue icons indicate available applications • Gray icons show upcoming features</p>
+          <p className="text-sm mt-2">
+            Blue icons indicate available applications • Gray icons show
+            upcoming features
+          </p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="guide-footer">
-        <p>© 2024 Tangible Intelligence, ai. Transform your complex data into actionable intelligence.</p>
+        <p>
+          © 2025 Tangible Intelligence, ai. Transform your complex data into
+          actionable intelligence.
+        </p>
       </footer>
     </div>
   );

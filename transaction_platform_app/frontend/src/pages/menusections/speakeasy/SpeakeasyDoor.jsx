@@ -1,15 +1,16 @@
 // src/pages/menusections/speakeasy/index.jsx
 import React from 'react';
 
-
-
 const SpeakeasyContent = () => (
   <div className="guide-wrapper">
     <header className="guide-header">
       <div className="guide-container">
         <h1>The Tangible Speakeasy</h1>
         <p>Your Gateway to Life Beyond the Desk</p>
-        <p>Discover apps that make life more enjoyable, both in and out of the office.</p>
+        <p>
+          Discover apps that make life more enjoyable, both in and out of the
+          office.
+        </p>
       </div>
     </header>
 
@@ -52,29 +53,29 @@ const SpeakeasyContent = () => (
         <div className="guide-lifecycle-grid">
           {[
             {
-              title: "Florence Food Guide",
-              desc: "Curated list of the best gelaterias and restaurants in Florence."
+              title: 'Florence Food Guide',
+              desc: 'Curated list of the best gelaterias and restaurants in Florence.',
             },
             {
-              title: "10K Trainer",
-              desc: "Personalized training program for your next 10K race."
+              title: '10K Trainer',
+              desc: 'Personalized training program for your next 10K race.',
             },
             {
-              title: "Seminary Reading Guide",
-              desc: "Structured approach to theological studies."
+              title: 'Seminary Reading Guide',
+              desc: 'Structured approach to theological studies.',
             },
             {
-              title: "Dev Learning Path",
-              desc: "Software engineering mastery in 10 steps."
+              title: 'Dev Learning Path',
+              desc: 'Software engineering mastery in 10 steps.',
             },
             {
-              title: "London Dining",
-              desc: "Inside track to London's best restaurants."
+              title: 'London Dining',
+              desc: "Inside track to London's best restaurants.",
             },
             {
-              title: "Personal RAG",
-              desc: "Build your own AI-powered knowledge base."
-            }
+              title: 'Personal RAG',
+              desc: 'Build your own AI-powered knowledge base.',
+            },
           ].map((app, index) => (
             <div key={index} className="guide-lifecycle-card">
               <h3>{app.title}</h3>
@@ -86,7 +87,9 @@ const SpeakeasyContent = () => (
     </section>
 
     <footer className="guide-footer">
-      <p>© 2024 Tangible Intelligence, ai. Making work and life more enjoyable.</p>
+      <p>
+        © 2025 Tangible Intelligence, ai. Making work and life more enjoyable.
+      </p>
       <button
         onClick={() => {
           sessionStorage.removeItem('speakeasyAccess');
@@ -99,7 +102,5 @@ const SpeakeasyContent = () => (
     </footer>
   </div>
 );
-
-
 
 export default SpeakeasyContent;

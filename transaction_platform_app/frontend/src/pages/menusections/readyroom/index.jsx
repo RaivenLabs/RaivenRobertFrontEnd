@@ -1,7 +1,7 @@
 import React from 'react';
-import { 
-  BookOpen, 
-  Target, 
+import {
+  BookOpen,
+  Target,
   Lightbulb,
   BarChart2,
   CheckSquare,
@@ -11,7 +11,7 @@ import {
   GraduationCap,
   ClipboardList,
   Workflow,
-  ShieldCheck
+  ShieldCheck,
 } from 'lucide-react';
 
 const ReadyRoomOverview = () => {
@@ -28,7 +28,8 @@ const ReadyRoomOverview = () => {
             Master the art and science of enterprise deal management
           </p>
           <p className="text-lg max-w-3xl mx-auto">
-            Industry-leading insights and practical knowledge for operational excellence
+            Industry-leading insights and practical knowledge for operational
+            excellence
           </p>
         </header>
 
@@ -41,66 +42,74 @@ const ReadyRoomOverview = () => {
             {[
               {
                 icon: <Target className="w-8 h-8" />,
-                title: "Deal Management Excellence",
-                description: "Master sophisticated approaches to complex transactions",
+                title: 'Deal Management Excellence',
+                description:
+                  'Master sophisticated approaches to complex transactions',
                 topics: [
-                  "Strategic deal structuring",
-                  "Risk-optimized workflows",
-                  "Compliance integration"
-                ]
+                  'Strategic deal structuring',
+                  'Risk-optimized workflows',
+                  'Compliance integration',
+                ],
               },
               {
                 icon: <BarChart2 className="w-8 h-8" />,
-                title: "High-Volume Operations",
-                description: "Scale effectively while maintaining quality and control",
+                title: 'High-Volume Operations',
+                description:
+                  'Scale effectively while maintaining quality and control',
                 topics: [
-                  "Process optimization",
-                  "Quality management",
-                  "Efficiency frameworks"
-                ]
+                  'Process optimization',
+                  'Quality management',
+                  'Efficiency frameworks',
+                ],
               },
               {
                 icon: <Workflow className="w-8 h-8" />,
-                title: "ETL Program Design",
-                description: "Build and manage sophisticated ETL operations",
+                title: 'ETL Program Design',
+                description: 'Build and manage sophisticated ETL operations',
                 topics: [
-                  "Program architecture",
-                  "Data transformation",
-                  "Quality assurance"
-                ]
+                  'Program architecture',
+                  'Data transformation',
+                  'Quality assurance',
+                ],
               },
               {
                 icon: <ShieldCheck className="w-8 h-8" />,
-                title: "Compliance Programs",
-                description: "Implement effective compliance-driven initiatives",
+                title: 'Compliance Programs',
+                description:
+                  'Implement effective compliance-driven initiatives',
                 topics: [
-                  "Risk management",
-                  "Control frameworks",
-                  "Audit readiness"
-                ]
+                  'Risk management',
+                  'Control frameworks',
+                  'Audit readiness',
+                ],
               },
               {
                 icon: <RefreshCw className="w-8 h-8" />,
-                title: "Operational Innovation",
-                description: "Transform complex processes into streamlined solutions",
+                title: 'Operational Innovation',
+                description:
+                  'Transform complex processes into streamlined solutions',
                 topics: [
-                  "Process simplification",
-                  "Automation strategy",
-                  "Change management"
-                ]
+                  'Process simplification',
+                  'Automation strategy',
+                  'Change management',
+                ],
               },
               {
                 icon: <Compass className="w-8 h-8" />,
-                title: "Best Practices",
-                description: "Learn from industry-leading approaches and methodologies",
+                title: 'Best Practices',
+                description:
+                  'Learn from industry-leading approaches and methodologies',
                 topics: [
-                  "Proven methodologies",
-                  "Industry standards",
-                  "Success patterns"
-                ]
-              }
+                  'Proven methodologies',
+                  'Industry standards',
+                  'Success patterns',
+                ],
+              },
             ].map((area, index) => (
-              <div key={index} className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div
+                key={index}
+                className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="text-royalBlue mb-4">{area.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{area.title}</h3>
                 <p className="text-gray-600 mb-4">{area.description}</p>
@@ -126,31 +135,37 @@ const ReadyRoomOverview = () => {
             {[
               {
                 icon: <ClipboardList className="w-6 h-6" />,
-                title: "Process Guides & Checklists",
-                description: "Comprehensive guides for consistent execution"
+                title: 'Process Guides & Checklists',
+                description: 'Comprehensive guides for consistent execution',
               },
               {
                 icon: <BookOpen className="w-6 h-6" />,
-                title: "Best Practice Playbooks",
-                description: "Detailed operational playbooks and frameworks"
+                title: 'Best Practice Playbooks',
+                description: 'Detailed operational playbooks and frameworks',
               },
               {
                 icon: <Lightbulb className="w-6 h-6" />,
-                title: "Knowledge Base",
-                description: "Searchable repository of insights and solutions"
+                title: 'Knowledge Base',
+                description: 'Searchable repository of insights and solutions',
               },
               {
                 icon: <Trophy className="w-6 h-6" />,
-                title: "Success Stories",
-                description: "Real-world implementation case studies"
-              }
+                title: 'Success Stories',
+                description: 'Real-world implementation case studies',
+              },
             ].map((resource, index) => (
-              <div key={index} 
-                   className="flex items-start p-4 bg-lightGray rounded-lg">
+              <div
+                key={index}
+                className="flex items-start p-4 bg-lightGray rounded-lg"
+              >
                 <span className="text-royalBlue mr-3">{resource.icon}</span>
                 <div>
-                  <span className="font-medium block mb-1">{resource.title}</span>
-                  <span className="text-sm text-gray-600">{resource.description}</span>
+                  <span className="font-medium block mb-1">
+                    {resource.title}
+                  </span>
+                  <span className="text-sm text-gray-600">
+                    {resource.description}
+                  </span>
                 </div>
               </div>
             ))}
@@ -160,20 +175,25 @@ const ReadyRoomOverview = () => {
         {/* Learning Philosophy */}
         <section className="bg-white py-8 px-4 rounded-lg mb-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold text-royalBlue mb-4">Our Approach</h2>
+            <h2 className="text-2xl font-semibold text-royalBlue mb-4">
+              Our Approach
+            </h2>
             <div className="bg-lightGray p-6 rounded-lg">
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  We believe in sharing knowledge generously to elevate industry practices
+                  We believe in sharing knowledge generously to elevate industry
+                  practices
                 </li>
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  Our resources blend deep expertise with practical, actionable guidance
+                  Our resources blend deep expertise with practical, actionable
+                  guidance
                 </li>
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  We focus on right-sized solutions that balance complexity with effectiveness
+                  We focus on right-sized solutions that balance complexity with
+                  effectiveness
                 </li>
               </ul>
             </div>
@@ -182,8 +202,11 @@ const ReadyRoomOverview = () => {
 
         {/* Footer */}
         <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-             Elevating operational excellence through knowledge sharing.</p>
+          <p>
+            © 2025 Tangible Intelligence, ai. The Tangible Intelligence
+            Platform. Elevating operational excellence through knowledge
+            sharing.
+          </p>
         </footer>
       </div>
     </div>

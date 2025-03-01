@@ -163,7 +163,7 @@ const Configuration = () => {
       {/* Footer */}
       <footer className="bg-ivory text-ivory text-center py-8 px-4 mt-12 rounded-lg">
         <p>
-          © 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform.
+          © 2025 Tangible Intelligence, ai. The Tangible Intelligence Platform.
           Enterprise configuration made simple and secure.
         </p>
       </footer>

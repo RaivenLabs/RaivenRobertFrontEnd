@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
   Search,
   Database,
   LineChart,
@@ -13,7 +13,7 @@ import {
   Shield,
   BarChart2,
   Network,
-  Lightbulb
+  Lightbulb,
 } from 'lucide-react';
 
 const InsightsOverview = () => {
@@ -30,7 +30,8 @@ const InsightsOverview = () => {
             Transform legacy data into actionable intelligence
           </p>
           <p className="text-lg max-w-3xl mx-auto">
-            Unlock hidden value in your corporate data through sophisticated extraction and analysis
+            Unlock hidden value in your corporate data through sophisticated
+            extraction and analysis
           </p>
         </header>
 
@@ -43,38 +44,45 @@ const InsightsOverview = () => {
             {[
               {
                 icon: <FileSearch className="w-8 h-8" />,
-                title: "Intelligent Extraction",
-                description: "Sophisticated ETL technology for complex document analysis",
+                title: 'Intelligent Extraction',
+                description:
+                  'Sophisticated ETL technology for complex document analysis',
                 features: [
-                  "Pattern recognition",
-                  "Context-aware processing",
-                  "Multi-format handling"
-                ]
+                  'Pattern recognition',
+                  'Context-aware processing',
+                  'Multi-format handling',
+                ],
               },
               {
                 icon: <Eye className="w-8 h-8" />,
-                title: "Pattern Recognition",
-                description: "Identify critical business signals and risk indicators",
+                title: 'Pattern Recognition',
+                description:
+                  'Identify critical business signals and risk indicators',
                 features: [
-                  "Supply chain insights",
-                  "Risk pattern detection",
-                  "Relationship mapping"
-                ]
+                  'Supply chain insights',
+                  'Risk pattern detection',
+                  'Relationship mapping',
+                ],
               },
               {
                 icon: <Zap className="w-8 h-8" />,
-                title: "Rapid Processing",
-                description: "Accelerated analysis of high-volume data sets",
+                title: 'Rapid Processing',
+                description: 'Accelerated analysis of high-volume data sets',
                 features: [
-                  "Parallel processing",
-                  "Automated classification",
-                  "Real-time insights"
-                ]
-              }
+                  'Parallel processing',
+                  'Automated classification',
+                  'Real-time insights',
+                ],
+              },
             ].map((capability, index) => (
-              <div key={index} className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div
+                key={index}
+                className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="text-royalBlue mb-4">{capability.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{capability.title}</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  {capability.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{capability.description}</p>
                 <ul className="space-y-2">
                   {capability.features.map((feature, fIndex) => (
@@ -98,66 +106,69 @@ const InsightsOverview = () => {
             {[
               {
                 icon: <AlertTriangle className="w-8 h-8" />,
-                title: "Risk Management",
-                description: "Proactive risk identification and assessment",
+                title: 'Risk Management',
+                description: 'Proactive risk identification and assessment',
                 applications: [
-                  "Compliance violations",
-                  "GDPR exposure",
-                  "Regulatory risks"
-                ]
+                  'Compliance violations',
+                  'GDPR exposure',
+                  'Regulatory risks',
+                ],
               },
               {
                 icon: <Network className="w-8 h-8" />,
-                title: "Supply Chain Intelligence",
-                description: "Deep supply relationship insights",
+                title: 'Supply Chain Intelligence',
+                description: 'Deep supply relationship insights',
                 applications: [
-                  "Vendor concentration",
-                  "Geopolitical exposure",
-                  "Relationship dependencies"
-                ]
+                  'Vendor concentration',
+                  'Geopolitical exposure',
+                  'Relationship dependencies',
+                ],
               },
               {
                 icon: <Database className="w-8 h-8" />,
-                title: "Legacy Data Mining",
-                description: "Extract value from historical records",
+                title: 'Legacy Data Mining',
+                description: 'Extract value from historical records',
                 applications: [
-                  "Contract analysis",
-                  "Litigation support",
-                  "Corporate memory"
-                ]
+                  'Contract analysis',
+                  'Litigation support',
+                  'Corporate memory',
+                ],
               },
               {
                 icon: <LineChart className="w-8 h-8" />,
-                title: "Deal Intelligence",
-                description: "Transaction and investment insights",
+                title: 'Deal Intelligence',
+                description: 'Transaction and investment insights',
                 applications: [
-                  "M&A due diligence",
-                  "Investment patterns",
-                  "Deal structure analysis"
-                ]
+                  'M&A due diligence',
+                  'Investment patterns',
+                  'Deal structure analysis',
+                ],
               },
               {
                 icon: <Shield className="w-8 h-8" />,
-                title: "Compliance Monitoring",
-                description: "Automated compliance surveillance",
+                title: 'Compliance Monitoring',
+                description: 'Automated compliance surveillance',
                 applications: [
-                  "Policy adherence",
-                  "Behavioral patterns",
-                  "Violation detection"
-                ]
+                  'Policy adherence',
+                  'Behavioral patterns',
+                  'Violation detection',
+                ],
               },
               {
                 icon: <Target className="w-8 h-8" />,
-                title: "Strategic Analysis",
-                description: "Business relationship intelligence",
+                title: 'Strategic Analysis',
+                description: 'Business relationship intelligence',
                 applications: [
-                  "Partnership evaluation",
-                  "Market positioning",
-                  "Opportunity identification"
-                ]
-              }
+                  'Partnership evaluation',
+                  'Market positioning',
+                  'Opportunity identification',
+                ],
+              },
             ].map((useCase, index) => (
-              <div key={index} className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div
+                key={index}
+                className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="text-royalBlue mb-4">{useCase.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{useCase.title}</h3>
                 <p className="text-gray-600 mb-4">{useCase.description}</p>
@@ -183,26 +194,33 @@ const InsightsOverview = () => {
             {[
               {
                 icon: <Clock className="w-6 h-6" />,
-                metric: "Processing Efficiency",
-                description: "Reduce analysis time by up to 90%"
+                metric: 'Processing Efficiency',
+                description: 'Reduce analysis time by up to 90%',
               },
               {
                 icon: <BarChart2 className="w-6 h-6" />,
-                metric: "Insight Quality",
-                description: "Enhanced pattern recognition and signal detection"
+                metric: 'Insight Quality',
+                description:
+                  'Enhanced pattern recognition and signal detection',
               },
               {
                 icon: <Shield className="w-6 h-6" />,
-                metric: "Risk Reduction",
-                description: "Proactive risk identification and mitigation"
-              }
+                metric: 'Risk Reduction',
+                description: 'Proactive risk identification and mitigation',
+              },
             ].map((impact, index) => (
-              <div key={index} 
-                   className="flex items-start p-4 bg-lightGray rounded-lg">
+              <div
+                key={index}
+                className="flex items-start p-4 bg-lightGray rounded-lg"
+              >
                 <span className="text-royalBlue mr-3">{impact.icon}</span>
                 <div>
-                  <span className="font-medium block mb-1">{impact.metric}</span>
-                  <span className="text-sm text-gray-600">{impact.description}</span>
+                  <span className="font-medium block mb-1">
+                    {impact.metric}
+                  </span>
+                  <span className="text-sm text-gray-600">
+                    {impact.description}
+                  </span>
                 </div>
               </div>
             ))}
@@ -212,20 +230,25 @@ const InsightsOverview = () => {
         {/* Key Advantages */}
         <section className="bg-white py-8 px-4 rounded-lg mb-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold text-royalBlue mb-4">Unique Value Proposition</h2>
+            <h2 className="text-2xl font-semibold text-royalBlue mb-4">
+              Unique Value Proposition
+            </h2>
             <div className="bg-lightGray p-6 rounded-lg">
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  Deep understanding of corporate data patterns and business implications
+                  Deep understanding of corporate data patterns and business
+                  implications
                 </li>
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  Sophisticated signal detection in complex business relationships
+                  Sophisticated signal detection in complex business
+                  relationships
                 </li>
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  Immediate, actionable insights from previously inaccessible data
+                  Immediate, actionable insights from previously inaccessible
+                  data
                 </li>
               </ul>
             </div>
@@ -234,8 +257,10 @@ const InsightsOverview = () => {
 
         {/* Footer */}
         <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-             Transform legacy data into strategic advantage.</p>
+          <p>
+            © 2025 Tangible Intelligence, ai. The Tangible Intelligence
+            Platform. Transform legacy data into strategic advantage.
+          </p>
         </footer>
       </div>
     </div>

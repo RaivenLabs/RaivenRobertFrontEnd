@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { ReactComponent as Logo } from '../../../assets/Tangible-Intelligence-Logo-6Transparent.svg';
 import Authentication from '../../../components/shared/Authentication';
 import { useAuth } from '../../../context/AuthContext';
-import { X } from 'lucide-react';
 import { authService } from '../../../services/authService';
 
 const TopNavBar = () => {
@@ -60,19 +59,15 @@ const TopNavBar = () => {
       {/* Login Modal */}
       {showLoginModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="relative bg-white rounded-lg w-full max-w-md m-4">
-            <button
-              onClick={() => setShowLoginModal(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <Authentication
-              onSuccess={() => {
-                setShowLoginModal(false);
-              }}
-            />
-          </div>
+          {/* <div className="relative bg-white rounded-lg w-full max-w-md m-4"> */}
+
+          <Authentication
+            onCloseModal={() => setShowLoginModal(false)}
+            onSuccess={() => {
+              setShowLoginModal(false);
+            }}
+          />
+          {/* </div> */}
         </div>
       )}
     </>

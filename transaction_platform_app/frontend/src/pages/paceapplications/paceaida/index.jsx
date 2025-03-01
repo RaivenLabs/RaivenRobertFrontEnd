@@ -21,20 +21,22 @@ const PaceAidaContent = () => (
         {/* First Box */}
         <div className="bg-lightGray p-8 rounded-lg shadow-md">
           <h1 className="italic text-xl leading-relaxed">
-            The Critical Unlock resides at the intersection of Claims Automation, 
-            Data Intelligence and Claims Expertise. The pattern of high-volume 
-            claims processing is the key.
+            The Critical Unlock resides at the intersection of Claims
+            Automation, Data Intelligence and Claims Expertise. The pattern of
+            high-volume claims processing is the key.
           </h1>
         </div>
-        
+
         {/* Arrow Section */}
         <div className="flex flex-col items-center justify-center py-8">
           <div className="tour-arrow-container">
             <div className="tour-arrow-right"></div>
-            <span className="text-teal font-semibold text-lg mt-6">Driving</span>
+            <span className="text-teal font-semibold text-lg mt-6">
+              Driving
+            </span>
           </div>
         </div>
-        
+
         {/* Second Box */}
         <div className="bg-lightGray p-8 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold mb-6">Claims Excellence</h3>
@@ -63,13 +65,31 @@ const PaceAidaContent = () => (
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-7 gap-4 overflow-x-auto pb-4">
         {[
-          { title: "1. Intake", desc: "Converting raw claims data into structured information." },
-          { title: "2. Analysis", desc: "Automated extraction and initial assessment." },
-          { title: "3. Processing", desc: "Intelligent routing and preliminary analysis." },
-          { title: "4. Review", desc: "Expert validation and compliance checks." },
-          { title: "5. Resolution", desc: "Decision support and outcome tracking." },
-          { title: "6. Reporting", desc: "Analytics and stakeholder insights." },
-          { title: "7. Archive", desc: "Secure storage and pattern analysis." }
+          {
+            title: '1. Intake',
+            desc: 'Converting raw claims data into structured information.',
+          },
+          {
+            title: '2. Analysis',
+            desc: 'Automated extraction and initial assessment.',
+          },
+          {
+            title: '3. Processing',
+            desc: 'Intelligent routing and preliminary analysis.',
+          },
+          {
+            title: '4. Review',
+            desc: 'Expert validation and compliance checks.',
+          },
+          {
+            title: '5. Resolution',
+            desc: 'Decision support and outcome tracking.',
+          },
+          {
+            title: '6. Reporting',
+            desc: 'Analytics and stakeholder insights.',
+          },
+          { title: '7. Archive', desc: 'Secure storage and pattern analysis.' },
         ].map((phase, index) => (
           <div
             key={index}
@@ -94,22 +114,24 @@ const PaceAidaContent = () => (
             <tr>
               <th className="p-4 text-left font-semibold">Mission</th>
               <th className="p-4 text-left font-semibold">Claims Stage</th>
-              <th className="p-4 text-left font-semibold">Platform Functionality</th>
+              <th className="p-4 text-left font-semibold">
+                Platform Functionality
+              </th>
             </tr>
           </thead>
           <tbody>
             {[
-              ["Process New Claims", "Intake and Analysis", "Claims Dashboard"],
-              ["Track Claim Status", "Processing and Review", "Active Claims"],
-              ["Manage Workflows", "System Management", "Configuration"],
-              ["Generate Reports", "Analysis", "Report Designer"],
-              ["Access Archives", "Archive", "Claims Repository"],
-              ["Analyze Portfolio", "Portfolio Management", "Analytics Hub"],
-              ["Monitor Performance", "System Management", "System Health"],
-              ["Configure Platform", "Platform Management", "Settings"]
+              ['Process New Claims', 'Intake and Analysis', 'Claims Dashboard'],
+              ['Track Claim Status', 'Processing and Review', 'Active Claims'],
+              ['Manage Workflows', 'System Management', 'Configuration'],
+              ['Generate Reports', 'Analysis', 'Report Designer'],
+              ['Access Archives', 'Archive', 'Claims Repository'],
+              ['Analyze Portfolio', 'Portfolio Management', 'Analytics Hub'],
+              ['Monitor Performance', 'System Management', 'System Health'],
+              ['Configure Platform', 'Platform Management', 'Settings'],
             ].map((row, index) => (
-              <tr 
-                key={index} 
+              <tr
+                key={index}
                 className="hover:bg-lightBlue border-b border-lightBlue last:border-b-0"
               >
                 <td className="p-4">{row[0]}</td>
@@ -124,8 +146,10 @@ const PaceAidaContent = () => (
 
     {/* Footer */}
     <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-      <p>© 2024 Tangible Intelligence, ai. The Tangible AIDA Platform. 
-         Built for serious business with a smile. Radical generosity is our motto!</p>
+      <p>
+        © 2025 Tangible Intelligence, ai. The Tangible AIDA Platform. Built for
+        serious business with a smile. Radical generosity is our motto!
+      </p>
     </footer>
   </div>
 );

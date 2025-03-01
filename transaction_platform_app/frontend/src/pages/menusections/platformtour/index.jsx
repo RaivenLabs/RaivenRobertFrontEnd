@@ -165,7 +165,7 @@ const PlatformTour = () => {
       {/* Footer */}
       <footer className="text-gray-medium text-center py-8 px-4 mt-12 rounded-lg">
         <p>
-          © 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform.
+          © 2025 Tangible Intelligence, ai. The Tangible Intelligence Platform.
           Built for serious business with a smile. Radical generosity is our
           motto!
         </p>

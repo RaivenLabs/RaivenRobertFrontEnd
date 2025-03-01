@@ -1,45 +1,33 @@
 ﻿// src/pages/menusections/companyreport/companyreportsidebar.jsx
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { companyreportConfig } from "../../../config/sectionNavigation";
-import { ArrowLeft } from "lucide-react";
-=======
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { companyreportConfig } from '../../../config/sectionNavigation';
 import { ArrowLeft } from 'lucide-react';
->>>>>>> da10c13dcdbc8b16b0d5c10284f72a14876e5d49
 
 const CompanyReportSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(null); // If you want active state
   const handleSectionNavigation = (item) => {
     setActiveItem(item.id); // Add this if you want active state
-<<<<<<< HEAD
-    console.log("🎯 Section Navigation:", {
-=======
     console.log('🎯 Section Navigation:', {
->>>>>>> da10c13dcdbc8b16b0d5c10284f72a14876e5d49
       id: item.id,
-      level: "section",
+      level: 'section',
       type: item.type,
       route: item.route,
     });
 
     // Navigate to application
     if (item.route) {
-      console.log("🚀 Navigating to application:", item.route);
+      console.log('🚀 Navigating to application:', item.route);
       navigate(`/${item.route}`);
     }
   };
 
   const handleReturn = () => {
-    console.log("⬅️ Returning to main menu");
-    onSidebarChange("main");
-    navigate("/");
+    console.log('⬅️ Returning to main menu');
+    onSidebarChange('main');
+    navigate('/');
   };
 
   return (
@@ -57,7 +45,7 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
                 ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               {item.icon && (
-                <svg className="w-5 h-5 fill-current">
+                <svg className="w-5 h-5  text-ivory fill-current">
                   <use href={`#icon-${item.icon}`} />
                 </svg>
               )}
@@ -76,7 +64,7 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
         </button>
       </div>
 
-      <p className=" mb-2 p-6">Powered by Tangible Intelligence</p>
+      <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
     </div>
   );
 };
