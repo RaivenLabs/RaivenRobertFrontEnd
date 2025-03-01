@@ -2,7 +2,7 @@
     "title": "Rapid Response Programs",
     "program_groups": [
         {
-            "name": "Corporate Applications",
+            "name": "Winslow Core Applications",
             "icon": "path d='M20 7h-7m7 10h-7M7 7h-2M7 17h-2M8 5v4M8 15v4M14 5v4m0 6v4'",
             "programs": [
                 {
@@ -60,13 +60,13 @@
                     "sidebarroute": "eucsddsidebar"
                 },
                 {
-                    "id": "eshardware",
-                    "name": "Hardware",
+                    "id": "winslowndaapplication",
+                    "name": "Winslow NDA Application",
                     "icon": "rect x='4' y='4' width='16' height='16' rx='2'M9 9h6v6H9z",
                     "action": "launch_program",
                     "isLive": false,
-                    "outletroute": "hardwarecomponent",
-                    "sidebarroute": "hardwaresidebar"
+                    "outletroute": "winslowndacomponent",
+                    "sidebarroute": "winslowndasidebar"
                 },
                 {
                     "id": "esnetwork",

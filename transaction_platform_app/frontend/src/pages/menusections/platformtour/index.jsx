@@ -1,5 +1,5 @@
-import React from "react";
-import "./platformtour.css";
+import React from 'react';
+import './platformtour.css';
 
 const PlatformTour = () => {
   return (
@@ -10,7 +10,7 @@ const PlatformTour = () => {
           <h1>Tangible Intelligence Platform</h1>
           <p>Powered by Tangible Intelligence</p>
           <p>
-            {" "}
+            {' '}
             From paper-based, siloed contracting processes to fluid
             Transactional Streams
           </p>
@@ -72,23 +72,23 @@ const PlatformTour = () => {
         <div className="grid grid-cols-1 md:grid-cols-7 gap-4 overflow-x-auto pb-4">
           {[
             {
-              title: "1. Ideation",
-              desc: "Transforming concepts into actionable opportunities.",
+              title: '1. Ideation',
+              desc: 'Transforming concepts into actionable opportunities.',
             },
             {
-              title: "2. Sourcing",
-              desc: "Defining goals and structure for seamless execution.",
+              title: '2. Sourcing',
+              desc: 'Defining goals and structure for seamless execution.',
             },
             {
-              title: "3. Transacting",
-              desc: "Driving value with informed and strategic counterparty transacting.",
+              title: '3. Transacting',
+              desc: 'Driving value with informed and strategic counterparty transacting.',
             },
-            { title: "4. Priming", desc: "Securing approvals for close." },
-            { title: "5. Closing", desc: "Signing the final package." },
-            { title: "6. Archiving", desc: "Extracting metadata and putaway." },
+            { title: '4. Priming', desc: 'Securing approvals for close.' },
+            { title: '5. Closing', desc: 'Signing the final package.' },
+            { title: '6. Archiving', desc: 'Extracting metadata and putaway.' },
             {
-              title: "7. Performing",
-              desc: "Tracking counterparty performance and optimizing for sustained success.",
+              title: '7. Performing',
+              desc: 'Tracking counterparty performance and optimizing for sustained success.',
             },
           ].map((phase, index) => (
             <div
@@ -124,29 +124,29 @@ const PlatformTour = () => {
             <tbody>
               {[
                 [
-                  "Build a Transaction",
-                  "Sourcing and Transacting",
-                  "Dealmaking",
+                  'Build a Transaction',
+                  'Sourcing and Transacting',
+                  'Dealmaking',
                 ],
                 [
-                  "Look up Transaction Status",
-                  "Planning, Negotiation, Execution",
-                  "Active Projects",
+                  'Look up Transaction Status',
+                  'Planning, Negotiation, Execution',
+                  'Active Projects',
                 ],
                 [
-                  "Run my transactional system",
-                  "System Management",
-                  "Concierge",
+                  'Run my transactional system',
+                  'System Management',
+                  'Concierge',
                 ],
-                ["Load Legacy Data", "Transacting", "Configuration"],
-                ["Archive Transactions", "Archiving", "My Locker"],
+                ['Load Legacy Data', 'Transacting', 'Configuration'],
+                ['Archive Transactions', 'Archiving', 'My Locker'],
                 [
-                  "Analyze a Portfolio of Transactions",
-                  "Management",
-                  "Portfolio Analytics",
+                  'Analyze a Portfolio of Transactions',
+                  'Management',
+                  'Portfolio Analytics',
                 ],
-                ["Check system health", "System Management", "Headquarters"],
-                ["Tune my Platform", "Platform Management", "Settings"],
+                ['Check system health', 'System Management', 'Headquarters'],
+                ['Tune my Platform', 'Platform Management', 'Settings'],
               ].map((row, index) => (
                 <tr
                   key={index}

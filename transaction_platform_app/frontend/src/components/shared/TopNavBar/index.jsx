@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { ReactComponent as Logo } from "../../../assets/Tangible-Intelligence-Logo-6Transparent.svg";
-import Authentication from "../../../components/shared/Authentication";
-import { useAuth } from "../../../context/AuthContext";
-import { X } from "lucide-react";
-import { authService } from "../../../services/authService";
+import { ReactComponent as Logo } from '../../../assets/Tangible-Intelligence-Logo-6Transparent.svg';
+import Authentication from '../../../components/shared/Authentication';
+import { useAuth } from '../../../context/AuthContext';
+import { X } from 'lucide-react';
+import { authService } from '../../../services/authService';
 
 const TopNavBar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -14,21 +14,21 @@ const TopNavBar = () => {
     if (isAuthenticated) {
       try {
         console.log(
-          "👤 Current auth state before logout:",
+          '👤 Current auth state before logout:',
           authService.checkAuthState()
         );
         await authService.initiateLogout();
         await logout();
         console.log(
-          "👤 Auth state after logout:",
+          '👤 Auth state after logout:',
           authService.checkAuthState()
         );
       } catch (error) {
-        console.error("Logout process failed:", error);
+        console.error('Logout process failed:', error);
       }
     } else {
       console.log(
-        "👤 Opening login modal, current auth state:",
+        '👤 Opening login modal, current auth state:',
         authService.checkAuthState()
       );
       setShowLoginModal(true);

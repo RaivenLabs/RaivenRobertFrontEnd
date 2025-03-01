@@ -43,6 +43,14 @@ const rapidreviewConfig = {
         route:'rapidresponse/configurableapplications'
       },  
 
+      {
+        id: 'winslowapplications',
+        label: 'Winslow Applications',
+        icon: 'template',
+        type: 'menu',
+        route:'rapidresponse/winslowapplications'
+      },  
+
  
       {
         id: 'sandbox',

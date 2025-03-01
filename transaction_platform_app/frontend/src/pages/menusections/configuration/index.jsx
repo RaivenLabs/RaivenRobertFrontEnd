@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿﻿import React from 'react';
 import {
   Users,
   Shield,
@@ -8,7 +8,7 @@ import {
   Key,
   Layout,
   Server,
-} from "lucide-react";
+} from 'lucide-react';
 
 const Configuration = () => {
   return (
@@ -34,48 +34,48 @@ const Configuration = () => {
           {[
             {
               icon: <Users className="w-8 h-8" />,
-              title: "User Management",
+              title: 'User Management',
               description:
-                "Manage user accounts, roles, and access permissions",
-              features: ["User Directory", "Role Assignment", "Access Control"],
+                'Manage user accounts, roles, and access permissions',
+              features: ['User Directory', 'Role Assignment', 'Access Control'],
             },
             {
               icon: <Shield className="w-8 h-8" />,
-              title: "Security Settings",
+              title: 'Security Settings',
               description:
-                "Configure security policies and compliance settings",
+                'Configure security policies and compliance settings',
               features: [
-                "Authentication",
-                "Security Policies",
-                "Compliance Controls",
+                'Authentication',
+                'Security Policies',
+                'Compliance Controls',
               ],
             },
             {
               icon: <FileText className="w-8 h-8" />,
-              title: "Content Management",
-              description: "Manage templates, forms, and standard content",
-              features: ["Template Library", "Form Builder", "Content Rules"],
+              title: 'Content Management',
+              description: 'Manage templates, forms, and standard content',
+              features: ['Template Library', 'Form Builder', 'Content Rules'],
             },
             {
               icon: <Database className="w-8 h-8" />,
-              title: "Data Management",
-              description: "Configure data handling and storage settings",
-              features: ["Data Retention", "Backup Settings", "Archive Rules"],
+              title: 'Data Management',
+              description: 'Configure data handling and storage settings',
+              features: ['Data Retention', 'Backup Settings', 'Archive Rules'],
             },
             {
               icon: <Layout className="w-8 h-8" />,
-              title: "Interface Settings",
-              description: "Customize platform appearance and behavior",
-              features: ["Branding", "Layout Options", "Navigation Settings"],
+              title: 'Interface Settings',
+              description: 'Customize platform appearance and behavior',
+              features: ['Branding', 'Layout Options', 'Navigation Settings'],
             },
             {
               icon: <Server className="w-8 h-8" />,
-              title: "Integration Hub",
-              description: "Manage external system connections and APIs",
+              title: 'Integration Hub',
+              description: 'Manage external system connections and APIs',
               features: [
-                "API Configuration",
-                "System Connectors",
-                "Data Exchange",
+                'API Configuration',
+                'System Connectors',
+                'Data Exchange',
               ],
             },
           ].map((category, index) => (
@@ -108,13 +108,13 @@ const Configuration = () => {
           {[
             {
               icon: <Key className="w-6 h-6" />,
-              label: "API Keys",
-              action: "Manage",
+              label: 'API Keys',
+              action: 'Manage',
             },
             {
               icon: <Settings className="w-6 h-6" />,
-              label: "Environment Settings",
-              action: "Configure",
+              label: 'Environment Settings',
+              action: 'Configure',
             },
           ].map((setting, index) => (
             <div

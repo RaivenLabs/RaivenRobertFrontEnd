@@ -3,6 +3,7 @@ from flask import Flask, jsonify
 import os
 from flask_cors import CORS
 from .routes.main_routes import main_blueprint
+from .routes.schema_blueprint import schema_blueprint
 from .config.config import config_blueprint
 from .auth.auth_engine import auth_blueprint
 
@@ -62,5 +63,6 @@ def create_app():
    app.register_blueprint(config_blueprint)
    app.register_blueprint(main_blueprint)
    app.register_blueprint(auth_blueprint)
+   app.register_blueprint(schema_blueprint)
 
    return app

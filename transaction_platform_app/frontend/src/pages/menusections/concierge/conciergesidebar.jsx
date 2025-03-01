@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { conciergeConfig } from "../../../config/sectionNavigation";
-import { ArrowLeft } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { conciergeConfig } from '../../../config/sectionNavigation';
+import { ArrowLeft } from 'lucide-react';
 
 const ConciergeSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
@@ -9,37 +9,37 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
   const [activeItem, setActiveItem] = useState(null); // If you want active state
 
   useEffect(() => {
-    console.log("Initial conciergeConfig:", conciergeConfig);
+    console.log('Initial conciergeConfig:', conciergeConfig);
 
     // Safely set section items
     if (conciergeConfig?.sectionItems) {
-      console.log("Setting section items:", conciergeConfig.sectionItems);
+      console.log('Setting section items:', conciergeConfig.sectionItems);
       setSectionItems(conciergeConfig.sectionItems);
     } else {
-      console.warn("No section items found in conciergeConfig");
+      console.warn('No section items found in conciergeConfig');
     }
   }, []);
 
   const handleSectionNavigation = (item) => {
     setActiveItem(item.id); // Add this if you want active state
-    console.log("🎯 Section Navigation:", {
+    console.log('🎯 Section Navigation:', {
       id: item.id,
-      level: "section",
+      level: 'section',
       type: item.type,
       route: item.route,
     });
 
     // Navigate to application
     if (item.route) {
-      console.log("🚀 Navigating to application:", item.route);
+      console.log('🚀 Navigating to application:', item.route);
       navigate(`/${item.route}`);
     }
   };
 
   const handleReturn = () => {
-    console.log("⬅️ Returning to main menu");
-    onSidebarChange("main");
-    navigate("/");
+    console.log('⬅️ Returning to main menu');
+    onSidebarChange('main');
+    navigate('/');
   };
 
   return (
@@ -54,7 +54,7 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
               onClick={() => handleSectionNavigation(item)}
               className={`w-full px-6 py-2 flex items-center gap-3 
                 hover:bg-gray-light text-left transition-colors text-lg
-                ${activeItem === item.id ? "bg-[var(--sidebar-active)]" : ""}`}
+                ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               {item.icon && (
                 <svg className="w-5 h-5 fill-current">

@@ -48,6 +48,8 @@ import { AgreementTree, LandedLogBook, LandedDashboard } from './pages/menusecti
 import PlatformConfiguration from './pages/menusections/configuration/features/PlatformConfiguration';
 import CompanyResources from './pages/menusections/companyreport/features/CompanyResources';
 import TangibleInside from './pages/menusections/rapidreview/features/TangibleInside';
+import WinslowInside from './pages/menusections/rapidreview/features/WinslowApplications';
+
 
 
 import ApplicationSuite from './pages/menusections/rapidreview/features/ApplicationSuite';
@@ -79,8 +81,8 @@ import EUCSDDLoader from './pages/evershedsapplications/eucsdd/features/loader';
 
 
 //Application Configuration Components
-import ApplicationConfiguration from './pages/menusections/applicationconfiguration/features/LandingPage';
-
+//import ApplicationConfiguration from './pages/menusections/applicationconfiguration/features/LandingPage';
+import ApplicationConfiguration from './pages/menusections/applicationconfiguration';
 
 
 //Sandbox Components
@@ -134,6 +136,21 @@ import MergerControlActiveProjects from './pages/evershedsapplications/mergercon
 import FilingPackageBuilder from './pages/evershedsapplications/mergercontrol/features/filings';
 import TransactionAnalysis from './pages/evershedsapplications/mergercontrol/features/transactionanalysis';
 import TransactionLoader from './pages/evershedsapplications/mergercontrol/features/transactionloadergroup';
+
+
+
+//Winslow feature imports
+import SourcingHubContent from './pages/menusections/rapidreview/features/WinslowApplications/SourcingHub';
+import BooneLanding from './pages/menusections/rapidreview/features/WinslowApplications/Boone';
+
+
+//Boone
+import BooneConfiguration from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/booneconfiguration/booneconfiguration';
+import BoonePayload from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/payload/payloads';
+import BooneDashboard from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/dashboard/dashboard';
+
+//Cypress
+
 // Florence Gelato feature imports
 import FlorenceGelatoIndex from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato';
 import FlorenceGelatoOverview from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Overview';
@@ -178,7 +195,8 @@ function AppRoutes() {
         <Route path="rapidresponse/partnerapplications/recruitingcomponent" element={<EvershedsRecruiting />} />
         <Route path="rapidresponse/partnerapplications/eucsddcomponent" element={<EvershedsEUCSDD />} />
         <Route path="rapidresponse/partnerapplications/financialservicescomponent" element={<EvershedsFinancialServices />} />
-        
+
+            
         
         
         <Route path="authentication" element={<Authentication />} />
@@ -216,6 +234,8 @@ function AppRoutes() {
         <Route path="configuration/platformconfiguration" element={<PlatformConfiguration />} />
 
 
+
+
        {/* Concierge routes */}
         <Route path="concierge/overview" element={<Concierge />} />
         <Route path="concierge/programconfiguration" element={<ProgramConfiguration />} />
@@ -237,6 +257,7 @@ function AppRoutes() {
         {/* Rapid Response routes */}
         <Route path="rapidresponse/overview" element={<RapidResponse />} />
         <Route path="rapidresponse/tangibleinside" element={<TangibleInside />} />
+        <Route path="rapidresponse/winslowapplications" element={<WinslowInside />} />
         <Route path="rapidresponse/applicationsuite" element={<ApplicationSuite />} />
         <Route path="rapidresponse/forecastingdashboards" element={<ForecastingDashboards />} />
         <Route path="rapidresponse/partnerapplications" element={<ApplicationSuite />} />
@@ -265,6 +286,19 @@ function AppRoutes() {
         <Route path="buildkits/buildkitprograms" element={<BuildKitApplications />} />
         <Route path="buildkits/mybuildkits" element={<BuildKitApplications />} />
         <Route path="buildkits/inflight" element={<BuildKitsOverview />} />
+
+ {/* Winslow Sourcing Hub routes */}
+ <Route path="rapidresponse/winslowapplications/sourcinghubcomponent" element={<SourcingHubContent />} />
+ <Route path="winslowsourcing/overview" element={<SourcingHubContent />} />
+
+ <Route path="rapidresponse/winslowapplications/boonecomponent" element={<BooneLanding />} />
+ <Route path="winslowboone/overview" element={<BooneLanding />} />
+ <Route path="winslowboone/configuration" element={<BooneConfiguration />} />
+
+ <Route path="winslowboone/payloads" element={<BoonePayload />} />
+ <Route path="winslowboone/dashboard" element={<BooneDashboard />} />
+
+
 
  {/* Eversheds Merger Control routes */}
  <Route path="rapidresponse/partnerapplications/nikeraivencomponent" element={<NIKERaivenContent />} />

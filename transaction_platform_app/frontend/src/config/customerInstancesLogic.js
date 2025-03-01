@@ -6,7 +6,7 @@ import { fetchFromAPI } from '../utils/api/api';
 export const loadCustomerInstancesUtil = async (apiUrl) => {
   try {
     console.log('🔍 Starting to fetch customer instances...');
-    const response = await fetchFromAPI('/config/customer-instances', apiUrl);
+    const response = await fetchFromAPI('/api/config/customer-instances', apiUrl);
     console.log('📦 Received data:', response);
     return response.CUSTOMER_INSTANCES;
   } catch (error) {

@@ -1,16 +1,28 @@
 ﻿// src/pages/menusections/companyreport/companyreportsidebar.jsx
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { companyreportConfig } from "../../../config/sectionNavigation";
 import { ArrowLeft } from "lucide-react";
+=======
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { companyreportConfig } from '../../../config/sectionNavigation';
+import { ArrowLeft } from 'lucide-react';
+>>>>>>> da10c13dcdbc8b16b0d5c10284f72a14876e5d49
 
 const CompanyReportSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(null); // If you want active state
   const handleSectionNavigation = (item) => {
     setActiveItem(item.id); // Add this if you want active state
+<<<<<<< HEAD
     console.log("🎯 Section Navigation:", {
+=======
+    console.log('🎯 Section Navigation:', {
+>>>>>>> da10c13dcdbc8b16b0d5c10284f72a14876e5d49
       id: item.id,
       level: "section",
       type: item.type,
@@ -42,7 +54,7 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
               onClick={() => handleSectionNavigation(item)}
               className={`w-full px-6 py-2 flex items-center gap-3 
                 hover:bg-gray-light text-left transition-colors text-lg
-                ${activeItem === item.id ? "bg-[var(--sidebar-active)]" : ""}`}
+                ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               {item.icon && (
                 <svg className="w-5 h-5 fill-current">

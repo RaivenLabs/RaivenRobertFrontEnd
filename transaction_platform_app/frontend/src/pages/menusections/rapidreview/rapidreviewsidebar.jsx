@@ -1,10 +1,10 @@
-﻿import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { rapidreviewConfig } from "../../../config/sectionNavigation";
-import { ChevronRight, ArrowLeft } from "lucide-react";
-import { MainMenuEasterEgg } from "./SpeakeasyMenuAccess";
-import { useSpeakeasy } from "../../../context/SpeakeasyContext";
-import { useSidebar } from "../../../context/SidebarContext"; // Add this import
+﻿import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { rapidreviewConfig } from '../../../config/sectionNavigation';
+import { ChevronRight, ArrowLeft } from 'lucide-react';
+import { MainMenuEasterEgg } from './SpeakeasyMenuAccess';
+import { useSpeakeasy } from '../../../context/SpeakeasyContext';
+import { useSidebar } from '../../../context/SidebarContext'; // Add this import
 
 const RapidReviewSidebar = () => {
   // Remove onSidebarChange prop
@@ -17,19 +17,19 @@ const RapidReviewSidebar = () => {
   // Add back the effect to handle navigation to Speakeasy
   React.useEffect(() => {
     if (speakeasyAccess) {
-      navigate("/speakeasy");
+      navigate('/speakeasy');
     }
   }, [speakeasyAccess, navigate]);
 
   const handleSectionNavigation = (item) => {
     // Keep existing reset logic
     setSpeakeasyAccess(false);
-    sessionStorage.removeItem("speakeasyAccess");
+    sessionStorage.removeItem('speakeasyAccess');
     setActiveItem(item.id);
 
-    console.log("🎯 Section Navigation:", {
+    console.log('🎯 Section Navigation:', {
       id: item.id,
-      level: "section",
+      level: 'section',
       type: item.type,
       route: item.route,
       hasSubmenu: item.hasSubmenu,
@@ -37,18 +37,18 @@ const RapidReviewSidebar = () => {
     });
 
     if (item.hasSubmenu) {
-      console.log("📂 Toggling section menu:", item.id);
+      console.log('📂 Toggling section menu:', item.id);
       setExpandedSection((prev) => (prev === item.id ? null : item.id));
       return;
     }
 
     // Navigate to application
     if (item.route) {
-      console.log("🚀 Navigating to application:", item.route);
+      console.log('🚀 Navigating to application:', item.route);
 
       // Check if this item needs a special sidebar
       if (item.sidebarRoute) {
-        console.log("🎮 Setting special sidebar for:", item.sidebarRoute);
+        console.log('🎮 Setting special sidebar for:', item.sidebarRoute);
         setActiveSidebar(item.sidebarRoute);
       }
 
@@ -59,11 +59,11 @@ const RapidReviewSidebar = () => {
   const handleReturn = () => {
     // Reset Speakeasy access when returning to main menu
     setSpeakeasyAccess(false);
-    sessionStorage.removeItem("speakeasyAccess");
+    sessionStorage.removeItem('speakeasyAccess');
 
-    console.log("⬅️ RapidReview: Returning to main menu");
-    setActiveSidebar("main"); // Use context instead of prop
-    navigate("/");
+    console.log('⬅️ RapidReview: Returning to main menu');
+    setActiveSidebar('main'); // Use context instead of prop
+    navigate('/');
   };
 
   return (
@@ -78,7 +78,7 @@ const RapidReviewSidebar = () => {
               onClick={() => handleSectionNavigation(item)}
               className={`w-full px-6 py-2 flex items-center gap-3 
                 hover:bg-gray-light text-left transition-colors text-lg
-                ${activeItem === item.id ? "bg-[var(--sidebar-active)]" : ""}`}
+                ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               <div className="flex items-center gap-3">
                 {item.icon && (
@@ -91,7 +91,7 @@ const RapidReviewSidebar = () => {
               {item.hasSubmenu && (
                 <ChevronRight
                   className={`w-5 h-5 transition-transform duration-200 ${
-                    expandedSection === item.id ? "rotate-90" : ""
+                    expandedSection === item.id ? 'rotate-90' : ''
                   }`}
                 />
               )}
@@ -103,7 +103,7 @@ const RapidReviewSidebar = () => {
                   <button
                     key={subItem.id}
                     onClick={() =>
-                      handleSectionNavigation({ ...subItem, level: "section" })
+                      handleSectionNavigation({ ...subItem, level: 'section' })
                     }
                     className="w-full pl-14 py-2 text-left hover:bg-gray-light text-sm transition-colors"
                   >
