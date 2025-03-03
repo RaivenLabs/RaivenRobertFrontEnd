@@ -12,7 +12,7 @@ const InflightSidebar = ({ onSidebarChange }) => {
       id: item.id,
       level: 'section',
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Navigate to application
@@ -30,9 +30,7 @@ const InflightSidebar = ({ onSidebarChange }) => {
   return (
     <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
       <div className="mb-6">
-        <div className="text-2xl font-bold text-cyan mb-2 p-6">
-          Flight Ops
-        </div>
+        <div className="text-2xl font-bold text-cyan mb-2 p-6">Flight Ops</div>
         <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
       </div>
 
@@ -51,7 +49,7 @@ const InflightSidebar = ({ onSidebarChange }) => {
               )}
               <span>{item.label}</span>
             </button>
-            
+
             {/* Render submenu items if they exist and the item has a submenu */}
             {item.hasSubmenu && item.submenuItems && (
               <div className="pl-6">
@@ -82,7 +80,7 @@ const InflightSidebar = ({ onSidebarChange }) => {
       </div>
 
       <div className="mt-auto border-t border-gray-700">
-        <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+        <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
       </div>
     </div>
   );

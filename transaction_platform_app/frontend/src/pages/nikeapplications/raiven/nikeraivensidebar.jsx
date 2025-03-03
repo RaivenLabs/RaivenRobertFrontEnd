@@ -1,23 +1,20 @@
 // src/pages/menusections/companyreport/companyreportsidebar.jsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 
 import { nikeRaivenConfig } from '../../../config/sectionNavigation';
 import { ArrowLeft } from 'lucide-react';
 
 const NIKERaivenSidebar = ({ onSidebarChange }) => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState(null);  // If you want active state
+  const [activeItem, setActiveItem] = useState(null); // If you want active state
   const handleSectionNavigation = (item) => {
-    
-
-    setActiveItem(item.id);  // Add this if you want active state
+    setActiveItem(item.id); // Add this if you want active state
     console.log('🎯 Section Navigation:', {
       id: item.id,
       level: 'section',
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Navigate to application
@@ -75,7 +72,7 @@ const NIKERaivenSidebar = ({ onSidebarChange }) => {
       </div>
 
       <div className="mt-auto border-t border-gray-700">
-        <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+        <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
       </div>
     </div>
   );

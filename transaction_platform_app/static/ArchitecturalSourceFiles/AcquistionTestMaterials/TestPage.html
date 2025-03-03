@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Due Diligence Schema Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .step {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .file-list {
+            margin-bottom: 15px;
+        }
+        .file-item {
+            padding: 5px;
+            margin-bottom: 5px;
+            background-color: #e9f7fe;
+            border-radius: 3px;
+        }
+        #statusBox {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Due Diligence Schema Generator</h1>
+    
+    <div class="step">
+        <h2>Step 1: Project Information</h2>
+        <form id="schemaForm">
+            <label for="projectName">Project Name:</label>
+            <input type="text" id="projectName" name="projectName" value="3MAcquisition" required>
+            
+            <label for="schemaName">Schema Name:</label>
+            <input type="text" id="schemaName" name="schemaName" value="SequoiaSchema" required>
+            
+            <label for="documentType">Document Type:</label>
+            <input type="text" id="documentType" name="documentType" value="due_diligence" required>
+            
+            <h2>Step 2: Extraction Goals</h2>
+            <textarea id="extractionGoals" name="extractionGoals" rows="5" placeholder="Enter each extraction goal on a new line">Extract financial metrics and KPIs
+Identify key risks and liabilities
+Catalog intellectual property assets
+Extract contractual obligations and commitments
+Identify regulatory compliance issues</textarea>
+            
+            <h2>Step 3: Upload Files</h2>
+            <input type="file" id="fileInput" multiple accept=".pdf,.docx,.txt,.csv,.xlsx,.json">
+            <div id="fileList" class="file-list"></div>
+            
+            <button type="button" id="submitBtn">Generate Schema</button>
+        </form>
+    </div>
+    
+    <div id="statusBox"></div>
+    
+    <div id="resultsContainer" style="display: none;">
+        <div class="step">
+            <h2>Schema Summary</h2>
+            <div id="schemaSummary"></div>
+            
+            <h2>Save Schema</h2>
+            <label for="saveDirectory">Save Directory:</label>
+            <input type="text" id="saveDirectory" value="static/data/3MAcquisition/schemas">
+            
+            <label for="saveFilename">Filename:</label>
+            <input type="text" id="saveFilename" value="">
+            
+            <button type="button" id="saveBtn">Save Schema</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const fileList = document.getElementById('fileList');
+            const submitBtn = document.getElementById('submitBtn');
+            const statusBox = document.getElementById('statusBox');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const schemaSummary = document.getElementById('schemaSummary');
+            const saveBtn = document.getElementById('saveBtn');
+            const saveFilename = document.getElementById('saveFilename');
+            
+            // Set default filename with timestamp
+            const now = new Date();
+            const timestamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
+            saveFilename.value = `SequoiaSchema_${timestamp}.json`;
+            
+            // Display selected files
+            fileInput.addEventListener('change', function() {
+                fileList.innerHTML = '';
+                for (const file of this.files) {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.textContent = `${file.name} (${formatFileSize(file.size)})`;
+                    fileList.appendChild(fileItem);
+                }
+            });
+            
+            // Submit form
+            submitBtn.addEventListener('click', function() {
+                if (fileInput.files.length === 0) {
+                    showStatus('Please select at least one file to upload', 'error');
+                    return;
+                }
+                
+                showStatus('Uploading and analyzing files...', 'info');
+                submitBtn.disabled = true;
+                
+                const formData = new FormData();
+                
+                // Add project info and context
+                const context = {
+                    documentType: document.getElementById('documentType').value,
+                    extractionGoals: document.getElementById('extractionGoals').value.split('\n').filter(line => line.trim()),
+                    userNotes: "Generated via Due Diligence Schema Generator"
+                };
+                
+                formData.append('context', JSON.stringify(context));
+                
+                // Add files
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    formData.append(`file_${i}`, fileInput.files[i]);
+                }
+                
+                // First analyze documents
+                fetch('http://localhost:5000/api/analyze-documents', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(analysisResults => {
+                    showStatus('Analysis completed. Generating schema...', 'info');
+                    
+                    // Now generate schema
+                    const schemaPayload = {
+                        analysisResults: analysisResults,
+                        context: context,
+                        modelSettings: {
+                            temperature: 0.2,
+                            maxTokens: 4000,
+                            model: "claude-3-7-sonnet-20250219"
+                        }
+                    };
+                    
+                    return fetch('http://localhost:5000/api/generate-schema', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(schemaPayload)
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(schema => {
+                    // Display schema summary
+                    showStatus('Schema generated successfully!', 'success');
+                    displaySchemaSummary(schema);
+                    resultsContainer.style.display = 'block';
+                    
+                    // Save schema for later
+                    window.generatedSchema = schema;
+                })
+                .catch(error => {
+                    showStatus(`Error: ${error.message}`, 'error');
+                    submitBtn.disabled = false;
+                });
+            });
+            
+            // Save schema
+            saveBtn.addEventListener('click', function() {
+                if (!window.generatedSchema) {
+                    showStatus('No schema available to save', 'error');
+                    return;
+                }
+                
+                const projectId = document.getElementById('projectName').value;
+                const saveDir = document.getElementById('saveDirectory').value;
+                const filename = document.getElementById('saveFilename').value;
+                
+                showStatus('Saving schema...', 'info');
+                
+                // Save to API
+                fetch(`http://localhost:5000/api/save-schema/${projectId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(window.generatedSchema)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    showStatus(`Schema saved successfully to project ${projectId}`, 'success');
+                })
+                .catch(error => {
+                    showStatus(`Error saving schema: ${error.message}`, 'error');
+                });
+            });
+            
+            // Helper functions
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+            
+            function showStatus(message, type) {
+                statusBox.textContent = message;
+                statusBox.className = type;
+                statusBox.style.display = 'block';
+            }
+            
+            function displaySchemaSummary(schema) {
+                let html = `<h3>${schema.name}</h3>`;
+                html += `<p>${schema.description}</p>`;
+                
+                html += `<h4>Fields (${schema.fields.length})</h4>`;
+                html += '<ul>';
+                
+                // Show first 10 fields
+                const fieldsToShow = schema.fields.slice(0, 10);
+                for (const field of fieldsToShow) {
+                    const required = field.required ? 'Required' : 'Optional';
+                    html += `<li><strong>${field.name}</strong> (${field.type}, ${required})</li>`;
+                }
+                
+                if (schema.fields.length > 10) {
+                    html += `<li>... and ${schema.fields.length - 10} more fields</li>`;
+                }
+                
+                html += '</ul>';
+                
+                schemaSummary.innerHTML = html;
+            }
+        });
+    </script>
+</body>
+</html>

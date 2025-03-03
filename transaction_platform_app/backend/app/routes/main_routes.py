@@ -121,6 +121,8 @@ TEMPLATE_CONFIG = {
     'MAX_TEMPLATE_SIZE': 10 * 1024 * 1024  # 10MB max template size
 }
 
+
+
 def get_template_paths():
     """Get template paths using current_app context"""
     base_path = os.path.join(

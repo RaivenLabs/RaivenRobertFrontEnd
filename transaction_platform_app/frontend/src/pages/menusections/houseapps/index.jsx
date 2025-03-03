@@ -1,19 +1,19 @@
 ﻿import React from 'react';
-import { 
-  LayoutGrid,  // for the header
-  Building2,  // for customer selection
-  Shield,  // for security section
-  Network,  // for network items
-  ArrowRight,  // for navigation arrows
-  FileText,  // for documents
-  Share2,  // for sharing functionality
-  Layers,  // for layers icon
-  Sliders,  // for controls
-  Users,  // for user management
-  Bot,  // for automation
-  Code2,  // for development
-  Workflow,  // for workflow
-  Palette  // for customization/branding
+import {
+  LayoutGrid, // for the header
+  Building2, // for customer selection
+  Shield, // for security section
+  Network, // for network items
+  ArrowRight, // for navigation arrows
+  FileText, // for documents
+  Share2, // for sharing functionality
+  Layers, // for layers icon
+  Sliders, // for controls
+  Users, // for user management
+  Bot, // for automation
+  Code2, // for development
+  Workflow, // for workflow
+  Palette, // for customization/branding
 } from 'lucide-react';
 
 const HouseAppsOverview = () => {
@@ -43,36 +43,42 @@ const HouseAppsOverview = () => {
             {[
               {
                 icon: <Bot className="w-8 h-8" />,
-                title: "Tangible-Built",
-                description: "Let our experts build custom applications tailored to your needs",
+                title: 'Tangible-Built',
+                description:
+                  'Let our experts build custom applications tailored to your needs',
                 features: [
-                  "Expert development team",
-                  "Industry best practices",
-                  "Turnkey solutions"
-                ]
+                  'Expert development team',
+                  'Industry best practices',
+                  'Turnkey solutions',
+                ],
               },
               {
                 icon: <Code2 className="w-8 h-8" />,
-                title: "Self-Built",
-                description: "Develop your own applications in our secure sandbox environment",
+                title: 'Self-Built',
+                description:
+                  'Develop your own applications in our secure sandbox environment',
                 features: [
-                  "Full platform capabilities",
-                  "Development tools and resources",
-                  "Testing environments"
-                ]
+                  'Full platform capabilities',
+                  'Development tools and resources',
+                  'Testing environments',
+                ],
               },
               {
                 icon: <Users className="w-8 h-8" />,
-                title: "Collaborative Build",
-                description: "Partner with Tangible for guided application development",
+                title: 'Collaborative Build',
+                description:
+                  'Partner with Tangible for guided application development',
                 features: [
-                  "Combined expertise",
-                  "Knowledge transfer",
-                  "Accelerated development"
-                ]
-              }
+                  'Combined expertise',
+                  'Knowledge transfer',
+                  'Accelerated development',
+                ],
+              },
             ].map((option, index) => (
-              <div key={index} className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div
+                key={index}
+                className="bg-lightGray rounded-lg p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="text-royalBlue mb-4">{option.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{option.title}</h3>
                 <p className="text-gray-600 mb-4">{option.description}</p>
@@ -98,40 +104,41 @@ const HouseAppsOverview = () => {
             {[
               {
                 icon: <Palette className="w-8 h-8" />,
-                title: "Branding Options",
+                title: 'Branding Options',
                 features: [
                   {
-                    title: "Customer Branded",
-                    description: "Deploy as [Customer] Intelligence Platform"
+                    title: 'Customer Branded',
+                    description: 'Deploy as [Customer] Intelligence Platform',
                   },
                   {
-                    title: "Tangible Branded",
-                    description: "Leverage the Tangible Intelligence Platform brand"
+                    title: 'Tangible Branded',
+                    description:
+                      'Leverage the Tangible Intelligence Platform brand',
                   },
                   {
-                    title: "White Label",
-                    description: "Custom branding for external stakeholders"
-                  }
-                ]
+                    title: 'White Label',
+                    description: 'Custom branding for external stakeholders',
+                  },
+                ],
               },
               {
                 icon: <Network className="w-8 h-8" />,
-                title: "Deployment Models",
+                title: 'Deployment Models',
                 features: [
                   {
-                    title: "Platform Hosted",
-                    description: "Fully managed on Tangible platform"
+                    title: 'Platform Hosted',
+                    description: 'Fully managed on Tangible platform',
                   },
                   {
-                    title: "API Integration",
-                    description: "Connect with existing systems"
+                    title: 'API Integration',
+                    description: 'Connect with existing systems',
                   },
                   {
-                    title: "External Access",
-                    description: "Secure access for third-party stakeholders"
-                  }
-                ]
-              }
+                    title: 'External Access',
+                    description: 'Secure access for third-party stakeholders',
+                  },
+                ],
+              },
             ].map((section, index) => (
               <div key={index} className="bg-lightGray rounded-lg p-6">
                 <div className="flex items-center mb-4">
@@ -142,7 +149,9 @@ const HouseAppsOverview = () => {
                   {section.features.map((feature, fIndex) => (
                     <div key={fIndex} className="bg-white p-4 rounded-md">
                       <h4 className="font-medium mb-1">{feature.title}</h4>
-                      <p className="text-sm text-gray-600">{feature.description}</p>
+                      <p className="text-sm text-gray-600">
+                        {feature.description}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -160,41 +169,47 @@ const HouseAppsOverview = () => {
             {[
               {
                 icon: <Shield className="w-6 h-6" />,
-                title: "Enterprise Security",
-                description: "Built-in compliance and risk management"
+                title: 'Enterprise Security',
+                description: 'Built-in compliance and risk management',
               },
               {
                 icon: <Workflow className="w-6 h-6" />,
-                title: "Process Automation",
-                description: "Streamline complex workflows"
+                title: 'Process Automation',
+                description: 'Streamline complex workflows',
               },
               {
                 icon: <Layers className="w-6 h-6" />,
-                title: "Integration Ready",
-                description: "Connect with existing systems"
+                title: 'Integration Ready',
+                description: 'Connect with existing systems',
               },
               {
                 icon: <Building2 className="w-6 h-6" />,
-                title: "Multi-stakeholder Support",
-                description: "Serve internal and external users"
+                title: 'Multi-stakeholder Support',
+                description: 'Serve internal and external users',
               },
               {
                 icon: <Sliders className="w-6 h-6" />,
-                title: "Configurable Controls",
-                description: "Adapt to your requirements"
+                title: 'Configurable Controls',
+                description: 'Adapt to your requirements',
               },
               {
                 icon: <Share2 className="w-6 h-6" />,
-                title: "Flexible Access",
-                description: "Secure external collaboration"
-              }
+                title: 'Flexible Access',
+                description: 'Secure external collaboration',
+              },
             ].map((benefit, index) => (
-              <div key={index} 
-                   className="flex items-start p-4 bg-lightGray rounded-lg">
+              <div
+                key={index}
+                className="flex items-start p-4 bg-lightGray rounded-lg"
+              >
                 <span className="text-royalBlue mr-3">{benefit.icon}</span>
                 <div>
-                  <span className="font-medium block mb-1">{benefit.title}</span>
-                  <span className="text-sm text-gray-600">{benefit.description}</span>
+                  <span className="font-medium block mb-1">
+                    {benefit.title}
+                  </span>
+                  <span className="text-sm text-gray-600">
+                    {benefit.description}
+                  </span>
                 </div>
               </div>
             ))}
@@ -204,20 +219,25 @@ const HouseAppsOverview = () => {
         {/* Important Notes */}
         <section className="bg-white py-8 px-4 rounded-lg mb-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold text-royalBlue mb-4">Key Points</h2>
+            <h2 className="text-2xl font-semibold text-royalBlue mb-4">
+              Key Points
+            </h2>
             <div className="bg-lightGray p-6 rounded-lg">
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  All apps inherit enterprise-grade security and compliance features
+                  All apps inherit enterprise-grade security and compliance
+                  features
                 </li>
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  Flexible deployment options protect your brand and security requirements
+                  Flexible deployment options protect your brand and security
+                  requirements
                 </li>
                 <li className="flex items-start">
                   <span className="text-royalBlue mr-2">•</span>
-                  Seamless integration with existing enterprise systems and workflows
+                  Seamless integration with existing enterprise systems and
+                  workflows
                 </li>
               </ul>
             </div>
@@ -226,8 +246,10 @@ const HouseAppsOverview = () => {
 
         {/* Footer */}
         <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-             Transform your enterprise with custom applications.</p>
+          <p>
+            © 2025 Tangible Intelligence, ai. The Tangible Intelligence
+            Platform. Transform your enterprise with custom applications.
+          </p>
         </footer>
       </div>
     </div>

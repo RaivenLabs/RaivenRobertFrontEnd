@@ -1,0 +1,80 @@
+{
+  "name": "due_diligence_schema",
+  "description": "Schema for extracting data from due_diligence documents",
+  "fields": [
+    {
+      "name": "document_id",
+      "type": "string",
+      "description": "Unique identifier for the document",
+      "required": true
+    },
+    {
+      "name": "document_title",
+      "type": "string",
+      "description": "Title of the document",
+      "required": true
+    },
+    {
+      "name": "document_date",
+      "type": "date",
+      "description": "Date of the document",
+      "required": true,
+      "format": "YYYY-MM-DD"
+    },
+    {
+      "name": "document_type",
+      "type": "string",
+      "description": "Type of document (e.g., contract, financial statement)",
+      "required": true
+    },
+    {
+      "name": "parties_involved",
+      "type": "array",
+      "description": "List of parties involved in the document",
+      "required": false,
+      "items": {
+        "type": "object",
+        "fields": [
+          {
+            "name": "party_name",
+            "type": "string",
+            "description": "Name of the party",
+            "required": true
+          },
+          {
+            "name": "party_role",
+            "type": "string",
+            "description": "Role of the party in the document",
+            "required": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "financial_data",
+      "type": "object",
+      "description": "Financial information extracted from the document",
+      "required": false,
+      "fields": [
+        {
+          "name": "revenue",
+          "type": "number",
+          "description": "Revenue amount",
+          "required": false
+        },
+        {
+          "name": "expenses",
+          "type": "number",
+          "description": "Expense amount",
+          "required": false
+        },
+        {
+          "name": "profit",
+          "type": "number",
+          "description": "Profit amount",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 ﻿// src/layouts/BaseLayout/index.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import { ReactComponent as Logo } from '../../assets/Tangible-Intelligence-Logo-6Transparent.svg';
+import Authentication from '../../components/shared/Authentication';
+import { useAuth } from '../../context/AuthContext';
+import { X } from 'lucide-react';
+import { authService } from '../../services/authService';
 
 import TopNavBar from '../../components/shared/TopNavBar';
 
@@ -36,19 +42,21 @@ import WinslowBooneSidebar from '../../pages/menusections/rapidreview/features/W
 
 import WinslowCypressSidebar from '../../pages/menusections/rapidreview/features/WinslowApplications/Cypress/cypresssidebar';
 
+import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
+
 import NIKERaivenSidebar from '../../pages/nikeapplications/raiven/nikeraivensidebar';
 
 import PaceAidaSidebar from '../../pages/paceapplications/paceaida/paceaidasidebar';
 
-import FinancialServicesSidebar from '../../pages/evershedsapplications/financialservices/financialservicessidebar';
 import FlorenceGelatoSidebar from '../../pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/sidebar';
 import { useSidebar } from '../../context/SidebarContext';
-
 
 // Make sure that the id (the "key") in sidebarComponents matches the id in the rapidresponse_json fiel taht feeds the sidebar route:)
 
 const BaseLayout = () => {
   const { activeSidebar, setActiveSidebar } = useSidebar();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const sidebarComponents = {
     main: <MainSidebar onSidebarChange={setActiveSidebar} />,
@@ -71,10 +79,14 @@ const BaseLayout = () => {
       <AuthenticationSidebar onSidebarChange={setActiveSidebar} />
     ),
     speakeasyclub: <SpeakeasyClubSidebar onSidebarChange={setActiveSidebar} />,
-  
-    sourcinghubsidebar:<WinslowSourcingHubSidebar onSidebarChange={setActiveSidebar} />,
-    boonesidebar:<WinslowBooneSidebar onSidebarChange={setActiveSidebar} />,
-    cypresssidebar:<WinslowCypressSidebar onSidebarChange={setActiveSidebar} />,
+
+    sourcinghubsidebar: (
+      <WinslowSourcingHubSidebar onSidebarChange={setActiveSidebar} />
+    ),
+    boonesidebar: <WinslowBooneSidebar onSidebarChange={setActiveSidebar} />,
+    cypresssidebar: (
+      <WinslowCypressSidebar onSidebarChange={setActiveSidebar} />
+    ),
     rapidreview: <RapidReviewSidebar onSidebarChange={setActiveSidebar} />,
     fundsidebar: <FundSidebar onSidebarChange={setActiveSidebar} />,
 

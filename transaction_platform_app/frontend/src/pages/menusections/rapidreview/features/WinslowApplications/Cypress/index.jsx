@@ -1,8 +1,17 @@
 import React from 'react';
-import { 
-  Building2, Globe, Scale, Calculator, FileText,
+import {
+  Building2,
+  Globe,
+  Scale,
+  Calculator,
+  FileText,
   // eslint-disable-next-line no-unused-vars
-  Users, Clock, CheckCircle, Shield, Gauge, RefreshCw
+  Users,
+  Clock,
+  CheckCircle,
+  Shield,
+  Gauge,
+  RefreshCw,
 } from 'lucide-react';
 
 const CypressLanding = () => {
@@ -15,8 +24,14 @@ const CypressLanding = () => {
             <Scale className="w-12 h-12 mr-4" />
             <h1>Cypress Landing Navigator</h1>
           </div>
-          <p>Streamlined global merger control compliance with intelligent jurisdiction analysis</p>
-          <p>Automate threshold assessments, accelerate filings, and maintain comprehensive compliance</p>
+          <p>
+            Streamlined global merger control compliance with intelligent
+            jurisdiction analysis
+          </p>
+          <p>
+            Automate threshold assessments, accelerate filings, and maintain
+            comprehensive compliance
+          </p>
         </div>
       </header>
 
@@ -29,34 +44,34 @@ const CypressLanding = () => {
           {[
             {
               icon: <Globe className="w-8 h-8" />,
-              title: "Global Coverage",
+              title: 'Global Coverage',
               items: [
-                "Automated threshold calculations",
-                "Cross-border coordination",
-                "Local requirement tracking",
-                "Multi-jurisdiction analysis"
-              ]
+                'Automated threshold calculations',
+                'Cross-border coordination',
+                'Local requirement tracking',
+                'Multi-jurisdiction analysis',
+              ],
             },
             {
               icon: <Shield className="w-8 h-8" />,
-              title: "Risk Management",
+              title: 'Risk Management',
               items: [
-                "Early warning system",
-                "Compliance validation",
-                "Audit trail maintenance",
-                "Risk assessment protocols"
-              ]
+                'Early warning system',
+                'Compliance validation',
+                'Audit trail maintenance',
+                'Risk assessment protocols',
+              ],
             },
             {
               icon: <Gauge className="w-8 h-8" />,
-              title: "Process Acceleration",
+              title: 'Process Acceleration',
               items: [
-                "Intelligent data collection",
-                "Automated assessments",
-                "Timeline optimization",
-                "Workflow automation"
-              ]
-            }
+                'Intelligent data collection',
+                'Automated assessments',
+                'Timeline optimization',
+                'Workflow automation',
+              ],
+            },
           ].map((principle, index) => (
             <div key={index} className="bg-lightGray p-8 rounded-lg shadow-md">
               <div className="text-royalBlue mb-4">{principle.icon}</div>
@@ -83,37 +98,39 @@ const CypressLanding = () => {
           {[
             {
               icon: <Building2 className="w-8 h-8" />,
-              title: "Company Profiling",
-              desc: "Structured data collection and corporate structure mapping"
+              title: 'Company Profiling',
+              desc: 'Structured data collection and corporate structure mapping',
             },
             {
               icon: <Globe className="w-8 h-8" />,
-              title: "Jurisdiction Scanner",
-              desc: "Automated multi-jurisdictional analysis and threshold calculations"
+              title: 'Jurisdiction Scanner',
+              desc: 'Automated multi-jurisdictional analysis and threshold calculations',
             },
             {
               icon: <Scale className="w-8 h-8" />,
-              title: "Control Analysis",
-              desc: "Comprehensive assessment of voting rights and board control"
+              title: 'Control Analysis',
+              desc: 'Comprehensive assessment of voting rights and board control',
             },
             {
               icon: <Calculator className="w-8 h-8" />,
-              title: "Threshold Calculator",
-              desc: "Automated revenue and asset threshold assessments"
+              title: 'Threshold Calculator',
+              desc: 'Automated revenue and asset threshold assessments',
             },
             {
               icon: <FileText className="w-8 h-8" />,
-              title: "Filing Manager",
-              desc: "Coordinated document assembly and review workflow"
+              title: 'Filing Manager',
+              desc: 'Coordinated document assembly and review workflow',
             },
             {
               icon: <Clock className="w-8 h-8" />,
-              title: "Timeline Tracker",
-              desc: "Comprehensive deadline and milestone management"
-            }
+              title: 'Timeline Tracker',
+              desc: 'Comprehensive deadline and milestone management',
+            },
           ].map((module, index) => (
-            <div key={index} 
-                 className="bg-lightGray p-8 rounded-lg shadow-md hover:-translate-y-1 transition-transform duration-300">
+            <div
+              key={index}
+              className="bg-lightGray p-8 rounded-lg shadow-md hover:-translate-y-1 transition-transform duration-300"
+            >
               <div className="text-royalBlue mb-4">{module.icon}</div>
               <h3 className="text-xl font-semibold mb-3">{module.title}</h3>
               <p className="text-gray-600">{module.desc}</p>
@@ -131,22 +148,21 @@ const CypressLanding = () => {
           {[
             {
               icon: <Clock className="w-8 h-8" />,
-              metric: "Process Efficiency",
-              description: "50% faster assessment completion"
+              metric: 'Process Efficiency',
+              description: '50% faster assessment completion',
             },
             {
               icon: <Shield className="w-8 h-8" />,
-              metric: "Compliance Accuracy",
-              description: "99.9% jurisdiction assessment accuracy"
+              metric: 'Compliance Accuracy',
+              description: '99.9% jurisdiction assessment accuracy',
             },
             {
               icon: <RefreshCw className="w-8 h-8" />,
-              metric: "Resource Optimization",
-              description: "40% reduction in manual review time"
-            }
+              metric: 'Resource Optimization',
+              description: '40% reduction in manual review time',
+            },
           ].map((metric, index) => (
-            <div key={index} 
-                 className="bg-white p-8 rounded-lg shadow-md">
+            <div key={index} className="bg-white p-8 rounded-lg shadow-md">
               <div className="flex items-center mb-4">
                 <span className="text-royalBlue mr-3">{metric.icon}</span>
                 <span className="text-xl font-semibold">{metric.metric}</span>
@@ -168,7 +184,8 @@ const CypressLanding = () => {
               <li className="flex items-start">
                 <span className="text-royalBlue mr-3 text-xl">•</span>
                 <span className="text-lg">
-                  Comprehensive analysis requires systematic data collection and validation
+                  Comprehensive analysis requires systematic data collection and
+                  validation
                 </span>
               </li>
               <li className="flex items-start">
@@ -180,7 +197,8 @@ const CypressLanding = () => {
               <li className="flex items-start">
                 <span className="text-royalBlue mr-3 text-xl">•</span>
                 <span className="text-lg">
-                  Global compliance requires local expertise with centralized coordination
+                  Global compliance requires local expertise with centralized
+                  coordination
                 </span>
               </li>
             </ul>
@@ -190,8 +208,12 @@ const CypressLanding = () => {
 
       {/* Footer */}
       <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-        <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform.</p>
-        <p className="text-sm mt-2">Intelligent merger control compliance at global scale.</p>
+        <p>
+          © 2025 Tangible Intelligence, ai. The Tangible Intelligence Platform.
+        </p>
+        <p className="text-sm mt-2">
+          Intelligent merger control compliance at global scale.
+        </p>
       </footer>
     </div>
   );

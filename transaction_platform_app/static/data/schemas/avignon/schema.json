@@ -1,0 +1,214 @@
+{
+  "name": "ma_due_diligence_schema",
+  "description": "Schema for 3M Corporation due diligence document extraction",
+  "fields": [
+    {
+      "name": "document_id",
+      "type": "string",
+      "description": "Unique identifier for the document",
+      "required": true
+    },
+    {
+      "name": "document_metadata",
+      "type": "object",
+      "description": "Metadata about the document",
+      "required": true,
+      "fields": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Document title",
+          "required": true
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "description": "Document date",
+          "required": false,
+          "format": "YYYY-MM-DD"
+        },
+        {
+          "name": "document_type",
+          "type": "string",
+          "description": "Type of document (e.g., financial statement, contract)",
+          "required": true
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "Source of the document",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "financial_data",
+      "type": "object",
+      "description": "Financial information extracted from the document",
+      "required": false,
+      "fields": [
+        {
+          "name": "revenue",
+          "type": "number",
+          "description": "Annual revenue figure",
+          "required": false
+        },
+        {
+          "name": "profit",
+          "type": "number",
+          "description": "Annual profit/loss figure",
+          "required": false
+        },
+        {
+          "name": "assets",
+          "type": "number",
+          "description": "Total assets value",
+          "required": false
+        },
+        {
+          "name": "liabilities",
+          "type": "number",
+          "description": "Total liabilities value",
+          "required": false
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "description": "Financial reporting period",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "legal_obligations",
+      "type": "array",
+      "description": "Legal obligations or commitments identified",
+      "required": false,
+      "items": {
+        "type": "object",
+        "fields": [
+          {
+            "name": "obligation_type",
+            "type": "string",
+            "description": "Type of obligation (e.g., contract, regulatory)",
+            "required": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "description": "Description of the obligation",
+            "required": true
+          },
+          {
+            "name": "parties",
+            "type": "array",
+            "description": "Parties involved in the obligation",
+            "required": false,
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Monetary value of the obligation, if applicable",
+            "required": false
+          },
+          {
+            "name": "expiration_date",
+            "type": "date",
+            "description": "Expiration or due date of the obligation",
+            "required": false,
+            "format": "YYYY-MM-DD"
+          }
+        ]
+      }
+    },
+    {
+      "name": "risks",
+      "type": "array",
+      "description": "Risks identified in the document",
+      "required": false,
+      "items": {
+        "type": "object",
+        "fields": [
+          {
+            "name": "risk_type",
+            "type": "string",
+            "description": "Type of risk (e.g., financial, operational, legal)",
+            "required": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "description": "Description of the risk",
+            "required": true
+          },
+          {
+            "name": "severity",
+            "type": "string",
+            "description": "Severity of the risk (low, medium, high)",
+            "required": false
+          },
+          {
+            "name": "potential_impact",
+            "type": "string",
+            "description": "Potential impact of the risk",
+            "required": false
+          },
+          {
+            "name": "mitigation_measures",
+            "type": "array",
+            "description": "Measures to mitigate the risk",
+            "required": false,
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "intellectual_property",
+      "type": "array",
+      "description": "Intellectual property assets mentioned",
+      "required": false,
+      "items": {
+        "type": "object",
+        "fields": [
+          {
+            "name": "ip_type",
+            "type": "string",
+            "description": "Type of IP (patent, trademark, copyright)",
+            "required": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Name or title of the IP asset",
+            "required": true
+          },
+          {
+            "name": "registration_number",
+            "type": "string",
+            "description": "Registration or application number",
+            "required": false
+          },
+          {
+            "name": "jurisdiction",
+            "type": "string",
+            "description": "Jurisdiction where the IP is registered",
+            "required": false
+          },
+          {
+            "name": "expiration_date",
+            "type": "date",
+            "description": "Expiration date of the IP protection",
+            "required": false,
+            "format": "YYYY-MM-DD"
+          }
+        ]
+      }
+    }
+  ]
+}

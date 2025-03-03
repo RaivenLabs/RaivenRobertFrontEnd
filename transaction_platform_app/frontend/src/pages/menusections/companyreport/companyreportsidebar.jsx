@@ -45,7 +45,7 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
                 ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
             >
               {item.icon && (
-                <svg className="w-5 h-5 fill-current">
+                <svg className="w-5 h-5  text-ivory fill-current">
                   <use href={`#icon-${item.icon}`} />
                 </svg>
               )}
@@ -64,7 +64,7 @@ const CompanyReportSidebar = ({ onSidebarChange }) => {
         </button>
       </div>
 
-      <p className=" mb-2 p-6">Powered by Tangible Intelligence</p>
+      <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
     </div>
   );
 };

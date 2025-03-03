@@ -18,32 +18,32 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
   const [expandedSection, setExpandedSection] = useState(null);
   const [isConsoleOpen, setIsConsoleOpen] = useState(false);
   const [currentProgramData, setCurrentProgramData] = useState(null);
-  const [activeItem, setActiveItem] = useState(null);  // If you want active state
+  const [activeItem, setActiveItem] = useState(null); // If you want active state
 
   const handleNavigation = async (item) => {
-    setActiveItem(item.id);  // Add this if you want active state
+    setActiveItem(item.id); // Add this if you want active state
     console.log('🎯 Concierge Navigation:', {
       id: item.id,
       level: item.level,
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Check if we should toggle section expansion
     if (item.id === 'concierge-applications') {
       console.log('🔄 Toggling applications section');
-      setExpandedSection(prev => prev === item.id ? null : item.id);
+      setExpandedSection((prev) => (prev === item.id ? null : item.id));
     }
 
     // Handle navigation based on level
-    switch(item.level) {
+    switch (item.level) {
       case 'section':
         console.log('🔷 Section Navigation Starting');
         if (item.route) {
           console.log('🚀 Navigating to section route:', item.route);
           navigate(`/${item.route}`);
         }
-        
+
         if (item.type === 'applications-package') {
           console.log('📦 Loading program data for:', item.id);
           const programData = await loadProgramData(item.id);
@@ -51,7 +51,7 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
           setIsConsoleOpen(!!programData);
         }
         break;
-        
+
       case 'application':
         console.log('💠 Application Navigation');
         if (item.route) {
@@ -74,8 +74,10 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
 
   // Helper function to check if we have application items for a section
   const hasApplicationItems = (sectionId) => {
-    return conciergeApplicationsConfig?.applicationItems?.length > 0 && 
-           sectionId === 'concierge-applications';
+    return (
+      conciergeApplicationsConfig?.applicationItems?.length > 0 &&
+      sectionId === 'concierge-applications'
+    );
   };
 
   return (
@@ -99,7 +101,9 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
                 }}
                 className={`w-full px-6 py-3 flex items-center gap-3 
                   hover:bg-royalBlue-hover text-left transition-colors text-xl
-                  ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
+                  ${
+                    activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''
+                  }`}
               >
                 {item.icon && (
                   <svg className="w-5 h-5 text-ivory fill-current">
@@ -110,14 +114,15 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
               </button>
 
               {/* Application Items - only render if we have them */}
-              {hasApplicationItems(item.id) && expandedSection === item.id && 
+              {hasApplicationItems(item.id) &&
+                expandedSection === item.id &&
                 conciergeApplicationsConfig.applicationItems.map((appItem) => {
                   console.log('📱 Rendering application item:', {
                     id: appItem.id,
                     level: appItem.level,
-                    type: appItem.type
+                    type: appItem.type,
                   });
-                  
+
                   return (
                     <button
                       key={appItem.id}
@@ -152,7 +157,7 @@ const ConciergeSidebar = ({ onSidebarChange }) => {
         </div>
 
         <div className="mt-auto border-t border-gray-700">
-          <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+          <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
         </div>
       </div>
 
