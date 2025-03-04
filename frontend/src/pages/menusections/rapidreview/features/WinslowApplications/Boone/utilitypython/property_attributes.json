@@ -1,0 +1,210 @@
+{
+  "property": [
+    {
+      "attribute_id": "deeds",
+      "display_name": "Deeds",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "deeds_of_trust_and_mortgages",
+      "display_name": "Deeds of Trust and Mortgages",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "conditional_sale_agreements",
+      "display_name": "Conditional Sale Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "title_reports",
+      "display_name": "Title Reports",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "financing_leases",
+      "display_name": "Financing Leases and Sale and Leaseback Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "operating_leases",
+      "display_name": "Operating Leases",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "real_property_leases",
+      "display_name": "Leases of Real Property",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "other_real_property_interests",
+      "display_name": "Other Interests in Real Property",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "production_related_matters",
+      "display_name": "Production-related Matters",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "notable_subcontractors",
+      "display_name": "Notable Subcontractors",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "key_suppliers",
+      "display_name": "Key Suppliers",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "manufacturing_summaries",
+      "display_name": "Monthly Manufacturing Summaries",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "inventory_reports",
+      "display_name": "Inventory Reports",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "backlogs",
+      "display_name": "Backlogs",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "supply_shortages",
+      "display_name": "Supply Shortages",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "plant_operation_levels",
+      "display_name": "Plant Operation Levels",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "service_contracts",
+      "display_name": "Service Contracts and Providers",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "rd_manufacturing_agreements",
+      "display_name": "Research, Development, Manufacturing and Testing Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "fixed_assets",
+      "display_name": "Fixed Assets and Locations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "capital_equipment_transactions",
+      "display_name": "Capital Equipment Sales and Purchases",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "asset_use_permits",
+      "display_name": "Use Permits for Assets",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "operational_assets",
+      "display_name": "Operational Assets",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 22
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 23
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 24
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 25
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 26
+    }
+  ]
+}

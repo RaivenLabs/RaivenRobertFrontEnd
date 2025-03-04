@@ -1,0 +1,90 @@
+
+{
+  "internalRelationships": [
+    {
+      "id": "program_to_targets",
+      "description": "Acquisition targets under a program",
+      "sourceTable": "acquisition_programs",
+      "sourceKey": "program_id",
+      "targetTable": "target_companies",
+      "targetKey": "program_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "target_to_due_diligence_items",
+      "description": "Due diligence items for a target company",
+      "sourceTable": "target_companies",
+      "sourceKey": "target_id",
+      "targetTable": "due_diligence_items",
+      "targetKey": "target_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "target_to_documents",
+      "description": "Documents related to a target company",
+      "sourceTable": "target_companies",
+      "sourceKey": "target_id",
+      "targetTable": "target_documents",
+      "targetKey": "target_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    }
+  ],
+  "externalRelationships": [
+    {
+      "id": "target_to_legal_matters",
+      "description": "Legal matters associated with an acquisition target",
+      "sourceConstellation": "ma-due-diligence",
+      "sourceTable": "target_companies",
+      "sourceKey": "target_id",
+      "targetConstellation": "legal-matters",
+      "targetTable": "matters",
+      "targetKey": "source_target_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    },
+    {
+      "id": "target_to_contracts",
+      "description": "Contracts associated with an acquisition target",
+      "sourceConstellation": "ma-due-diligence",
+      "sourceTable": "target_companies",
+      "sourceKey": "target_id",
+      "targetConstellation": "contracts",
+      "targetTable": "contracts",
+      "targetKey": "target_company_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    },
+    {
+      "id": "target_to_real_estate",
+      "description": "Real estate associated with a target company",
+      "sourceConstellation": "ma-due-diligence",
+      "sourceTable": "target_companies",
+      "sourceKey": "target_id",
+      "targetConstellation": "real-estate-leases",
+      "targetTable": "property_leases",
+      "targetKey": "related_company_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    }
+  ],
+  "hierarchicalRelationships": [
+    {
+      "id": "industry_grouping",
+      "description": "Target companies grouped by industry",
+      "childTable": "target_companies",
+      "childKey": "target_id",
+      "groupingAttribute": "industry"
+    },
+    {
+      "id": "deal_size_tier",
+      "description": "Target companies grouped by deal size tier",
+      "childTable": "target_companies",
+      "childKey": "target_id",
+      "derivedAttribute": "deal_size_tier",
+      "derivationLogic": "CASE WHEN valuation < 50000000 THEN 'Small' WHEN valuation < 250000000 THEN 'Medium' WHEN valuation < 1000000000 THEN 'Large' ELSE 'Mega' END"
+    }
+  ]
+}

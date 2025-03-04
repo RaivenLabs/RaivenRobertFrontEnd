@@ -1,0 +1,49 @@
+{
+  "projectId": "jefferson",
+  "projectName": "Jefferson",
+  "buyingCompany": "hermes",
+  "targetCompany": "olympus",
+  "status": "active",
+  "dateCreated": 1705860000000,
+  "lastModified": 1705860000000,
+  "metadata": {
+    "createdBy": "system",
+    "description": "Acquisition of Olympus Performance Gear by Hermes Recreation",
+    "priority": "high",
+    "phase": "initial_filing"
+  },
+  "keyDates": {
+    "expectedClosing": null,
+    "filingDeadlines": {},
+    "clearanceDeadlines": {}
+  },
+  "jurisdictions": {
+    "inScope": [],
+    "outOfScope": [],
+    "pending": [
+      "eu",
+      "usa",
+      "uk"
+    ]
+  },
+  "filingStatus": {
+    "sizeOfPerson": null,
+    "sizeOfTransaction": null,
+    "mandatoryFiling": null
+  },
+  "applicationRuns": {
+    "jefferson_run_20240122_1400": {
+      "runId": "jefferson_run_20240122_1400",
+      "displayName": "January 22, 2024, 2:00 PM",
+      "status": "in_progress",
+      "dateCreated": "2024-01-22T14:00:00",
+      "lastModified": "2024-01-22T14:00:00",
+      "savedData": {
+        "currentStep": "initial_assessment",
+        "jurisdictionalFindings": {},
+        "userInputs": {},
+        "calculatedResults": {}
+      }
+    }
+  }
+}

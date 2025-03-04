@@ -1,0 +1,273 @@
+
+
+{
+  "project_details": [
+    {
+      "id": "project_name",
+      "displayName": "Project Name",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 200,
+      "order": 1
+    },
+    {
+      "id": "project_type",
+      "displayName": "Project Type",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Application Development", "System Integration", "Maintenance", "Migration", "Digital Transformation", "DevOps", "Testing", "UX/UI Design"],
+      "order": 2
+    },
+    {
+      "id": "project_description",
+      "displayName": "Project Description",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 3
+    },
+    {
+      "id": "business_unit",
+      "displayName": "Business Unit",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 4
+    },
+    {
+      "id": "project_sponsor",
+      "displayName": "Project Sponsor",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 5
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "deliverable_items",
+      "displayName": "Deliverable Items",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 1
+    },
+    {
+      "id": "success_criteria",
+      "displayName": "Success Criteria",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 2
+    },
+    {
+      "id": "acceptance_process",
+      "displayName": "Acceptance Process",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    }
+  ],
+  "financial": [
+    {
+      "id": "engagement_model",
+      "displayName": "Engagement Model",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Time & Materials", "Fixed Price", "Hybrid", "Managed Capacity", "Outcome-Based"],
+      "order": 1
+    },
+    {
+      "id": "total_value",
+      "displayName": "Total Value",
+      "dataType": "currency",
+      "required": true,
+      "order": 2
+    },
+    {
+      "id": "currency",
+      "displayName": "Currency",
+      "dataType": "enum",
+      "required": true,
+      "options": ["USD", "EUR", "GBP", "INR", "JPY", "CAD", "AUD"],
+      "defaultValue": "USD",
+      "order": 3
+    },
+    {
+      "id": "payment_schedule",
+      "displayName": "Payment Schedule",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Monthly", "Milestone-Based", "Quarterly", "Upon Completion"],
+      "order": 4
+    },
+    {
+      "id": "budget_code",
+      "displayName": "Budget Code",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 50,
+      "order": 5
+    }
+  ],
+  "timeline": [
+    {
+      "id": "start_date",
+      "displayName": "Start Date",
+      "dataType": "date",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "end_date",
+      "displayName": "End Date",
+      "dataType": "date",
+      "required": true,
+      "order": 2
+    },
+    {
+      "id": "key_milestones",
+      "displayName": "Key Milestones",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 2000,
+      "order": 3
+    },
+    {
+      "id": "delivery_methodology",
+      "displayName": "Delivery Methodology",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Agile", "Waterfall", "Hybrid", "DevOps", "Lean"],
+      "order": 4
+    }
+  ],
+  "resources": [
+    {
+      "id": "team_size",
+      "displayName": "Team Size",
+      "dataType": "integer",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "skill_requirements",
+      "displayName": "Skill Requirements",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 2
+    },
+    {
+      "id": "resource_locations",
+      "displayName": "Resource Locations",
+      "dataType": "multiselect",
+      "required": true,
+      "options": ["Onsite", "Offshore", "Nearshore", "Remote"],
+      "order": 3
+    },
+    {
+      "id": "key_personnel",
+      "displayName": "Key Personnel",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 4
+    }
+  ],
+  "quality": [
+    {
+      "id": "quality_standards",
+      "displayName": "Quality Standards",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 1
+    },
+    {
+      "id": "test_strategy",
+      "displayName": "Test Strategy",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 2
+    },
+    {
+      "id": "defect_sla",
+      "displayName": "Defect SLA",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    },
+    {
+      "id": "code_review_process",
+      "displayName": "Code Review Process",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 4
+    }
+  ],
+  "intellectual_property": [
+    {
+      "id": "ip_ownership",
+      "displayName": "IP Ownership",
+      "dataType": "enum",
+      "required": false,
+      "options": ["Client Owned", "Vendor Owned", "Joint Ownership", "License to Client"],
+      "order": 1
+    },
+    {
+      "id": "open_source_usage",
+      "displayName": "Open Source Usage",
+      "dataType": "boolean",
+      "required": false,
+      "order": 2
+    },
+    {
+      "id": "license_restrictions",
+      "displayName": "License Restrictions",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    }
+  ],
+  "technical_specs": [
+    {
+      "id": "technologies",
+      "displayName": "Technologies",
+      "dataType": "multiselect",
+      "required": false,
+      "options": ["Java", "Python", "JavaScript", "C#", ".NET", "React", "Angular", "Node.js", "AWS", "Azure", "GCP", "Docker", "Kubernetes"],
+      "allowCustom": true,
+      "order": 1
+    },
+    {
+      "id": "architecture_specs",
+      "displayName": "Architecture Specifications",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 2000,
+      "order": 2
+    },
+    {
+      "id": "performance_requirements",
+      "displayName": "Performance Requirements",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    },
+    {
+      "id": "uses_ai",
+      "displayName": "Uses AI/ML",
+      "dataType": "boolean",
+      "required": false,
+      "defaultValue": false,
+      "order": 4
+    }
+  ]
+}

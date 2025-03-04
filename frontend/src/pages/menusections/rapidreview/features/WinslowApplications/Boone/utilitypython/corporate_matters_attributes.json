@@ -1,0 +1,242 @@
+{
+  "corporate_matters": [
+    {
+      "attribute_id": "charter_documents",
+      "display_name": "Charter Documents (Certificate of Incorporation and Bylaws)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "subsidiaries_list",
+      "display_name": "Subsidiaries List and Charter Documents",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "good_standing_certificates",
+      "display_name": "Certificates of Good Standing and Tax Authority",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "business_jurisdictions",
+      "display_name": "Jurisdictions Where Company Conducts Business",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "onsite_reviews",
+      "display_name": "Onsite Reviews with Business Owner",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "officers_directors_list",
+      "display_name": "List of Current Officers and Directors",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "security_holders_list",
+      "display_name": "List of All Security Holders (Common, Preferred, Options, Warrants)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "stock_option_agreements",
+      "display_name": "Stock Option Agreements and Plans",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "stock_sale_agreements",
+      "display_name": "Stock Sale Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "stock_appreciation_plans",
+      "display_name": "Stock Appreciation Plans and Related Grants",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "restricted_stock_agreements",
+      "display_name": "Agreements that Grant Restricted Stock Options",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "stockholder_voting_agreements",
+      "display_name": "Stockholder and Voting Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "stock_rights",
+      "display_name": "Preemptive, Registration, Redemption, or Co-sale Rights Related to Stocks",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "stock_owners",
+      "display_name": "Stock Owners Information",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "dividend_restriction_agreements",
+      "display_name": "Agreements Restricting Cash Dividend Payments",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "warrant_agreements",
+      "display_name": "Warrant Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "securities_issuance_proof",
+      "display_name": "Proof that Securities Were Legally Issued",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "business_plan",
+      "display_name": "Business Plan and Strategic Goals",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "company_complexity",
+      "display_name": "Complexity of Company",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "recapitalization_documents",
+      "display_name": "Recapitalization/Restructuring Documents",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "subsidiary_merger_process",
+      "display_name": "Cost and Process of Merging with Subsidiaries",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "products_services",
+      "display_name": "Products and Services Offered",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 22
+    },
+    {
+      "attribute_id": "market_analysis",
+      "display_name": "Market Analysis",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 23
+    },
+    {
+      "attribute_id": "online_presence",
+      "display_name": "Online Presence",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 24
+    },
+    {
+      "attribute_id": "stockholder_meeting_minutes",
+      "display_name": "Minutes of Stockholders' Meetings",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 25
+    },
+    {
+      "attribute_id": "board_meeting_minutes",
+      "display_name": "Minutes of Board of Directors and Board Committee Meetings",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 26
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 27
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 28
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 29
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 30
+    }
+  ]
+}

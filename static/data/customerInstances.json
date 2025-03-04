@@ -1,0 +1,177 @@
+{
+  "CUSTOMER_INSTANCES": {
+    "HAWKEYE": {
+      "id": "HAWKEYE",
+      "customer_type": "GLOBAL",
+      "company_name": "Hawkeye",
+      "cognito_group": "Hawkeye-demo",
+      "datapath": "hawkeye/hawkeye",
+      "specific_settings": {
+        "region": "Global",
+        "preferred_language": "en-US",
+        "custom_templates": {},
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+    "LAW001EV": {
+      "id": "LAW001EV",
+      "customer_type": "LAW_FIRM",
+      "company_name": "Eversheds",
+      "cognito_group": "Atticus",
+      "datapath": "lawfirms/atticus",
+      "specific_settings": {
+        "region": "EMEA",
+        "preferred_language": "en-GB",
+        "custom_templates": {
+          "nda": "/templates/customers/eversheds/nda.html",
+          "msa": "/templates/customers/eversheds/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_templates": true,
+          "has_advanced_analytics": true
+        }
+      }
+    },
+    "TANGIBLE": {
+      "id": "tangiblelead",
+      "customer_type": "TANGIBLE",
+      "company_name": "Tangible",
+      "cognito_group": "Tangible-Control",
+      "datapath": "tangible/tangiblecontrol",
+      "specific_settings": {
+        "region": "Global",
+        "preferred_language": "en-US",
+        "custom_templates": {},
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+
+  "LAWBARRISTER": {
+      "id": "LAWBARRISTER",
+      "customer_type": "LAW_FIRM",
+      "company_name": "Pace",
+      "cognito_group": "Covent",
+      "datapath": "apicustomers/barrister",
+      "specific_settings": {
+        "region": "Global",
+        "preferred_language": "en-US",
+        "custom_templates": {},
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+
+
+    "LAW00115EV": {
+      "id": "LAW00115EV",
+      "customer_type": "LAW_FIRM",
+      "company_name": "Holmes",
+      "cognito_group": "Holmes",
+      "datapath": "lawfirms/holmes",
+      "specific_settings": {
+        "region": "EMEA",
+        "preferred_language": "en-GB",
+        "custom_templates": {
+          "nda": "/templates/customers/eversheds/nda.html",
+          "msa": "/templates/customers/eversheds/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_templates": true,
+          "has_advanced_analytics": true
+        }
+      }
+    },
+    "LAW002DE": {
+      "id": "LAW002DE",
+      "customer_type": "LAW_FIRM",
+      "company_name": "Portia",
+      "cognito_group": "Marshall",
+      "datapath": "/lawfirms/marshall",
+      "specific_settings": {
+        "region": "Global",
+        "preferred_language": "en-US",
+        "custom_templates": {
+          "nda": "/templates/customers/dentons/nda.html",
+          "msa": "/templates/customers/dentons/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_templates": true,
+          "has_advanced_analytics": true
+        }
+      }
+    },
+    "ENT0073M": {
+      "id": "ENT0073M",
+      "customer_type": "ENTERPRISE",
+      "company_name": "Odysseus",
+      "cognito_group": "Homer",
+      "datapath": "enterprises/homer",
+      "specific_settings": {
+        "industry": "Manufacturing",
+        "region": "North America",
+        "custom_templates": {
+          "nda": "/templates/customers/3m/nda.html",
+          "msa": "/templates/customers/3m/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+
+
+
+
+"ENT0097NIKE": {
+      "id": "ENT0097NIKE",
+      "customer_type": "ENTERPRISE",
+      "company_name": "Juneau",
+      "cognito_group": "Juneau",
+      "datapath": "enterprises/juneau",
+      "specific_settings": {
+        "industry": "Manufacturing",
+        "region": "North America",
+        "custom_templates": {
+          "nda": "/templates/customers/nike/nda.html",
+          "msa": "/templates/customers/nike/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    },
+
+
+
+
+    "ENT002UPS": {
+      "id": "ENT002UPS",
+      "customer_type": "ENTERPRISE",
+      "company_name": "Phineas",
+      "cognito_group": "Jobs",
+      "datapath": "enterprises/jobs",
+      "specific_settings": {
+        "industry": "Logistics",
+        "region": "Global",
+        "custom_templates": {
+          "nda": "/templates/customers/ups/nda.html",
+          "msa": "/templates/customers/ups/msa.html"
+        },
+        "feature_overrides": {
+          "uses_custom_workflows": true,
+          "has_enterprise_integration": true
+        }
+      }
+    }
+  }
+}

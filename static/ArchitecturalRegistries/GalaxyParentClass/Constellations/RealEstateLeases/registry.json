@@ -1,0 +1,22 @@
+
+{
+  "constellationId": "real-estate-leases",
+  "displayName": "Enterprise Real Estate Leases",
+  "description": "Management of corporate real estate lease portfolio",
+  "starType": "lease",
+  "starIdFormat": "LSE-{YYYY}-{NNNN}",
+  "tableName": "property_leases",
+  "primaryKey": "lease_id",
+  "defaultView": "lease-detail",
+  "parentEntity": {
+    "type": "lease_portfolio",
+    "tableName": "lease_portfolios",
+    "primaryKey": "portfolio_id",
+    "idFormat": "PORT-{YYYY}-{NN}",
+    "foreignKeyInStar": "portfolio_id"
+  },
+  "dimensionGroups": [
+    "property", "financial", "lease_terms", "occupancy", 
+    "facilities", "sustainability", "legal", "timeline"
+  ]
+}

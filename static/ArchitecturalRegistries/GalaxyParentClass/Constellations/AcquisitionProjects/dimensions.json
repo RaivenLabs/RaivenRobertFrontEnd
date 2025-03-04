@@ -1,0 +1,143 @@
+
+{
+  "dimensions": [
+    {
+      "id": "financial",
+      "displayName": "Financial Due Diligence",
+      "tableName": "financial_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 1
+    },
+    {
+      "id": "technology_ip",
+      "displayName": "Technology & IP Due Diligence",
+      "tableName": "technology_ip_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 2
+    },
+    {
+      "id": "customer_sales_suppliers",
+      "displayName": "Customer/Sales/Suppliers Due Diligence",
+      "tableName": "customer_sales_suppliers_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 3
+    },
+    {
+      "id": "strategic_fit",
+      "displayName": "Strategic Fit Due Diligence",
+      "tableName": "strategic_fit_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 4
+    },
+    {
+      "id": "material_contracts",
+      "displayName": "Material Contracts Due Diligence",
+      "tableName": "material_contracts_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 5
+    },
+    {
+      "id": "employment_management",
+      "displayName": "Employment/Management Due Diligence",
+      "tableName": "employment_management_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 6
+    },
+    {
+      "id": "litigation_legal",
+      "displayName": "Litigation/Legal Due Diligence",
+      "tableName": "litigation_legal_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 7
+    },
+    {
+      "id": "taxes",
+      "displayName": "Taxes Due Diligence",
+      "tableName": "taxes_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 8
+    },
+    {
+      "id": "antitrust_regulatory",
+      "displayName": "Antitrust and Regulatory Due Diligence",
+      "tableName": "antitrust_regulatory_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 9
+    },
+    {
+      "id": "insurance",
+      "displayName": "Insurance Due Diligence",
+      "tableName": "insurance_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 10
+    },
+    {
+      "id": "corporate_matters",
+      "displayName": "General Corporate Matters Due Diligence",
+      "tableName": "corporate_matters_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 11
+    },
+    {
+      "id": "environmental",
+      "displayName": "Environmental Issues Due Diligence",
+      "tableName": "environmental_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 12
+    },
+    {
+      "id": "property",
+      "displayName": "Property Due Diligence",
+      "tableName": "property_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 13
+    },
+    {
+      "id": "marketing",
+      "displayName": "Marketing Due Diligence",
+      "tableName": "marketing_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 14
+    },
+    {
+      "id": "competitive_landscape",
+      "displayName": "Competitive Landscape Due Diligence",
+      "tableName": "competitive_landscape_dimension",
+      "foreignKey": "target_id",
+      "requiredForNewStar": true,
+      "order": 15
+    }
+  ],
+  "parentDimensions": [
+    {
+      "id": "program_strategy",
+      "displayName": "Program Strategy",
+      "tableName": "program_strategy_dimension",
+      "foreignKey": "program_id",
+      "requiredForParent": true,
+      "order": 1
+    },
+    {
+      "id": "program_governance",
+      "displayName": "Program Governance",
+      "tableName": "program_governance_dimension",
+      "foreignKey": "program_id",
+      "requiredForParent": true,
+      "order": 2
+    }
+  ]
+}

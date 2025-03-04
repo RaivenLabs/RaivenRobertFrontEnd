@@ -1,0 +1,178 @@
+{
+  "performance": [
+    {
+      "attribute_id": "profit_margins",
+      "display_name": "Profit Margins",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "revenue_sources",
+      "display_name": "Revenue Sources",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "profit_trend",
+      "display_name": "Profit Trend (Increasing/Decreasing)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "quality_of_earnings",
+      "display_name": "Quality of Earnings Report",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "financial_statements",
+      "display_name": "Financial Statements (3-5 years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "ebitda_adjustments",
+      "display_name": "EBITDA and Adjustments",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "margin_statements",
+      "display_name": "Margin Statements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "one_time_expenses",
+      "display_name": "One-Time Expenses",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "future_budgets",
+      "display_name": "Future Budgets",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "cash_flow_management",
+      "display_name": "Cash Flow and Management Techniques",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "fixed_variable_costs",
+      "display_name": "Fixed and Variable Costs",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "general_expenses",
+      "display_name": "General Expenses",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "future_projections_accuracy",
+      "display_name": "Accuracy of Future Projections",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "revenue_recognition_issues",
+      "display_name": "Revenue Recognition Issues",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "ar_aging",
+      "display_name": "AR Aging",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "ap_schedule",
+      "display_name": "AP Schedule",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "accounting_procedures",
+      "display_name": "Accounting Procedures Documentation",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "shareholder_value_analysis",
+      "display_name": "Shareholder Value Analysis",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 22
+    }
+  ]
+}

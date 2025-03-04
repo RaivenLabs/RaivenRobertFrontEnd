@@ -1,0 +1,486 @@
+
+
+{
+  "property": [
+    {
+      "id": "property_name",
+      "displayName": "Property Name",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 200,
+      "order": 1
+    },
+    {
+      "id": "address_line1",
+      "displayName": "Address Line 1",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 200,
+      "order": 2
+    },
+    {
+      "id": "address_line2",
+      "displayName": "Address Line 2",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 200,
+      "order": 3
+    },
+    {
+      "id": "city",
+      "displayName": "City",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 4
+    },
+    {
+      "id": "state_province",
+      "displayName": "State/Province",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 5
+    },
+    {
+      "id": "postal_code",
+      "displayName": "Postal Code",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 20,
+      "order": 6
+    },
+    {
+      "id": "country",
+      "displayName": "Country",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 7
+    },
+    {
+      "id": "property_type",
+      "displayName": "Property Type",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Office", "Retail", "Industrial", "Warehouse", "Data Center", "Lab/R&D", "Mixed Use", "Distribution Center", "Manufacturing"],
+      "order": 8
+    },
+    {
+      "id": "total_square_footage",
+      "displayName": "Total Square Footage",
+      "dataType": "integer",
+      "required": true,
+      "order": 9
+    },
+    {
+      "id": "year_built",
+      "displayName": "Year Built",
+      "dataType": "integer",
+      "required": false,
+      "order": 10
+    },
+    {
+      "id": "class",
+      "displayName": "Building Class",
+      "dataType": "enum",
+      "required": false,
+      "options": ["Class A", "Class B", "Class C"],
+      "order": 11
+    }
+  ],
+  "financial": [
+    {
+      "id": "base_rent_annual",
+      "displayName": "Annual Base Rent",
+      "dataType": "currency",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "base_rent_sf",
+      "displayName": "Base Rent per Square Foot",
+      "dataType": "currency",
+      "required": true,
+      "order": 2
+    },
+    {
+      "id": "escalation_rate",
+      "displayName": "Escalation Rate",
+      "dataType": "percentage",
+      "required": true,
+      "order": 3
+    },
+    {
+      "id": "escalation_frequency",
+      "displayName": "Escalation Frequency",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Annual", "Biennial", "Every 3 Years", "Every 5 Years", "Custom"],
+      "order": 4
+    },
+    {
+      "id": "additional_rent",
+      "displayName": "Additional Rent (CAM, Tax, Insurance)",
+      "dataType": "currency",
+      "required": false,
+      "order": 5
+    },
+    {
+      "id": "total_lease_value",
+      "displayName": "Total Lease Value",
+      "dataType": "currency",
+      "required": true,
+      "order": 6
+    },
+    {
+      "id": "security_deposit",
+      "displayName": "Security Deposit",
+      "dataType": "currency",
+      "required": false,
+      "order": 7
+    },
+    {
+      "id": "lease_accounting_classification",
+      "displayName": "Lease Accounting Classification",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Operating Lease", "Finance Lease"],
+      "order": 8
+    },
+    {
+      "id": "right_of_use_asset",
+      "displayName": "Right of Use Asset Value",
+      "dataType": "currency",
+      "required": false,
+      "order": 9
+    },
+    {
+      "id": "lease_liability",
+      "displayName": "Lease Liability",
+      "dataType": "currency",
+      "required": false,
+      "order": 10
+    }
+  ],
+  "lease_terms": [
+    {
+      "id": "lessor_name",
+      "displayName": "Lessor/Landlord Name",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 200,
+      "order": 1
+    },
+    {
+      "id": "lease_type",
+      "displayName": "Lease Type",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Gross", "Modified Gross", "Triple Net (NNN)", "Double Net (NN)", "Single Net (N)", "Absolute Net"],
+      "order": 2
+    },
+    {
+      "id": "lease_term_years",
+      "displayName": "Lease Term (Years)",
+      "dataType": "decimal",
+      "required": true,
+      "order": 3
+    },
+    {
+      "id": "renewal_options",
+      "displayName": "Renewal Options",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 4
+    },
+    {
+      "id": "termination_rights",
+      "displayName": "Early Termination Rights",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 5
+    },
+    {
+      "id": "expansion_rights",
+      "displayName": "Expansion Rights",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 6
+    },
+    {
+      "id": "subleasing_rights",
+      "displayName": "Subleasing Rights",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 7
+    },
+    {
+      "id": "tenant_improvement_allowance",
+      "displayName": "Tenant Improvement Allowance",
+      "dataType": "currency",
+      "required": false,
+      "order": 8
+    }
+  ],
+  "occupancy": [
+    {
+      "id": "business_unit",
+      "displayName": "Business Unit",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 1
+    },
+    {
+      "id": "occupancy_type",
+      "displayName": "Occupancy Type",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Headquarters", "Regional Office", "Branch Office", "Back Office", "Distribution Center", "Manufacturing", "R&D Facility", "Customer Service Center", "Retail"],
+      "order": 2
+    },
+    {
+      "id": "headcount_capacity",
+      "displayName": "Headcount Capacity",
+      "dataType": "integer",
+      "required": false,
+      "order": 3
+    },
+    {
+      "id": "current_headcount",
+      "displayName": "Current Headcount",
+      "dataType": "integer",
+      "required": false,
+      "order": 4
+    },
+    {
+      "id": "space_utilization",
+      "displayName": "Space Utilization %",
+      "dataType": "percentage",
+      "required": false,
+      "order": 5
+    },
+    {
+      "id": "sf_per_employee",
+      "displayName": "Square Feet per Employee",
+      "dataType": "decimal",
+      "required": false,
+      "order": 6
+    },
+    {
+      "id": "workplace_strategy",
+      "displayName": "Workplace Strategy",
+      "dataType": "enum",
+      "required": false,
+      "options": ["Traditional Assigned", "Hybrid", "Hoteling", "Activity-Based", "Fully Remote with Hub"],
+      "order": 7
+    }
+  ],
+  "facilities": [
+    {
+      "id": "facility_manager",
+      "displayName": "Facility Manager",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 100,
+      "order": 1
+    },
+    {
+      "id": "maintenance_responsibility",
+      "displayName": "Maintenance Responsibility",
+      "dataType": "enum",
+      "required": false,
+      "options": ["Landlord", "Tenant", "Shared"],
+      "order": 2
+    },
+    {
+      "id": "operating_hours",
+      "displayName": "Operating Hours",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 100,
+      "order": 3
+    },
+    {
+      "id": "access_control",
+      "displayName": "Access Control System",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 100,
+      "order": 4
+    },
+    {
+      "id": "parking_spaces",
+      "displayName": "Parking Spaces",
+      "dataType": "integer",
+      "required": false,
+      "order": 5
+    },
+    {
+      "id": "amenities",
+      "displayName": "Amenities",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 6
+    }
+  ],
+  "sustainability": [
+    {
+      "id": "energy_rating",
+      "displayName": "Energy Rating",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 50,
+      "order": 1
+    },
+    {
+      "id": "leed_certification",
+      "displayName": "LEED Certification",
+      "dataType": "enum",
+      "required": false,
+      "options": ["None", "Certified", "Silver", "Gold", "Platinum"],
+      "order": 2
+    },
+    {
+      "id": "energy_efficiency_features",
+      "displayName": "Energy Efficiency Features",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    },
+    {
+      "id": "carbon_footprint",
+      "displayName": "Carbon Footprint (tons CO2e/year)",
+      "dataType": "decimal",
+      "required": false,
+      "order": 4
+    },
+    {
+      "id": "green_lease_provisions",
+      "displayName": "Green Lease Provisions",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 5
+    },
+    {
+      "id": "water_efficiency_features",
+      "displayName": "Water Efficiency Features",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 6
+    }
+  ],
+  "legal": [
+    {
+      "id": "lease_status",
+      "displayName": "Lease Status",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Active", "Expired", "Terminated", "In Negotiation", "Renewed", "Holdover"],
+      "order": 1
+    },
+    {
+      "id": "force_majeure_clause",
+      "displayName": "Force Majeure Clause",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 2
+    },
+    {
+      "id": "assignment_rights",
+      "displayName": "Assignment Rights",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    },
+    {
+      "id": "alterations_clause",
+      "displayName": "Alterations Clause",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 4
+    },
+    {
+      "id": "insurance_requirements",
+      "displayName": "Insurance Requirements",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 5
+    },
+    {
+      "id": "signatory",
+      "displayName": "Signatory",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 100,
+      "order": 6
+    }
+  ],
+  "timeline": [
+    {
+      "id": "commencement_date",
+      "displayName": "Commencement Date",
+      "dataType": "date",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "expiration_date",
+      "displayName": "Expiration Date",
+      "dataType": "date",
+      "required": true,
+      "order": 2
+    },
+    {
+      "id": "rent_commencement_date",
+      "displayName": "Rent Commencement Date",
+      "dataType": "date",
+      "required": false,
+      "order": 3
+    },
+    {
+      "id": "option_exercise_deadline",
+      "displayName": "Option Exercise Deadline",
+      "dataType": "date",
+      "required": false,
+      "order": 4
+    },
+    {
+      "id": "renewal_notification_deadline",
+      "displayName": "Renewal Notification Deadline",
+      "dataType": "date",
+      "required": false,
+      "order": 5
+    },
+    {
+      "id": "critical_dates",
+      "displayName": "Other Critical Dates",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 6
+    },
+    {
+      "id": "months_remaining",
+      "displayName": "Months Remaining",
+      "dataType": "integer",
+      "required": false,
+      "derivedValue": true,
+      "derivationFormula": "DATEDIFF(month, CURRENT_DATE, expiration_date)",
+      "order": 7
+    }
+  ]
+}

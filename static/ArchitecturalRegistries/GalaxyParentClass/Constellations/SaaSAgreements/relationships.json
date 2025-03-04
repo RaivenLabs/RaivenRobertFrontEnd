@@ -1,0 +1,61 @@
+{
+  "internalRelationships": [
+    {
+      "id": "msa_to_orders",
+      "description": "Service orders under a master agreement",
+      "sourceTable": "master_agreements",
+      "sourceKey": "agreement_id",
+      "targetTable": "service_orders",
+      "targetKey": "agreement_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "order_to_amendments",
+      "description": "Amendments to a service order",
+      "sourceTable": "service_orders",
+      "sourceKey": "order_id",
+      "targetTable": "order_amendments",
+      "targetKey": "order_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    }
+  ],
+  "externalRelationships": [
+    {
+      "id": "vendor_to_company",
+      "description": "Link to vendor master data",
+      "sourceConstellation": "saas-agreements",
+      "sourceTable": "master_agreements",
+      "sourceKey": "vendor_id",
+      "targetConstellation": "vendor-management",
+      "targetTable": "vendors",
+      "targetKey": "vendor_id",
+      "relationship": "many-to-one",
+      "cascadeDelete": false
+    },
+    {
+      "id": "order_to_invoices",
+      "description": "Invoices associated with a service order",
+      "sourceConstellation": "saas-agreements",
+      "sourceTable": "service_orders",
+      "sourceKey": "order_id",
+      "targetConstellation": "accounts-payable",
+      "targetTable": "invoices",
+      "targetKey": "source_order_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    }
+  ],
+  "hierarchicalRelationships": [
+    {
+      "id": "vendor_hierarchy",
+      "description": "Orders grouped by vendor",
+      "childTable": "service_orders",
+      "childKey": "order_id",
+      "parentTable": "master_agreements",
+      "parentKey": "agreement_id",
+      "groupingAttribute": "vendor_name"
+    }
+  ]
+}

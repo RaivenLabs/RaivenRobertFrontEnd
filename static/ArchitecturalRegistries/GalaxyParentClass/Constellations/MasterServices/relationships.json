@@ -1,0 +1,95 @@
+
+
+{
+  "internalRelationships": [
+    {
+      "id": "master_to_workorders",
+      "description": "Work orders under a master agreement",
+      "sourceTable": "engineering_master_agreements",
+      "sourceKey": "agreement_id",
+      "targetTable": "work_orders",
+      "targetKey": "agreement_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "workorder_to_milestones",
+      "description": "Milestones for a work order",
+      "sourceTable": "work_orders",
+      "sourceKey": "work_order_id",
+      "targetTable": "work_order_milestones",
+      "targetKey": "work_order_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "workorder_to_team_members",
+      "description": "Team members assigned to a work order",
+      "sourceTable": "work_orders",
+      "sourceKey": "work_order_id",
+      "targetTable": "work_order_team",
+      "targetKey": "work_order_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    }
+  ],
+  "externalRelationships": [
+    {
+      "id": "vendor_master_data",
+      "description": "Link to vendor master data",
+      "sourceConstellation": "engineering-services",
+      "sourceTable": "engineering_master_agreements",
+      "sourceKey": "vendor_id",
+      "targetConstellation": "vendor-management",
+      "targetTable": "vendors",
+      "targetKey": "vendor_id",
+      "relationship": "many-to-one",
+      "cascadeDelete": false
+    },
+    {
+      "id": "related_software_licenses",
+      "description": "Software licenses related to this engineering project",
+      "sourceConstellation": "engineering-services",
+      "sourceTable": "work_orders",
+      "sourceKey": "work_order_id",
+      "targetConstellation": "saas-agreements",
+      "targetTable": "service_orders",
+      "targetKey": "related_project_id",
+      "relationship": "many-to-many",
+      "cascadeDelete": false,
+      "mappingTable": "project_license_map"
+    },
+    {
+      "id": "work_order_to_invoices",
+      "description": "Invoices associated with a work order",
+      "sourceConstellation": "engineering-services",
+      "sourceTable": "work_orders",
+      "sourceKey": "work_order_id",
+      "targetConstellation": "accounts-payable",
+      "targetTable": "invoices",
+      "targetKey": "source_order_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    }
+  ],
+  "hierarchicalRelationships": [
+    {
+      "id": "program_structure",
+      "description": "Work orders that belong to the same program",
+      "childTable": "work_orders",
+      "childKey": "work_order_id",
+      "parentTable": "programs",
+      "parentKey": "program_id",
+      "groupingAttribute": "program_name"
+    },
+    {
+      "id": "vendor_hierarchy",
+      "description": "Orders grouped by vendor",
+      "childTable": "work_orders",
+      "childKey": "work_order_id",
+      "parentTable": "engineering_master_agreements",
+      "parentKey": "agreement_id",
+      "groupingAttribute": "vendor_name"
+    }
+  ]
+}

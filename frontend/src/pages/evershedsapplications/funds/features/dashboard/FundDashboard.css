@@ -1,0 +1,177 @@
+/* src/components/FundDashboard/FundDashboard.css */
+
+.table-reporting {
+    padding: 2rem;
+    background-color: var(--ivory);
+    height: 100%;
+  }
+  
+  .table-reporting .panel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--royal-blue);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--royal-blue);
+  }
+  
+  .table-reporting .panel-content {
+    flex-grow: 1;
+    overflow: auto;
+  }
+  
+  /* Summary Cards */
+  .summary-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+  }
+  
+  .summary-card h3 {
+    color: var(--royal-blue);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Table Styles */
+  .table-reporting .table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+  }
+  
+  .table-reporting .data-table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+  }
+  
+  .table-reporting .data-table th {
+    background-color: var(--royal-blue);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .table-reporting .data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+    color: #333;
+  }
+  
+  .table-reporting .data-table tbody tr:hover {
+    background-color: var(--light-ivory);
+  }
+  
+  /* Status Indicators */
+  .status-indicator {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  /* Form Controls */
+  .form-select {
+    min-width: 150px;
+    height: 38px;
+    font-size: 0.875rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0 0.75rem;
+    background-color: white;
+  }
+  
+  /* Action Button */
+  .action-button {
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--royal-blue);
+    background: transparent;
+    color: var(--royal-blue);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+  }
+  
+  .action-button:hover {
+    background: var(--royal-blue);
+    color: white;
+  }
+  
+  /* Import/Export Button */
+  .import-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--royal-blue);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    width: auto;
+    white-space: nowrap;
+  }
+  
+  .import-button:hover {
+    background-color: var(--royal-blue-hover);
+  }
+  
+  /* Dashboard Actions */
+  .dashboard-actions {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: auto;
+    border-top: 1px solid #eee;
+  }
+  
+  /* Loading and Error States */
+  .loading-state,
+  .error-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+  }
+  
+  .error-state {
+    color: var(--error-red);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .table-reporting {
+      padding: 1rem;
+    }
+    
+    .form-select {
+      min-width: 120px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .table-reporting .panel-title {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }

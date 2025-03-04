@@ -1,0 +1,14 @@
+{
+  "constellationId": "asbestos-claims",
+  "displayName": "Asbestos Claims Portfolio",
+  "description": "Tracking and analysis of asbestos litigation claims",
+  "starType": "claim",
+  "starIdFormat": "ASB-{YYYYY}-{NNNNN}",
+  "tableName": "asbestos_claims",
+  "primaryKey": "claim_id",
+  "defaultView": "claim-detail",
+  "dimensionGroups": [
+    "plaintiff", "disease", "jurisdiction", "exposure", 
+    "legal", "financial", "timeline", "documents"
+  ]
+}

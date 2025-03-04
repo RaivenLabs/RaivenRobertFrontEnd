@@ -1,0 +1,190 @@
+// src/services/transactionService.js
+
+// Base API URL from environment
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+
+// Helper for HTTP requests
+async function fetchWithErrorHandling(url, options = {}) {
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`API Error (${response.status}): ${errorText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Fetch transactions with optional filters
+ * @param {Object} filters - Filter criteria
+ * @returns {Promise<Array>} List of transactions
+ */
+export async function fetchTransactions(filters = {}) {
+  // Build query parameters
+  const queryParams = new URLSearchParams();
+  
+  if (filters.dealSize) queryParams.append('dealSize', filters.dealSize);
+  if (filters.industry) queryParams.append('industry', filters.industry);
+  if (filters.status) queryParams.append('status', filters.status);
+  if (filters.searchTerm) queryParams.append('search', filters.searchTerm);
+  
+  const queryString = queryParams.toString();
+  const url = `${API_BASE_URL}/transactions${queryString ? `?${queryString}` : ''}`;
+  
+  return fetchWithErrorHandling(url);
+}
+
+// ... rest of your functions as in the document ...
+
+
+return fetchWithErrorHandling(url, {
+    method: 'PATCH',
+    body: JSON.stringify(value),
+  });
+}
+
+/**
+ * Initialize a dimension for a transaction
+ * This creates all the attribute records and sets initial status
+ * @param {string} transactionId - Transaction ID
+ * @param {string} dimensionId - Dimension ID
+ * @returns {Promise<Object>} Initialized dimension status
+ */
+export async function initializeDimension(transactionId, dimensionId) {
+  const url = `${API_BASE_URL}/transactions/${transactionId}/dimensions/${dimensionId}/initialize`;
+  
+  return fetchWithErrorHandling(url, {
+    method: 'POST',
+  });
+}
+
+/**
+ * Update dimension status
+ * @param {string} transactionId - Transaction ID
+ * @param {string} dimensionId - Dimension ID
+ * @param {Object} status - Status update with completion and notes
+ * @returns {Promise<Object>} Updated dimension status
+ */
+export async function updateDimensionStatus(transactionId, dimensionId, status) {
+  const url = `${API_BASE_URL}/transactions/${transactionId}/dimensions/${dimensionId}/status`;
+  
+  return fetchWithErrorHandling(url, {
+    method: 'PATCH',
+    body: JSON.stringify(status),
+  });
+}
+
+/**
+ * Upload a document for a dimension
+ * @param {string} transactionId - Transaction ID
+ * @param {string} dimensionId - Dimension ID
+ * @param {File} file - File object to upload
+ * @param {Object} metadata - Document metadata
+ * @returns {Promise<Object>} Uploaded document details
+ */
+export async function uploadDocument(transactionId, dimensionId, file, metadata = {}) {
+  const url = `${API_BASE_URL}/transactions/${transactionId}/dimensions/${dimensionId}/documents`;
+  
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('metadata', JSON.stringify(metadata));
+  
+  const response = await fetch(url, {
+    method: 'POST',
+    body: formData,
+    // Don't set Content-Type header for multipart/form-data
+  });
+  
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`API Error (${response.status}): ${errorText}`);
+  }
+  
+  return response.json();
+}
+
+/**
+ * Create a new transaction
+ * @param {Object} transaction - Transaction data
+ * @returns {Promise<Object>} Created transaction
+ */
+export async function createTransaction(transaction) {
+  const url = `${API_BASE_URL}/transactions`;
+  
+  return fetchWithErrorHandling(url, {
+    method: 'POST',
+    body: JSON.stringify(transaction),
+  });
+}
+
+/**
+ * Update transaction details
+ * @param {string} transactionId - Transaction ID
+ * @param {Object} updates - Fields to update
+ * @returns {Promise<Object>} Updated transaction
+ */
+export async function updateTransaction(transactionId, updates) {
+  const url = `${API_BASE_URL}/transactions/${transactionId}`;
+  
+  return fetchWithErrorHandling(url, {
+    method: 'PATCH',
+    body: JSON.stringify(updates),
+  });
+}
+
+/**
+ * Fetch transaction dashboard summary
+ * Shows counts and stats across all transactions
+ * @returns {Promise<Object>} Dashboard summary data
+ */
+export async function fetchDashboardSummary() {
+  const url = `${API_BASE_URL}/dashboard/summary`;
+  return fetchWithErrorHandling(url);
+}
+
+/**
+ * Add a comment to a transaction or dimension
+ * @param {string} transactionId - Transaction ID
+ * @param {string} dimensionId - Optional dimension ID
+ * @param {Object} comment - Comment data
+ * @returns {Promise<Object>} Created comment
+ */
+export async function addComment(transactionId, dimensionId, comment) {
+  let url = `${API_BASE_URL}/transactions/${transactionId}/comments`;
+  
+  if (dimensionId) {
+    url = `${API_BASE_URL}/transactions/${transactionId}/dimensions/${dimensionId}/comments`;
+  }
+  
+  return fetchWithErrorHandling(url, {
+    method: 'POST',
+    body: JSON.stringify(comment),
+  });
+}
+
+/**
+ * Assign a user to a transaction or dimension
+ * @param {string} transactionId - Transaction ID
+ * @param {string} dimensionId - Optional dimension ID
+ * @param {Object} assignment - Assignment data with userId and role
+ * @returns {Promise<Object>} Assignment result
+ */
+export async function assignUser(transactionId, dimensionId, assignment) {
+  let url = `${API_BASE_URL}/transactions/${transactionId}/assignments`;
+  
+  if (dimensionId) {
+    url = `${API_BASE_URL}/transactions/${transactionId}/dimensions/${dimensionId}/assignments`;
+  }
+  
+  return fetchWithErrorHandling(url, {
+    method: 'POST',
+    body: JSON.stringify(assignment),
+  });
+}

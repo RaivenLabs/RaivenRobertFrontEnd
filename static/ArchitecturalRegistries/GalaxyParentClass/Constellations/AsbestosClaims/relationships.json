@@ -1,0 +1,47 @@
+{
+  "internalRelationships": [
+    {
+      "id": "claim_exposures",
+      "description": "Multiple exposure periods for a single claim",
+      "sourceTable": "asbestos_claims",
+      "sourceKey": "claim_id",
+      "targetTable": "exposure_dimension",
+      "targetKey": "claim_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "claim_documents",
+      "description": "Legal documents associated with a claim",
+      "sourceTable": "asbestos_claims",
+      "sourceKey": "claim_id",
+      "targetTable": "document_dimension",
+      "targetKey": "claim_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    }
+  ],
+  "externalRelationships": [
+    {
+      "id": "claim_to_settlement",
+      "description": "Settlement records for closed claims",
+      "sourceConstellation": "asbestos-claims",
+      "sourceTable": "asbestos_claims",
+      "sourceKey": "claim_id",
+      "targetConstellation": "financial-settlements",
+      "targetTable": "settlements",
+      "targetKey": "source_claim_id",
+      "relationship": "one-to-one",
+      "cascadeDelete": false
+    },
+    {
+      "id": "claim_to_legal_billing",
+      "description": "Legal billing entries related to this claim",
+      "sourceConstellation": "asbestos-claims",
+      "sourceTable": "asbestos_claims",
+      "sourceKey": "claim_id",
+      "targetConstellation": "legal-billing",
+      "targetTable": "billing_entries",
+      "targetKey": "matter_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false

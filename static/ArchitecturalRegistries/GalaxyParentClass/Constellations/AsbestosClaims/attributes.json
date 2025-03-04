@@ -1,0 +1,38 @@
+{
+  "plaintiff": [
+    {
+      "id": "first_name",
+      "displayName": "First Name",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 1
+    },
+    {
+      "id": "last_name",
+      "displayName": "Last Name",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 2
+    },
+    {
+      "id": "occupation",
+      "displayName": "Occupation",
+      "dataType": "string",
+      "required": false,
+      "maxLength": 100,
+      "order": 3
+    }
+  ],
+  "disease": [
+    {
+      "id": "disease_type",
+      "displayName": "Disease Type",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Mesothelioma", "Lung Cancer", "Asbestosis", "Pleural Disease", "Other"],
+      "order": 1
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+/* QuickAccessGrid.css */
+.quick-access-grid {
+    @apply max-w-4xl mx-auto;
+  }
+  
+  /* Loading Animation */
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+  
+  /* Progress Bar Animation */
+  .progress-bar {
+    @apply h-1 bg-royalBlue transition-all duration-1000;
+    animation: progress 1s linear;
+  }
+  
+  @keyframes progress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+  
+  /* Error States */
+  .error-container {
+    @apply bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg;
+  }
+  
+  .error-title {
+    @apply text-lg font-semibold mb-2;
+  }
+  
+  /* App Tile Transitions */
+  .app-tile {
+    @apply transition-all duration-200;
+  }
+  
+  .app-tile.active {
+    @apply scale-95;
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    @apply text-xs px-2 py-1 rounded-full;
+  }
+  
+  .status-badge.prototype {
+    @apply text-gray-500 bg-gray-100;
+  }
+  
+  .status-badge.live {
+    @apply text-green-700 bg-green-100;
+  }

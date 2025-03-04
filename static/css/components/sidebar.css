@@ -1,0 +1,317 @@
+/* static/css/components/sidebar.css */
+
+
+
+
+
+.logo-container {
+    margin-bottom: 1.5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--cyan);
+    margin-bottom: 0.5rem;
+}
+
+.logo-separator {
+    width: 100%;
+    height: 2px;
+    background-color: rgb(229, 241, 241);
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 8px rgb(229, 241, 241);
+}
+
+.logo-subtitle {
+    font-size: 0.85rem;
+    color: #a0a0a0;
+    font-style: italic;
+    padding-left: 2px;
+}
+
+
+/* Menu Items */
+.menu-item {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-item:hover {
+    background-color: var(--sidebar-hover);
+    color: var(--ivory);
+    transition: all 0.3s ease;
+}
+
+.menu-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.menu-item.has-submenu {
+    position: relative;
+}
+
+.menu-item.has-submenu::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    font-size: 0.8em;
+    transition: transform 0.3s;
+}
+
+.menu-item.has-submenu.active::after {
+    transform: rotate(180deg);
+}
+
+/* Submenu Styles */
+
+
+
+
+/* Submenu modifications */
+.submenu {
+    height: auto;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+    margin-left: 2.5rem;
+}
+
+.submenu.active {
+    max-height: 1000px; /* Large enough to contain content */
+}
+
+.submenu .menu-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.95em;
+    opacity: 0.9;
+}
+
+
+
+.submenu .menu-item:hover {
+    background-color: rgb(74, 73, 73);
+}
+
+
+
+
+/* Make sure sidebar can position absolute elements */
+.sidebar {
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
+/* Main content wrapper */
+.sidebar-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 80px; /* Ensure space for footer */
+}
+.menu-items-container {
+    flex: 1 0 auto;
+}
+
+/* Ensure menu items don't overflow */
+.menu-item {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Footer modifications */
+.footer-text {
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: var(--cyan);
+    background-color: var(--sidebar-bg); /* Match sidebar background */
+    margin-top: auto;
+    z-index: 1; /* Ensure footer stays above other content */
+}
+
+
+
+
+/* First, we set up how the nested submenu container behaves */
+.apollo-submenu {
+    height: 0;                /* Start collapsed */
+    overflow: hidden;         /* Hide content when collapsed */
+    margin-left: 1rem;        /* Indent slightly */
+    transition: height 0.3s ease;  /* Smooth animation when opening/closing */
+}
+
+/* When the submenu is active (clicked) */
+.apollo-submenu.active {
+    height: auto;             /* Expand to fit content */
+    margin-top: 0.5rem;       /* Space above the submenu */
+    margin-bottom: 0.5rem;    /* Space below the submenu */
+}
+
+/* The parent item that contains the submenu */
+.nested-parent {
+    flex-direction: column;    /* Stack everything vertically */
+    align-items: flex-start;   /* Align everything to the left */
+}
+
+/* This ensures the submenu appears under its parent */
+.unique-has-submenu .apollo-submenu {
+    position: relative;        /* Position relative to its parent */
+    width: 100%;              /* Take full width */
+    left: 0;                  /* Align to the left */
+    margin-top: 0.5rem;       /* Space between parent and children */
+}
+
+/* Style for the individual menu items within the submenu */
+.apollo-submenu .menu-item {
+    padding-left: .2rem;       /* Extra indent to show hierarchy */
+    font-size: 0.9em;         /* Make text slightly smaller */
+}
+
+/* Add dropdown arrow to Steady State */
+.menu-item.unique-has-submenu {
+    position: relative;
+}
+
+.menu-item.unique-has-submenu::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    font-size: 0.8em;
+    transition: transform 0.3s;
+}
+
+/* Rotate arrow when menu is active */
+.menu-item.unique-has-submenu.active::after {
+    transform: rotate(180deg);
+}
+
+.appraisal-sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+}
+
+.appraisal-sidebar .menu-item {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.appraisal-sidebar .menu-item:hover {
+    background-color: var(--sidebar-hover);
+    color: var(--ivory);
+}
+
+.appraisal-sidebar .menu-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.appraisal-sidebar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--cyan);
+    margin-bottom: 0.5rem;
+}
+
+.appraisal-sidebar .logo-separator {
+    background-color: var(--sidebar-shadow);
+}
+
+.appraisal-sidebar .footer-text {
+    text-align: center;
+    color: var(--cyan);
+    margin-top: 20px;
+}
+/* Application-specific navigation items */
+.application-nav-item {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.application-nav-item:hover {
+    background-color: var(--sidebar-hover);
+    color: var(--ivory);
+    transition: all 0.3s ease;
+}
+
+.application-nav-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* If you need submenu support for application nav items */
+.application-nav-item.has-submenu {
+    position: relative;
+}
+
+.application-nav-item.has-submenu::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    font-size: 0.8em;
+    transition: transform 0.3s;
+}
+
+.application-nav-item.has-submenu.active::after {
+    transform: rotate(180deg);
+}
+
+/* Application-specific submenu if needed */
+.application-submenu {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    margin-left: 2.5rem;
+}
+
+.application-submenu .application-nav-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.95em;
+    opacity: 0.9;
+}
+
+.application-submenu.active {
+    height: auto;
+}
+
+.application-submenu .application-nav-item:hover {
+    background-color: rgb(74, 73, 73);
+}
+
+
+
+
+
+
+
+
+
+

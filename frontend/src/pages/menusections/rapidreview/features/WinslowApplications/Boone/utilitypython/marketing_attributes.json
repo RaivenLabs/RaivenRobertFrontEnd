@@ -1,0 +1,81 @@
+{
+  "marketing": [
+    {
+      "attribute_id": "standard_sales_forms",
+      "display_name": "Standard Sales Forms and Literature",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "sales_agreements",
+      "display_name": "Sales Representative, Agency, Distributor, and Franchise Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "other_marketing_agreements",
+      "display_name": "Other Marketing Agreements",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "target_markets",
+      "display_name": "Target Markets",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "press_releases",
+      "display_name": "Press Releases",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "marketing_costs",
+      "display_name": "Marketing Costs",
+      "data_type": "number",
+      "required": true,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 10
+    }
+  ]
+}

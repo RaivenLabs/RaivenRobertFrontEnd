@@ -1,0 +1,68 @@
+{
+  "registryVersion": "2.0",
+  "customerId": "ups",
+  "customerName": "UPS",
+  "lastUpdated": "2025-02-18T12:00:00Z",
+  "programGroups": [
+    {
+      "id": "sourcing",
+      "name": "Sourcing Transactions",
+      "description": "UPS-specific templates for sourcing agreements",
+      "agreementTypes": [
+        {
+          "id": "parent",
+          "name": "Parent Agreements",
+          "description": "UPS master agreements",
+          "programClasses": [
+            {
+              "id": "saas",
+              "name": "SaaS",
+              "description": "UPS Software as a Service agreements",
+              "forms": [
+                {
+                  "id": "ups-saas-subscription",
+                  "name": "UPS SaaS Subscription",
+                  "description": "UPS-specific SaaS subscription agreement",
+                  "templatePath": "/static/data/CustomerITTemplates/UPS/FoundationalITTemplates/ParentAgreementFoundationalTemplates/ups_saas_subscription_template.docx",
+                  "sourceTemplatePath": "/static/data/CustomerITTemplates/UPS/SourceITTemplates/ParentSourceTemplates/ups_saas_subscription_template.docx",
+                  "type": "customer",
+                  "status": "foundational",
+                  "displayOrder": 1,
+                  "houseTemplateReference": "subscription-only",
+                  "lastConverted": "2025-02-01T09:30:00Z"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "order",
+          "name": "Order Forms",
+          "description": "UPS order templates",
+          "programClasses": [
+            {
+              "id": "engineering-us",
+              "name": "Engineering Services (US)",
+              "description": "UPS engineering services orders",
+              "forms": [
+                {
+                  "id": "ups-agile-us-order",
+                  "name": "UPS Agile Services Order",
+                  "description": "UPS-specific order for agile services",
+                  "templatePath": "/static/data/CustomerITTemplates/UPS/FoundationalITTemplates/OrderFoundationalTemplates/ups_eng_us_agile_order_template.docx",
+                  "sourceTemplatePath": "/static/data/CustomerITTemplates/UPS/SourceITTemplates/OrderSourceTemplates/ups_eng_us_agile_order_template.docx",
+                  "type": "customer",
+                  "status": "foundational",
+                  "displayOrder": 1,
+                  "parentReferenceId": "ups-engineering-master",
+                  "houseTemplateReference": "agile-us-order",
+                  "lastConverted": "2025-02-10T14:45:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

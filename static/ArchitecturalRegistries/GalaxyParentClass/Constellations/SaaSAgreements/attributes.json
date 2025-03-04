@@ -1,0 +1,103 @@
+{
+  "service_scope": [
+    {
+      "id": "service_type",
+      "displayName": "Service Type",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Software License", "Professional Services", "Support", "Training", "Custom Development"],
+      "order": 1
+    },
+    {
+      "id": "description",
+      "displayName": "Description",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 1000,
+      "order": 2
+    },
+    {
+      "id": "deliverables",
+      "displayName": "Deliverables",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 2000,
+      "order": 3
+    }
+  ],
+  "financial": [
+    {
+      "id": "total_value",
+      "displayName": "Total Value",
+      "dataType": "currency",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "billing_model",
+      "displayName": "Billing Model",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Fixed Price", "Time & Materials", "Subscription", "Per User", "Usage-Based", "Hybrid"],
+      "order": 2
+    },
+    {
+      "id": "payment_schedule",
+      "displayName": "Payment Schedule",
+      "dataType": "enum",
+      "required": true,
+      "options": ["Monthly", "Quarterly", "Annual", "Upfront", "Milestone-Based"],
+      "order": 3
+    }
+  ],
+  "timeline": [
+    {
+      "id": "start_date",
+      "displayName": "Start Date",
+      "dataType": "date",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "end_date",
+      "displayName": "End Date",
+      "dataType": "date",
+      "required": true,
+      "order": 2
+    },
+    {
+      "id": "renewal_type",
+      "displayName": "Renewal Type",
+      "dataType": "enum",
+      "required": false,
+      "options": ["Auto-renewal", "Manual", "End of Term"],
+      "order": 3
+    }
+  ],
+  "technical": [
+    {
+      "id": "uses_ai",
+      "displayName": "Uses AI Technology",
+      "dataType": "boolean",
+      "required": false,
+      "order": 1,
+      "defaultValue": false
+    },
+    {
+      "id": "data_storage_location",
+      "displayName": "Data Storage Location",
+      "dataType": "enum",
+      "required": false,
+      "options": ["US", "EU", "APAC", "Global", "On-Premises"],
+      "order": 2
+    },
+    {
+      "id": "integration_requirements",
+      "displayName": "Integration Requirements",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 1000,
+      "order": 3
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "resources": [
+    {
+      "attribute_id": "financial_resources_operations",
+      "display_name": "Financial Resources for Operations During Transition",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "financial_resources_transaction_costs",
+      "display_name": "Financial Resources for Transaction-Related Costs",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "capital_expenditures_required",
+      "display_name": "Required Capital Expenditures and Investments",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "deferred_capital_expenses",
+      "display_name": "Deferred Capital Expenses",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "research_development_budget",
+      "display_name": "Research and Development Budget and Plans",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "it_costs",
+      "display_name": "IT Costs",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "it_upgrades_needed",
+      "display_name": "IT Upgrades Needed",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "disaster_recovery_plans",
+      "display_name": "Disaster Recovery Plans",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "product_development_expense",
+      "display_name": "Product Development Expense",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "marketing_costs",
+      "display_name": "Marketing Costs",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "regulatory_compliance_costs",
+      "display_name": "Regulatory Compliance Costs",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "fixed_assets_locations",
+      "display_name": "Fixed Assets and Locations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "operational_assets",
+      "display_name": "Operational Assets",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 17
+    }
+  ]
+}

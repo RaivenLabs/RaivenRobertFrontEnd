@@ -1,0 +1,208 @@
+{
+  "material_contracts": [
+    {
+      "attribute_id": "sale_reason",
+      "display_name": "Reason for Sale",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "previous_sale_attempts",
+      "display_name": "Previous Sale Attempts",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "previous_mergers_acquisitions",
+      "display_name": "Previous Mergers or Acquisitions",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "customer_supplier_contracts",
+      "display_name": "Customer and Supplier Contracts",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "material_payment_contracts",
+      "display_name": "Contracts with Material Payment Amounts",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "equipment_owned_leased",
+      "display_name": "Equipment Owned or Leased",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "material_effect_contracts",
+      "display_name": "Contracts with Material Adverse Effect if Terminated",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "approval_parties",
+      "display_name": "Parties Required to Approve Material Contracts",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "competition_restriction_contracts",
+      "display_name": "Contracts with Competition Restrictions",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "credit_agreements",
+      "display_name": "Credit Agreements, Guaranties, and Loans",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "distribution_agreements",
+      "display_name": "Distribution, Sales Agency, Dealer, or Advertising Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "equity_finance_agreements",
+      "display_name": "Equity Finance Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "exclusivity_agreements",
+      "display_name": "Exclusivity Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "franchise_agreements",
+      "display_name": "Franchise Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "indemnification_agreements",
+      "display_name": "Indemnification Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "license_agreements",
+      "display_name": "License Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "llc_operating_agreements",
+      "display_name": "Limited Liability Company/Operating Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "partnership_joint_venture_agreements",
+      "display_name": "Partnership/Joint Venture Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "power_of_attorney_agreements",
+      "display_name": "Power of Attorney Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "real_estate_agreements",
+      "display_name": "Real Estate Leases/Purchase Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "settlement_agreements",
+      "display_name": "Settlement Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "union_contracts",
+      "display_name": "Union Contracts/Collective Bargaining Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 22
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 23
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 24
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 25
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 26
+    }
+  ]
+}

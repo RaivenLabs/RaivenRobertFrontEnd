@@ -1,0 +1,58 @@
+{
+  "competitive_landscape": [
+    {
+      "attribute_id": "key_competitors",
+      "display_name": "Key Competitors (Current and Anticipated)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "disruptive_technologies",
+      "display_name": "Disruptive Technologies",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "product_technology_comparison",
+      "display_name": "Product and Technology Comparison",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 7
+    }
+  ]
+}

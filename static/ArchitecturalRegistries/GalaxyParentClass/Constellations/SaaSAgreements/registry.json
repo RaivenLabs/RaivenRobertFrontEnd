@@ -1,0 +1,21 @@
+{
+  "constellationId": "saas-agreements",
+  "displayName": "SaaS Agreements Portfolio",
+  "description": "Management of SaaS master agreements and service orders",
+  "starType": "order",
+  "starIdFormat": "SO-{MSA-ID}-{NNN}",
+  "tableName": "service_orders",
+  "primaryKey": "order_id",
+  "defaultView": "order-detail",
+  "parentEntity": {
+    "type": "master_agreement",
+    "tableName": "master_agreements",
+    "primaryKey": "agreement_id",
+    "idFormat": "MSA-{YYYY}-{NNNN}",
+    "foreignKeyInStar": "agreement_id"
+  },
+  "dimensionGroups": [
+    "service_scope", "financial", "timeline", "resources", 
+    "compliance", "performance", "technical"
+  ]
+}

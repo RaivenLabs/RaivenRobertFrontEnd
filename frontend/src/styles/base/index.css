@@ -1,0 +1,20 @@
+
+@import '../root.css';          /* 1. Variables first */
+
+@import '../shared/guidepages.css';  /* 2. Custom styles */
+
+@tailwind base;                 /* 3. Tailwind base */
+@tailwind components;           /* 4. Tailwind components */
+@tailwind utilities;           /* 5. Tailwind utilities */
+
+
+
+
+
+
+
+
+/* Your existing custom style */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

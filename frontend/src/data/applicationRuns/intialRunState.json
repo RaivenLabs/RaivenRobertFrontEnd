@@ -1,0 +1,7 @@
+// src/data/applicationRuns/initialRunState.json
+{
+  "runs": {
+    "MERGER_CONTROL": {},
+    "SAAS_AGREEMENT": {}
+  }
+}

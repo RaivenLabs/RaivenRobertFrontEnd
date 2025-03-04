@@ -1,0 +1,86 @@
+{
+  "dimensions": [
+    {
+      "id": "service_scope",
+      "displayName": "Service Scope",
+      "tableName": "service_scope_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": true,
+      "order": 1
+    },
+    {
+      "id": "financial",
+      "displayName": "Financial Details",
+      "tableName": "financial_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": true,
+      "order": 2
+    },
+    {
+      "id": "timeline",
+      "displayName": "Timeline",
+      "tableName": "timeline_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": true,
+      "order": 3
+    },
+    {
+      "id": "resources",
+      "displayName": "Resources",
+      "tableName": "resource_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": false,
+      "order": 4
+    },
+    {
+      "id": "compliance",
+      "displayName": "Compliance",
+      "tableName": "compliance_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": false,
+      "order": 5
+    },
+    {
+      "id": "performance",
+      "displayName": "Performance Metrics",
+      "tableName": "performance_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": false,
+      "order": 6
+    },
+    {
+      "id": "technical",
+      "displayName": "Technical Requirements",
+      "tableName": "technical_dimension",
+      "foreignKey": "order_id",
+      "requiredForNewStar": false,
+      "order": 7
+    }
+  ],
+  "parentDimensions": [
+    {
+      "id": "vendor",
+      "displayName": "Vendor Information",
+      "tableName": "vendor_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 1
+    },
+    {
+      "id": "agreement_terms",
+      "displayName": "Agreement Terms",
+      "tableName": "agreement_terms_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 2
+    },
+    {
+      "id": "security",
+      "displayName": "Security Assessment",
+      "tableName": "security_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 3
+    }
+  ]
+}

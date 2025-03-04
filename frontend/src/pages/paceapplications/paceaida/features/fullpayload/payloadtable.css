@@ -1,0 +1,60 @@
+/* Additional styles to add to LitigationDashboard.css */
+
+/* Checkbox styling */
+.data-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  /* Alert styling */
+  .alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+  }
+  
+  .alert.status-completed {
+    background-color: rgba(10, 35, 81, 0.1);
+    color: var(--royal-blue);
+  }
+  
+  .alert.error-state {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: rgb(185, 28, 28);
+  }
+  
+  /* Button state styling */
+  .import-button:disabled,
+  .action-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Additional status indicators */
+  .status-new {
+    background-color: rgba(0, 200, 83, 0.1);
+    color: rgb(0, 150, 62);
+  }
+  
+  /* Table header adjustments */
+  .data-table th:first-child,
+  .data-table td:first-child {
+    width: 40px;
+    text-align: center;
+  }
+  
+  /* Panel title enhancements */
+  .panel-title span {
+    font-size: 0.875rem;
+    color: var(--royal-blue);
+    opacity: 0.8;
+  }
+  
+  /* Action buttons container adjustment */
+  .dashboard-actions {
+    justify-content: space-between;
+    padding: 1rem;
+  }

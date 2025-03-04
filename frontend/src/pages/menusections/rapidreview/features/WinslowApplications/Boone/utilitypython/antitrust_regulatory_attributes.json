@@ -1,0 +1,98 @@
+{
+  "antitrust_regulatory": [
+    {
+      "attribute_id": "competition_diligence_limitations",
+      "display_name": "Competition Diligence Limitations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "regulatory_approval_process",
+      "display_name": "Regulatory Approval Process",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "antitrust_regulatory_inquiries",
+      "display_name": "Antitrust or Regulatory Inquiries",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "industry_consolidation_impact",
+      "display_name": "Industry Consolidation Impact",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "antitrust_issues_scope",
+      "display_name": "Scope of Antitrust Issues",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "hart_scott_rodino_filing",
+      "display_name": "Hart-Scott-Rodino Filing Preparation",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "exon_florio_amendment",
+      "display_name": "Exon-Florio Amendment Relevance",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "foreign_entity_commerce_issues",
+      "display_name": "Foreign Entity Department of Commerce Issues",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 12
+    }
+  ]
+}

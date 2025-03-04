@@ -1,0 +1,103 @@
+
+{
+  "dimensions": [
+    {
+      "id": "project_details",
+      "displayName": "Project Details",
+      "tableName": "project_details_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": true,
+      "order": 1
+    },
+    {
+      "id": "deliverables",
+      "displayName": "Deliverables",
+      "tableName": "deliverables_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": true,
+      "order": 2
+    },
+    {
+      "id": "financial",
+      "displayName": "Financial Details",
+      "tableName": "financial_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": true,
+      "order": 3
+    },
+    {
+      "id": "timeline",
+      "displayName": "Timeline",
+      "tableName": "timeline_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": true,
+      "order": 4
+    },
+    {
+      "id": "resources",
+      "displayName": "Resources",
+      "tableName": "resource_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": true,
+      "order": 5
+    },
+    {
+      "id": "quality",
+      "displayName": "Quality Metrics",
+      "tableName": "quality_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": false,
+      "order": 6
+    },
+    {
+      "id": "intellectual_property",
+      "displayName": "IP & Ownership",
+      "tableName": "ip_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": false,
+      "order": 7
+    },
+    {
+      "id": "technical_specs",
+      "displayName": "Technical Specifications",
+      "tableName": "technical_specs_dimension",
+      "foreignKey": "work_order_id",
+      "requiredForNewStar": false,
+      "order": 8
+    }
+  ],
+  "parentDimensions": [
+    {
+      "id": "vendor_info",
+      "displayName": "Service Provider Information",
+      "tableName": "vendor_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 1
+    },
+    {
+      "id": "rate_card",
+      "displayName": "Rate Card",
+      "tableName": "rate_card_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 2
+    },
+    {
+      "id": "master_terms",
+      "displayName": "Master Agreement Terms",
+      "tableName": "master_terms_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 3
+    },
+    {
+      "id": "security_compliance",
+      "displayName": "Security & Compliance",
+      "tableName": "security_compliance_dimension",
+      "foreignKey": "agreement_id",
+      "requiredForParent": true,
+      "order": 4
+    }
+  ]
+}

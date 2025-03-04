@@ -1,0 +1,130 @@
+{
+  "environmental": [
+    {
+      "attribute_id": "environmental_records_audits",
+      "display_name": "Environmental Records, Audits, and Reports",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "environmental_permits_licenses",
+      "display_name": "Environmental Permits and Licenses",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "environmental_litigation",
+      "display_name": "Environmental Litigation, Claims, Investigations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "regulatory_agency_correspondence",
+      "display_name": "Regulatory Agency Correspondence",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "public_agency_investigations",
+      "display_name": "Public Agency Investigations Records",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "contractual_environmental_obligations",
+      "display_name": "Contractual Environmental Obligations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "hazardous_substances",
+      "display_name": "Hazardous Substances Used in Operations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "petroleum_products",
+      "display_name": "Petroleum Products Used on Premises",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "asbestos_presence",
+      "display_name": "Asbestos on Company Property",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "superfund_exposure",
+      "display_name": "Superfund Exposure",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "disposal_methods_compliance",
+      "display_name": "Disposal Methods Compliance",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "continuing_environmental_liabilities",
+      "display_name": "Continuing Environmental Liabilities",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 16
+    }
+  ]
+}

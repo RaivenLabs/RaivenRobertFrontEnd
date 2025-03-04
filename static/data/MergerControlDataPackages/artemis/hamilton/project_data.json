@@ -1,0 +1,56 @@
+{
+  "projectId": "hamilton",
+  "projectName": "Hamilton",
+  "buyingCompany": "artemis",
+  "targetCompany": "hippocrates",
+  "status": "active",
+  "dateCreated": 1705860000000,
+  "lastModified": 1705860000000,
+  "metadata": {
+    "createdBy": "system",
+    "description": "Acquisition of Hippocrates Medical by Artemis Pharmaceuticals",
+    "priority": "high",
+    "phase": "initial_filing"
+  },
+  "keyDates": {
+    "expectedClosing": null,
+    "filingDeadlines": {},
+    "clearanceDeadlines": {}
+  },
+  "jurisdictions": {
+    "inScope": [],
+    "outOfScope": [],
+    "pending": [
+      "eu",
+      "usa",
+      "uk"
+    ]
+  },
+  "filingStatus": {
+    "sizeOfPerson": null,
+    "sizeOfTransaction": null,
+    "mandatoryFiling": null
+  },
+  "applicationRuns": {
+    "hamilton_run_20240122_1400": {
+      "runId": "hamilton_run_20240122_1400",
+      "displayName": "January 22, 2024, 2:00 PM",
+      "status": "in_progress",
+      "dateCreated": "2024-01-22T14:00:00",
+      "lastModified": "2024-01-22T14:00:00",
+      "savedData": {
+        "currentStep": "initial_assessment",
+        "jurisdictionalFindings": {},
+        "userInputs": {},
+        "calculatedResults": {}
+      }
+    },
+    "hamilton_run_January_22_2025_04_39_PM": {
+      "runId": "hamilton_run_January_22_2025_04_39_PM",
+      "displayName": "Hamilton Analysis - January 22, 2025 04:39 PM",
+      "status": "in_progress",
+      "dateCreated": "2025-01-22T16:39:26",
+      "lastModified": "2025-01-22T16:39:26"
+    }
+  }
+}

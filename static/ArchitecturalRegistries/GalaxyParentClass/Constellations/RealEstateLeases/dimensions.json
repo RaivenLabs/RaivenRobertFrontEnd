@@ -1,0 +1,95 @@
+
+{
+  "dimensions": [
+    {
+      "id": "property",
+      "displayName": "Property Information",
+      "tableName": "property_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": true,
+      "order": 1
+    },
+    {
+      "id": "financial",
+      "displayName": "Financial Details",
+      "tableName": "financial_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": true,
+      "order": 2
+    },
+    {
+      "id": "lease_terms",
+      "displayName": "Lease Terms",
+      "tableName": "lease_terms_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": true,
+      "order": 3
+    },
+    {
+      "id": "occupancy",
+      "displayName": "Occupancy Information",
+      "tableName": "occupancy_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": true,
+      "order": 4
+    },
+    {
+      "id": "facilities",
+      "displayName": "Facilities & Maintenance",
+      "tableName": "facilities_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": false,
+      "order": 5
+    },
+    {
+      "id": "sustainability",
+      "displayName": "Sustainability",
+      "tableName": "sustainability_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": false,
+      "order": 6
+    },
+    {
+      "id": "legal",
+      "displayName": "Legal & Compliance",
+      "tableName": "legal_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": true,
+      "order": 7
+    },
+    {
+      "id": "timeline",
+      "displayName": "Lease Timeline",
+      "tableName": "timeline_dimension",
+      "foreignKey": "lease_id",
+      "requiredForNewStar": true,
+      "order": 8
+    }
+  ],
+  "parentDimensions": [
+    {
+      "id": "portfolio_strategy",
+      "displayName": "Portfolio Strategy",
+      "tableName": "portfolio_strategy_dimension",
+      "foreignKey": "portfolio_id",
+      "requiredForParent": true,
+      "order": 1
+    },
+    {
+      "id": "portfolio_financial",
+      "displayName": "Portfolio Financial Metrics",
+      "tableName": "portfolio_financial_dimension",
+      "foreignKey": "portfolio_id",
+      "requiredForParent": true,
+      "order": 2
+    },
+    {
+      "id": "portfolio_governance",
+      "displayName": "Portfolio Governance",
+      "tableName": "portfolio_governance_dimension",
+      "foreignKey": "portfolio_id",
+      "requiredForParent": true,
+      "order": 3
+    }
+  ]
+}

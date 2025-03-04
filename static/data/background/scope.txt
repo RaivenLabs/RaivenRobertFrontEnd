@@ -1,0 +1,54 @@
+# Project Briefing Memorandum
+
+## Project Overview
+**Project Name**: [e.g., Project Sequoia - Artemis Acquisition]  
+**Project Type**: [e.g., M&A Due Diligence, Toxic Tort Documentation, SaaS Contract Analysis]  
+**Client**: [e.g., 3M Corporation]  
+
+## Business Context
+[This section provides essential background about the business objectives]
+
+Example for M&A Due Diligence:
+> 3M is considering acquiring Artemis Adhesives, a mid-sized specialty adhesives manufacturer, for approximately $500M. This acquisition is strategically important as it would fill critical gaps in 3M's supply chain, reducing dependency on third-party suppliers and mitigating supply chain risk by approximately 35%. Artemis has proprietary technology in eco-friendly adhesives that aligns with 3M's sustainability initiatives.
+
+Example for Toxic Tort Documentation:
+> Client is facing litigation related to alleged groundwater contamination from PFAS compounds at three manufacturing facilities. Documentation review is necessary to establish historical chemical usage, waste disposal practices, and compliance with applicable regulations from 1980-2010.
+
+## Document Collection Information
+- **Document Types**: [e.g., Financial statements, contracts, technical documentation, compliance records]
+- **Volume**: [e.g., 2,500 documents, approximately 45,000 pages]
+- **Date Range**: [e.g., 2015-2023]
+- **Languages**: [e.g., English (primary), German (15%), French (5%)]
+- **Format**: [e.g., PDF (75%), Excel spreadsheets (15%), Word documents (10%)]
+
+## Extraction Objectives
+[List specific data extraction goals in order of priority]
+
+Example:
+1. Identify all indemnification clauses and their scope
+2. Extract environmental compliance history and incidents
+3. Catalog intellectual property assets and their status
+4. Identify potential regulatory issues related to product safety
+5. Extract financial obligations and contingent liabilities
+
+## Special Considerations
+- **Industry-Specific Terminology**: [e.g., Chemical manufacturing terminology, specialized adhesive technical terms]
+- **Regulatory Framework**: [e.g., EPA regulations, REACH compliance (EU), RoHS]
+- **Confidentiality Requirements**: [e.g., Highly confidential transaction, subject to NDA, limited distribution]
+- **Time Constraints**: [e.g., Preliminary findings needed within 14 days, final report in 30 days]
+
+## Output Requirements
+- **Data Format**: [e.g., JSON structure with nested attributes for hierarchical relationships]
+- **Integration Needs**: [e.g., Must be compatible with Power BI dashboard, Tableau]
+- **Key Metrics**: [e.g., Risk assessment scores on a 1-5 scale for each identified issue]
+- **Categorization**: [e.g., Issues must be categorized as "Critical", "Major", "Minor", "Informational"]
+
+## Previous Similar Projects
+[Brief descriptions of similar projects that can provide context]
+
+Example:
+> Project Horizon (2022): M&A due diligence for acquisition of a medical device manufacturer. Schema focused on regulatory compliance, patent portfolio analysis, and product liability risk. Unique challenges included handling FDA documentation and international patent filings.
+
+---
+
+This briefing memorandum is intended to provide Claude with comprehensive context for generating appropriate data schemas. The document should be updated as project requirements evolve.

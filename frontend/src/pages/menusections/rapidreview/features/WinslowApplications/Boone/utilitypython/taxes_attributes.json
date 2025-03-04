@@ -1,0 +1,178 @@
+{
+  "taxes": [
+    {
+      "attribute_id": "federal_tax_returns",
+      "display_name": "Federal Tax Returns (Last 5 Years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "state_tax_returns",
+      "display_name": "State Tax Returns (Last 5 Years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "local_tax_returns",
+      "display_name": "Local Tax Returns (Last 5 Years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "income_tax_returns",
+      "display_name": "Income Tax Returns (Last 5 Years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "sales_tax_returns",
+      "display_name": "Sales Tax Returns (Last 5 Years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "international_tax_returns",
+      "display_name": "International Tax Returns (Last 5 Years)",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "tax_authority_correspondence",
+      "display_name": "Correspondence with Tax Authorities",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "tax_notices",
+      "display_name": "Notices from Taxing Authorities",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "failure_to_file_notices",
+      "display_name": "Failure to File Notices",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "unusual_tax_correspondence",
+      "display_name": "Out-of-the-ordinary Correspondence with Tax Agencies",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "government_tax_audits",
+      "display_name": "Government Tax Audits",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "irs_form_5500",
+      "display_name": "IRS Form 5500 for 401(k)s",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "tax_settlement_documents",
+      "display_name": "Settlement Documents from Tax Institutions",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "tax_sharing_agreements",
+      "display_name": "Tax Sharing Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "transfer_pricing_agreements",
+      "display_name": "Transfer Pricing Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "statute_of_limitations_agreements",
+      "display_name": "Agreements that Waive or Change Statute of Limitations on Taxes",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "net_operational_losses",
+      "display_name": "Net Operational Losses or Credit Carryforwards",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "control_change_effects",
+      "display_name": "Effects of Changes in Control on Carryforwards Availability",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 22
+    }
+  ]
+}

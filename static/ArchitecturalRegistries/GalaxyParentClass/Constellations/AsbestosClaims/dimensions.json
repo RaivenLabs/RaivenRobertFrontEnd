@@ -1,0 +1,21 @@
+{
+  "dimensions": [
+    {
+      "id": "plaintiff",
+      "displayName": "Plaintiff Information",
+      "tableName": "plaintiff_dimension",
+      "foreignKey": "claim_id",
+      "requiredForNewStar": true,
+      "order": 1
+    },
+    {
+      "id": "disease",
+      "displayName": "Disease Details",
+      "tableName": "disease_dimension",
+      "foreignKey": "claim_id",
+      "requiredForNewStar": true,
+      "order": 2
+    }
+
+  ]
+}

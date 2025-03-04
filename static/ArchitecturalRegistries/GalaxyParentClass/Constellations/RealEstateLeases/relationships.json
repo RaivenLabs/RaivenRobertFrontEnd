@@ -1,0 +1,109 @@
+
+{
+  "internalRelationships": [
+    {
+      "id": "portfolio_to_leases",
+      "description": "Leases within a portfolio",
+      "sourceTable": "lease_portfolios",
+      "sourceKey": "portfolio_id",
+      "targetTable": "property_leases",
+      "targetKey": "portfolio_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "lease_to_amendments",
+      "description": "Amendments to a lease",
+      "sourceTable": "property_leases",
+      "sourceKey": "lease_id",
+      "targetTable": "lease_amendments",
+      "targetKey": "lease_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    },
+    {
+      "id": "lease_to_documents",
+      "description": "Documents related to a lease",
+      "sourceTable": "property_leases",
+      "sourceKey": "lease_id",
+      "targetTable": "lease_documents",
+      "targetKey": "lease_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": true
+    }
+  ],
+  "externalRelationships": [
+    {
+      "id": "property_to_asset_management",
+      "description": "Link to asset management system",
+      "sourceConstellation": "real-estate-leases",
+      "sourceTable": "property_leases",
+      "sourceKey": "property_id",
+      "targetConstellation": "asset-management",
+      "targetTable": "assets",
+      "targetKey": "asset_id",
+      "relationship": "one-to-one",
+      "cascadeDelete": false
+    },
+    {
+      "id": "lease_to_financial_obligations",
+      "description": "Financial obligations from lease",
+      "sourceConstellation": "real-estate-leases",
+      "sourceTable": "property_leases",
+      "sourceKey": "lease_id",
+      "targetConstellation": "accounts-payable",
+      "targetTable": "payment_obligations",
+      "targetKey": "source_lease_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    },
+    {
+      "id": "lease_to_maintenance_tickets",
+      "description": "Maintenance requests for property",
+      "sourceConstellation": "real-estate-leases",
+      "sourceTable": "property_leases",
+      "sourceKey": "lease_id",
+      "targetConstellation": "facility-management",
+      "targetTable": "maintenance_tickets",
+      "targetKey": "property_lease_id",
+      "relationship": "one-to-many",
+      "cascadeDelete": false
+    }
+  ],
+  "hierarchicalRelationships": [
+    {
+      "id": "property_type_grouping",
+      "description": "Leases grouped by property type",
+      "childTable": "property_leases",
+      "childKey": "lease_id",
+      "groupingAttribute": "property_type"
+    },
+    {
+      "id": "geographic_hierarchy",
+      "description": "Geographic hierarchy of properties",
+      "hierarchyLevels": [
+        {
+          "level": 1,
+          "attribute": "country"
+        },
+        {
+          "level": 2,
+          "attribute": "state_province"
+        },
+        {
+          "level": 3,
+          "attribute": "city"
+        }
+      ]
+    },
+    {
+      "id": "business_unit_hierarchy",
+      "description": "Organizational hierarchy by business unit",
+      "childTable": "property_leases",
+      "childKey": "lease_id",
+      "parentTable": "business_units",
+      "parentKey": "business_unit_id",
+      "joinAttribute": "business_unit"
+    }
+  ]
+}

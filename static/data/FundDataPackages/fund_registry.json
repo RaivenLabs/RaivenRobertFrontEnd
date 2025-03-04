@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "lastUpdated": "2024-02-02",
+    "version": "1.0",
+    "totalFunds": 7
+  },
+  "firms": {
+    "122259": {
+      "name": "Insight Investment Funds Management Ltd",
+      "dataFile": "insight_122259.json",
+      "type": "investment_fund",
+      "status": "Authorised",
+      "postcode": "EC4V 4LA",
+      "lastUpdated": "2024-02-02"
+    },
+    "179712": {
+      "name": "CBRE Investment Management (UK Funds) Limited",
+      "dataFile": "cbre_investment_179712.json",
+      "type": "property_fund",
+      "status": "Authorised",
+      "postcode": "EC4M 9AF",
+      "lastUpdated": "2024-02-02"
+    },
+    "449528": {
+      "name": "Hedge Funds Investment Management Ltd",
+      "dataFile": "hedge_funds_investment_449528.json",
+      "type": "hedge_fund",
+      "status": "Authorised",
+      "postcode": "EC2A 4EB",
+      "lastUpdated": "2024-02-02"
+    },
+    "457686": {
+      "name": "Maven Property Investments Limited",
+      "dataFile": "maven_property_457686.json",
+      "type": "property_fund",
+      "status": "Authorised",
+      "postcode": "G2 2LW",
+      "lastUpdated": "2024-02-02"
+    },
+    "447203": {
+      "name": "Fund Analytics Investment Management LLP",
+      "dataFile": "fund_analytics_447203.json",
+      "type": "investment_fund",
+      "status": "Authorised",
+      "postcode": "SW1W 0AF",
+      "lastUpdated": "2024-02-02"
+    },
+    "585601": {
+      "name": "FIM Capital Limited",
+      "dataFile": "fim_capital_585601.json",
+      "type": "investment_fund",
+      "status": "Authorised",
+      "postcode": "IM1 1LA",
+      "lastUpdated": "2024-02-02"
+    },
+    "448315": {
+      "name": "PineBridge Investments Ireland Limited",
+      "dataFile": "pinebridge_448315.json",
+      "type": "investment_fund",
+      "status": "Authorised Schedule 5",
+      "postcode": "D02 DH34",
+      "lastUpdated": "2024-02-02"
+    }
+  },
+  "typeCategories": {
+    "investment_fund": "Traditional Investment Fund",
+    "property_fund": "Property Investment Fund",
+    "hedge_fund": "Hedge Fund"
+  }
+}

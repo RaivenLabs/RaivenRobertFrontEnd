@@ -1,0 +1,123 @@
+{
+  "runId": "hamilton_run_20250128_1107",
+  "projectId": "hamilton",
+  "displayName": "Hamilton Analysis - January 28, 2025 11:07 AM",
+  "status": "setup_initiated",
+  "dateCreated": "2025-01-28T11:07:53.451348",
+  "lastModified": "2025-01-28T11:08:06",
+  "analysis": {
+    "currentStep": "initial_assessment",
+    "jurisdictionalFindings": {},
+    "selectedJurisdictions": [],
+    "calculatedResults": {}
+  },
+  "targetCompanyData": {
+    "regional_blocks": {
+      "united_kingdom": {
+        "presence": true,
+        "block_metrics": {
+          "revenue": null,
+          "revenue_formatted": null,
+          "employees": null,
+          "assets": null,
+          "registered_office": null,
+          "currency": null
+        },
+        "member_states": {
+          "uk": {
+            "presence": true,
+            "metrics": {
+              "revenue": null,
+              "employees": null,
+              "assets": null
+            },
+            "market_position": null,
+            "local_entities": [],
+            "vertical_relationships": [],
+            "market_shares": {},
+            "merger_control_info": {
+              "filing_required": null,
+              "thresholds": {
+                "revenue": null,
+                "market_share": null
+              },
+              "review_period_days": null
+            }
+          }
+        }
+      },
+      "united_states": {
+        "presence": true,
+        "block_metrics": {
+          "revenue": null,
+          "revenue_formatted": null,
+          "employees": null,
+          "assets": null,
+          "registered_office": null,
+          "currency": null
+        },
+        "member_states": {
+          "california": {
+            "presence": true,
+            "metrics": {
+              "revenue": null,
+              "employees": null,
+              "assets": null
+            },
+            "market_position": null,
+            "local_entities": [],
+            "vertical_relationships": [],
+            "market_shares": {},
+            "merger_control_info": {
+              "filing_required": null,
+              "thresholds": {
+                "revenue": null,
+                "market_share": null
+              },
+              "review_period_days": null
+            }
+          }
+        }
+      },
+      "european_union": {
+        "presence": true,
+        "block_metrics": {
+          "revenue": null,
+          "revenue_formatted": null,
+          "employees": null,
+          "assets": null,
+          "registered_office": null,
+          "currency": null
+        },
+        "member_states": {
+          "poland": {
+            "presence": true,
+            "metrics": {
+              "revenue": null,
+              "employees": null,
+              "assets": null
+            },
+            "market_position": null,
+            "local_entities": [],
+            "vertical_relationships": [],
+            "market_shares": {},
+            "merger_control_info": {
+              "filing_required": null,
+              "thresholds": {
+                "revenue": null,
+                "market_share": null
+              },
+              "review_period_days": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "workflowStatus": {
+    "stage": "setup",
+    "lastSaved": "2025-01-28T11:08:06",
+    "modifications": true,
+    "pendingChanges": false
+  }
+}

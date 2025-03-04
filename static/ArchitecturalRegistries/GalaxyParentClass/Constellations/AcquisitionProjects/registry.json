@@ -1,0 +1,36 @@
+
+{
+  "constellationId": "ma-due-diligence",
+  "displayName": "M&A Due Diligence",
+  "description": "Comprehensive due diligence system for merger and acquisition targets",
+  "starType": "targetCompany",
+  "starIdFormat": "TGT-{YYYY}-{NNNN}",
+  "tableName": "target_companies",
+  "primaryKey": "target_id",
+  "defaultView": "target-detail",
+  "parentEntity": {
+    "type": "acquisition_program",
+    "tableName": "acquisition_programs",
+    "primaryKey": "program_id",
+    "idFormat": "PROG-{YYYY}-{NN}",
+    "foreignKeyInStar": "program_id"
+  },
+  "dimensionGroups": [
+    "financial", 
+    "technology_ip", 
+    "customer_sales_suppliers",
+    "strategic_fit",
+    "material_contracts",
+    "employment_management",
+    "litigation_legal",
+    "taxes",
+    "antitrust_regulatory",
+    "insurance",
+    "corporate_matters",
+    "environmental",
+    "property",
+    "marketing",
+    "competitive_landscape"
+  ]
+}
+

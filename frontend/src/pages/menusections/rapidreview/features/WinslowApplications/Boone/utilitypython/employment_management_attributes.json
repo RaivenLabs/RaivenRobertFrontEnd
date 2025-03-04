@@ -1,0 +1,218 @@
+{
+  "employment_management": [
+    {
+      "attribute_id": "organization_chart",
+      "display_name": "Organization Chart and Management Biographical Information",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "employment_agreements",
+      "display_name": "Officer, Director, Key Employee Employment/Consulting/Loan Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "compensation_schedule",
+      "display_name": "Compensation Schedule (3 Fiscal Years)",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "employment_guides",
+      "display_name": "Employment Guides and Protocols",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "employee_count",
+      "display_name": "Employee Count Details",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "key_personnel",
+      "display_name": "Key Personnel Gained from Merger",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "retention_agreements",
+      "display_name": "Retention Agreements for Key Employees",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "layoff_severance",
+      "display_name": "Potential Layoffs and Severance Information",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "operational_redundancies",
+      "display_name": "Operational Redundancies Assessment",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "nda_noncompete",
+      "display_name": "Non-disclosure, Non-competition, and Non-solicitation Agreements",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "employee_legal_issues",
+      "display_name": "Current Employee Legal Issues",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "contractor_classification",
+      "display_name": "Independent Contractor vs. Employee Classification",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "key_employee_litigation",
+      "display_name": "Key Employee Litigation History",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "employee_benefits",
+      "display_name": "Employee Benefits Documentation",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "leave_policies",
+      "display_name": "Leave Policies",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "esop_information",
+      "display_name": "ESOP Information and Grant Schedule",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "irs_409a_compliance",
+      "display_name": "IRS Section 409A Compliance for Stock Options",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "incentive_plans",
+      "display_name": "Incentive and Bonus Plans",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "golden_parachute",
+      "display_name": "IRS Section 280G (Golden Parachute) Compliance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "actuary_reports",
+      "display_name": "Actuary Reports (3 Years)",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "labor_conflict",
+      "display_name": "Labor Conflict Summary",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "pending_labor_stoppage",
+      "display_name": "Pending or Threatened Labor Stoppage",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 22
+    },
+    {
+      "attribute_id": "past_labor_stoppages",
+      "display_name": "Past Labor Stoppages Information",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 23
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 24
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 25
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 26
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 27
+    }
+  ]
+}

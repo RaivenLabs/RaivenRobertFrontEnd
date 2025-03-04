@@ -1,0 +1,23 @@
+
+{
+  "constellationId": "engineering-services",
+  "displayName": "Engineering Services Agreements",
+  "description": "Management of engineering services master agreements and work orders",
+  "starType": "workOrder",
+  "starIdFormat": "WO-{MESA-ID}-{NNN}",
+  "tableName": "work_orders",
+  "primaryKey": "work_order_id",
+  "defaultView": "work-order-detail",
+  "parentEntity": {
+    "type": "master_agreement",
+    "tableName": "engineering_master_agreements",
+    "primaryKey": "agreement_id",
+    "idFormat": "MESA-{YYYY}-{NNNN}",
+    "foreignKeyInStar": "agreement_id"
+  },
+  "dimensionGroups": [
+    "project_details", "deliverables", "financial", "timeline", 
+    "resources", "quality", "intellectual_property", "technical_specs"
+  ]
+}
+

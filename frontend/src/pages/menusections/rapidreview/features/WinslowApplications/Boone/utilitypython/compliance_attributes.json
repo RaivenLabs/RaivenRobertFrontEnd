@@ -1,0 +1,186 @@
+{
+  "compliance": [
+    {
+      "attribute_id": "regulatory_approvals",
+      "display_name": "Regulatory Approvals",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "government_investigations",
+      "display_name": "Government Investigations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "regulatory_correspondence",
+      "display_name": "Regulatory Correspondence",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "permits_licenses",
+      "display_name": "Permits and Licenses",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "canceled_licenses",
+      "display_name": "Canceled or Terminated Licenses",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "license_exemptions",
+      "display_name": "License Exemptions",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "regulatory_standards",
+      "display_name": "Regulatory Standards Compliance",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "compliance_costs",
+      "display_name": "Regulatory Compliance Costs",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "compliance_issues",
+      "display_name": "Compliance Issues",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "citations_notices",
+      "display_name": "Government Citations and Notices",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "pending_investigations",
+      "display_name": "Pending or Potential Investigations",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "agency_communications",
+      "display_name": "Agency Communications",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "antitrust_issues",
+      "display_name": "Antitrust Issues",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "hart_scott_rodino",
+      "display_name": "Hart-Scott-Rodino Filing Requirements",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "exon_florio_amendment",
+      "display_name": "Exon-Florio Amendment Considerations",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "foreign_investment_issues",
+      "display_name": "Foreign Investment Issues",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 16
+    },
+    {
+      "attribute_id": "environmental_permits",
+      "display_name": "Environmental Permits and Licenses",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 17
+    },
+    {
+      "attribute_id": "environmental_compliance",
+      "display_name": "Environmental Compliance",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 18
+    },
+    {
+      "attribute_id": "hazardous_substances",
+      "display_name": "Hazardous Substances Management",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 19
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 20
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 21
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 22
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 23
+    }
+  ]
+}

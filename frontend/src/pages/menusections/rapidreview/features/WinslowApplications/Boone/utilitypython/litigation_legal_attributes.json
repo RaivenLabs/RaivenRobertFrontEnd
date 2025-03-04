@@ -1,0 +1,130 @@
+{
+  "litigation_legal": [
+    {
+      "attribute_id": "filed_pending_litigation",
+      "display_name": "Filed and Pending Litigation",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "threatened_claims",
+      "display_name": "Threatened or Pending Claims",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "government_proceedings",
+      "display_name": "Pending or Threatened Governmental Proceedings",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "settled_litigation",
+      "display_name": "Settled Litigation and Terms",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "arbitration_matters",
+      "display_name": "Matters in Arbitration",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "consent_decrees",
+      "display_name": "Consent Decrees, Judgments, Injunctions, or Orders",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "insurance_claims",
+      "display_name": "Insurance Covering Claims",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "attorney_letters",
+      "display_name": "Attorney Letters to Auditors",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "civil_litigation",
+      "display_name": "Civil Litigation",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "compliance_regulatory",
+      "display_name": "Compliance and Regulatory Matters",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "criminal_law",
+      "display_name": "Criminal Law Matters",
+      "data_type": "text",
+      "required": true,
+      "max_length": 2000,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "human_rights",
+      "display_name": "Human Rights Issues",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 14
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 15
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 16
+    }
+  ]
+}

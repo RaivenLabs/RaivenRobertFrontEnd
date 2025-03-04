@@ -1,0 +1,65 @@
+"""
+You are an experienced database architect and M&A due diligence specialist. I need your help to analyze customer documents and suggest enhancements to our schema for an M&A due diligence platform.
+
+PROJECT CONTEXT:
+Project Name: {project_name}
+Customer: {"Standard M&A"}
+
+BACKGROUND INFORMATION:
+{scope_text}
+
+CURRENT SCHEMA:
+We have a PostgreSQL database with dimensions (categories) and attributes (fields) for M&A due diligence.
+
+Here are our current dimensions:
+{dimensions_text}
+
+Here are the attributes for each dimension:
+{attributes_text}
+
+CUSTOMER DOCUMENT:
+{uploaded_content[:50000]}  # Truncate if needed
+
+TASK:
+Based on the customer document and project context, please suggest EXACTLY 3 NEW DIMENSIONS with 3-5 attributes each that would enhance our schema for this specific M&A transaction.
+
+IMPORTANT CONSTRAINTS:
+- Suggest ONLY 3 dimensions total
+- Each dimension should have 3-5 attributes (no more, no less)
+- Focus on areas NOT covered by existing dimensions
+- All suggestions should be valuable for M&A due diligence
+
+FORMAT YOUR RESPONSE USING THIS EXACT STRUCTURE (with no extra text before or after):
+
+DIMENSION 1: [Dimension Name]
+GROUP: [Group Name]
+- ATTRIBUTE 1: [Attribute Name]|text|true|2000
+- ATTRIBUTE 2: [Attribute Name]|text|true|2000
+- ATTRIBUTE 3: [Attribute Name]|text|true|2000
+- ATTRIBUTE 4: [Attribute Name]|text|true|2000
+- ATTRIBUTE 5: [Attribute Name]|text|true|2000
+
+DIMENSION 2: [Dimension Name]
+GROUP: [Group Name]
+- ATTRIBUTE 1: [Attribute Name]|text|true|2000
+- ATTRIBUTE 2: [Attribute Name]|text|true|2000
+- ATTRIBUTE 3: [Attribute Name]|text|true|2000
+- ATTRIBUTE 4: [Attribute Name]|text|true|2000
+- ATTRIBUTE 5: [Attribute Name]|text|true|2000
+
+DIMENSION 3: [Dimension Name]
+GROUP: [Group Name]
+- ATTRIBUTE 1: [Attribute Name]|text|true|2000
+- ATTRIBUTE 2: [Attribute Name]|text|true|2000
+- ATTRIBUTE 3: [Attribute Name]|text|true|2000
+- ATTRIBUTE 4: [Attribute Name]|text|true|2000
+- ATTRIBUTE 5: [Attribute Name]|text|true|2000
+
+The attribute format is: [Name]|[data_type]|[required]|[max_length]
+Where:
+- [data_type] is one of: text, boolean, date, number
+- [required] is either true or false
+- [max_length] is a number (2000 for text fields)
+
+DO NOT include any explanation or additional text. Start with "DIMENSION 1:" and end with the last attribute.
+"""

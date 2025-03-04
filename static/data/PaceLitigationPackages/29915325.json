@@ -1,0 +1,455 @@
+{
+    "file_name": "PACE DEVELOP/29915325.pdf",
+    "file": {
+        "file_sent_from": "CSC Corporation",
+        "log_number": "29915325",
+        "file_category_type": "Lawsuit"
+    },
+    "lawsuit_service": [
+        {
+            "lawsuit_administrative": "FALSE",
+            "lawsuit_summons_date": "09/19/2024",
+            "lawsuit_harmful_material": "ASBESTOS",
+            "lawsuit_is_multi_district": null,
+            "lawsuit_damage_descriptions": "Personal Injury",
+            "lawsuit_service_date": "09/19/2024",
+            "lawsuit_received_date": "09/19/2024",
+            "lawsuit_answer_due_days": "30",
+            "lawsuit_answer_due_date": "10/19/2024",
+            "lawsuit_tender_date": null,
+            "lawsuit_jurisdiction": "NEW YORK",
+            "lawsuit_company_served": "Schneider Electric USA, Inc.",
+            "lawsuit_allegation": "Product",
+            "lawsuit_discovery_included": "YES",
+            "lawsuit_docket_number": "19016324",
+            "lawsuit_jurisdiction_state": "NY",
+            "lawsuit_third_party_company": null,
+            "lawsuit_amendment_number": "000",
+            "lawsuit_file_date": "09/19/2024",
+            "lawsuit_case_caption": "SUE DIGIUGNO, as Proposed Executrix for the Estate of ANDREW DIGIUGNO, and SUE DIGIUGNO, Individually, Plaintiffs, vs. AERCO INTERNATIONAL, INC.",
+            "counsel": [
+                {
+                    "counsel_firm_name": "WEITZ & LUXENBERG, P.C.",
+                    "counsel_name_of_attorney": "Unknown",
+                    "counsel_type": "Local Plaintiff Counsel",
+                    "counsel_primary": "Yes"
+                },
+                {
+                    "counsel_firm_name": "Marshall, Dennehy, Warner, Coleman & Goggin",
+                    "counsel_name_of_attorney": "Anna DiLonardo Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "WILBRAHAM LAWLER & BUBA",
+                    "counsel_name_of_attorney": "John Howarth Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "DARGER ERRANTE YAVITZ & BLAU LLP",
+                    "counsel_name_of_attorney": "Jennifer Darger Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Malaby & Bradley LLC",
+                    "counsel_name_of_attorney": "Dave Schaffer Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "SEGAL McCAMBRIDGE SINGER & MAHONEY, LTD",
+                    "counsel_name_of_attorney": "Steven Rosenblatt Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Morgan Lewis & Bockius LLP",
+                    "counsel_name_of_attorney": "Beth Hughes Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Gordon & Rees Scully Mansukhani, LLP",
+                    "counsel_name_of_attorney": "Erik DiMarco Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Manning Gross + Massenburg LLP",
+                    "counsel_name_of_attorney": "Anna Hwang Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "LEADER BERKON COLAO & SILVERSTEIN LLP",
+                    "counsel_name_of_attorney": "David Goodearl Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "McELROY, DEUTCH, MULVANEY & CARPENTER LLP (NJ)",
+                    "counsel_name_of_attorney": "Brian Sorensen Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "KELLEY JASONS McGOWAN SPINELLI HANNA & REBER, LLP",
+                    "counsel_name_of_attorney": "Christopher Hannan Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Tanenbaum Keale LLP",
+                    "counsel_name_of_attorney": "Michael Tanenbaum Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Foley and Mansfield",
+                    "counsel_name_of_attorney": "Dennis Vega Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "CULLEN AND DYKMAN, LLP",
+                    "counsel_name_of_attorney": "John Fanning Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "Renzulli Law Firm, LLP",
+                    "counsel_name_of_attorney": "Joan Gasior Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "K & L GATES LLP",
+                    "counsel_name_of_attorney": "Tara Pehush Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "WATER, MCPHERSON & MCNEIL",
+                    "counsel_name_of_attorney": "John Kot Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "GREENFIELD, STEIN & SENIOR",
+                    "counsel_name_of_attorney": "Jeff Botwinick Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                },
+                {
+                    "counsel_firm_name": "HAWKINS, PARNELL & YOUNG LLP",
+                    "counsel_name_of_attorney": "Mark Hsu Esq",
+                    "counsel_type": "National Plaintiff Counsel",
+                    "counsel_primary": "No"
+                }
+            ],
+            "injured_party": [
+                {
+                    "injured_party_last_name": "Digiugno",
+                    "injured_party_first_name": "Andrew",
+                    "injured_party_suffix": null,
+                    "injured_party_gender": "Male",
+                    "injured_party_plaintiff_type": "Individual",
+                    "injured_party_marital_status": "empty string",
+                    "injured_party_birth_date": null,
+                    "plaintiff": [
+                        {
+                            "plaintiff_first_name": "Sue",
+                            "plaintiff_last_name": "Digiugno",
+                            "plaintiff_suffix": null,
+                            "lead_plaintiff_yn": "YES",
+                            "plaintiff_legal_capacity": "SELF",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": null,
+                            "plaintiff_city": null,
+                            "plaintiff_state": null,
+                            "plaintiff_zip": null,
+                            "plaintiff_zip_extension": null,
+                            "plaintiff_middle_name": null,
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        },
+                        {
+                            "plaintiff_first_name": "Andrew",
+                            "plaintiff_last_name": "Digiugno",
+                            "plaintiff_suffix": null,
+                            "lead_plaintiff_yn": "NO",
+                            "plaintiff_legal_capacity": "DECEASED",
+                            "plaintiff_ssn": null,
+                            "plaintiff_street": null,
+                            "plaintiff_city": null,
+                            "plaintiff_state": null,
+                            "plaintiff_zip": null,
+                            "plaintiff_zip_extension": null,
+                            "plaintiff_middle_name": "empty string",
+                            "plaintiff_phone_number": null,
+                            "plaintiff_phone_number_extension": null
+                        }
+                    ],
+                    "occupation_exposure": [],
+                    "diagnosis": [
+                        {
+                            "diagnosis_disease_name": "LUNG CANCER",
+                            "diagnosis_disease_category": "LUNG CANCER",
+                            "diagnosis_date": "09/19/2024",
+                            "diagnosis_disease_source": "Plaintiff Disease",
+                            "diagnosis_is_primary": "YES"
+                        }
+                    ],
+                    "physician": [
+                        {
+                            "physician_first_name": null,
+                            "physician_middle_name": null,
+                            "physician_last_name": null,
+                            "physician_suffix": null,
+                            "physician_role": null,
+                            "physician_specialty": null,
+                            "date_of_physician_s_report": null,
+                            "date_of_physician_s_deposition": null,
+                            "physician_is_primary": "FALSE"
+                        }
+                    ],
+                    "tobacco": [
+                        {
+                            "tobacco_type": null,
+                            "tobacco_start_date": null,
+                            "tobacco_end_date": null,
+                            "tobacco_packs_per_day": null,
+                            "tobacco_is_primary": null,
+                            "tobacco_comment": null
+                        }
+                    ],
+                    "product_exposure": [],
+                    "related_party": [
+                        {
+                            "related_party_last_name": "Digiugno",
+                            "related_party_first_name": "Sue",
+                            "related_party_middle_name": null,
+                            "related_party_suffix": null,
+                            "related_party_relationship": "OTHER",
+                            "related_party_legal_capacity": "Proposed Executrix",
+                            "related_party_SSN": null,
+                            "related_party_birth_date": null
+                        }
+                    ],
+                    "injured_party_death_date": null,
+                    "injured_party_street": null,
+                    "injured_party_city": null,
+                    "injured_party_state": null,
+                    "injured_party_zip": null,
+                    "injured_party_zip_ext": null,
+                    "injured_party_SSN": null,
+                    "injured_party_middle_name": null,
+                    "injured_party_is_loss_of_consortium_claimed": "No",
+                    "injured_party_is_wrongful_death_claimed": "YES",
+                    "injured_party_individual_docket_number": null,
+                    "injured_party_military_member": null,
+                    "injured_party_phone_no": null,
+                    "injured_party_phone_no_ext": null,
+                    "injured_party_deceased": "UNKNOWN"
+                }
+            ],
+            "defendant_namings": [
+                {
+                    "defendant_company": "AERCO INTERNATIONAL, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AIR & LIQUID SYSTEMS CORPORATION as successor-by-merger to BUFFALO PUMPS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AMCHEM PRODUCTS, INC. n/k/a RHONE POULENC AG COMPANY n/k/a BAYER CROPSCIENCE INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BLACKMER",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BMCE INC. f/k/a UNITED CENTRIFUGAL PUMP",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "BW/IP, INC. AND ITS WHOLLY OWNED SUBSIDIARIES",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CLEAVER-BROOKS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CLYDE UNION, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "COMMERCE PUMP LLC Individually and as Successor in interest to ROPER PUMPS",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CROSBY VALVE LLC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ELECTROLUX HOME PRODUCTS, INC. Individually and as Successor to Tappan and Copes-Vulcan",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FLOWSERVE US, INC. Individually and successor to Rockwell Manufacturing Company, Edward Valve, Inc., Nordstrom Valves, Inc., Edward Vogt Valve Company, and Vogt Valve Company",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FMC CORPORATION on behalf of its former CHICAGO PUMP & NORTHERN PUMP BUSINESSES",
+                    "defendant_parent": "FMC CORPORATION"
+                },
+                {
+                    "defendant_company": "FOSTER WHEELER, L.L.C.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "G. DENVER and CO., LLC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GENERAL ELECTRIC COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GOULDS PUMPS LLC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "HOWDEN BUFFALO, INC. as successor in interest to BUFFALO FORGE COMPANY as successor by merger to BUFFALO PUMPS",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "IMO INDUSTRIES, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ITT LLC. Individually and as successor to BELL & GOSSETT and as successor to KENNEDY VALVE MANUFACTURING CO., Inc.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "KAISER GYPSUM COMPANY, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "MORSE TEC LLC f/k/a BORG WARNER MORSE TEC LLC and Successor-by-Merger to BORG-WARNER CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PARAMOUNT GLOBAL f/k/a VIACOMCBS Inc. f/k/a CBS CORPORATION a Delaware Corporation f/k/a VIACOM INC. successor by merger to CBS CORPORATION a PENNSYLVANIA CORPORATION f/k/a WESTINGHOUSE ELECTRIC CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "PFIZER, INC. (PFIZER)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "REDCO CORPORATION f/k/a CRANE CO.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "RILEY POWER INC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ROPER PUMP COMPANY",
+                    "defendant_parent": "COMMERCE PUMP LLC"
+                },
+                {
+                    "defendant_company": "U.S. RUBBER COMPANY (UNIROYAL)",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "UNION CARBIDE CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "VIKING PUMP, INC.",
+                    "defendant_parent": "IDEX CORPORATION"
+                },
+                {
+                    "defendant_company": "WARREN PUMPS, LLC",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ANCHOR DARLING VALVE COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ARMSTRONG INTERNATIONAL, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ARMSTRONG PUMPS, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "ATWOOD & MORRILL COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "AURORA PUMP COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "CARRIER CORPORATION",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "EATON CORPORATION as successor -in-interest to CUTLER-HAMMER, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FLOWSERVE CORPORATION Individually and Solely as successor to DURCO DURION, BW/IP, ANCHOR DARLING, SUPERIOR GROUP, PACIFIC PUMPS, SIER-BATH PUMPS, EDWARD VOGT, VOGT VALVES, NORDSTROM VALVES, EDWARD VALVE, INC. and ROCKWELL MANUFACTURING COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "FORT KENT HOLDINGS, INC. FORMERLY KNOWN AS DUNHAM-BUSH, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "GOULD ELECTRONICS INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "LENNOX INDUSTRIES, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "RHEEM MANUFACTURING COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "S.A. ARMSTRONG LIMITED",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SCHNEIDER ELECTRIC USA, INC. formerly known as SQUARE D COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SIEMENS INDUSTRY, INC. successor in interest to SIEMENS ENERGY & AUTOMATION, INC.",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "SPIRAX SARCO, INC. Individually and as successor to SARCO COMPANY",
+                    "defendant_parent": null
+                },
+                {
+                    "defendant_company": "TACO, INC.",
+                    "defendant_parent": null
+                }
+            ],
+            "jurisdiction": "unknown"
+        }
+    ]
+}

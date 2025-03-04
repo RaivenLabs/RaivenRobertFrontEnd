@@ -1,0 +1,107 @@
+/* src/pages/menusections/flightdeck/styles/flightdeck.css */
+
+.guide-wrapper {
+    padding: 2rem;
+    background-color: var(--ivory);
+    min-height: 100vh;
+}
+
+.guide-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--royal-blue);
+}
+
+.guide-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.guide-header h1 {
+    color: var(--royal-blue);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.guide-header p {
+    color: var(--teal);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.guide-principle-section {
+    margin-bottom: 3rem;
+}
+
+.guide-principle-title {
+    color: var(--royal-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.guide-principle-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.guide-principle-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+}
+
+.guide-principle-box h3 {
+    color: var(--royal-blue);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.guide-outcome-list {
+    list-style: none;
+    padding: 0;
+}
+
+.guide-outcome-list li {
+    padding: 0.5rem 0;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(19, 36, 64, 0.1);
+}
+
+.guide-outcome-list li:last-child {
+    border-bottom: none;
+}
+
+.guide-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(19, 36, 64, 0.1);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Hover effects */
+.guide-principle-box:hover {
+    transform: var(--hover-transform);
+    box-shadow: var(--hover-shadow);
+    transition: var(--hover-transition);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .guide-wrapper {
+        padding: 1rem;
+    }
+
+    .guide-principle-container {
+        grid-template-columns: 1fr;
+    }
+
+    .guide-header h1 {
+        font-size: 1.75rem;
+    }
+}
+

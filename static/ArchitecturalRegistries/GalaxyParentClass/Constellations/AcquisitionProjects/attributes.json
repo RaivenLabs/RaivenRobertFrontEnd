@@ -1,0 +1,604 @@
+
+
+{
+  "financial": [
+    {
+      "id": "general_expenses",
+      "displayName": "General expenses",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 1
+    },
+    {
+      "id": "profit_margins",
+      "displayName": "Profit margins",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 1000,
+      "order": 2
+    },
+    {
+      "id": "revenue_sources",
+      "displayName": "Where revenue comes from",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 3
+    },
+    {
+      "id": "profit_trend",
+      "displayName": "Profits increasing or decreasing",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 1000,
+      "order": 4
+    },
+    {
+      "id": "creditors_debtors_list",
+      "displayName": "List of creditors and debtors",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 5
+    },
+    {
+      "id": "debt_obligations",
+      "displayName": "Assumption of debt obligations",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 6
+    },
+    {
+      "id": "transition_resources",
+      "displayName": "Financial resources available for operations during the transition",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 7
+    },
+    {
+      "id": "transaction_resources",
+      "displayName": "Financial resources available to cover transaction-related costs",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 8
+    },
+    {
+      "id": "asset_conditions",
+      "displayName": "Conditions on assets and liens",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 9
+    },
+    {
+      "id": "contract_problems",
+      "displayName": "Problems with all existing contracts",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 10
+    },
+    {
+      "id": "litigation_risks",
+      "displayName": "Litigation risks",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 11
+    },
+    {
+      "id": "capex_requirements",
+      "displayName": "List of required capital expenditures and investments",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 12
+    },
+    {
+      "id": "deferred_capex",
+      "displayName": "Deferred capital expenses",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 13
+    },
+    {
+      "id": "projection_accuracy",
+      "displayName": "Accuracy of future projections",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 14
+    },
+    {
+      "id": "revenue_recognition",
+      "displayName": "Uncommon revenue recognition issues that impact the company or industry",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 15
+    },
+    {
+      "id": "ar_aging",
+      "displayName": "AR Aging",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 16
+    },
+    {
+      "id": "ar_issues",
+      "displayName": "Other AR issues",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 17
+    },
+    {
+      "id": "qoe_report",
+      "displayName": "Quality of earnings report",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 18
+    },
+    {
+      "id": "unedited_statements",
+      "displayName": "Unedited financial statements with comparable statements for the last year",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 19
+    },
+    {
+      "id": "ebitda_adjustments",
+      "displayName": "EBITDA and adjustments",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 20
+    },
+    {
+      "id": "financial_statements",
+      "displayName": "Financial statements from the last 3-5 years",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 21
+    },
+    {
+      "id": "margin_statements",
+      "displayName": "Margin statements",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 22
+    },
+    {
+      "id": "one_time_expenses",
+      "displayName": "List of one-time expenses",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 23
+    },
+    {
+      "id": "future_budgets",
+      "displayName": "Future budgets",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 24
+    },
+    {
+      "id": "ap_schedule",
+      "displayName": "AP schedule",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 25
+    },
+    {
+      "id": "accounting_procedures",
+      "displayName": "Documentation of accounting procedures",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 26
+    },
+    {
+      "id": "cash_management",
+      "displayName": "Cash flow and cash management techniques",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 27
+    },
+    {
+      "id": "existing_debt",
+      "displayName": "Existing short- and long-term debt",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 28
+    },
+    {
+      "id": "interest_rates",
+      "displayName": "Interest rates on existing debt",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 29
+    },
+    {
+      "id": "debt_service",
+      "displayName": "Ability to service existing debt",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 30
+    },
+    {
+      "id": "financing_ability",
+      "displayName": "Ability to secure more financing",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 31
+    },
+    {
+      "id": "shareholder_value",
+      "displayName": "Shareholder value analysis",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 32
+    },
+    {
+      "id": "compatibility_audit",
+      "displayName": "Compatibility audit",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 33
+    },
+    {
+      "id": "reconciliation_audit",
+      "displayName": "Reconciliation audit",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 34
+    },
+    {
+      "id": "cost_structure",
+      "displayName": "Fixed and variable costs",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 35
+    },
+    {
+      "id": "owner",
+      "displayName": "Owner",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 36
+    },
+    {
+      "id": "completion_status",
+      "displayName": "Complete?",
+      "dataType": "boolean",
+      "required": true,
+      "order": 37
+    },
+    {
+      "id": "completion_date",
+      "displayName": "Date of Completion",
+      "dataType": "date",
+      "required": false,
+      "order": 38
+    },
+    {
+      "id": "notes",
+      "displayName": "Notes",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 5000,
+      "order": 39
+    }
+  ],
+  "technology_ip": [
+    {
+      "id": "it_costs",
+      "displayName": "IT costs",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 1
+    },
+    {
+      "id": "it_upgrades",
+      "displayName": "IT upgrades needed",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 2
+    },
+    {
+      "id": "disaster_recovery",
+      "displayName": "Documentation of disaster recovery plans",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 3
+    },
+    {
+      "id": "domain_names",
+      "displayName": "Domain names owned or used",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 4
+    },
+    {
+      "id": "patents",
+      "displayName": "Patents held (both foreign and domestic)",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 5
+    },
+    {
+      "id": "trademarks",
+      "displayName": "Trademarks and service marks held",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 6
+    },
+    {
+      "id": "copyrights",
+      "displayName": "Copyrighted material used or owned",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 7
+    },
+    {
+      "id": "ip_protection",
+      "displayName": "IP protection processes, including standard agreements with employees, ex-employees, and consultants",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 3000,
+      "order": 8
+    },
+    {
+      "id": "ip_exceptions",
+      "displayName": "Any exceptions to standard IP protection agreements",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 9
+    },
+    {
+      "id": "trade_secrets",
+      "displayName": "Trade secrets and steps to protect them",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 10
+    },
+    {
+      "id": "ip_litigation",
+      "displayName": "Current IP litigation",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 11
+    },
+    {
+      "id": "trademark_disputes",
+      "displayName": "Trademark disputes that are in process",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 12
+    },
+    {
+      "id": "critical_software",
+      "displayName": "Which software titles are critical to standard ops, and licenses for that software",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 3000,
+      "order": 13
+    },
+    {
+      "id": "open_source",
+      "displayName": "How open source software is used",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 14
+    },
+    {
+      "id": "escrow_arrangements",
+      "displayName": "Odd or unusual escrow arrangements",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 15
+    },
+    {
+      "id": "rd_budget",
+      "displayName": "Research and development budget and plans",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 16
+    },
+    {
+      "id": "pending_patents",
+      "displayName": "Pending patent applications",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 17
+    },
+    {
+      "id": "patent_clearance",
+      "displayName": "Pending patents clearance documents",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 18
+    },
+    {
+      "id": "third_party_ip",
+      "displayName": "Identities provided to or obtained from third parties for IP",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 19
+    },
+    {
+      "id": "ip_liens",
+      "displayName": "Liens on IP",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 20
+    },
+    {
+      "id": "exclusive_licenses",
+      "displayName": "Exclusive tech licenses that have been issued to third parties",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 21
+    },
+    {
+      "id": "owner",
+      "displayName": "Owner",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 22
+    },
+    {
+      "id": "completion_status",
+      "displayName": "Complete?",
+      "dataType": "boolean",
+      "required": true,
+      "order": 23
+    },
+    {
+      "id": "completion_date",
+      "displayName": "Date of Completion",
+      "dataType": "date",
+      "required": false,
+      "order": 24
+    },
+    {
+      "id": "notes",
+      "displayName": "Notes",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 5000,
+      "order": 25
+    }
+  ],
+  "strategic_fit": [
+    {
+      "id": "business_fit",
+      "displayName": "Fit based on business realities or expectations",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 1
+    },
+    {
+      "id": "product_complementarity",
+      "displayName": "Are target company's products complementary to buyer's products?",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 2
+    },
+    {
+      "id": "integration_process",
+      "displayName": "Length and cost of integration process",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 3
+    },
+    {
+      "id": "synergies",
+      "displayName": "Cost savings and other synergies that may occur after integration",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 4
+    },
+    {
+      "id": "marginal_costs",
+      "displayName": "Will marginal costs will rise after integration?",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 5
+    },
+    {
+      "id": "revenue_enhancements",
+      "displayName": "Possible revenue enhancements after integration",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 6
+    },
+    {
+      "id": "retention_plan",
+      "displayName": "Retention plan for key staff members",
+      "dataType": "text",
+      "required": true,
+      "maxLength": 2000,
+      "order": 7
+    },
+    {
+      "id": "owner",
+      "displayName": "Owner",
+      "dataType": "string",
+      "required": true,
+      "maxLength": 100,
+      "order": 8
+    },
+    {
+      "id": "completion_status",
+      "displayName": "Complete?",
+      "dataType": "boolean",
+      "required": true,
+      "order": 9
+    },
+    {
+      "id": "completion_date",
+      "displayName": "Date of Completion",
+      "dataType": "date",
+      "required": false,
+      "order": 10
+    },
+    {
+      "id": "notes",
+      "displayName": "Notes",
+      "dataType": "text",
+      "required": false,
+      "maxLength": 5000,
+      "order": 11
+    }
+  ]
+}

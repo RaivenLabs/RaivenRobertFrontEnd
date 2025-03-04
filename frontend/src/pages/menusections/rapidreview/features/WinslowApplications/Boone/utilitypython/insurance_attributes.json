@@ -1,0 +1,114 @@
+{
+  "insurance": [
+    {
+      "attribute_id": "self_insurance_arrangements",
+      "display_name": "Self-Insurance Arrangements",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 1
+    },
+    {
+      "attribute_id": "umbrella_policies",
+      "display_name": "Umbrella Policies",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 2
+    },
+    {
+      "attribute_id": "car_insurance",
+      "display_name": "Car Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 3
+    },
+    {
+      "attribute_id": "do_key_person_insurance",
+      "display_name": "D&O/Key Person Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 4
+    },
+    {
+      "attribute_id": "eo_insurance",
+      "display_name": "E&O Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 5
+    },
+    {
+      "attribute_id": "employee_liability_insurance",
+      "display_name": "Employee Liability Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 6
+    },
+    {
+      "attribute_id": "general_liability_insurance",
+      "display_name": "General Liability Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 7
+    },
+    {
+      "attribute_id": "health_insurance",
+      "display_name": "Health Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 8
+    },
+    {
+      "attribute_id": "intellectual_property_insurance",
+      "display_name": "Intellectual Property Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 9
+    },
+    {
+      "attribute_id": "workers_compensation_insurance",
+      "display_name": "Worker's Compensation Insurance",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 10
+    },
+    {
+      "attribute_id": "owner",
+      "display_name": "Owner",
+      "data_type": "string",
+      "required": true,
+      "max_length": 100,
+      "order_num": 11
+    },
+    {
+      "attribute_id": "completion_status",
+      "display_name": "Completion Status",
+      "data_type": "boolean",
+      "required": true,
+      "order_num": 12
+    },
+    {
+      "attribute_id": "completion_date",
+      "display_name": "Completion Date",
+      "data_type": "date",
+      "required": false,
+      "order_num": 13
+    },
+    {
+      "attribute_id": "notes",
+      "display_name": "Notes",
+      "data_type": "text",
+      "required": false,
+      "max_length": 2000,
+      "order_num": 14
+    }
+  ]
+}
