@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProviderGroupGovernance from './ProviderGroupGovernance';
+import { SupplierProvider, useSupplier } from './SupplierContext';
 
 // Sample provider data for development
 const sampleProviders = [
@@ -386,29 +387,96 @@ const CypressProviders = () => {
       return { success: false, error: error.message };
     }
   };
+
+
+
+
+
+
+  const handleExtractDocument = async (file, documentType) => {
+    
+    console.log("🚀 Hey! Arrived safely in handleExtractDocument. Ready to get to work!");
+    console.log(`File: ${file.name}, Size: ${file.size} bytes, Type: ${documentType}`);
+    
+    try {
+      // Create form data to send the file
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('documentType', documentType);
+      
+      console.log(`Extracting data from ${documentType} document: ${file.name}`);
+      
+      // Make the API call
+      const response = await fetch('/api/extract-document-data', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to extract data: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('Extracted data:', data);
+      
+      // For MSA documents, normalize data structure as needed
+      if (documentType === 'masterAgreement') {
+        // Ensure consistent data format
+        return {
+          name: data.name || '',
+          msaReference: data.msaReference || '',
+          agreementType: data.agreementType || '',
+          effectiveDate: data.effectiveDate || '',
+          termEndDate: data.termEndDate || '',
+          autoRenewal: !!data.autoRenewal,
+          website: data.website || '',
+          contacts: Array.isArray(data.contacts) ? data.contacts : []
+        };
+      }
+      
+      // Return the raw data for other document types
+      return data;
+    } catch (error) {
+      console.error('Error in document extraction:', error);
+      // Return empty object on error to avoid breaking the UI
+      return {};
+    }
+  };
+
+
+
+
+
+
+
   
   return (
     <div className="p-6" style={{ maxWidth: '1780px', margin: '0 auto' }}>
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="bg-royalBlue text-white p-4 border-b border-gray-200">
-          <h1 className="text-2xl font-bold">Provider Group Governance</h1>
+          <h1 className="text-2xl font-bold">Supplier Group Governance</h1>
           <p className="text-sm text-blue-100 mt-1">
             Master Service Agreements and Supplier Relationship Management
           </p>
         </div>
         
         <div className="p-4">
-          <ProviderGroupGovernance
-            title="Provider Management"
-            data={data}
-            loading={loading}
-            error={error}
-            onUpdateProvider={handleUpdateProvider}
-            onDeleteProvider={handleDeleteProvider}
-            onCreateProvider={handleCreateProvider}
+          <SupplierProvider
+            initialData={data?.suppliers}
+            onUpdateSupplier={handleUpdateProvider}
+            onDeleteSupplier={handleDeleteProvider}
+            onCreateSupplier={handleCreateProvider}
             onRefreshData={fetchData}
             onUploadArtifact={handleUploadArtifact}
-          />
+            onExtractDocument={handleExtractDocument}
+          >
+            <ProviderGroupGovernance
+              title="Supplier Configuration"
+              data={data}
+              loading={loading}
+              error={error}
+            />
+          </SupplierProvider>
         </div>
       </div>
       

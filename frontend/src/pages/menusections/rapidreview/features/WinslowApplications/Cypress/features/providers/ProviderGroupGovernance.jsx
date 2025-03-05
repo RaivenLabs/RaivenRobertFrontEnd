@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProviderTable from './components/ProviderTable';
-import NewProviderForm from './components/NewProviderForm';
+import NewProviderForm from './components/NewSupplierWorkflow';
 import TabNavigation from './components/TabNavigation';
 
 const ProviderGroupGovernance = ({
@@ -163,8 +163,8 @@ const defaultProviders = [
 
   // Define tabs for the TabNavigation component
   const tabs = [
-    { id: 'providers', label: 'Provider Management' },
-    { id: 'new-provider', label: 'Add New Provider' }
+    { id: 'providers', label: 'Supplier Updates' },
+    { id: 'new-provider', label: 'Add New Supplier' }
   ];
 
   // Component loading state
