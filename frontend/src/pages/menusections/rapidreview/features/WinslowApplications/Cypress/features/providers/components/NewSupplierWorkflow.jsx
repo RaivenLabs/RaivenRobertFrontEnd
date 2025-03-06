@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardContent, CardTitle } from './CardTitle';
-import DocumentUploadSection from './DocumentUploadSection';
+import DocumentUploadSection from './DocumentUploadSection97';
 import RateCardSection from './RateCardSection';
 import SupplierInfoForm from './SupplierInformationForm';
 import ReviewSection from './ReviewSection';

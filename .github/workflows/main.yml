@@ -29,11 +29,11 @@ jobs:
         - run: |
             npm install
             npm i tailwind-merge dotenv
-          working-directory: transaction_platform_app/frontend/
+          working-directory: frontend/
   
         # Create build artifacts
         - run: npm run build:develop
-          working-directory: transaction_platform_app/frontend/
+          working-directory: frontend/
           env:
             REACT_APP_ENV: develop 
         
@@ -47,7 +47,7 @@ jobs:
         # Copy distribution static files to Amazon S3 for static hosting
         - name: Upload to Amazon S3
           run: aws s3 sync build/ s3://x3jix71g-develop-app
-          working-directory: transaction_platform_app/frontend/
+          working-directory: frontend/
   
         # Invalid CloudFront caches
         - name: Invalidate Amazon CloudFront distribution
@@ -74,11 +74,11 @@ jobs:
         - run: |
             npm install
             npm i tailwind-merge dotenv
-          working-directory: transaction_platform_app/frontend/
+          working-directory: frontend/
   
         # Create build artifacts
         - run: npm run build:production
-          working-directory: transaction_platform_app/frontend/
+          working-directory: frontend/
           env:
             REACT_APP_ENV: production
   
@@ -92,7 +92,7 @@ jobs:
         # Copy distribution static files to Amazon S3 for static hosting
         - name: Upload to Amazon S3
           run: aws s3 sync build/ s3://x3jix71g-default-app
-          working-directory: transaction_platform_app/frontend/
+          working-directory: frontend/
   
         # Invalid CloudFront caches
         - name: Invalidate Amazon CloudFront distribution
