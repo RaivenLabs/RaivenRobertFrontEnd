@@ -8,9 +8,12 @@ const Landed = () => {
         {/* Header Section */}
         <header className="bg-royalBlue text-ivory py-12 px-4 text-center rounded-lg mb-8">
           <h1 className="text-4xl font-semibold mb-4">Landed Projects</h1>
-          <p className="text-xl max-w-3xl mx-auto mb-2">Post-Close Lifecycle Management</p>
+          <p className="text-xl max-w-3xl mx-auto mb-2">
+            Post-Close Lifecycle Management
+          </p>
           <p className="text-lg max-w-3xl mx-auto">
-            Managing the vigorous post-closing life of your enterprise agreements
+            Managing the vigorous post-closing life of your enterprise
+            agreements
           </p>
         </header>
 
@@ -41,12 +44,16 @@ const Landed = () => {
             <div className="flex flex-col items-center justify-center py-8">
               <div className="text-center">
                 <div className="text-6xl text-teal mb-4">↔</div>
-                <span className="text-teal font-semibold text-lg">Dynamic Lifecycle</span>
+                <span className="text-teal font-semibold text-lg">
+                  Dynamic Lifecycle
+                </span>
               </div>
             </div>
 
             <div className="bg-lightGray p-8 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-6">Intelligent Tracking</h3>
+              <h3 className="text-xl font-semibold mb-6">
+                Intelligent Tracking
+              </h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-lg">
                   <span className="text-teal mr-3 text-xl">✓</span>
@@ -73,35 +80,37 @@ const Landed = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Agreement Family Tree",
-                desc: "Visual hierarchy of master agreements, orders, and amendments with expandable/collapsible nodes."
+                title: 'Agreement Family Tree',
+                desc: 'Visual hierarchy of master agreements, orders, and amendments with expandable/collapsible nodes.',
               },
               {
-                title: "Compliance Dashboard",
-                desc: "Real-time monitoring of regulatory requirements, policy updates, and compliance deadlines."
+                title: 'Compliance Dashboard',
+                desc: 'Real-time monitoring of regulatory requirements, policy updates, and compliance deadlines.',
               },
               {
-                title: "Event Logger",
-                desc: "Chronological tracking of all agreement-related events, changes, and updates."
+                title: 'Event Logger',
+                desc: 'Chronological tracking of all agreement-related events, changes, and updates.',
               },
               {
-                title: "Policy Manager",
-                desc: "Track and implement enterprise-wide policy changes across agreement portfolios."
+                title: 'Policy Manager',
+                desc: 'Track and implement enterprise-wide policy changes across agreement portfolios.',
               },
               {
-                title: "Order Tracker",
-                desc: "Monitor new orders, change requests, and amendments under master agreements."
+                title: 'Order Tracker',
+                desc: 'Monitor new orders, change requests, and amendments under master agreements.',
               },
               {
-                title: "Alert System",
-                desc: "Proactive notifications for upcoming deadlines, required actions, and policy updates."
-              }
+                title: 'Alert System',
+                desc: 'Proactive notifications for upcoming deadlines, required actions, and policy updates.',
+              },
             ].map((feature, index) => (
               <div
                 key={index}
                 className="bg-lightGray p-6 rounded-lg shadow-md hover:-translate-y-1 transition-transform duration-300"
               >
-                <h3 className="text-xl font-semibold text-royalBlue mb-4">{feature.title}</h3>
+                <h3 className="text-xl font-semibold text-royalBlue mb-4">
+                  {feature.title}
+                </h3>
                 <p className="text-gray-600">{feature.desc}</p>
               </div>
             ))}
@@ -115,7 +124,9 @@ const Landed = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <div className="bg-lightGray p-8 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-6">Agreement Family Tree</h3>
+              <h3 className="text-xl font-semibold mb-6">
+                Agreement Family Tree
+              </h3>
               <ul className="space-y-4">
                 <li>• Hierarchical visualization</li>
                 <li>• Expandable/collapsible nodes</li>
@@ -139,8 +150,11 @@ const Landed = () => {
 
         {/* Footer */}
         <footer className="bg-royalBlue text-ivory text-center py-8 px-4 mt-12 rounded-lg">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-             Built for serious business with a smile. Radical generosity is our motto!</p>
+          <p>
+            © 2025 Tangible Intelligence, ai. The Tangible Intelligence
+            Platform. Built for serious business with a smile. Radical
+            generosity is our motto!
+          </p>
         </footer>
       </div>
     </div>

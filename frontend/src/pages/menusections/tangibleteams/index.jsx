@@ -1,8 +1,17 @@
 import React from 'react';
-import { 
-  Target, Rocket, Scale, Clock,
-  Brain, Handshake, Gauge, Workflow,
-  CheckCircle, BarChart, Zap, Shield
+import {
+  Target,
+  Rocket,
+  Scale,
+  Clock,
+  Brain,
+  Handshake,
+  Gauge,
+  Workflow,
+  CheckCircle,
+  BarChart,
+  Zap,
+  Shield,
 } from 'lucide-react';
 
 const TangibleTeamsOverview = () => {
@@ -13,7 +22,10 @@ const TangibleTeamsOverview = () => {
         <div className="guide-container">
           <h1>Strike Teams</h1>
           <p>Elite Domain Specialists Deployed with Purpose</p>
-          <p>Specialized rapid-response teams delivering transformational outcomes</p>
+          <p>
+            Specialized rapid-response teams delivering transformational
+            outcomes
+          </p>
         </div>
       </header>
 
@@ -21,16 +33,17 @@ const TangibleTeamsOverview = () => {
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <div className="max-w-4xl mx-auto bg-gray-50 p-8 rounded-xl border border-gray-200">
           <p className="text-lg leading-relaxed text-gray-700">
-            We are specialized rapid-response teams of industry veterans who combine deep expertise 
-            with tactical execution. Operating at the intersection of strategic insight and 
-            operational excellence, we deliver rapid results that create lasting enterprise value.
+            We are specialized rapid-response teams of industry veterans who
+            combine deep expertise with tactical execution. Operating at the
+            intersection of strategic insight and operational excellence, we
+            deliver rapid results that create lasting enterprise value.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {[
-              "Deploy instantly-effective experts who understand your mission-critical needs",
-              "Execute with unmatched precision and unwavering focus on results",
-              "Bring proven experience to navigate complex challenges",
-              "Deliver transformational outcomes with remarkable efficiency"
+              'Deploy instantly-effective experts who understand your mission-critical needs',
+              'Execute with unmatched precision and unwavering focus on results',
+              'Bring proven experience to navigate complex challenges',
+              'Deliver transformational outcomes with remarkable efficiency',
             ].map((point, index) => (
               <div key={index} className="flex items-start">
                 <Shield className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -50,36 +63,40 @@ const TangibleTeamsOverview = () => {
           {[
             {
               icon: <Target className="w-8 h-8" />,
-              title: "Strategic Enterprise Focus",
-              description: "Driving deal execution that transforms enterprise value",
+              title: 'Strategic Enterprise Focus',
+              description:
+                'Driving deal execution that transforms enterprise value',
               points: [
-                "Deliver measurable business impact",
-                "Balance risk with commercial opportunity",
-                "Enable digital-first value drivers"
-              ]
+                'Deliver measurable business impact',
+                'Balance risk with commercial opportunity',
+                'Enable digital-first value drivers',
+              ],
             },
             {
               icon: <Zap className="w-8 h-8" />,
-              title: "Accelerated Value Creation",
-              description: "Optimizing speed through smart execution",
+              title: 'Accelerated Value Creation',
+              description: 'Optimizing speed through smart execution',
               points: [
-                "Deploy proven, tech-enabled methodologies",
-                "Streamline digital workflows",
-                "Focus on value-driving terms"
-              ]
+                'Deploy proven, tech-enabled methodologies',
+                'Streamline digital workflows',
+                'Focus on value-driving terms',
+              ],
             },
             {
               icon: <Target className="w-8 h-8" />,
-              title: "Precision Execution",
-              description: "Applying expertise with purpose",
+              title: 'Precision Execution',
+              description: 'Applying expertise with purpose',
               points: [
-                "Balance human insight with digital efficiency",
-                "Design scalable, automated solutions",
-                "Drive data-informed outcomes"
-              ]
-            }
+                'Balance human insight with digital efficiency',
+                'Design scalable, automated solutions',
+                'Drive data-informed outcomes',
+              ],
+            },
           ].map((approach, index) => (
-            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl overflow-hidden"
+            >
               <div className="bg-gray-50 p-6">
                 <div className="text-royalBlue mb-4">{approach.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{approach.title}</h3>
@@ -107,49 +124,54 @@ const TangibleTeamsOverview = () => {
           {[
             {
               icon: <Brain className="w-8 h-8" />,
-              title: "Enterprise Intelligence",
-              description: "Mastering corporate complexities with precision",
+              title: 'Enterprise Intelligence',
+              description: 'Mastering corporate complexities with precision',
               points: [
-                "Navigate enterprise priorities with insight",
-                "Drive cross-functional alignment",
-                "Orchestrate stakeholder outcomes"
-              ]
+                'Navigate enterprise priorities with insight',
+                'Drive cross-functional alignment',
+                'Orchestrate stakeholder outcomes',
+              ],
             },
             {
               icon: <Workflow className="w-8 h-8" />,
-              title: "Digital Excellence",
-              description: "Maximizing value through intelligent automation",
+              title: 'Digital Excellence',
+              description: 'Maximizing value through intelligent automation',
               points: [
-                "Optimize AI-powered contract analysis",
-                "Design custom digital workflows",
-                "Deploy predictive analytics solutions"
-              ]
+                'Optimize AI-powered contract analysis',
+                'Design custom digital workflows',
+                'Deploy predictive analytics solutions',
+              ],
             },
             {
               icon: <Handshake className="w-8 h-8" />,
-              title: "Transaction Expertise",
-              description: "Delivering results at enterprise scale",
+              title: 'Transaction Expertise',
+              description: 'Delivering results at enterprise scale',
               points: [
-                "Execute complex multi-party negotiations",
-                "Assess and mitigate risk strategically",
-                "Scale through automated processes"
-              ]
+                'Execute complex multi-party negotiations',
+                'Assess and mitigate risk strategically',
+                'Scale through automated processes',
+              ],
             },
             {
               icon: <Rocket className="w-8 h-8" />,
-              title: "Speed to Impact",
-              description: "Accelerating value creation",
+              title: 'Speed to Impact',
+              description: 'Accelerating value creation',
               points: [
-                "Drive rapid deal completion",
-                "Enable efficient decision-making",
-                "Resolve bottlenecks proactively"
-              ]
-            }
+                'Drive rapid deal completion',
+                'Enable efficient decision-making',
+                'Resolve bottlenecks proactively',
+              ],
+            },
           ].map((capability, index) => (
-            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl overflow-hidden"
+            >
               <div className="bg-gray-50 p-6">
                 <div className="text-royalBlue mb-4">{capability.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{capability.title}</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  {capability.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{capability.description}</p>
                 <ul className="space-y-2">
                   {capability.points.map((point, pIndex) => (
@@ -174,23 +196,30 @@ const TangibleTeamsOverview = () => {
           {[
             {
               icon: <Clock className="w-8 h-8" />,
-              title: "Velocity",
-              description: "Accelerated completion through intelligent execution"
+              title: 'Velocity',
+              description:
+                'Accelerated completion through intelligent execution',
             },
             {
               icon: <BarChart className="w-8 h-8" />,
-              title: "Scale",
-              description: "Enterprise-level portfolio management powered by technology"
+              title: 'Scale',
+              description:
+                'Enterprise-level portfolio management powered by technology',
             },
             {
               icon: <Gauge className="w-8 h-8" />,
-              title: "Quality",
-              description: "Precision delivery with risk-calibrated oversight"
-            }
+              title: 'Quality',
+              description: 'Precision delivery with risk-calibrated oversight',
+            },
           ].map((impact, index) => (
-            <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl overflow-hidden"
+            >
               <div className="bg-gray-50 p-6 text-center">
-                <div className="text-royalBlue mb-4 flex justify-center">{impact.icon}</div>
+                <div className="text-royalBlue mb-4 flex justify-center">
+                  {impact.icon}
+                </div>
                 <h3 className="text-xl font-semibold mb-2">{impact.title}</h3>
                 <p className="text-gray-600">{impact.description}</p>
               </div>
@@ -202,14 +231,16 @@ const TangibleTeamsOverview = () => {
       {/* Commitments */}
       <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Our Commitments</h2>
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+            Our Commitments
+          </h2>
           <div className="border border-gray-200 rounded-xl overflow-hidden">
             <div className="bg-gray-50 p-6">
               <ul className="space-y-4">
                 {[
-                  "Drive customer success through every decision",
-                  "Focus resources on business-critical priorities",
-                  "Enhance human expertise with digital intelligence"
+                  'Drive customer success through every decision',
+                  'Focus resources on business-critical priorities',
+                  'Enhance human expertise with digital intelligence',
                 ].map((commitment, index) => (
                   <li key={index} className="flex items-start">
                     <Shield className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -224,7 +255,10 @@ const TangibleTeamsOverview = () => {
 
       {/* Footer */}
       <footer className="guide-footer">
-        <p>© 2024 Tangible Intelligence, ai. Elite teams delivering transformational outcomes.</p>
+        <p>
+          © 2025 Tangible Intelligence, ai. Elite teams delivering
+          transformational outcomes.
+        </p>
       </footer>
     </div>
   );

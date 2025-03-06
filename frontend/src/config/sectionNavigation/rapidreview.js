@@ -45,7 +45,7 @@ const rapidreviewConfig = {
 
       {
         id: 'winslowapplications',
-        label: 'Application Prototypes',
+        label: 'Winslow Applications',
         icon: 'template',
         type: 'menu',
         route:'rapidresponse/winslowapplications'

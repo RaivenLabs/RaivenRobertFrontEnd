@@ -26,7 +26,7 @@ const ProjectSelectionPanel = ({ onProjectSelected }) => {
     { id: 'hr', name: 'HR', icon: Users, enabled: false }
   ];
 
-  // Simulated project data
+  // Simulated project data (would come from an API in production)
   const projectsByProgram = {
     ma: [
       { id: 'sequoia', name: 'Project Sequoia', status: 'in-progress', enabled: false },

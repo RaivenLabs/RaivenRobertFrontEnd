@@ -2,57 +2,54 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SpeakeasyGateway from './components/SpeakeasyGateway';
 import { useSpeakeasy } from '../../../context/SpeakeasyContext';
-import { 
-  Coffee, 
+import {
+  Coffee,
   Clipboard,
-  Book, 
-  Code, 
-  Utensils, 
+  Book,
+  Code,
+  Utensils,
   Brain,
   Palette,
   Plane,
   Globe,
-  Bot
+  Bot,
 } from 'lucide-react';
 
 const SpeakeasyContent = () => {
   const navigate = useNavigate();
   const { setSpeakeasyAccess } = useSpeakeasy();
- 
-
-
 
   const applications = [
     {
-      title: "Florence Food Guide",
-      desc: "Curated list of the best gelaterias and restaurants in Florence.",
-      icon: Coffee
+      title: 'Florence Food Guide',
+      desc: 'Curated list of the best gelaterias and restaurants in Florence.',
+      icon: Coffee,
     },
     {
-      title: "10K Trainer",
-      desc: "Personalized training program for your next 10K race.",
-      icon: Clipboard
+      title: '10K Trainer',
+      desc: 'Personalized training program for your next 10K race.',
+      icon: Clipboard,
     },
     {
-      title: "Seminary Reading Guide",
-      desc: "Structured approach to theological studies.",
-      icon: Book
+      title: 'Seminary Reading Guide',
+      desc: 'Structured approach to theological studies.',
+      icon: Book,
     },
     {
-      title: "Dev Learning Path",
-      desc: "Software engineering mastery in 10 steps.",
-      icon: Code
+      title: 'Dev Learning Path',
+      desc: 'Software engineering mastery in 10 steps.',
+      icon: Code,
     },
     {
-      title: "London Dining",
+      title: 'London Dining',
       desc: "Inside track to London's best restaurants.",
-      icon: Utensils
+      icon: Utensils,
     },
     {
-      title: "Personal RAG",
-      desc: "Build your own AI-powered knowledge base.",
-      icon: Brain
-    }
+      title: 'Personal RAG',
+      desc: 'Build your own AI-powered knowledge base.',
+      icon: Brain,
+    },
   ];
 
   const handleLeave = () => {
@@ -67,7 +64,10 @@ const SpeakeasyContent = () => {
         <div className="guide-container">
           <h1>The Tangible Speakeasy</h1>
           <p>Your Gateway to Life Beyond the Desk</p>
-          <p>Discover apps that make life more enjoyable, both in and out of the office.</p>
+          <p>
+            Discover apps that make life more enjoyable, both in and out of the
+            office.
+          </p>
         </div>
       </header>
 
@@ -129,9 +129,7 @@ const SpeakeasyContent = () => {
             >
               Leave Speakeasy
             </button>
-            <button
-              className="px-6 py-3 bg-navyBlue text-ivory rounded hover:bg-royalBlue-hover transition-colors"
-            >
+            <button className="px-6 py-3 bg-navyBlue text-ivory rounded hover:bg-royalBlue-hover transition-colors">
               More
             </button>
           </div>
@@ -139,7 +137,9 @@ const SpeakeasyContent = () => {
       </section>
 
       <footer className="guide-footer">
-        <p>© 2024 Tangible Intelligence, ai. Making work and life more enjoyable.</p>
+        <p>
+          © 2025 Tangible Intelligence, ai. Making work and life more enjoyable.
+        </p>
       </footer>
     </div>
   );
@@ -160,7 +160,11 @@ const Speakeasy = () => {
     setHasAccess(true);
   };
 
-  return hasAccess ? <SpeakeasyContent /> : <SpeakeasyGateway onAccessGranted={handleAccessGranted} />;
+  return hasAccess ? (
+    <SpeakeasyContent />
+  ) : (
+    <SpeakeasyGateway onAccessGranted={handleAccessGranted} />
+  );
 };
 
 export default Speakeasy;

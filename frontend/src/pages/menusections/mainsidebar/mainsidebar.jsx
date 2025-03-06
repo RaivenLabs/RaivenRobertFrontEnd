@@ -30,7 +30,6 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
     console.log('Getting label for item:', item);
     console.log('Customer type:', customerType);
     console.log('Current config:', config);
-    
     if (item.useConfigLabel) {
       if (config?.menu_config) {
         if (item.id === 'companyreport') {
@@ -40,7 +39,6 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
           return config.menu_config.applications_dock_text;
         }
       }
-      
       const companyName = config?.company_name || 'Hawkeye';
       if (item.id === 'companyreport') {
         return `${companyName} Briefing Room`;
@@ -60,7 +58,7 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
       level: 'main',
       type: item.type,
       route: item.route,
-      hasSubmenu: item.hasSubmenu
+      hasSubmenu: item.hasSubmenu,
     });
 
     if (item.hasSubmenu) {
@@ -70,12 +68,10 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
     }
 
     console.log('🚀 Transitioning to section:', item.id);
-    
     if (item.route) {
       console.log('📍 Navigating to route:', item.route);
       navigate(`/${item.route}`);
     }
-    
     // Use context instead of prop
     console.log('🔄 MainSidebar: Setting sidebar to:', item.id);
     setActiveSidebar(item.id);
@@ -104,7 +100,7 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
 
   return (
     <>
-      <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
+      <div className="flex flex-col justify-between h-full bg-sidebarDark text-ivory shadow-sidebar relative">
         <div className="mb-6">
           <div className="text-2xl font-bold text-cyan mb-2 p-6">
             {getSidebarText()}
@@ -112,16 +108,16 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
           <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
         </div>
 
-        <nav className="flex-1 overflow-y-auto">
+        <nav className="overflow-y-auto mt-[24px]">
           {navigationConfig.mainItems.map((item) => (
             <div key={item.id}>
               <button
                 onClick={() => handleMainNavigation(item)}
-                className={`w-full px-6 py-3 flex items-center justify-between 
-                  hover:bg-royalBlue-hover transition-colors text-xl group
+                className={`w-full px-6 py-2 flex items-center justify-between 
+                  hover:bg-gray-light transition-colors text-lg group
                   ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 text-gray-medium">
                   {item.icon && (
                     <svg className="w-5 h-5 text-ivory fill-current">
                       <use href={`#icon-${item.icon}`} />
@@ -144,7 +140,7 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
                     <button
                       key={subItem.id}
                       onClick={() => handleMainNavigation({...subItem, level: 'main'})}
-                      className="w-full pl-14 py-2 text-left hover:bg-royalBlue-hover text-sm transition-colors"
+                      className="w-full pl-14 py-2 text-left hover:bg-gray-light text-sm transition-colors"
                     >
                       {subItem.label}
                     </button>
@@ -178,7 +174,7 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
         </div>
 
         <div className="mt-auto border-t border-gray-700">
-          <p className="text-1xl text-cyan mb-2 p-3">Powered by Tangible CoIntelligence</p>
+          <p className="mb-2 p-6 text-gray-500">Powered by Tangible CoIntelligence</p>
         </div>
       </div>
 

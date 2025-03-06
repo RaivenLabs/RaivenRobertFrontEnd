@@ -9,7 +9,6 @@ const FlightDeckSidebar = ({ onSidebarChange }) => {
 
   useEffect(() => {
     console.log('Initial flightdeckConfig:', flightdeckConfig);
-    
     // Safely set section items
     if (flightdeckConfig?.sectionItems) {
       console.log('Setting section items:', flightdeckConfig.sectionItems);
@@ -24,7 +23,7 @@ const FlightDeckSidebar = ({ onSidebarChange }) => {
       id: item.id,
       level: 'section',
       type: item.type,
-      route: item.route
+      route: item.route,
     });
 
     // Navigate to application
@@ -38,7 +37,6 @@ const FlightDeckSidebar = ({ onSidebarChange }) => {
     console.log('⬅️ Returning to main menu');
     onSidebarChange('main');
     navigate('/');
-
   };
 
   return (
@@ -81,7 +79,7 @@ const FlightDeckSidebar = ({ onSidebarChange }) => {
       </div>
 
       <div className="mt-auto border-t border-gray-700">
-        <p className=" text-cyan mb-2 p-6">Powered by Tangible Intelligence</p>
+        <p className="mb-2 p-6">Powered by Tangible Intelligence</p>
       </div>
     </div>
   );
