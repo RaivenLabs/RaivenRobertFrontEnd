@@ -104,30 +104,25 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
 
   return (
     <>
-      <div className="flex flex-col h-full bg-sidebarDark text-ivory shadow-sidebar relative">
-        <div className="mb-6">
-          <div className="text-2xl font-bold text-cyan mb-2 p-6">
-            {getSidebarText()}
-          </div>
-          <div className="w-full h-[2px] bg-[rgb(229,241,241)] mt-[5px] mb-[15px] shadow-[0_0_8px_rgb(229,241,241)]" />
-        </div>
-
-        <nav className="flex-1 overflow-y-auto">
+      <div className="flex flex-col justify-between h-full bg-sidebarDark text-ivory shadow-sidebar relative">
+        <nav className="overflow-y-auto mt-[24px]">
           {navigationConfig.mainItems.map((item) => (
             <div key={item.id}>
               <button
-                onClick={() => handleMainNavigation(item)}
-                className={`w-full px-6 py-3 flex items-center justify-between 
-                  hover:bg-royalBlue-hover transition-colors text-xl group
-                  ${activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''}`}
+              onClick={() => handleMainNavigation(item)}
+              className={`w-full px-6 py-2 flex items-center justify-between 
+                  hover:bg-gray-light transition-colors text-lg group
+                  ${
+                    activeItem === item.id ? 'bg-[var(--sidebar-active)]' : ''
+                  }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 text-gray-medium">
                   {item.icon && (
-                    <svg className="w-5 h-5 text-ivory fill-current">
+                    <svg className="w-5 h-5 fill-current">
                       <use href={`#icon-${item.icon}`} />
                     </svg>
                   )}
-                  <span>{getItemLabel(item)}</span>
+                  <div className="text-start">{getItemLabel(item)}</div>
                 </div>
                 {item.hasSubmenu && (
                   <ChevronRight 
@@ -144,7 +139,7 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
                     <button
                       key={subItem.id}
                       onClick={() => handleMainNavigation({...subItem, level: 'main'})}
-                      className="w-full pl-14 py-2 text-left hover:bg-royalBlue-hover text-sm transition-colors"
+                      className="w-full pl-14 py-2 text-left hover:bg-gray-light text-sm transition-colors"
                     >
                       {subItem.label}
                     </button>
@@ -178,7 +173,7 @@ const MainSidebar = () => {  // Remove onSidebarChange prop
         </div>
 
         <div className="mt-auto border-t border-gray-700">
-          <p className="text-1xl text-cyan mb-2 p-3">Powered by Tangible CoIntelligence</p>
+          <p className="mb-2 p-6 text-gray-500">Powered by Tangible CoIntelligence</p>
         </div>
       </div>
 
