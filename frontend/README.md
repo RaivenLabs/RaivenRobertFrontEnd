@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Troubleshooting
+If you see this error: `Error: error:0308010C:digital envelope routines::unsupported`, try running `npm audit fix` and
+`export NODE_OPTIONS=--openssl-legacy-provider`
+
+If you get a can't find module tailwind-merge, run `npm i tailwind-merge`

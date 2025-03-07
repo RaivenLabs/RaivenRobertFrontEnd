@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardContent, CardTitle } from './CardTitle';
-import DocumentUploadSection from './DocumentUploadSection';
+import DocumentUploadSection from './DocumentUploadSection97';
 import RateCardSection from './RateCardSection';
 
 const NewSupplierWorkflow = ({ onSaveSupplier, onExtractDocumentData, onUploadArtifact }) => {

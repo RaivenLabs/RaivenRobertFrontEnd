@@ -1,19 +1,23 @@
 // src/pages/menusections/flightdeck/index.jsx
 import React from 'react';
 
-
 const FlightDeckContent = () => (
   <div className="guide-wrapper">
     <header className="guide-header">
       <div className="guide-container">
         <h1>Mission Control</h1>
         <p>Program Management & Control Center</p>
-        <p>Monitor, direct and manage your entire platform program from inception to completion.</p>
+        <p>
+          Monitor, direct and manage your entire platform program from inception
+          to completion.
+        </p>
       </div>
     </header>
 
     <section className="guide-principle-section">
-      <h2 className="guide-principle-title"></h2>
+      <h2 className="text-3xl font-semibold text-royalBlue text-center mb-8">
+        Principles
+      </h2>
       <div className="guide-principle-container">
         <div className="guide-principle-box">
           <h3>Program Overview</h3>
@@ -46,7 +50,9 @@ const FlightDeckContent = () => (
     </section>
 
     <section className="guide-principle-section">
-      <h2 className="guide-principle-title">Program Intelligence</h2>
+      <h2 className="text-3xl font-semibold text-royalBlue text-center mb-8">
+        Program Intelligence
+      </h2>
       <div className="guide-principle-container">
         <div className="guide-principle-box">
           <h3>Analytics Hub</h3>
@@ -79,7 +85,10 @@ const FlightDeckContent = () => (
     </section>
 
     <footer className="guide-footer">
-      <p>Comprehensive program management for your enterprise platform implementation.</p>
+      <p>
+        © 2025 Tangible Intelligence, ai. Comprehensive program management for
+        your enterprise platform implementation.
+      </p>
     </footer>
   </div>
 );

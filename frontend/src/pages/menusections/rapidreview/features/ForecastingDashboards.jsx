@@ -5,27 +5,26 @@ import SupplyChainForecastingDashboard from './SupplyChainForecastingDashboard';
 
 const ForecastingDashboards = () => {
   const [selectedGroup, setSelectedGroup] = useState('sourcing');
-  
   const dashboardGroups = [
     {
       id: 'sourcing',
       title: 'Sourcing Analytics',
-      description: 'Vendor spend and demand forecasting trends'
+      description: 'Vendor spend and demand forecasting trends',
     },
     {
       id: 'legal',
       title: 'Legal Operations',
-      description: 'Matter volume and complexity forecasting'
+      description: 'Matter volume and complexity forecasting',
     },
     {
       id: 'supply-chain',
       title: 'Supply Chain Insights',
-      description: 'Demand, inventory, and supplier performance predictions'
-    }
+      description: 'Demand, inventory, and supplier performance predictions',
+    },
   ];
 
   const renderDashboard = () => {
-    switch(selectedGroup) {
+    switch (selectedGroup) {
       case 'sourcing':
         return <SourcingForecastDashboard />;
       case 'legal':
@@ -57,9 +56,11 @@ const ForecastingDashboards = () => {
               key={group.id}
               onClick={() => setSelectedGroup(group.id)}
               className={`p-6 rounded-lg border-2 text-left transition-all duration-200
-                ${selectedGroup === group.id 
-                  ? 'border-blue-600 bg-blue-50 shadow-md transform scale-105' 
-                  : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50 hover:shadow-sm hover:transform hover:scale-102'}`}
+                ${
+                  selectedGroup === group.id
+                    ? 'border-blue-600 bg-blue-50 shadow-md transform scale-105'
+                    : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50 hover:shadow-sm hover:transform hover:scale-102'
+                }`}
             >
               <h3 className="font-semibold text-lg mb-2">{group.title}</h3>
               <p className="text-sm text-gray-600">{group.description}</p>
@@ -74,7 +75,10 @@ const ForecastingDashboards = () => {
 
         {/* Footer */}
         <footer className="mt-12 text-center text-sm text-gray-500">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform.</p>
+          <p>
+            © 2025 Tangible Intelligence, ai. The Tangible Intelligence
+            Platform.
+          </p>
         </footer>
       </div>
     </div>

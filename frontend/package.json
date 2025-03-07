@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^6.12.0",
     "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "env-cmd": "^10.1.0",
     "lucide-react": "^0.469.0",
     "mammoth": "^1.9.0",
     "mermaid": "^11.4.1",
@@ -21,6 +23,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.15.1",
     "redux": "^5.0.1",
+    "tailwind-merge": "^3.0.2",
     "web-vitals": "^2.1.4",
     "zustand": "^5.0.2"
   },
@@ -28,6 +31,8 @@
     "start": "react-scripts start  --disable-host-check",
     "start-with-ngrok": "concurrently \"npm start\" \"ngrok http 3000 --host-header=localhost:3000\"",
     "build": "react-scripts build",
+    "build:develop": "CI=false BUILD_ENV=develop node setEnv.js",
+    "build:production": "CI=false BUILD_ENV=production node setEnv.js",
     "build:css": "tailwindcss -i ./src/index.css -o ./src/output.css --watch",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -52,8 +57,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "express": "^4.21.2",
     "http-proxy-middleware": "^3.0.3",
     "postcss": "^8.4.49",

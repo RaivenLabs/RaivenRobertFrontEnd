@@ -26,15 +26,17 @@ const FastLaneApps = () => {
 
         {/* Features Overview */}
         <section className="bg-white py-10 px-4 rounded-lg mb-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">Quick Launch Guide</h2>
+          <h2 className="text-2xl font-semibold text-royalBlue mb-6 text-center">
+            Quick Launch Guide
+          </h2>
           <div className="max-w-4xl mx-auto grid grid-cols-2 gap-6">
             {[
-              "Press and hold any highlighted application to launch",
-              "Blue icons indicate available applications",
-              "Gray icons show upcoming features",
-              "Release to cancel launch",
-              "Navigation updates automatically",
-              "Access your full application suite anytime"
+              'Press and hold any highlighted application to launch',
+              'Blue icons indicate available applications',
+              'Gray icons show upcoming features',
+              'Release to cancel launch',
+              'Navigation updates automatically',
+              'Access your full application suite anytime',
             ].map((feature, index) => (
               <div key={index} className="flex items-start">
                 <ArrowRight className="w-5 h-5 text-royalBlue mr-2 mt-1 flex-shrink-0" />
@@ -49,7 +51,7 @@ const FastLaneApps = () => {
           <h2 className="text-2xl font-semibold text-royalBlue mb-8 text-center">
             Enterprise Applications
           </h2>
-          <ApplicationGroup 
+          <ApplicationGroup
             apiEndpoint="//programs/buildkits"
             onSidebarChange={handleSidebarChange}
           />
@@ -57,8 +59,10 @@ const FastLaneApps = () => {
 
         {/* Footer */}
         <footer className="bg-royalBlue text-ivory text-center py-8 px-4 rounded-lg">
-          <p>© 2024 Tangible Intelligence, ai. The Tangible Intelligence Platform. 
-            Transforming operations through intelligent automation.</p>
+          <p>
+            © 2025 Tangible Intelligence, ai. The Tangible Intelligence
+            Platform. Transforming operations through intelligent automation.
+          </p>
         </footer>
       </div>
     </div>

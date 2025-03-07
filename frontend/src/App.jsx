@@ -144,7 +144,6 @@ import SourcingHubContent from './pages/menusections/rapidreview/features/Winslo
 import BooneLanding from './pages/menusections/rapidreview/features/WinslowApplications/Boone';
 import CypressLanding from './pages/menusections/rapidreview/features/WinslowApplications/Cypress';
 
-
 //Boone
 import BooneConfiguration from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/booneconfiguration/booneconfiguration';
 import BoonePayload from './pages/menusections/rapidreview/features/WinslowApplications/Boone/features/payload/payloads';

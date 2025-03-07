@@ -45,7 +45,6 @@ const tangibleteamsConfig = {
       route: 'tangibleteams/myteam'
     }
     
- 
     ]
   };
   export default tangibleteamsConfig;

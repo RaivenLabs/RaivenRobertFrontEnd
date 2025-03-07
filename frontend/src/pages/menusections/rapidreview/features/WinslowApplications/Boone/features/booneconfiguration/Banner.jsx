@@ -37,7 +37,7 @@ const Banner = ({ activeSection, setActiveSection }) => {
     },
     {
       id: 'etl',
-      label: 'Model Dashboard Package',
+      label: 'ETL Workflow',
       icon: GitBranch,
       tooltip: 'Set up extraction and processing pipeline'
     }

@@ -135,7 +135,7 @@ const FlightDeckDashboard = () => {
         // fetchFromAPI already handles response.ok check and json parsing
        
        const data = await fetchFromAPI(
-                 `/flightdeck/dashboard`, 
+                 `/api/flightdeck/dashboard`, 
                  coreconfig.apiUrl
                );
        
