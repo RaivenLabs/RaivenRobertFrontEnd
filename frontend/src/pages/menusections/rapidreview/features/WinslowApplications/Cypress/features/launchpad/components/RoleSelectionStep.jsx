@@ -1,322 +1,672 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const RoleSelectionStep = ({ rateCard, selectedRoles, onAddRole, onRemoveRole }) => {
-  const [newRole, setNewRole] = useState({
-    roleId: '',
-    roleName: '',
-    rate: 0,
-    standardRate: 0,
-    startDate: '',
-    endDate: ''
+// This component handles role selection, timeframes, and budget calculations
+const RoleSelectionStep = () => {
+  // State for selected provider (pre-filled with Talos for this demo)
+  const [selectedProvider, setSelectedProvider] = useState({
+    id: "provider-2",
+    name: "Talos Consulting Group LLC",
+    msaReference: "K-0386573"
   });
-  const [customRate, setCustomRate] = useState(false);
   
-  // Handle role selection change
-  const handleRoleChange = (e) => {
-    const roleId = e.target.value;
-    const selectedRoleInfo = rateCard.roles.find(r => r.roleId === roleId);
+  // State for the service order
+  const [serviceOrder, setServiceOrder] = useState({
+    startDate: new Date().toISOString().split('T')[0],
+    endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 90 days from now
+    totalBudget: 150000,
+    resources: []
+  });
+  
+  // State for the new resource being added
+  const [newResource, setNewResource] = useState({
+    id: '',
+    roleTitle: '',
+    roleLevel: '',
+    belineCode: '',
+    rate: 0,
+    customRate: 0,
+    useCustomRate: false,
+    hours: 160,
+    startDate: serviceOrder.startDate,
+    endDate: serviceOrder.endDate,
+    location: 'US Region 2' // Default to US Region 2
+  });
+  
+  // Calculated metrics
+  const [metrics, setMetrics] = useState({
+    totalCost: 0,
+    remainingBudget: serviceOrder.totalBudget,
+    totalHours: 0,
+    resourceCount: 0
+  });
+  
+  // Keep metrics up-to-date when resources change
+  useEffect(() => {
+    const totalCost = serviceOrder.resources.reduce((sum, resource) => {
+      const rate = resource.useCustomRate ? resource.customRate : resource.rate;
+      return sum + (rate * resource.hours);
+    }, 0);
     
-    if (selectedRoleInfo) {
-      setNewRole({
-        ...newRole,
-        roleId: selectedRoleInfo.roleId,
-        roleName: selectedRoleInfo.roleName,
-        rate: selectedRoleInfo.rate,
-        standardRate: selectedRoleInfo.rate
-      });
-      setCustomRate(false);
-    } else {
-      setNewRole({
-        ...newRole,
-        roleId: '',
-        roleName: '',
-        rate: 0,
-        standardRate: 0
-      });
-    }
+    const totalHours = serviceOrder.resources.reduce((sum, resource) => sum + resource.hours, 0);
+    
+    setMetrics({
+      totalCost,
+      remainingBudget: serviceOrder.totalBudget - totalCost,
+      totalHours,
+      resourceCount: serviceOrder.resources.length
+    });
+  }, [serviceOrder]);
+  
+  // Rate card from the Talos amendment
+  const talosRateCard = [
+    { belineCode: 'B9904', roleTitle: 'Engagement Manager', level: '', region1: 205, region2: 195, region3: 175 },
+    { belineCode: 'B9902', roleTitle: 'Consultant - Business', level: '', region1: 195, region2: 185, region3: null },
+    { belineCode: 'B9903', roleTitle: 'Consultant - Strategy', level: '', region1: 225, region2: 205, region3: null },
+    { belineCode: 'B9917', roleTitle: 'Consultant - IT', level: '', region1: null, region2: 200, region3: null },
+    { belineCode: 'B9909', roleTitle: 'Consultant - Finance', level: '', region1: null, region2: 200, region3: null },
+    { belineCode: 'B9911', roleTitle: 'Consultant - Marketing', level: '', region1: null, region2: 225, region3: null },
+    { belineCode: 'B2191', roleTitle: 'Operations Analyst', level: '1', region1: null, region2: 120, region3: 110 },
+    { belineCode: 'B2773', roleTitle: 'Operations Analyst', level: '2', region1: null, region2: 130, region3: 120 },
+    { belineCode: 'B1706', roleTitle: 'Operations Analyst', level: '3', region1: null, region2: 140, region3: 130 },
+    { belineCode: 'B1420', roleTitle: 'Operations Coordinator', level: '1', region1: null, region2: 85, region3: 75 },
+    { belineCode: 'B1261', roleTitle: 'Operations Coordinator', level: '2', region1: null, region2: 100, region3: 90 },
+    { belineCode: 'B1926', roleTitle: 'Operations Coordinator', level: '3', region1: null, region2: 110, region3: 100 },
+    { belineCode: 'B9071', roleTitle: 'Agile Lead', level: '1', region1: null, region2: 90, region3: null },
+    { belineCode: 'B9072', roleTitle: 'Agile Lead', level: '2', region1: null, region2: 110, region3: null },
+    { belineCode: 'B9073', roleTitle: 'Agile Lead', level: '3', region1: null, region2: 125, region3: null },
+    { belineCode: 'B1286', roleTitle: 'Program Coordinator - Non-IT', level: '1', region1: 95, region2: 85, region3: 75 },
+    { belineCode: 'B2387', roleTitle: 'Program Coordinator - Non-IT', level: '2', region1: 110, region2: 100, region3: 90 },
+    { belineCode: 'B1754', roleTitle: 'Program Coordinator - Non-IT', level: '3', region1: 120, region2: 110, region3: 100 },
+    { belineCode: 'B3345', roleTitle: 'Program Manager - Non-IT', level: '4', region1: 185, region2: 175, region3: 135 },
+    { belineCode: 'B3339', roleTitle: 'Program Manager - Non-IT', level: '5', region1: 205, region2: 195, region3: 175 },
+  ];
+  
+  // Get unique role titles for the role selector
+  const uniqueRoleTitles = [...new Set(talosRateCard.map(item => item.roleTitle))];
+  
+  // Get levels for a specific role title
+  const getLevelsForRole = (roleTitle) => {
+    return talosRateCard
+      .filter(item => item.roleTitle === roleTitle)
+      .map(item => item.level)
+      .filter(level => level !== '');
   };
   
-  // Handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewRole({
-      ...newRole,
-      [name]: name === 'rate' ? parseFloat(value) || 0 : value
+  // Get rate for a specific role, level and region
+  const getRateForRole = (roleTitle, level, region) => {
+    const rateItem = talosRateCard.find(item => 
+      item.roleTitle === roleTitle && 
+      item.level === level
+    );
+    
+    if (!rateItem) return 0;
+    
+    if (region === 'US Region 1') return rateItem.region1 || 0;
+    if (region === 'US Region 2') return rateItem.region2 || 0;
+    if (region === 'US Region 3') return rateItem.region3 || 0;
+    
+    return 0;
+  };
+  
+  // Get Beeline code for a role and level
+  const getBelineCode = (roleTitle, level) => {
+    const item = talosRateCard.find(item => 
+      item.roleTitle === roleTitle && 
+      item.level === level
+    );
+    
+    return item ? item.belineCode : '';
+  };
+  
+  // Handle role selection
+  const handleRoleSelect = (e) => {
+    const roleTitle = e.target.value;
+    const levels = getLevelsForRole(roleTitle);
+    const level = levels.length > 0 ? levels[0] : '';
+    const belineCode = getBelineCode(roleTitle, level);
+    const rate = getRateForRole(roleTitle, level, newResource.location);
+    
+    setNewResource({
+      ...newResource,
+      roleTitle,
+      roleLevel: level,
+      belineCode,
+      rate,
+      customRate: rate
     });
   };
   
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Handle level selection
+  const handleLevelSelect = (e) => {
+    const level = e.target.value;
+    const belineCode = getBelineCode(newResource.roleTitle, level);
+    const rate = getRateForRole(newResource.roleTitle, level, newResource.location);
     
-    // Validation checks
-    if (!newRole.roleId || !newRole.startDate || !newRole.endDate) {
-      alert('Please fill in all required fields.');
+    setNewResource({
+      ...newResource,
+      roleLevel: level,
+      belineCode,
+      rate,
+      customRate: rate
+    });
+  };
+  
+  // Handle location/region selection
+  const handleLocationSelect = (e) => {
+    const location = e.target.value;
+    const rate = getRateForRole(newResource.roleTitle, newResource.roleLevel, location);
+    
+    setNewResource({
+      ...newResource,
+      location,
+      rate,
+      customRate: rate
+    });
+  };
+  
+  // Handle hours input
+  const handleHoursChange = (e) => {
+    const hours = parseInt(e.target.value) || 0;
+    setNewResource({
+      ...newResource,
+      hours
+    });
+  };
+  
+  // Handle custom rate toggle
+  const handleCustomRateToggle = (e) => {
+    setNewResource({
+      ...newResource,
+      useCustomRate: e.target.checked
+    });
+  };
+  
+  // Handle custom rate input
+  const handleCustomRateChange = (e) => {
+    const customRate = parseFloat(e.target.value) || 0;
+    setNewResource({
+      ...newResource,
+      customRate
+    });
+  };
+  
+  // Handle date changes
+  const handleDateChange = (field, e) => {
+    setNewResource({
+      ...newResource,
+      [field]: e.target.value
+    });
+  };
+  
+  // Add resource to the service order
+  const handleAddResource = () => {
+    if (!newResource.roleTitle) {
+      alert('Please select a role');
       return;
     }
     
-    if (new Date(newRole.startDate) > new Date(newRole.endDate)) {
-      alert('Start date cannot be after end date.');
-      return;
-    }
+    const updatedResources = [
+      ...serviceOrder.resources,
+      {
+        ...newResource,
+        id: `resource-${Date.now()}` // Generate a unique ID
+      }
+    ];
     
-    // Add the role to selected roles
-    onAddRole(newRole);
+    setServiceOrder({
+      ...serviceOrder,
+      resources: updatedResources
+    });
     
-    // Reset form
-    setNewRole({
-      roleId: '',
-      roleName: '',
+    // Reset the new resource form
+    setNewResource({
+      id: '',
+      roleTitle: '',
+      roleLevel: '',
+      belineCode: '',
       rate: 0,
-      standardRate: 0,
-      startDate: '',
-      endDate: ''
+      customRate: 0,
+      useCustomRate: false,
+      hours: 160,
+      startDate: serviceOrder.startDate,
+      endDate: serviceOrder.endDate,
+      location: 'US Region 2'
     });
-    setCustomRate(false);
   };
   
-  // Calculate the variance as a percentage
-  const calculateVariance = (rate, standardRate) => {
-    if (!standardRate) return 0;
-    return ((standardRate - rate) / standardRate) * 100;
+  // Remove a resource
+  const handleRemoveResource = (resourceId) => {
+    const updatedResources = serviceOrder.resources.filter(
+      resource => resource.id !== resourceId
+    );
+    
+    setServiceOrder({
+      ...serviceOrder,
+      resources: updatedResources
+    });
+  };
+  
+  // Update project budget
+  const handleBudgetChange = (e) => {
+    const budget = parseFloat(e.target.value) || 0;
+    setServiceOrder({
+      ...serviceOrder,
+      totalBudget: budget
+    });
+  };
+  
+  // Update project dates
+  const handleProjectDateChange = (field, e) => {
+    setServiceOrder({
+      ...serviceOrder,
+      [field]: e.target.value
+    });
+  };
+  
+  // Calculate warning level for budget
+  const getBudgetWarningLevel = () => {
+    const percentUsed = (metrics.totalCost / serviceOrder.totalBudget) * 100;
+    
+    if (percentUsed >= 100) return 'danger';
+    if (percentUsed >= 85) return 'warning';
+    if (percentUsed >= 70) return 'cautious';
+    return 'good';
   };
   
   // Format currency
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
     }).format(amount);
   };
-
+  
+  // Get rate variance message
+  const getRateVariance = () => {
+    if (!newResource.useCustomRate || !newResource.rate) return null;
+    
+    const variance = newResource.customRate - newResource.rate;
+    const percentVariance = (variance / newResource.rate) * 100;
+    
+    if (variance === 0) return null;
+    
+    return {
+      text: `${variance > 0 ? 'Above' : 'Below'} standard rate by ${Math.abs(percentVariance).toFixed(1)}%`,
+      isNegative: variance < 0,
+      isPositive: variance > 0
+    };
+  };
+  
+  const rateVariance = getRateVariance();
+  const budgetWarningLevel = getBudgetWarningLevel();
+  
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-bold text-gray-800 mb-2">Select Roles & Rates</h2>
-        <p className="text-gray-600">
-          Add the roles needed for this service order along with their rates and durations.
-        </p>
+    <div className="max-w-6xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Configure Service Order Team</h1>
+      
+      {/* Service Order Provider */}
+      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <span className="text-sm text-gray-500">Provider</span>
+            <h3 className="font-bold text-lg">{selectedProvider.name}</h3>
+            <p className="text-sm text-gray-600">MSA Reference: {selectedProvider.msaReference}</p>
+          </div>
+          <div className="flex flex-col items-end">
+            <span className="text-sm text-gray-500">Based on rates from</span>
+            <p className="font-medium">First Amendment - Exhibit B-1</p>
+          </div>
+        </div>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Role Selection Form */}
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4">Add New Role</h3>
-          
-          <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Service Order Details */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="col-span-2 bg-white p-4 rounded-lg border border-gray-200">
+          <h3 className="font-semibold mb-3">Project Timeframe</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Role <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <select
-                  value={newRole.roleId}
-                  onChange={handleRoleChange}
-                  className="w-full p-2 border border-gray-300 rounded appearance-none"
-                  required
+              <label className="block text-sm text-gray-600 mb-1">Start Date</label>
+              <input 
+                type="date" 
+                className="w-full p-2 border border-gray-300 rounded" 
+                value={serviceOrder.startDate}
+                onChange={(e) => handleProjectDateChange('startDate', e)}
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">End Date</label>
+              <input 
+                type="date" 
+                className="w-full p-2 border border-gray-300 rounded" 
+                value={serviceOrder.endDate}
+                onChange={(e) => handleProjectDateChange('endDate', e)}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <h3 className="font-semibold mb-3">Budget</h3>
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">Total Budget</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span className="text-gray-500">$</span>
+              </div>
+              <input 
+                type="number" 
+                className="w-full pl-7 p-2 border border-gray-300 rounded" 
+                value={serviceOrder.totalBudget}
+                onChange={handleBudgetChange}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Budget Summary */}
+      <div className={`p-4 rounded-lg border mb-6 ${
+        budgetWarningLevel === 'danger' ? 'bg-red-50 border-red-200' :
+        budgetWarningLevel === 'warning' ? 'bg-yellow-50 border-yellow-200' :
+        budgetWarningLevel === 'cautious' ? 'bg-blue-50 border-blue-200' :
+        'bg-green-50 border-green-200'
+      }`}>
+        <div className="flex flex-wrap justify-between items-center">
+          <div className="mb-2 md:mb-0">
+            <h3 className="font-semibold">Budget Summary</h3>
+            <p className="text-sm text-gray-600">
+              {metrics.resourceCount} resources, {metrics.totalHours} total hours
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-x-6 gap-y-1">
+            <div className="text-right">
+              <span className="text-sm text-gray-500">Total Cost:</span>
+            </div>
+            <div className="font-medium">
+              {formatCurrency(metrics.totalCost)}
+            </div>
+            
+            <div className="text-right">
+              <span className="text-sm text-gray-500">Budget:</span>
+            </div>
+            <div className="font-medium">
+              {formatCurrency(serviceOrder.totalBudget)}
+            </div>
+            
+            <div className="text-right">
+              <span className="text-sm text-gray-500">Remaining:</span>
+            </div>
+            <div className={`font-medium ${
+              metrics.remainingBudget < 0 ? 'text-red-600' : 'text-green-600'
+            }`}>
+              {formatCurrency(metrics.remainingBudget)}
+            </div>
+          </div>
+        </div>
+        
+        {/* Progress bar */}
+        <div className="mt-3">
+          <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div 
+              className={`h-2.5 rounded-full ${
+                budgetWarningLevel === 'danger' ? 'bg-red-600' :
+                budgetWarningLevel === 'warning' ? 'bg-yellow-500' :
+                budgetWarningLevel === 'cautious' ? 'bg-blue-500' :
+                'bg-green-500'
+              }`} 
+              style={{ width: `${Math.min(100, (metrics.totalCost / serviceOrder.totalBudget) * 100)}%` }}
+            ></div>
+          </div>
+          <div className="flex justify-between mt-1">
+            <span className="text-xs text-gray-500">0%</span>
+            <span className="text-xs text-gray-500">
+              {Math.min(100, ((metrics.totalCost / serviceOrder.totalBudget) * 100).toFixed(1))}%
+            </span>
+            <span className="text-xs text-gray-500">100%</span>
+          </div>
+        </div>
+      </div>
+      
+      {/* Team Configuration */}
+      <div className="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+        <h3 className="font-semibold mb-4">Team Configuration</h3>
+        
+        {/* Current resources */}
+        {serviceOrder.resources.length > 0 && (
+          <div className="mb-6">
+            <h4 className="text-sm font-medium text-gray-700 mb-2">Current Team Members</h4>
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr className="bg-gray-50">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hours</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                    <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {serviceOrder.resources.map(resource => (
+                    <tr key={resource.id}>
+                      <td className="px-3 py-2 whitespace-nowrap">
+                        <div className="font-medium">{resource.roleTitle}</div>
+                        {resource.roleLevel && (
+                          <div className="text-xs text-gray-500">Level {resource.roleLevel}</div>
+                        )}
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm">
+                        {resource.location}
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm">
+                        {resource.hours}
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm">
+                        ${resource.useCustomRate ? resource.customRate : resource.rate}/hr
+                        {resource.useCustomRate && resource.customRate !== resource.rate && (
+                          <div className={`text-xs ${resource.customRate > resource.rate ? 'text-red-500' : 'text-green-500'}`}>
+                            {resource.customRate > resource.rate ? 'Above' : 'Below'} standard
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm">
+                        ${(resource.useCustomRate ? resource.customRate : resource.rate) * resource.hours}
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-right text-sm">
+                        <button
+                          onClick={() => handleRemoveResource(resource.id)}
+                          className="text-red-600 hover:text-red-800"
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+        
+        {/* Add new resource */}
+        <div className="border-t pt-4">
+          <h4 className="text-sm font-medium text-gray-700 mb-3">Add Team Member</h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Role</label>
+              <select 
+                className="w-full p-2 border border-gray-300 rounded"
+                value={newResource.roleTitle}
+                onChange={handleRoleSelect}
+              >
+                <option value="">-- Select Role --</option>
+                {uniqueRoleTitles.map(role => (
+                  <option key={role} value={role}>{role}</option>
+                ))}
+              </select>
+            </div>
+            
+            {newResource.roleTitle && getLevelsForRole(newResource.roleTitle).length > 0 && (
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">Level</label>
+                <select 
+                  className="w-full p-2 border border-gray-300 rounded"
+                  value={newResource.roleLevel}
+                  onChange={handleLevelSelect}
                 >
-                  <option value="">-- Select a Role --</option>
-                  {rateCard.roles.map(role => (
-                    <option key={role.roleId} value={role.roleId}>
-                      {role.roleName} - ${role.rate}/{role.unit}
-                    </option>
+                  {getLevelsForRole(newResource.roleTitle).map(level => (
+                    <option key={level} value={level}>{level}</option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                  </svg>
-                </div>
               </div>
+            )}
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Location</label>
+              <select 
+                className="w-full p-2 border border-gray-300 rounded"
+                value={newResource.location}
+                onChange={handleLocationSelect}
+              >
+                <option value="US Region 1">US Region 1</option>
+                <option value="US Region 2">US Region 2</option>
+                <option value="US Region 3">US Region 3</option>
+              </select>
             </div>
             
             <div>
-              <div className="flex items-center mb-2">
-                <label className="block text-sm font-medium text-gray-700 mr-2">
-                  Rate <span className="text-red-500">*</span>
-                </label>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="custom-rate"
-                    checked={customRate}
-                    onChange={() => setCustomRate(!customRate)}
-                    className="h-4 w-4 text-royalBlue focus:ring-royalBlue border-gray-300 rounded"
-                    disabled={!newRole.roleId}
-                  />
-                  <label htmlFor="custom-rate" className="ml-2 block text-xs text-gray-600">
-                    Use custom rate
-                  </label>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <div className="relative rounded-md shadow-sm">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span className="text-gray-500 sm:text-sm">$</span>
-                  </div>
-                  <input
-                    type="number"
-                    name="rate"
-                    value={newRole.rate}
-                    onChange={handleInputChange}
-                    disabled={!customRate || !newRole.roleId}
-                    className={`pl-8 pr-12 py-2 border border-gray-300 rounded w-full ${
-                      !customRate && newRole.roleId ? 'bg-gray-100' : ''
-                    }`}
-                    min="0"
-                    step="0.01"
-                    required
-                  />
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <span className="text-gray-500 sm:text-sm">/hour</span>
-                  </div>
-                </div>
-              </div>
-              {customRate && newRole.standardRate > 0 && (
-                <div className="mt-1">
-                  <span className={`text-xs ${
-                    newRole.rate < newRole.standardRate ? 'text-green-600' : 
-                    newRole.rate > newRole.standardRate ? 'text-red-600' : 'text-gray-500'
-                  }`}>
-                    {newRole.rate < newRole.standardRate ? 
-                      `${calculateVariance(newRole.rate, newRole.standardRate).toFixed(1)}% below rate card` : 
-                      newRole.rate > newRole.standardRate ? 
-                      `${Math.abs(calculateVariance(newRole.rate, newRole.standardRate)).toFixed(1)}% above rate card` : 
-                      'Standard rate card rate'}
-                  </span>
-                </div>
-              )}
+              <label className="block text-sm text-gray-600 mb-1">Hours</label>
+              <input 
+                type="number" 
+                className="w-full p-2 border border-gray-300 rounded" 
+                value={newResource.hours}
+                onChange={handleHoursChange}
+              />
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Start Date <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="date"
-                  name="startDate"
-                  value={newRole.startDate}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Rate</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <span className="text-gray-500">$</span>
+                </div>
+                <input 
+                  type="number" 
+                  className={`w-full pl-7 p-2 border rounded ${
+                    newResource.useCustomRate ? 
+                    'border-blue-300 bg-blue-50' : 
+                    'border-gray-300 bg-gray-100'
+                  }`}
+                  value={newResource.useCustomRate ? newResource.customRate : newResource.rate}
+                  onChange={handleCustomRateChange}
+                  disabled={!newResource.useCustomRate}
                 />
               </div>
               
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  End Date <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="date"
-                  name="endDate"
-                  value={newRole.endDate}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
+              <div className="mt-1 flex items-center">
+                <input 
+                  type="checkbox" 
+                  id="useCustomRate" 
+                  className="mr-2"
+                  checked={newResource.useCustomRate}
+                  onChange={handleCustomRateToggle}
                 />
+                <label htmlFor="useCustomRate" className="text-xs text-gray-600">
+                  Use custom rate
+                </label>
+                
+                {rateVariance && (
+                  <span className={`ml-2 text-xs ${
+                    rateVariance.isPositive ? 'text-red-500' : 'text-green-500'
+                  }`}>
+                    {rateVariance.text}
+                  </span>
+                )}
               </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Start Date</label>
+              <input 
+                type="date" 
+                className="w-full p-2 border border-gray-300 rounded" 
+                value={newResource.startDate}
+                onChange={(e) => handleDateChange('startDate', e)}
+              />
             </div>
             
-            <div className="pt-2">
-              <button
-                type="submit"
-                className="w-full bg-royalBlue text-white py-2 rounded hover:bg-blue-700 flex items-center justify-center"
-                disabled={!newRole.roleId}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                </svg>
-                Add Role
-              </button>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">End Date</label>
+              <input 
+                type="date" 
+                className="w-full p-2 border border-gray-300 rounded" 
+                value={newResource.endDate}
+                onChange={(e) => handleDateChange('endDate', e)}
+              />
             </div>
-          </form>
-        </div>
-        
-        {/* Selected Roles */}
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4">Selected Roles</h3>
+          </div>
           
-          {selectedRoles.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <p>No roles added yet</p>
-              <p className="mt-1 text-sm">Select roles from the form on the left to add them to the order</p>
-            </div>
-          ) : (
-            <div className="space-y-3 max-h-96 overflow-y-auto">
-              {selectedRoles.map((role, index) => {
-                const duration = calculateDuration(role.startDate, role.endDate);
-                const subtotal = role.rate * duration * 8; // 8 hours/day
-                
-                return (
-                  <div key={index} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="font-medium text-gray-800">{role.roleName}</h4>
-                        <p className="text-sm text-gray-600 mt-1">
-                          {formatCurrency(role.rate)}/hour
-                        </p>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {new Date(role.startDate).toLocaleDateString()} to {new Date(role.endDate).toLocaleDateString()} ({duration} days)
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-medium text-gray-800">{formatCurrency(subtotal)}</p>
-                        {role.rate !== role.standardRate && (
-                          <p className={`text-xs mt-1 ${role.rate < role.standardRate ? 'text-green-600' : 'text-red-600'}`}>
-                            {role.rate < role.standardRate ? 
-                              `${calculateVariance(role.rate, role.standardRate).toFixed(1)}% below rate card` : 
-                              `${Math.abs(calculateVariance(role.rate, role.standardRate)).toFixed(1)}% above rate card`}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <div className="mt-2 pt-2 border-t border-gray-200 flex justify-end">
-                      <button
-                        onClick={() => onRemoveRole(index)}
-                        className="text-red-600 hover:text-red-800 text-sm flex items-center"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          
-          {selectedRoles.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-gray-200">
-              <div className="flex justify-between items-center">
-                <span className="font-medium text-gray-700">Total:</span>
-                <span className="font-bold text-gray-800">
-                  {formatCurrency(selectedRoles.reduce((sum, role) => {
-                    const duration = calculateDuration(role.startDate, role.endDate);
-                    return sum + (role.rate * duration * 8);
-                  }, 0))}
-                </span>
+          {newResource.roleTitle && (
+            <div className="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+              <div>
+                <p className="font-medium">
+                  {newResource.roleTitle} {newResource.roleLevel && `(Level ${newResource.roleLevel})`}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {newResource.hours} hours × ${newResource.useCustomRate ? newResource.customRate : newResource.rate}/hr
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="font-medium">
+                  Total: ${(newResource.useCustomRate ? newResource.customRate : newResource.rate) * newResource.hours}
+                </p>
+                <p className="text-xs text-gray-500">
+                  Beeline Code: {newResource.belineCode}
+                </p>
               </div>
             </div>
           )}
+          
+          <div className="mt-4 flex justify-end">
+            <button
+              onClick={handleAddResource}
+              disabled={!newResource.roleTitle}
+              className={`px-4 py-2 rounded ${
+                newResource.roleTitle ? 
+                'bg-blue-600 hover:bg-blue-700 text-white' : 
+                'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              Add Team Member
+            </button>
+          </div>
         </div>
+      </div>
+      
+      {/* Next Step Button */}
+      <div className="flex justify-end mt-6">
+        <button 
+          className={`px-6 py-2 rounded ${
+            serviceOrder.resources.length > 0 ?
+            'bg-green-600 hover:bg-green-700 text-white' :
+            'bg-gray-300 text-gray-500 cursor-not-allowed'
+          }`}
+          disabled={serviceOrder.resources.length === 0}
+        >
+          Continue to Service Order Details
+        </button>
       </div>
     </div>
   );
-};
-
-// Helper function to calculate duration in days between two dates
-const calculateDuration = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const diffTime = Math.abs(end - start);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays;
 };
 
 export default RoleSelectionStep;

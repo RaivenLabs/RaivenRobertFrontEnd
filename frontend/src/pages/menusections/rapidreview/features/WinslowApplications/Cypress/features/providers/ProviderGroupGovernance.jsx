@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProviderTable from './components/ProviderTable';
-import NewProviderForm from './components/NewSupplierWorkflow';
+import NewSupplierWorkflow from './components/NewSupplierWorkflow';
 import TabNavigation from './components/TabNavigation';
 
 const ProviderGroupGovernance = ({
@@ -230,7 +230,7 @@ const defaultProviders = [
         )}
 
         {activeTab === 'new-provider' && (
-          <NewProviderForm
+          <NewSupplierWorkflow
             onCreateProvider={handleNewProvider}
             onUploadArtifact={handleArtifactUpload}
           />

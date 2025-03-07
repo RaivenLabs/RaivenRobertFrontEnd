@@ -33,9 +33,18 @@ export function SupplierProvider({
       rateCard: null,
       amendments: [],
       localCountryAgreements: [],
-      orderTemplates: []
+      orderTemplates: [],
+      serviceOrders:[]
     },
-    extractedData: null
+    extractedData: {},
+    // For storing extracted document info
+  documentInfo: null,
+  
+  // For storing extracted rates
+  extractedRates: [],
+  
+  // For tracking processing status
+  processingStage: null,
   });
   
   // Methods to update form data
@@ -44,7 +53,9 @@ export function SupplierProvider({
       ...prev,
       [section]: typeof data === 'function' 
         ? data(prev[section]) 
-        : {...prev[section], ...data}
+        : Array.isArray(data) || typeof data !== 'object'
+          ? data  // Direct assignment for arrays and primitive values
+          : {...prev[section], ...data}  // Spread for objects
     }));
   };
   
@@ -74,9 +85,10 @@ export function SupplierProvider({
         rateCard: null,
         amendments: [],
         localCountryAgreements: [],
-        orderTemplates: []
+        orderTemplates: [],
+        serviceOrders: []
       },
-      extractedData: null
+      extractedData: {}
     });
   };
   
@@ -130,9 +142,19 @@ export function SupplierProvider({
       resetForm,
       updateSupplier: handleSupplierUpdate,
       deleteSupplier: handleSupplierDeletion,
+      extractedData: formData.extractedData, 
       createSupplier: handleNewSupplier,
       uploadArtifact: handleArtifactUpload,
-      refreshData: onRefreshData
+      refreshData: onRefreshData,
+      // Include processing status
+      processingStage: formData.processingStage,
+          
+      // Include extracted data
+      documentInfo: formData.documentInfo,
+      extractedRates: formData.extractedRates
+
+
+
     }}>
       {children}
     </SupplierContext.Provider>
@@ -142,3 +164,6 @@ export function SupplierProvider({
 export function useSupplier() {
   return useContext(SupplierContext);
 }
+
+
+

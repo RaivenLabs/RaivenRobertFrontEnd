@@ -8,6 +8,7 @@ const NavigationButtons = ({
   onPrevious, 
   onNext, 
   onSubmit,
+  nextLabel = 'Next', // Add this new prop with default value
   submitLabel = 'Complete Configuration'
 }) => {
   return (
@@ -35,7 +36,7 @@ const NavigationButtons = ({
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
         >
-          Next
+          {nextLabel} {/* Use the custom label here */}
         </button>
       ) : (
         <button
