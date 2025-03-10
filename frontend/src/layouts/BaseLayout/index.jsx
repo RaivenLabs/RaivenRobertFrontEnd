@@ -52,6 +52,10 @@ import FlorenceGelatoSidebar from '../../pages/menusections/speakeasy/applicatio
 import { useSidebar } from '../../context/SidebarContext';
 
 
+// Import the new AppSidebarOrchestrator
+import AppSidebarOrchestrator from '../../AppSidebarOrchestrator';
+
+
 // Make sure that the id (the "key") in sidebarComponents matches the id in the rapidresponse_json fiel taht feeds the sidebar route:)
 
 const BaseLayout = () => {
@@ -76,6 +80,7 @@ const BaseLayout = () => {
     settings: <SettingsSidebar onSidebarChange={setActiveSidebar} />,
     authentication: <AuthenticationSidebar onSidebarChange={setActiveSidebar} />,
     speakeasyclub: <SpeakeasyClubSidebar onSidebarChange={setActiveSidebar} />,
+    apps: <AppSidebarOrchestrator onSidebarChange={setActiveSidebar} />,
   
     sourcinghubsidebar:<WinslowSourcingHubSidebar onSidebarChange={setActiveSidebar} />,
     boonesidebar:<WinslowBooneSidebar onSidebarChange={setActiveSidebar} />,

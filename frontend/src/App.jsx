@@ -157,7 +157,7 @@ import CypressDashboard from './pages/menusections/rapidreview/features/WinslowA
 
 
 
-import OrderLaunchpad from './pages/menusections/rapidreview/features/WinslowApplications/Cypress/features/launchpad/launchpad';
+import OrderWrapper from './pages/menusections/rapidreview/features/WinslowApplications/Cypress/features/launchpad/launchpad';
 import CypressProviders from './pages/menusections/rapidreview/features/WinslowApplications/Cypress/features/providers/providers';
 
 
@@ -169,6 +169,14 @@ import FlorenceGelatoLaunch from './pages/menusections/speakeasy/applications/sp
 import FlorenceGelatoInflight from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Inflight';
 import FlorenceGelatoPortfolio from './pages/menusections/speakeasy/applications/speakeasyclub/applicationgroups/florencegelato/features/Portfolio';
 import { ApplicationRunProvider } from './context/ApplicationRunContext';
+
+
+
+
+
+
+//AppOrchestration
+import MasterAppOrchestrator from './AppOrchestrator';
 
 function AppRoutes() {
   const { coreconfig } = useConfig();
@@ -319,7 +327,7 @@ function AppRoutes() {
 
 
 
- <Route path="winslowcypress/launchpad" element={<OrderLaunchpad />} />
+ <Route path="winslowcypress/launchpad" element={<OrderWrapper/>} />
  <Route path="winslowcypress/providers" element={<CypressProviders />} />
 
 
@@ -391,6 +399,12 @@ function AppRoutes() {
 
  <Route path="recruiting/configuration" element={<EvershedsEUCSDD />} />
 
+
+
+
+{/* Application Orchestration route for all apps*/}
+
+<Route path="/apps/*" element={<MasterAppOrchestrator />} />
 
 {/* Application Configuration routes */}
 

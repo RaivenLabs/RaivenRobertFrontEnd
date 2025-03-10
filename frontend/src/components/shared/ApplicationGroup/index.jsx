@@ -78,18 +78,33 @@ const ApplicationGroup = ({ apiEndpoint }) => {
           from: 'ApplicationGroup',
           app: app.name,
           route: app.outletroute,
+          indexpath: app.indexpath,
           sidebar: app.sidebarroute,
           timestamp: new Date().toISOString()
         });
+        const navigationState = { appData: app };
+      
+        // Log detailed information about what's being sent
+        console.log('📦 Navigation payload:', {
+          destination: app.outletroute,
+          sidebar: app.sidebarroute,
+          indexpath: app.indexpath,
+          statePackage: navigationState,
+          fullAppObject: app,
+          timestamp: new Date().toISOString()
+        });
 
-        navigate(app.outletroute);
-        console.log('🎮 ApplicationGroup: Taking control of sidebar, setting to:', app.sidebarroute);
-        setActiveSidebar(app.sidebarroute);
-      }
-    }, 200);
-    setPressTimer(timer);
-  };
 
+// Navigate with state
+navigate(`/${app.outletroute}`, { state: navigationState });
+console.log('🎮 ApplicationGroup: Taking control of sidebar, setting to:', app.sidebarroute);
+setActiveSidebar(app.sidebarroute);
+}
+}, 200);
+setPressTimer(timer);
+};
+
+      
   const handlePressEnd = () => {
     if (pressTimer) {
       clearTimeout(pressTimer);
